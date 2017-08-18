@@ -1,0 +1,60 @@
+<h1>Student Register</h1>
+<hr>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+  {{message}}</div>
+</div>
+
+<form [formGroup]="studentRegisterForm" (submit)="onRegisterSubmit()">
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <div [ngClass]="{'has-error': (studentRegisterForm.controls.firstname.errors && studentRegisterForm.controls.firstname.dirty), 'has-success': (!studentRegisterForm.controls.firstname.errors)}">
+      <input type="text" class="form-control" name="firstname" autocomplete="off" placeholder="First Name"
+      formControlName="firstname">
+      <ul class="help-block">
+        <li *ngIf="studentRegisterForm.controls.firstname.errors?.required && studentRegisterForm.controls.firstname.dirty">This field is required</li>
+        <li *ngIf="studentRegisterForm.controls.firstname.errors?.validateFirstname && studentRegisterForm.controls.firstname.dirty">Must not contain any special characters or numbers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email Addres</label>
+    <div [ngClass]="{'has-error': (studentRegisterForm.controls.email.errors && studentRegisterForm.controls.email.dirty) || (!emailValid && studentRegisterForm.controls.email.touched), 'has-success': !studentRegisterForm.controls.email.errors && emailValid}">
+      <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email@emailaddress.com"
+      formControlName="email" (blur)="checkEmail()">
+      <ul class="help-block">
+        <li *ngIf="studentRegisterForm.controls.email.errors?.required && studentRegisterForm.controls.email.dirty">This field is required</li>
+        <li *ngIf="studentRegisterForm.controls.email.errors?.minlength && studentRegisterForm.controls.email.dirty">Email must contain a minimum of 5 characters</li>
+        <li *ngIf="studentRegisterForm.controls.email.errors?.maxlength && studentRegisterForm.controls.email.dirty">Email must contain a maximum of 30 characters</li>
+        <li *ngIf="studentRegisterForm.controls.email.errors?.validateEmail && studentRegisterForm.controls.email.dirty">Must be a valid email</li>
+        <li *ngIf="emailMessage"> {{emailMessage}} </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div [ngClass]="{'has-error': (studentRegisterForm.controls.password.errors && studentRegisterForm.controls.password.dirty), 'has-success': (!studentRegisterForm.controls.password.errors)}">
+      <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password"
+      formControlName="password">
+      <ul class="help-block">
+        <li *ngIf="studentRegisterForm.controls.password.errors?.required && studentRegisterForm.controls.password.dirty">This field is required</li>
+        <li *ngIf="studentRegisterForm.controls.password.errors?.minlength && studentRegisterForm.controls.password.dirty">Password must have a minimum of 5 characters</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="confirm">Confirm Password</label>
+    <div [ngClass]="{'has-error': (studentRegisterForm.controls.confirm.errors && studentRegisterForm.controls.confirm.dirty) || (studentRegisterForm.errors?.matchingPasswords && studentRegisterForm.controls.confirm.dirty), 'has-success': !studentRegisterForm.controls.confirm.errors && !studentRegisterForm.errors?.matchingPasswords}">
+      <input type="password" class="form-control" name="confirm" autocomplete="off" placeholder="Confirm Password"
+      formControlName="confirm">
+      <ul class="help-block">
+        <li *ngIf="studentRegisterForm.controls.confirm.errors?.required && studentRegisterForm.controls.confirm.dirty">This field is required</li>
+        <li *ngIf="studentRegisterForm.errors?.matchingPasswords && studentRegisterForm.controls.confirm.dirty">Passwords do not match</li>
+        <li *ngIf="!studentRegisterForm.errors?.matchingPasswords && studentRegisterForm.controls.confirm.dirty">Yippee! Passwords match!</li>
+      </ul>
+    </div>
+  </div>
+
+  <button [disabled]="!studentRegisterForm.valid || processing || !emailValid" class="btn btn-primary" value="Submit">Submit</button>
+</form>

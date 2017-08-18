@@ -1,0 +1,26 @@
+.top {
+  align-self: flex-start;
+}
+
+.mid {
+  position: absolute;
+  text-align: center;
+  text-align: center;
+  display: block;
+  left: 47%;
+}
+
+.navbar {
+  margin: auto;
+  background-color: #5563F0;
+  border: none;
+  width: 100%;
+}
+
+.white {
+  color: white;
+}
+
+li a {
+  color: white;
+}

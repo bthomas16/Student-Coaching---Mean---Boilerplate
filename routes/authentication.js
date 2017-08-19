@@ -1,4 +1,7 @@
 const Student = require('../models/student');
+const jwt = require('jsonwebtoken');
+const config = require('../config/db');
+
 module.exports = (router) => {
 
 
@@ -62,6 +65,68 @@ router.get('/student/register/check-email/:email', (req, res) => {
       }
     })
   }
+})
+
+router.post('/student/login', (req, res) => {
+  if (!req.body.email) {
+    res.json({ succes: false, message: "No email was provided"})
+  } else {
+    if (!req.body.password) {
+      res.json({ success: false, message: "No password was provided"})
+    } else {
+      Student.findOne({ email: req.body.email.toLowerCase()}, (err, student) => {
+        if(err) {
+          res.json({ success: false, message: err})
+        } else {
+          if(!student) {
+            res.json({ success: false, message: 'Email not found'})
+          } else {
+            const validPassword = student.comparePassword(req.body.password);
+            if(!validPassword) {
+              res.json({ success: false, message: "Password is invalid"})
+            } else {
+              const token = jwt.sign({
+                studentId: student._id
+              }, config.secret, { expiresIn: '24h'});
+              res.json({ success: true, message: "Success!", token: token, student: { firstname: student.firstname, email: student.email }});
+            }
+          }
+        }
+      })
+    }
+  }
+})
+
+
+// Any routes below this middleware will require authentication / headers
+router.use((req, res, next)=> {
+  const token = req.headers['student-authorization']
+  if (!token) {
+    res.json({ success: false, message: 'No Token Provided'});
+  } else {
+    jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
+        res.json({ success: false, message: 'Token Invalid:' + err});
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  }
+});
+
+router.get('/student/profile', (req, res) => {
+  Student.findOne({ _id: req.decoded.studentId }).select('email firstname').exec((err, student) => {
+    if (err) {
+      res.json({ success: false, message: err});
+    } else {
+      if (!student) {
+        res.json({ success: false, message: 'Student not found'});
+      } else {
+        res.json({ success: true, student: student});
+      }
+    }
+  })
 })
 
 

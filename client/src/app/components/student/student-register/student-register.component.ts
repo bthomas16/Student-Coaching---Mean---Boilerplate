@@ -124,7 +124,7 @@ export class StudentRegisterComponent implements OnInit {
       this.message = data.message
       setTimeout(() => {
         this.router.navigate(['/student/login'])
-      }, 1800)
+      }, 1400)
     }
   });
   }

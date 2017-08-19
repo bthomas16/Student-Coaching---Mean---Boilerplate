@@ -16,6 +16,12 @@ import { StudentProfileComponent } from './components/student/student-profile/st
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+import { HeroComponent } from './components/home/main/hero/hero.component';
+import { OptionsComponent } from './components/home/main/options/options.component';
+import { FutureComponent } from './components/home/main/future/future.component';
+import { TeachersListComponent } from './components/home/main/teachers-list/teachers-list.component';
+import { BottomSignUpComponent } from './components/home/main/bottom-sign-up/bottom-sign-up.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     StudentLoginComponent,
     TeacherRegisterComponent,
     TeacherLoginComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    HeroComponent,
+    OptionsComponent,
+    FutureComponent,
+    TeachersListComponent,
+    BottomSignUpComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -3,11 +3,7 @@
 }
 
 .mid {
-  position: absolute;
-  text-align: center;
-  text-align: center;
-  display: block;
-  left: 47%;
+
 }
 
 .navbar {
@@ -20,6 +16,43 @@
   color: white;
 }
 
-li a {
+a {
   color: white;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+li a:hover {
+  color: #1BACFC !important;
+  background-color: rgba(137,143,253,.7);
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+li.active a{
+  color: #1BACFC !important;
+  background-color: white !important;
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+.profile {
+  margin-left: 2%;
+}
+
+@media (min-width: 780px) {
+  .flex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    text-align: center;
+    text-align: center;
+    display: block;
+    left: 43%;
+  }
+
+  .mid {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }

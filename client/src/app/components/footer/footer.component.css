@@ -1,0 +1,9 @@
+.navbar {
+  background-color: #DADADA !important;
+}
+
+li.nav-item a {
+  font-size: 1.4em;
+  font-weight: 500;
+  color: #898FFD;
+}

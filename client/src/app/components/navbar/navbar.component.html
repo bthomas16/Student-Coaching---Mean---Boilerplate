@@ -8,22 +8,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand white" routerLink="home">MEAN BoilerPlate</a>
+      <a  *ngIf="!authService.loggedIn()" class="navbar-brand white" routerLink="home">MEAN BoilerPlate</a>
+      <a  *ngIf="authService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <!-- <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/singup/apprentice">Signup<span class="sr-only">(current)</span></a></li>
-        <li routerLinkActive="active"><a routerLink="/singup/master">About Us</a></li>
-      </ul> -->
-      <ul class="nav navbar-nav navbar-center mid">
-        <li *ngIf="!authService.loggedIn()" routerLinkActive="active"><a routerLink="/student/register" class="white">Sign Up</a></li>
-        <li *ngIf="!authService.loggedIn()" routerLinkActive="active"><a routerLink="/student/login" class="white">Login</a></li>
-        <li *ngIf="authService.loggedIn()" routerLinkActive="active"><a routerLink="/student/profile" class="white">Profile</a></li>
+      <ul class="nav navbar-nav navbar-center flex">
+        <li *ngIf="!authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/register">Sign Up</a></li>
+        <li *ngIf="!authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/login">Login</a></li>
+        <li *ngIf="authService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="profile"><a routerLink="/student/profile" >Profile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right top">
-        <li routerLinkActive="active"><a routerLink="/teacher/register" class="white">Become a Coach</a></li>
-        <li *ngIf="authService.loggedIn()" routerLinkActive="active"><a href="/" (click)="onStudentLogoutClick()" class="white">Logout</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/teacher/register">Become a Coach</a></li>
+        <li *ngIf="authService.loggedIn()" routerLinkActive="active"><a href="/" (click)="onStudentLogoutClick()">Logout</a></li>
       </ul>
     </div>
 

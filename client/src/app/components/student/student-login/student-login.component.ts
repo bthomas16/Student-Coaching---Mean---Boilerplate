@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
+import { AuthGuard } from '../../../guards/auth.guard';
 
 @Component({
   selector: 'app-student-login',
@@ -15,8 +16,9 @@ message;
 messageClass;
 processing = false;
 form: FormGroup;
+previousUrl;
 
-  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private authGuard: AuthGuard) {
     this.createForm();
 }
 
@@ -55,13 +57,24 @@ onLoginSubmit() {
       this.message = data.message;
       this.authService.storeStudentData(data.token, data.student);
       setTimeout(() => {
+        if (this.previousUrl) {
+          this.router.navigate([this.previousUrl])
+        } else {
+
         this.router.navigate(['/student/profile/'])
-      }, 1800)
+        }
+      }, 1400)
     }
   })
 }
 
   ngOnInit() {
+    if (this.authGuard.redirectUrl) {
+      this.messageClass = "alert alert-warning";
+      this.message = 'You must be logged in first';
+      this.previousUrl = this.authGuard.redirectUrl
+      this.authGuard.redirectUrl = undefined;
+    }
   }
 
 }

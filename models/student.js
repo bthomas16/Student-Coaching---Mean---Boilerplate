@@ -100,7 +100,7 @@ var studentSchema = new Schema({
     })
   })
 
-  studentSchema.methods.comparePassword = (password) => {
+  studentSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   }
 

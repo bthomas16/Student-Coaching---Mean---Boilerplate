@@ -8,16 +8,18 @@ import { StudentProfileComponent } from './components/student/student-profile/st
 
 import { TeacherRegisterComponent} from './components/teacher/teacher-register/teacher-register.component';
 import { TeacherLoginComponent } from './components/teacher/teacher-login/teacher-login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/notAuth.guard';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'student/register', component: StudentRegisterComponent },
+  { path: 'student/register', component: StudentRegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'teacher/register', component: TeacherRegisterComponent },
-  { path: 'student/login', component: StudentLoginComponent },
-  { path: 'teacher/login', component: TeacherLoginComponent },
-  { path: 'student/profile', component: StudentProfileComponent},
+  { path: 'student/login', component: StudentLoginComponent, canActivate: [NotAuthGuard] },
+  { path: 'teacher/login', component: TeacherLoginComponent, canActivate: [NotAuthGuard] },
+  { path: 'student/profile', component: StudentProfileComponent, canActivate: [AuthGuard]},
 
 
   { path: '**', component: HomeComponent}

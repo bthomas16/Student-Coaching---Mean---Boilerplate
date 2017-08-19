@@ -8,6 +8,8 @@ import { StudentProfileComponent } from './components/student/student-profile/st
 
 import { TeacherRegisterComponent} from './components/teacher/teacher-register/teacher-register.component';
 import { TeacherLoginComponent } from './components/teacher/teacher-login/teacher-login.component';
+import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
@@ -20,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'student/login', component: StudentLoginComponent, canActivate: [NotAuthGuard] },
   { path: 'teacher/login', component: TeacherLoginComponent, canActivate: [NotAuthGuard] },
   { path: 'student/profile', component: StudentProfileComponent, canActivate: [AuthGuard]},
+  { path: 'teacher/profile', component: TeacherProfileComponent, canActivate: [AuthGuard]},
 
 
   { path: '**', component: HomeComponent}

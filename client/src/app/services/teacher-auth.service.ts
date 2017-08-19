@@ -59,7 +59,7 @@ checkTeacherEmail(email) {
       return this.http.get(this.server + '/teacher-authentication/teacher/profile', this.options).map(res => res.json());
     }
 
-    loggedIn() {
+    loggedInTeacher() {
       return tokenNotExpired();
     }
 

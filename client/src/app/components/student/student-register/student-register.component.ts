@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+import { StudentAuthService } from '../../../services/student-auth.service';
 import { Router } from '@angular/router';
 
 
@@ -18,7 +18,7 @@ export class StudentRegisterComponent implements OnInit {
   emailMessage;
 
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private studentAuthService: StudentAuthService, private router: Router) {
     this.createForm()
   }
 
@@ -113,7 +113,7 @@ export class StudentRegisterComponent implements OnInit {
       email: this.form.get('email').value,
     password: this.form.get('password').value
     }
-    this.authService.registerStudent(student).subscribe(data => {
+    this.studentAuthService.registerStudent(student).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -131,7 +131,7 @@ export class StudentRegisterComponent implements OnInit {
 
   checkStudentEmail() {
     const email = this.form.get('email').value
-    this.authService.checkStudentEmail(email)
+    this.studentAuthService.checkStudentEmail(email)
       .subscribe(data => {
         if (!data.success) {
           this.emailValid = false;

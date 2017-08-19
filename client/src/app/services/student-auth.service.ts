@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
-export class AuthService {
+export class StudentAuthService {
   server = "http://localhost:8080";
   authToken;
   student;
@@ -29,15 +29,15 @@ export class AuthService {
   }
 
 registerStudent(student) {
-  return this.http.post(this.server + '/authentication/student/register', student).map(res => res.json());
+  return this.http.post(this.server + '/student-authentication/student/register', student).map(res => res.json());
   }
 
 checkStudentEmail(email) {
-  return this.http.get(this.server + '/authentication/student/register/check-email/' + email).map(res => res.json());
+  return this.http.get(this.server + '/student-authentication/student/register/check-email/' + email).map(res => res.json());
   }
 
   studentLogin(student) {
-    return this.http.post(this.server + '/authentication/student/login', student).map(res => res.json());
+    return this.http.post(this.server + '/student-authentication/student/login', student).map(res => res.json());
     }
 
   studentLogout(){
@@ -56,7 +56,7 @@ checkStudentEmail(email) {
 
     getStudentProfile() {
       this.createStudentAuthenticationHeaders();
-      return this.http.get(this.server + '/authentication/student/profile', this.options).map(res => res.json());
+      return this.http.get(this.server + '/student-authentication/student/profile', this.options).map(res => res.json());
     }
 
     loggedIn() {

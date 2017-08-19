@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../../services/auth.service';
+import { StudentAuthService } from '../../../services/student-auth.service';
 import { AuthGuard } from '../../../guards/auth.guard';
 
 @Component({
@@ -18,7 +18,7 @@ processing = false;
 form: FormGroup;
 previousUrl;
 
-  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private authGuard: AuthGuard) {
+  constructor (private formBuilder: FormBuilder, private studentAuthService: StudentAuthService, private router: Router, private authGuard: AuthGuard) {
     this.createForm();
 }
 
@@ -46,7 +46,7 @@ onLoginSubmit() {
     email: this.form.get('email').value,
     password: this.form.get('password').value
   }
-  this.authService.studentLogin(student).subscribe(data => {
+  this.studentAuthService.studentLogin(student).subscribe(data => {
     if(!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -55,7 +55,7 @@ onLoginSubmit() {
     } else {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-      this.authService.storeStudentData(data.token, data.student);
+      this.studentAuthService.storeStudentData(data.token, data.student);
       setTimeout(() => {
         if (this.previousUrl) {
           this.router.navigate([this.previousUrl])

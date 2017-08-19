@@ -7,3 +7,7 @@ li.nav-item a {
   font-weight: 500;
   color: #898FFD;
 }
+
+.llc {
+  text-decoration: underline;
+}

@@ -12,6 +12,8 @@ import { TeacherRegisterComponent } from './components/teacher/teacher-register/
 import { TeacherLoginComponent } from './components/teacher/teacher-login/teacher-login.component';
 
 import { AuthService } from './services/auth.service';
+import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { AuthService } from './services/auth.service';
     StudentRegisterComponent,
     StudentLoginComponent,
     TeacherRegisterComponent,
-    TeacherLoginComponent
+    TeacherLoginComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlashMessagesModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

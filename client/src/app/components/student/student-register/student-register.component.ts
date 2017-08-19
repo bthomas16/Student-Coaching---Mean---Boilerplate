@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./student-register.component.css']
 })
 export class StudentRegisterComponent implements OnInit {
-  studentRegisterForm: FormGroup;
+  form: FormGroup;
   message;
   messageClass;
   processing = false;
@@ -23,7 +23,7 @@ export class StudentRegisterComponent implements OnInit {
   }
 
   createForm() {
-    this.studentRegisterForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
         Validators.minLength(5),
@@ -44,17 +44,17 @@ export class StudentRegisterComponent implements OnInit {
   }
 
   disableForm() {
-    this.studentRegisterForm.controls['firstname'].disable();
-    this.studentRegisterForm.controls['email'].disable();
-    this.studentRegisterForm.controls['password'].disable();
-    this.studentRegisterForm.controls['confirm'].disable();
+    this.form.controls['firstname'].disable();
+    this.form.controls['email'].disable();
+    this.form.controls['password'].disable();
+    this.form.controls['confirm'].disable();
   }
 
   enableForm(){
-    this.studentRegisterForm.controls['firstname'].enable();
-    this.studentRegisterForm.controls['email'].enable();
-    this.studentRegisterForm.controls['password'].enable();
-    this.studentRegisterForm.controls['confirm'].enable();
+    this.form.controls['firstname'].enable();
+    this.form.controls['email'].enable();
+    this.form.controls['password'].enable();
+    this.form.controls['confirm'].enable();
   }
 
 // Only a-z letters
@@ -109,9 +109,9 @@ export class StudentRegisterComponent implements OnInit {
     this.processing = true;
     this.disableForm();
     const student = {
-    firstname: this.studentRegisterForm.get('firstname').value,
-      email: this.studentRegisterForm.get('email').value,
-    password: this.studentRegisterForm.get('password').value
+    firstname: this.form.get('firstname').value,
+      email: this.form.get('email').value,
+    password: this.form.get('password').value
     }
     this.authService.registerStudent(student).subscribe(data => {
     if (!data.success) {
@@ -123,15 +123,15 @@ export class StudentRegisterComponent implements OnInit {
       this.messageClass = 'alert alert-success'
       this.message = data.message
       setTimeout(() => {
-        this.router.navigate(['/student/profile'])
-      }, 2200)
+        this.router.navigate(['/student/login'])
+      }, 1800)
     }
   });
   }
 
-  checkEmail() {
-    const email = this.studentRegisterForm.get('email').value
-    this.authService.checkEmail(email)
+  checkStudentEmail() {
+    const email = this.form.get('email').value
+    this.authService.checkStudentEmail(email)
       .subscribe(data => {
         if (!data.success) {
           this.emailValid = false;

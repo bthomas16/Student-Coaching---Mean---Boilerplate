@@ -12,6 +12,7 @@ import { TeacherRegisterComponent } from './components/teacher/teacher-register/
 import { TeacherLoginComponent } from './components/teacher/teacher-login/teacher-login.component';
 
 import { StudentAuthService } from './services/student-auth.service';
+import { TeacherAuthService } from './services/teacher-auth.service';
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
@@ -47,7 +48,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [StudentAuthService, AuthGuard, NotAuthGuard],
+  providers: [StudentAuthService, TeacherAuthService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

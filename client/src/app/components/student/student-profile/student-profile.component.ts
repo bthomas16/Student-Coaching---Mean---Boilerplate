@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { StudentAuthService } from '../../../services/student-auth.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -11,10 +11,10 @@ export class StudentProfileComponent implements OnInit {
   email;
   firstname;
 
-  constructor(private authService: AuthService) { }
+  constructor(private studentAuthService: StudentAuthService) { }
 
   ngOnInit() {
-    this.authService.getStudentProfile()
+    this.studentAuthService.getStudentProfile()
     .subscribe(profile => {
       this.firstname = profile.student.firstname.toUpperCase();
       this.email = profile.student.email;

@@ -11,10 +11,10 @@ This is a repo that can be downloaded and bootstrap a MEA(4)N Project.
 ## Instructions to Use
 
 1. Git Clone <Forked Repo>
-//server package.json install
-2. npm install 
+<!--server package.json install-->
+2. 'npm install' 
 3. cd client
-//angular (client) package.json install 
+<!--angular (client) package.json install-->
 4. npm install
 
 ## Database Boiletplate
@@ -27,9 +27,9 @@ This is a repo that can be downloaded and bootstrap a MEA(4)N Project.
 ### Check Database with Mongo shell 
   
 1. Switch to Mongo Bin (Ensure MongoDB is downloaded)
-2. ./mongod --> this will start / run mongo database
-//new terminal tab
-3. ./mongo --> this will start mongo shell
+2. Run command ./mongod --> this will start / run mongo database
+<!-- Open a new tab in terminal-->
+3. Run command ./mongo --> this will start mongo shell
  3(a). use <database name>
  3(b). show collections
  3(c). db.<collection name>.find()

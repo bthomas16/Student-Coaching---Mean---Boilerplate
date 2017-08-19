@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const router = express.Router()
 const mongoose = require('mongoose');
 const config = require('./config/db')
 const path = require('path');
-const studentAuthentication = require('./routes/student-authentication')(router);
+const studentAuthentication = require('./routes/student-authentication')
+const teacherAuthentication = require('./routes/teacher-authentication')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -34,6 +34,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/student-authentication', studentAuthentication)
+app.use('/teacher-authentication', teacherAuthentication)
 
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname + '/client/dist/index.html'))

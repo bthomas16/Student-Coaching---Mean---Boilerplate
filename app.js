@@ -34,9 +34,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/client/dist/'));
+app.use('/api', api);
 app.use('/student-authentication', studentAuthentication);
 app.use('/teacher-authentication', teacherAuthentication);
-app.use('api', api);
 
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname + '/client/dist/index.html'))

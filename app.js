@@ -5,6 +5,7 @@ const config = require('./config/db')
 const path = require('path');
 const studentAuthentication = require('./routes/student-authentication')
 const teacherAuthentication = require('./routes/teacher-authentication')
+const api = require('./routes/api')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -33,8 +34,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/client/dist/'));
-app.use('/student-authentication', studentAuthentication)
-app.use('/teacher-authentication', teacherAuthentication)
+app.use('/student-authentication', studentAuthentication);
+app.use('/teacher-authentication', teacherAuthentication);
+app.use('api', api);
 
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname + '/client/dist/index.html'))

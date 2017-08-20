@@ -1,11 +1,24 @@
-const Student = require('../models/student');
+const Teacher = require('../models/teacher');
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 const config = require('../config/db');
 
 router.get('/teachers-retrieve', (req, res) => {
-  res.send('hey there');
-})
+    // Search database for all blog posts
+    Teacher.find({}, (err, teachers) => {
+      // Check if error was found or not
+      if (err) {
+        res.json({ success: false, message: err }); // Return error message
+      } else {
+        // Check if teachers were found in database
+        if (!teachers) {
+          res.json({ success: false, message: 'No teachers found.' }); // Return error of no teachers found
+        } else {
+          res.json({ success: true, teachers: teachers }); // Return success and teachers array
+        }
+      }
+    }).sort({ '_id': -1 }); // Sort teachers from newest to oldest
+  });
 
-module.exports = router;
+module.exports = (router);

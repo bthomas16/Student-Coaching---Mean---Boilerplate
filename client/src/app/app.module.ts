@@ -23,6 +23,7 @@ import { FutureComponent } from './components/home/main/future/future.component'
 import { TeachersListComponent } from './components/home/main/teachers-list/teachers-list.component';
 import { BottomSignUpComponent } from './components/home/main/bottom-sign-up/bottom-sign-up.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FutureComponent,
     TeachersListComponent,
     BottomSignUpComponent,
-    FooterComponent
+    FooterComponent,
+    TeacherProfileComponent
   ],
   imports: [
     BrowserModule,

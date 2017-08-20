@@ -9,7 +9,7 @@ router.post('/teacher/register', (req, res) => {
   if(!req.body.email){
     res.json({success: false, message: 'You must provide an email'});
   } else {
-    if(!req.body.fullname) {
+    if(!req.body.firstname) {
       res.json({success: false, message: 'You must provide a first name'});
     } else {
       if(!req.body.password) {
@@ -17,7 +17,7 @@ router.post('/teacher/register', (req, res) => {
       } else {
         let teacher = new Teacher({
           email: req.body.email.toLowerCase(),
-          fullname: req.body.fullname.toLowerCase(),
+          firstname: req.body.firstname.toLowerCase(),
           password: req.body.password
         });
         teacher.save((err) => {
@@ -29,8 +29,8 @@ router.post('/teacher/register', (req, res) => {
                 if(err.errors.email) {
                   return res.json({success: false, message: err.errors.email.message});
                 } else {
-                  if (err.errors.fullname) {
-                    return res.json({success: false, message: err.errors.fullname.message})
+                  if (err.errors.firstname) {
+                    return res.json({success: false, message: err.errors.firstname.message})
                   } else {
                     if (err.errors.password) {
                     return res.json({success: false, message: err.errors.password.message});
@@ -88,7 +88,7 @@ router.post('/teacher/login', (req, res) => {
               const token = jwt.sign({
                 teacherId: teacher._id
               }, config.secret, { expiresIn: '24h'});
-              res.json({ success: true, message: "Success!", token: token, teacher: { fullname: teacher.fullname, email: teacher.email }});
+              res.json({ success: true, message: "Success!", token: token, teacher: { firstname: teacher.firstname, email: teacher.email }});
             }
           }
         }
@@ -116,7 +116,7 @@ router.use((req, res, next)=> {
 });
 
 router.get('/teacher/profile', (req, res) => {
-  Teacher.findOne({ _id: req.decoded.teacherId }).select('email fullname').exec((err, teacher) => {
+  Teacher.findOne({ _id: req.decoded.teacherId }).select('email firstname').exec((err, teacher) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {

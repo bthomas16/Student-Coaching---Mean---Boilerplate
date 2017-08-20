@@ -9,17 +9,18 @@
         <span class="icon-bar"></span>
       </button>
       <a  *ngIf="!studentAuthService.loggedIn()" class="navbar-brand white" routerLink="home">MEAN BoilerPlate</a>
-      <a  *ngIf="studentAuthService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate</a>
+      <a  *ngIf="studentAuthService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate - Student</a>
+      <a  *ngIf="studentAuthService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate - Student</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-center flex">
         <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/register">Sign Up</a></li>
-        <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/login">Login</a></li>
+        <!-- <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/login">Login</a></li> -->
         <li *ngIf="studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="profile"><a routerLink="/student/profile" >Profile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right top">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/teacher/register">Become a Coach</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/teacher/register">Coaches</a></li>
         <li *ngIf="studentAuthService.loggedIn()" routerLinkActive="active"><a href="/" (click)="onStudentLogoutClick()">Logout</a></li>
       </ul>
     </div>

@@ -36,14 +36,14 @@ let validEmailChecker = (email) => {
   }
 }
 
-let validFirstname = (fullname) => {
-  // Check if fullname exists
-  if (!fullname) {
+let validFirstname = (firstname) => {
+  // Check if firstname exists
+  if (!firstname) {
     return false; // Return error
   } else {
-    // Regular expression to test if fullname format is valid
+    // Regular expression to test if firstname format is valid
     const regExp = new RegExp(/^[a-zA-Z]+$/);
-    return regExp.test(fullname); // Return regular expression test result (true or false)
+    return regExp.test(firstname); // Return regular expression test result (true or false)
   }
 };
 
@@ -75,7 +75,7 @@ const emailValidators = [
   { validator: validEmailChecker, message: "Must enter a valid email"}
 ]
 
-const fullnameValidators = [
+const firstnameValidators = [
   {validator: validFirstname, message: 'First name may only contain regular characters'}
 ]
 
@@ -86,7 +86,7 @@ const passwordValidators = [{
 
 var teacherSchema = new Schema({
     email: {type: String, required: true, unique: true, lowercase: true, validate: emailValidators},
-    fullname: {type: String, required: true, lowercase: true, validate: fullnameValidators},
+    firstname: {type: String, required: true, lowercase: true, validate: firstnameValidators},
     password: {type: String, required: true, validate: passwordValidators}
   });
 

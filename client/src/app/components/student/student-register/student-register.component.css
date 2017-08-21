@@ -11,6 +11,15 @@ h1 {
   color: white;
 }
 
+:host-context(.useIt) form {
+  margin-top: 0;
+  margin-bottom: 10%;
+}
+
+:host-context(.useIt) .registerSubmit {
+  background-color: #5ADA6A;
+}
+
 /*:host-context(.useIt) form {
   background-color: rgba(215,215,215,.6);
   padding:5%;

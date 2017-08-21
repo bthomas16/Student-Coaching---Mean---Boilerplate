@@ -1,0 +1,17 @@
+h1 {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+/*Look in parent component for the class 'useIt' and then apply the following styles to 'h1' tags in this component*/
+:host-context(.useIt) h1 {
+  color: white;
+}
+
+/*:host-context(.useIt) form {
+  background-color: rgba(215,215,215,.6);
+  padding:5%;
+}*/

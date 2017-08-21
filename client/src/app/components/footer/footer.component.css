@@ -11,3 +11,7 @@ li.nav-item a {
 .llc {
   text-decoration: underline;
 }
+
+.llc:hover {
+  cursor:  cell;
+}

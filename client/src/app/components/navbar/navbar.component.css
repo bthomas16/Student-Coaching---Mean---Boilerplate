@@ -2,14 +2,10 @@
   align-self: flex-start;
 }
 
-.mid {
-
-}
-
 .navbar {
   background-color: #5563F0;
   border: none;
-  width: 100%;
+  width: auto;
 }
 
 .white {
@@ -34,25 +30,22 @@ li.active a{
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
 }
 
+.sign-up {
+  left: 275%;
+}
+
 .profile {
   margin-left: 2%;
 }
 
-@media (min-width: 780px) {
-  .flex{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: absolute;
-    text-align: center;
-    text-align: center;
-    display: block;
-    left: 46%;
+@media (max-width: 1200px) {
+  .sign-up {
+    left: 200%;
   }
+}
 
-  .mid {
-    width: 100%;
-    justify-content: flex-start;
+@media (max-width: 980px) {
+  .sign-up {
+    left: 120%;
   }
 }

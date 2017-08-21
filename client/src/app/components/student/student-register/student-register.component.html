@@ -1,4 +1,4 @@
-<h1>Student Register</h1>
+<h1 class="pgTitle">Student Register</h1>
 <hr>
 
 <div class="row show-hide-message">
@@ -56,6 +56,6 @@
     </div>
   </div>
 
-  <button [disabled]="!form.valid || processing || !emailValid" class="btn btn-primary" value="Submit">Submit</button>
-  <p>Already have an account? <a routerLink="/student/login"><em>Login Here</em></a></p>
+  <button [disabled]="!form.valid || processing || !emailValid" class="btn btn-primary registerSubmit" value="Submit">Submit</button>
+  <p class="account">Already have an account? <a routerLink="/student/login"><em class="em">Login Here</em></a></p>
 </form>

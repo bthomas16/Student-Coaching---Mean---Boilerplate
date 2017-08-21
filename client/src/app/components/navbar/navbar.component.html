@@ -14,8 +14,8 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-center flex">
-        <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/register">Sign Up</a></li>
+      <ul class="nav navbar-nav navbar-center">
+        <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up"><a routerLink="/student/register">Sign Up</a></li>
         <!-- <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/login">Login</a></li> -->
         <li *ngIf="studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="profile"><a routerLink="/student/profile" >Profile</a></li>
       </ul>

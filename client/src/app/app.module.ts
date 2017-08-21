@@ -13,6 +13,8 @@ import { TeacherLoginComponent } from './components/teacher/teacher-login/teache
 
 import { StudentAuthService } from './services/student-auth.service';
 import { TeacherAuthService } from './services/teacher-auth.service';
+import { ApiService } from './services/api.service';
+
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
@@ -50,7 +52,7 @@ import { TeacherProfileComponent } from './components/teacher/teacher-profile/te
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [StudentAuthService, TeacherAuthService, AuthGuard, NotAuthGuard],
+  providers: [StudentAuthService, TeacherAuthService, ApiService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

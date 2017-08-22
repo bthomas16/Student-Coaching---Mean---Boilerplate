@@ -1,7 +1,12 @@
 <div class="container">
-  <div class="teacher-wrapper flex" *ngFor="let teacher of teachersList">
-    {{ teacher.firstname}}
-    <br>
-    {{teacher.email}}
+  <div class="flex">
+    <input type="text" [(ngModel)]="filteredStatus" placeholder="Search Teachers by Name" class="form-control">
+  </div>
+  <div class="teacher-wrapper flex">
+    <div class="flex teacher" *ngFor="let teacher of teachersList | filter: filteredStatus:'firstname'">
+      {{ teacher.firstname}}
+      <br>
+      {{ teacher.email }}
+    </div>
   </div>
 </div>

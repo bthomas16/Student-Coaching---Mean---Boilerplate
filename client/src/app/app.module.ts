@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,7 @@ import { TeachersListComponent } from './components/home/main/teachers-list/teac
 import { BottomSignUpComponent } from './components/home/main/bottom-sign-up/bottom-sign-up.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TeacherProfileComponent } from './components/teacher/teacher-profile/te
     HeroComponent,
     OptionsComponent,
     FutureComponent,
+    FilterPipe,
     TeachersListComponent,
     BottomSignUpComponent,
     FooterComponent,
@@ -47,6 +49,7 @@ import { TeacherProfileComponent } from './components/teacher/teacher-profile/te
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,

@@ -16,7 +16,7 @@ h1 {
   margin-bottom: 10%;
 }
 
-:host-context(.useIt) .registerSubmit {
+:host-context(.footy) .registerSubmit {
   background-color: #5ADA6A;
 }
 

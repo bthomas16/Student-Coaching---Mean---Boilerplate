@@ -1,5 +1,16 @@
 .teacher-wrapper {
-  width: 25%;
-  border: 2px solid black;
+  width: 100%;
+
   margin: 2%;
+  flex-direction: row;
+}
+
+input {
+  margin: 2%;
+}
+
+.teacher {
+  width: 20%;
+  border: 2px solid black;
+  margin: 4%;
 }

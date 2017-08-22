@@ -8,10 +8,10 @@ import { ApiService } from '../../../../services/api.service';
   styleUrls: ['./teachers-list.component.css']
 })
 export class TeachersListComponent implements OnInit {
+  private teachersList;
 
-  teachersList;
-
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+   }
 
   getAllTeachers() {
   // Function to GET all blogs from database

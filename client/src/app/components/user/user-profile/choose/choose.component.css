@@ -1,0 +1,41 @@
+.wrapper {
+  width: 100vw;
+  background-color: #5563F0;
+}
+
+img {
+  width: 10em;
+}
+
+.upload {
+  width: 10em;
+  margin-top: 2%;
+}
+
+.half {
+  height: 34em;
+  border: 2px solid white;  
+}
+
+.flex h2 {
+  margin-left: .25em;
+  font-size: 2.5em;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: flex-start;
+  align-self: flex-start;
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+.left {
+  background-image: url('../../../../../assets/student.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.right {
+  background-image: url('../../../../../assets/teacher.jpg');
+  background-position: center;
+  background-size: cover;
+}

@@ -8,10 +8,6 @@
   flex-wrap: wrap;
 }
 
-h1 {
-  color: grey;
-}
-
 ul.help-block {
   list-style-type: square;
     margin: 0;

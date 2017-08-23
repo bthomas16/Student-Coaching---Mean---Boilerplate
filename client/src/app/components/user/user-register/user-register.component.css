@@ -6,6 +6,16 @@ h1 {
   color: red;
 }
 
+.half {
+  width: 40%;
+}
+
+.full {
+  width: 100%;
+  font-size: 1.4em;
+  color: white;
+}
+
 /*Look in parent component for the class 'useIt' and then apply the following styles to 'h1' tags in this component*/
 :host-context(.useIt) h1 {
   color: white;

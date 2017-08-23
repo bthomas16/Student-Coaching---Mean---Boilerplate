@@ -1,0 +1,24 @@
+.third {
+  width: 30%;
+}
+
+
+.flex a {
+  width: 60%;
+  margin: 1%;
+}
+
+a p {
+  font-size: 1em;
+  margin-top: 2%;
+  font-weight: 600;
+}
+
+img {
+  width: 41%;
+}
+
+.upload {
+  width: 41%;
+  margin-top: 2%;
+}

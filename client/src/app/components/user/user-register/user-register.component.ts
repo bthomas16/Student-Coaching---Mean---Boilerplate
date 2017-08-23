@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentAuthService } from '../../../services/student-auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-student-register',
-  templateUrl: './student-register.component.html',
-  styleUrls: ['./student-register.component.css']
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.css']
 })
-export class StudentRegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
   form: FormGroup;
   message;
   messageClass;
@@ -18,7 +18,7 @@ export class StudentRegisterComponent implements OnInit {
   emailMessage;
 
 
-  constructor(private formBuilder: FormBuilder, private studentAuthService: StudentAuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.createForm()
   }
 
@@ -30,44 +30,39 @@ export class StudentRegisterComponent implements OnInit {
         Validators.maxLength(30),
         this.validateEmail
       ])],
-      firstname: ['', Validators.compose([
-        Validators.required,
-        this.validateFirstname
-      ])],
+      fullname: ['', Validators.required],
       password: ['', Validators.compose([
         Validators.required,
         Validators.minLength(5)
-        // this.validatePassword
       ])],
-      confirm: ['', Validators.required]
-    }, { validator: this.matchingPasswords('password', 'confirm')})
+      isStudent: [''],
+      isTeacher: ['']
+    })
   }
 
   disableForm() {
-    this.form.controls['firstname'].disable();
+    this.form.controls['fullname'].disable();
     this.form.controls['email'].disable();
     this.form.controls['password'].disable();
-    this.form.controls['confirm'].disable();
   }
 
   enableForm(){
-    this.form.controls['firstname'].enable();
+    this.form.controls['fullname'].enable();
     this.form.controls['email'].enable();
     this.form.controls['password'].enable();
-    this.form.controls['confirm'].enable();
   }
 
 // Only a-z letters
-  validateFirstname(controls){
-    const regExp = new RegExp(/^[a-zA-Z]+$/)
-    if(regExp.test(controls.value)) {
-      return null;
-    } else {
-      return {
-        'validateFirstname': true
-      }
-    }
-  }
+  // validateFirstname(controls){
+  //   const regExp = new RegExp(/^[a-zA-Z]+$/)
+  //   if(regExp.test(controls.value)) {
+  //     return null;
+  //   } else {
+  //     return {
+  //       'validateFirstname': true
+  //     }
+  //   }
+  // }
 
 // Valid Email
   validateEmail(controls){
@@ -108,12 +103,14 @@ export class StudentRegisterComponent implements OnInit {
   onRegisterSubmit() {
     this.processing = true;
     this.disableForm();
-    const student = {
-    firstname: this.form.get('firstname').value,
+    const user = {
+    fullname: this.form.get('fullname').value,
       email: this.form.get('email').value,
-    password: this.form.get('password').value
+    password: this.form.get('password').value,
+    isStudent: this.form.get('isStudent').value,
+    isTeacher: this.form.get('isTeacher').value
     }
-    this.studentAuthService.registerStudent(student).subscribe(data => {
+    this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -123,15 +120,15 @@ export class StudentRegisterComponent implements OnInit {
       this.messageClass = 'alert alert-success'
       this.message = data.message
       setTimeout(() => {
-        this.router.navigate(['/student/login'])
+        this.router.navigate(['/login'])
       }, 1400)
     }
   });
   }
 
-  checkStudentEmail() {
+  checkEmail() {
     const email = this.form.get('email').value
-    this.studentAuthService.checkStudentEmail(email)
+    this.authService.checkEmail(email)
       .subscribe(data => {
         if (!data.success) {
           this.emailValid = false;

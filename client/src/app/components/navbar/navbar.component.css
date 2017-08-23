@@ -1,18 +1,14 @@
-.top {
-  align-self: flex-start;
-}
-
 .navbar {
   background-color: #5563F0;
   border: none;
-  width: auto;
 }
 
-.white {
-  color: white;
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5em;
 }
 
-a {
+li a {
   color: white;
   font-weight: bold;
   font-size: 1.6em;
@@ -28,14 +24,20 @@ li.active a{
   color: #5ADA6A !important;
   background-color: white !important;
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+  border: .1px solid black;
 }
 
-.sign-up {
-  left: 275%;
+.dropper {
+  margin-top: 1.5%;
+  /*border: 2px solid black;*/
+  box-shadow: 2px 1px 1px black;
+  position: relative;
 }
 
-.profile {
-  margin-left: 2%;
+.btn {
+  background-color: #898FFD;
+  color: black;
+  font-weight: 600;
 }
 
 @media (max-width: 1200px) {
@@ -48,4 +50,11 @@ li.active a{
   .sign-up {
     left: 120%;
   }
+}
+
+@media (max-width: 845px) {
+  .reg {
+    visibility: hidden;
+  }
+
 }

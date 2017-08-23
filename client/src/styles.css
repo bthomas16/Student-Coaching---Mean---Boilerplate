@@ -41,3 +41,8 @@ label {
 .registerSubmit {
   width: 100%;
 }
+
+.half {
+  width: 45%;
+  margin: 2%;
+}

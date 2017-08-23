@@ -1,10 +1,10 @@
 .third {
-  width: 30%;
+  width: 25em;
 }
 
 
 .flex a {
-  width: 60%;
+  width: 14em;
   margin: 1%;
 }
 
@@ -15,10 +15,10 @@ a p {
 }
 
 img {
-  width: 41%;
+  width: 10em;
 }
 
 .upload {
-  width: 41%;
+  width: 10em;
   margin-top: 2%;
 }

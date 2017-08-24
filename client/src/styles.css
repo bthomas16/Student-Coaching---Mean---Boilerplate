@@ -28,9 +28,15 @@ label {
   display: none;
 }
 
+.title {
+  padding-bottom: 2.5%;
+  border-bottom: 1px solid white;
+}
+
 .account {
   color: lightgrey;
   margin-top: 2%;
+  width: 100%;
 }
 
 .em{
@@ -38,7 +44,7 @@ label {
   text-decoration: underline;
 }
 
-.registerSubmit {
+.submit {
   width: 100%;
 }
 

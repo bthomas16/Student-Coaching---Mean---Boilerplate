@@ -13,8 +13,9 @@ img {
 }
 
 .half {
-  height: 34em;
-  border: 2px solid white;  
+  height: 27em;
+  margin: auto;
+  width: 50vw;
 }
 
 .flex h2 {

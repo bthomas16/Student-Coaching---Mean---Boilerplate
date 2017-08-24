@@ -16,6 +16,9 @@ export class UserRegisterComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
+  accountSelected = false;
+  studentClick = false;
+  teacherClick = false;
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
@@ -35,8 +38,8 @@ export class UserRegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(5)
       ])],
-      isStudent: [''],
-      isTeacher: ['']
+      isStudent: ['', this.isAccountSelected],
+      isTeacher: ['', this.isAccountSelected]
     })
   }
 
@@ -44,25 +47,15 @@ export class UserRegisterComponent implements OnInit {
     this.form.controls['fullname'].disable();
     this.form.controls['email'].disable();
     this.form.controls['password'].disable();
+    this.isAccountSelected['false'].disable()
   }
 
   enableForm(){
     this.form.controls['fullname'].enable();
     this.form.controls['email'].enable();
     this.form.controls['password'].enable();
+    this.isAccountSelected['true'].disable();
   }
-
-// Only a-z letters
-  // validateFirstname(controls){
-  //   const regExp = new RegExp(/^[a-zA-Z]+$/)
-  //   if(regExp.test(controls.value)) {
-  //     return null;
-  //   } else {
-  //     return {
-  //       'validateFirstname': true
-  //     }
-  //   }
-  // }
 
 // Valid Email
   validateEmail(controls){
@@ -88,27 +81,55 @@ export class UserRegisterComponent implements OnInit {
       }
     }
 
-// Must contain 1 letter and 1 number
-  // validatePassword(controls){
-  //   const regExp = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)
-  //   if(regExp.test(controls.value)) {
-  //     return null;
-  //   } else {
-  //     return {
-  //       'validateEmail': true
-  //     }
-  //   }
-  // }
+// Function to check if an account was selected
+    isAccountSelected() {
+      if (this.studentClick == false && this.teacherClick == false) {
+        this.accountSelected = false
+      } else {
+          this.accountSelected = true
+        }
+      }
+
+  studentClickHandler(event) {
+    // this.studentClick = true;
+    console.log('student')
+    if (this.studentClick == true) {
+      this.studentClick = false;
+      event.target.classList.remove('active')
+    } else {
+      if (this.studentClick == false) {
+      this.studentClick = true;
+      event.target.classList.add('active')
+    }
+  }
+}
+
+teacherClickHandler(event) {
+  // this.studentClick = true;
+  console.log('teach')
+  if (this.teacherClick == true) {
+    this.teacherClick = false;
+    event.target.classList.remove('active')
+    console.log(this.teacherClick)
+  } else {
+    if (this.teacherClick == false) {
+    this.teacherClick = true;
+    event.target.classList.add('active')
+    console.log(this.teacherClick)
+  }
+}
+}
+
 
   onRegisterSubmit() {
     this.processing = true;
     this.disableForm();
     const user = {
     fullname: this.form.get('fullname').value,
-      email: this.form.get('email').value,
+    email: this.form.get('email').value,
     password: this.form.get('password').value,
-    isStudent: this.form.get('isStudent').value,
-    isTeacher: this.form.get('isTeacher').value
+    isStudent: this.studentClick,
+    isTeacher: this.teacherClick
     }
     this.authService.Register(user).subscribe(data => {
     if (!data.success) {

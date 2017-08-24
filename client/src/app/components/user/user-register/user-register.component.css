@@ -1,3 +1,16 @@
+form {
+  width: 16em;
+}
+
+.help-block {
+  max-width: 99%;
+  background-color: rgba(247,244,244,.7);
+}
+
+.help-block li {
+  font-size: 1.2em;
+}
+
 h1 {
   color: black;
 }
@@ -14,6 +27,27 @@ h1 {
   width: 100%;
   font-size: 1.4em;
   color: white;
+}
+
+.buttons {
+  margin-bottom: 1em;
+}
+
+.butt {
+  width: 50%;
+  background-color: #5563F0;
+}
+
+.butt:hover {
+  background-color: rgba(85,177,240,.9);
+}
+
+.active {
+  background-color: rgba(85,177,240,.9);
+}
+
+.account {
+  font-size: .95em;
 }
 
 /*Look in parent component for the class 'useIt' and then apply the following styles to 'h1' tags in this component*/

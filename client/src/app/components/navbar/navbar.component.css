@@ -1,6 +1,7 @@
 .navbar {
   background-color: #5563F0;
   height: 1em;
+  margin-bottom: 0;
 }
 
 .navbar-brand {
@@ -25,7 +26,7 @@ li.active a{
   color: #5ADA6A !important;
   background-color: white !important;
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
-  border: .1px solid black;
+  border: .1px solid white;
 }
 
 .dropper {

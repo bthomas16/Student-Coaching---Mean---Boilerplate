@@ -1,4 +1,4 @@
-const Teacher = require('../models/teacher');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
@@ -6,7 +6,7 @@ const config = require('../config/db');
 
 router.get('/get-all-teachers', (req, res) => {
     // Search database for all blog posts
-    Teacher.find({}, (err, teachers) => {
+    User.find({isTeacher: 'true'}, (err, teachers) => {
       // Check if error was found or not
       if (err) {
         res.json({ success: false, message: err }); // Return error message

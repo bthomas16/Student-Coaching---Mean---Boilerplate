@@ -1,0 +1,70 @@
+form {
+  width: 16em;
+}
+
+.help-block {
+  max-width: 99%;
+  background-color: rgba(247,244,244,.7);
+}
+
+.help-block li {
+  font-size: 1.2em;
+}
+
+h1 {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.half {
+  width: 40%;
+}
+
+.full {
+  width: 100%;
+  font-size: 1.4em;
+  color: white;
+}
+
+.buttons {
+  margin-bottom: 1em;
+}
+
+.butt {
+  width: 50%;
+  background-color: #5563F0;
+}
+
+.butt:hover {
+  background-color: rgba(85,177,240,.9);
+}
+
+.active {
+  background-color: rgba(85,177,240,.9);
+}
+
+.account {
+  font-size: .95em;
+}
+
+/*Look in parent component for the class 'useIt' and then apply the following styles to 'h1' tags in this component*/
+:host-context(.useIt) h1 {
+  color: white;
+}
+
+:host-context(.useIt) form {
+  margin-top: 0;
+  margin-bottom: 10%;
+}
+
+:host-context(.footy) .registerSubmit {
+  background-color: #5ADA6A;
+}
+
+/*:host-context(.useIt) form {
+  background-color: rgba(215,215,215,.6);
+  padding:5%;
+}*/

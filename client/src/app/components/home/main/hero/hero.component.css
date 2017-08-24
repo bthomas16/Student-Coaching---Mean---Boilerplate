@@ -1,5 +1,5 @@
 .wrapper {
-  height: 32em;
+  height: 28em;
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.4)
@@ -13,13 +13,17 @@
   width: 48%;
 }
 
-.text {
+.left {
   text-align: center;
   color: white;
   justify-content: center;
 }
 
-.title {
+.right {
+  width: 40%;
+}
+
+.mainTitle {
   font-size: 4em;
   font-weight: 800;
   margin-right: 3.5%;

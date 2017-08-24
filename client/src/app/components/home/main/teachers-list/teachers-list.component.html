@@ -4,7 +4,7 @@
   </div>
   <div class="teacher-wrapper flex">
     <div class="flex teacher" *ngFor="let teacher of teachersList | filter: filteredStatus:'firstname'">
-      {{ teacher.firstname}}
+      {{ teacher.fullname}}
       <br>
       {{ teacher.email }}
     </div>

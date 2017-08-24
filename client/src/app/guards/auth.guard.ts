@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { StudentAuthService } from '../services/student-auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -8,16 +8,16 @@ export class AuthGuard implements CanActivate {
   redirectUrl;
 
   constructor(
-    private studentAuthService: StudentAuthService,
+    private authService: AuthService,
     private router: Router)
     {}
 
   canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.studentAuthService.loggedIn()) {
+    if (this.authService.loggedIn()) {
       return true;
     } else {
       this.redirectUrl = state.url;
-      this.router.navigate(['/student/login'])
+      this.router.navigate(['/login'])
       return false;
     }
   }

@@ -36,17 +36,6 @@ let validEmailChecker = (email) => {
   }
 }
 
-let validFirstname = (firstname) => {
-  // Check if firstname exists
-  if (!firstname) {
-    return false; // Return error
-  } else {
-    // Regular expression to test if firstname format is valid
-    const regExp = new RegExp(/^[a-zA-Z]+$/);
-    return regExp.test(firstname); // Return regular expression test result (true or false)
-  }
-};
-
 let passwordShortLengthChecker = (password) => {
   if(!password) {
       return false;
@@ -75,10 +64,6 @@ const emailValidators = [
   { validator: validEmailChecker, message: "Must enter a valid email"}
 ]
 
-const firstnameValidators = [
-  {validator: validFirstname, message: 'First name may only contain regular characters'}
-]
-
 const passwordValidators = [{
   validator: passwordShortLengthChecker,
   message: 'Password must be at least 5 characters'}
@@ -86,14 +71,16 @@ const passwordValidators = [{
 
 var studentSchema = new Schema({
     email: {type: String, required: true, unique: true, lowercase: true, validate: emailValidators},
-    firstname: {type: String, required: true, lowercase: true, validate: firstnameValidators},
-    password: {type: String, required: true, validate: passwordValidators}
+    fullname: {type: String, required: true, lowercase: true},
+    password: {type: String, required: true, validate: passwordValidators},
+    isStudent: {type: Boolean, required: false },
+    isTeacher: {type: Boolean, required: false},
+    profPic: {type: String}
   });
 
   studentSchema.pre('save', function(next) {
     if(!this.isModified('password'))
     return next();
-
     bcrypt.hash(this.password, null, null, (err, hash) => {
       this.password = hash;
       next();
@@ -104,4 +91,4 @@ var studentSchema = new Schema({
     return bcrypt.compareSync(password, this.password);
   }
 
-module.exports = mongoose.model('Student', studentSchema )
+module.exports = mongoose.model('User', studentSchema )

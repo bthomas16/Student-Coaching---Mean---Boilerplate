@@ -1,5 +1,4 @@
-<h1>Student Login</h1>
-<hr>
+<h1 class="title">Login</h1>
 
 <div class="row show-hide-message">
   <div [ngClass]="messageClass">
@@ -29,6 +28,6 @@
   </div>
 
 
-  <button [disabled]="!form.valid || processing" class="btn btn-primary" value="Submit">Submit</button>
-  <p class="account">Don't have an account? <a routerLink="/student/register"><em class="em">Register Here</em></a></p>
+  <button [disabled]="!form.valid || processing" class="btn btn-primary submit" value="Submit">Submit</button>
+  <p class="account">Don't have an account? <a routerLink="/register"><em class="em">Register Here</em></a></p>
 </form>

@@ -1,32 +1,92 @@
 <nav class="navbar navbar-default navbar-static-top">
-  <div class="container fluid">
-      <!-- collapseable -->
+  <div class="container fluid noMarg">
+
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <button type="button" class="navbar-toggle collapsed dropped" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <div class="btn-group">
+          <button type="button" class="btn dropdown-toggle dropper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a routerLink="/register">Sign Up</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a routerLink="/login">Login</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile">Student</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile">Teacher</a></li>
+            <li role="separator" class="divider" *ngIf="authService.loggedIn()"></li>
+            <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a>
+            </li>
+          </ul>
+        </div>
       </button>
-      <a  *ngIf="!studentAuthService.loggedIn()" class="navbar-brand white" routerLink="home">MEAN BoilerPlate</a>
-      <a  *ngIf="studentAuthService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate</a>
-      <!-- <a  *ngIf="studentAuthService.loggedIn()" class="navbar-brand white" routerLink="/student/profile">MEAN BoilerPlate - Student</a> -->
+      <a  class="navbar-brand white" routerLink="home" *ngIf="!authService.loggedIn()">MEAN BoilerPlate</a>
+      <a  class="navbar-brand white" routerLink="profile" *ngIf="authService.loggedIn()">MEAN BoilerPlate</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-center">
-        <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up"><a routerLink="/student/register">Sign Up</a></li>
-        <!-- <li *ngIf="!studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/student/login">Login</a></li> -->
-        <li *ngIf="studentAuthService.loggedIn()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="profile"><a routerLink="/student/profile" >Profile</a></li>
+      <ul class="nav navbar-nav navbar-left">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile">Student</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile">Teacher</a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="!authService.loggedIn()"><a routerLink="/register">Sign Up</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="!authService.loggedIn()"><a routerLink="/login">Login</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right top">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}"><a routerLink="/teacher/register">Coaches</a></li>
-        <li *ngIf="studentAuthService.loggedIn()" routerLinkActive="active"><a href="/" (click)="onStudentLogoutClick()">Logout</a></li>
+        <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a></li>
       </ul>
     </div>
-
-
-
-
   </div>
 </nav>
+
+
+
+
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <div class="btn-group">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login"><a routerLink="/register">Sign Up</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login"><a routerLink="/login">Login</a></li>
+            <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </button>
+      <a  class="navbar-brand" routerLink="home">MEAN BoilerPlate</a>
+    </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login reg"><a routerLink="/register">Sign Up</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login reg"><a routerLink="/login">Login</a></li>
+          <div class="btn-group dropper">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Options <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Profile</a></li>
+              <li role="separator" class="divider"></li>
+              <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login"><a routerLink="/register">Sign Up</a></li>
+              <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login"><a routerLink="/login">Login</a></li>
+              <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a>
+              </li>
+            </ul>
+          </div>
+      </ul>
+  </div>
+</nav>
+ -->

@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { StudentAuthService } from '../../../services/student-auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { AuthGuard } from '../../../guards/auth.guard';
 
 @Component({
-  selector: 'app-student-login',
-  templateUrl: './student-login.component.html',
-  styleUrls: ['./student-login.component.css']
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.css']
 })
-export class StudentLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit {
 
 message;
 messageClass;
@@ -18,7 +18,7 @@ processing = false;
 form: FormGroup;
 previousUrl;
 
-  constructor (private formBuilder: FormBuilder, private studentAuthService: StudentAuthService, private router: Router, private authGuard: AuthGuard) {
+  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private authGuard: AuthGuard) {
     this.createForm();
 }
 
@@ -42,11 +42,11 @@ enableForm(){
 onLoginSubmit() {
   this.processing = true;
   this. disableForm();
-  const student = {
+  const user = {
     email: this.form.get('email').value,
     password: this.form.get('password').value
   }
-  this.studentAuthService.studentLogin(student).subscribe(data => {
+  this.authService.Login(user).subscribe(data => {
     if(!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -55,13 +55,13 @@ onLoginSubmit() {
     } else {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-      this.studentAuthService.storeStudentData(data.token, data.student);
+      this.authService.storeData(data.token, data.user);
       setTimeout(() => {
         if (this.previousUrl) {
           this.router.navigate([this.previousUrl])
         } else {
 
-        this.router.navigate(['/student/profile/'])
+        this.router.navigate(['/profile/'])
         }
       }, 1400)
     }

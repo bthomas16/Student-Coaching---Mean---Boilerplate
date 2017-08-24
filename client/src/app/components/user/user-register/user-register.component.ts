@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentAuthService } from '../../../services/student-auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-student-register',
-  templateUrl: './student-register.component.html',
-  styleUrls: ['./student-register.component.css']
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.css']
 })
-export class StudentRegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
   form: FormGroup;
   message;
   messageClass;
   processing = false;
   emailValid;
   emailMessage;
+  accountSelected = false;
+  studentClick = false;
+  teacherClick = false;
 
 
-  constructor(private formBuilder: FormBuilder, private studentAuthService: StudentAuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.createForm()
   }
 
@@ -30,43 +33,28 @@ export class StudentRegisterComponent implements OnInit {
         Validators.maxLength(30),
         this.validateEmail
       ])],
-      firstname: ['', Validators.compose([
-        Validators.required,
-        this.validateFirstname
-      ])],
+      fullname: ['', Validators.required],
       password: ['', Validators.compose([
         Validators.required,
         Validators.minLength(5)
-        // this.validatePassword
       ])],
-      confirm: ['', Validators.required]
-    }, { validator: this.matchingPasswords('password', 'confirm')})
+      isStudent: ['', this.isAccountSelected],
+      isTeacher: ['', this.isAccountSelected]
+    })
   }
 
   disableForm() {
-    this.form.controls['firstname'].disable();
+    this.form.controls['fullname'].disable();
     this.form.controls['email'].disable();
     this.form.controls['password'].disable();
-    this.form.controls['confirm'].disable();
+    this.isAccountSelected['false'].disable()
   }
 
   enableForm(){
-    this.form.controls['firstname'].enable();
+    this.form.controls['fullname'].enable();
     this.form.controls['email'].enable();
     this.form.controls['password'].enable();
-    this.form.controls['confirm'].enable();
-  }
-
-// Only a-z letters
-  validateFirstname(controls){
-    const regExp = new RegExp(/^[a-zA-Z]+$/)
-    if(regExp.test(controls.value)) {
-      return null;
-    } else {
-      return {
-        'validateFirstname': true
-      }
-    }
+    this.isAccountSelected['true'].disable();
   }
 
 // Valid Email
@@ -93,27 +81,57 @@ export class StudentRegisterComponent implements OnInit {
       }
     }
 
-// Must contain 1 letter and 1 number
-  // validatePassword(controls){
-  //   const regExp = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)
-  //   if(regExp.test(controls.value)) {
-  //     return null;
-  //   } else {
-  //     return {
-  //       'validateEmail': true
-  //     }
-  //   }
-  // }
+// Function to check if an account was selected
+    isAccountSelected() {
+      if (this.studentClick == false && this.teacherClick == false) {
+        this.accountSelected = false
+      } else {
+          this.accountSelected = true
+        }
+      }
+
+  studentClickHandler(event) {
+    // this.studentClick = true;
+    console.log('student')
+    if (this.studentClick == true) {
+      this.studentClick = false;
+      event.target.classList.remove('active')
+    } else {
+      if (this.studentClick == false) {
+      this.studentClick = true;
+      event.target.classList.add('active')
+    }
+  }
+}
+
+teacherClickHandler(event) {
+  // this.studentClick = true;
+  console.log('teach')
+  if (this.teacherClick == true) {
+    this.teacherClick = false;
+    event.target.classList.remove('active')
+    console.log(this.teacherClick)
+  } else {
+    if (this.teacherClick == false) {
+    this.teacherClick = true;
+    event.target.classList.add('active')
+    console.log(this.teacherClick)
+  }
+}
+}
+
 
   onRegisterSubmit() {
     this.processing = true;
     this.disableForm();
-    const student = {
-    firstname: this.form.get('firstname').value,
-      email: this.form.get('email').value,
-    password: this.form.get('password').value
+    const user = {
+    fullname: this.form.get('fullname').value,
+    email: this.form.get('email').value,
+    password: this.form.get('password').value,
+    isStudent: this.studentClick,
+    isTeacher: this.teacherClick
     }
-    this.studentAuthService.registerStudent(student).subscribe(data => {
+    this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -123,15 +141,15 @@ export class StudentRegisterComponent implements OnInit {
       this.messageClass = 'alert alert-success'
       this.message = data.message
       setTimeout(() => {
-        this.router.navigate(['/student/login'])
+        this.router.navigate(['/login'])
       }, 1400)
     }
   });
   }
 
-  checkStudentEmail() {
+  checkEmail() {
     const email = this.form.get('email').value
-    this.studentAuthService.checkStudentEmail(email)
+    this.authService.checkEmail(email)
       .subscribe(data => {
         if (!data.success) {
           this.emailValid = false;

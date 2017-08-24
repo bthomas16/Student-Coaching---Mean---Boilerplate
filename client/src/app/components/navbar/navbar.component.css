@@ -17,13 +17,13 @@ li a {
 }
 
 li a:hover {
-  color: #5ADA6A !important;
+  color: rgba(85,177,240,.9) !important;
   background-color: rgba(137,143,253,.7);
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
 }
 
 li.active a{
-  color: #5ADA6A !important;
+  color: rgba(85,177,240,.9) !important;
   background-color: white !important;
   text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
   border: .1px solid white;
@@ -40,6 +40,14 @@ li.active a{
 .btn {
   background-color: #898FFD;
   color: black;
+}
+
+.dropdown-menu {
+  background-color: rgba(90,218,106,.85);
+}
+
+ul.dropdown-menu {
+  margin-left: -44%;
 }
 
 @media(max-width:400px) {

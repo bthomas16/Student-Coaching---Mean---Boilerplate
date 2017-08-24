@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #DADADA;
+  background-color: #F7F4F4;
   margin: 0;
 }
 
@@ -22,4 +22,10 @@ img {
 .upload {
   width: 10em;
   margin-top: 2%;
+}
+
+@media(max-width:845px) {
+  .wrapper {
+    margin: -0.4em;
+  }
 }

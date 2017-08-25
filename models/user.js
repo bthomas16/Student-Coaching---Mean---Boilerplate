@@ -74,8 +74,7 @@ var studentSchema = new Schema({
     fullname: {type: String, required: true, lowercase: true},
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
-    isTeacher: {type: Boolean, required: false},
-    profPic: {type: String}
+    isTeacher: {type: Boolean, required: false}
   });
 
   studentSchema.pre('save', function(next) {

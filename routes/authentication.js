@@ -19,8 +19,7 @@ router.post('/register', (req, res) => {
           fullname: req.body.fullname.toLowerCase(),
           password: req.body.password,
           isStudent: req.body.isStudent,
-          isTeacher: req.body.isTeacher,
-          profPic: ''
+          isTeacher: req.body.isTeacher
         });
         user.save((err) => {
           if(err) {

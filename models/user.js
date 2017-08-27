@@ -75,6 +75,7 @@ var studentSchema = new Schema({
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
     isTeacher: {type: Boolean, required: false}
+    // role: {type: Array}
   });
 
   studentSchema.pre('save', function(next) {

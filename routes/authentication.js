@@ -54,6 +54,7 @@ router.get('/register/check-email/:email', (req, res) => {
   if(!req.params.email) {
     res.json({ succes: false, message: "E-mail was not provided"});
   } else {
+    console.log('should save')
     User.findOne({ email: req.params.email}, (err, user) => {
       if(err) {
         res.json({ succes: false, message: err})
@@ -89,7 +90,7 @@ router.post('/login', (req, res) => {
               const token = jwt.sign({
                 userId: user._id
               }, config.secret, { expiresIn: '24h'});
-              res.json({ success: true, message: "Success!", token: token, user: { fullname: user.fullname, email: user.email, isStudent: user.isStudent, isTeacher: user.isTeacher, profPic: user.profPic }});
+              res.json({ success: true, message: "Success!", token: token, user: { fullname: user.fullname, email: user.email, isStudent: user.isStudent, isTeacher: user.isTeacher, profPic: user.profPic}});
             }
           }
         }
@@ -128,6 +129,45 @@ router.get('/profile', (req, res) => {
       }
     }
   })
+})
+
+router.get('/profile/is-student', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).select('isStudent').exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: err});
+    } else {
+      if (!user) {
+        res.json({ success: false, message: 'User not found'});
+      } else {
+        if(user.isStudent == false) {
+          res.json({ success: false, message: 'User does not have Student permissions'})
+        } else {
+          res.json({ success: true, user: user});
+        }
+      }
+    }
+  })
+})
+
+router.put('/become-student/', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+        user.isStudent = req.body.isStudent
+        user.save((err) => {
+          if(err) {
+            res.json({ succes: false, message: err})
+          } else {
+              res.json({ success: true, message: 'You are now a Student'})
+          }
+        })
+    }
+  }
+})
 })
 
 module.exports = (router)

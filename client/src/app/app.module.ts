@@ -13,8 +13,15 @@ import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
 
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
+import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+import { TeacherRegisterComponent } from './components/teacher/teacher-register/teacher-register.component';
+import { StudentRegisterComponent } from './components/student/student-register/student-register.component';
+
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
+import { StudentAuthGuard } from './guards/student-auth.guard'
+import { TeacherAuthGuard } from './guards/teacher-auth.guard'
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { HeroComponent } from './components/home/main/hero/hero.component';
 import { OptionsComponent } from './components/home/main/options/options.component';
@@ -25,6 +32,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { FilterPipe } from './filter.pipe';
 import { ChooseComponent } from './components/user/user-profile/choose/choose.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +49,11 @@ import { ChooseComponent } from './components/user/user-profile/choose/choose.co
     FilterPipe,
     BottomSignUpComponent,
     FooterComponent,
-    ChooseComponent
+    ChooseComponent,
+    StudentProfileComponent,
+    TeacherProfileComponent,
+    TeacherRegisterComponent,
+    StudentRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +63,7 @@ import { ChooseComponent } from './components/user/user-profile/choose/choose.co
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, ApiService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, ApiService, AuthGuard, StudentAuthGuard, TeacherAuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

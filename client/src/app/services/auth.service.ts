@@ -9,6 +9,7 @@ export class AuthService {
   authToken;
   user;
   options;
+  studentLoggedIn;
 
   constructor(private http: Http) { }
 
@@ -58,8 +59,34 @@ checkEmail(email) {
       return this.http.get(this.server + '/authentication/profile', this.options).map(res => res.json());
     }
 
+    studentCheck() {
+      this.createAuthenticationHeaders();
+      return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
+    }
+
     loggedIn() {
       return tokenNotExpired();
     }
+
+    Update(user) {
+        this.createAuthenticationHeaders();
+        return this.http.put(this.server + '/authentication/become-student', user, this.options).map(res =>
+          res.json())
+      }
+
+    isStudent():any {
+      this.createAuthenticationHeaders();
+      return this.studentCheck().subscribe(profile => {
+         if (profile) {
+           profile = true
+         }
+         profile = false
+     })
+   }
+
+  //  getLoggedInStudent(): any {
+  //    return this.studentLoggedIn;
+  //  }
+
 
   }

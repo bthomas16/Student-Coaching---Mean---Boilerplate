@@ -6,24 +6,26 @@ import { UserRegisterComponent} from './components/user/user-register/user-regis
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 
-// import { TeacherRegisterComponent} from './components/teacher/teacher-register/teacher-register.component';
-// import { TeacherLoginComponent } from './components/teacher/teacher-login/teacher-login.component';
-// import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
+import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+import { TeacherRegisterComponent } from './components/teacher/teacher-register/teacher-register.component';
+import { StudentRegisterComponent } from './components/student/student-register/student-register.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { StudentAuthGuard } from './guards/student-auth.guard';
+import { TeacherAuthGuard } from './guards/teacher-auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
-
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'register', component: UserRegisterComponent, canActivate: [NotAuthGuard] },
-  // { path: 'teacher/register', component: TeacherRegisterComponent },
   { path: 'login', component: UserLoginComponent, canActivate: [NotAuthGuard] },
-  // { path: 'teacher/login', component: TeacherLoginComponent, canActivate: [NotAuthGuard] },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-  // { path: 'teacher/profile', component: TeacherProfileComponent, canActivate: [AuthGuard]},
-
+  { path: 'student/profile', component: StudentProfileComponent, canActivate: [AuthGuard]},
+  { path: 'teacher/profile', component: TeacherProfileComponent, canActivate: [AuthGuard, TeacherAuthGuard]},
+  { path: 'student/register', component: StudentRegisterComponent},
+  { path: 'teacher/register', component: TeacherRegisterComponent},
 
   { path: '**', component: HomeComponent}
 

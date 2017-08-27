@@ -18,6 +18,8 @@ export class UserRegisterComponent implements OnInit {
   emailMessage;
   studentClick = false;
   teacherClick = false;
+  studentRole = '';
+  teacherRole = '';
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
@@ -37,6 +39,7 @@ export class UserRegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(5)
       ])],
+      // role: [[]],
       isStudent: [''],
       isTeacher: ['']
     })
@@ -91,11 +94,13 @@ export class UserRegisterComponent implements OnInit {
     // this.studentClick = true;
     if (this.studentClick == true) {
       this.studentClick = false;
+      // this.studentRole = '';
       event.target.classList.remove('active')
       console.log(this.studentClick)
     } else {
       if (this.studentClick == false) {
       this.studentClick = true;
+      // this.studentRole = 'Student';
       event.target.classList.add('active')
       console.log(this.studentClick)
     }
@@ -106,11 +111,13 @@ teacherClickHandler(event) {
   // this.studentClick = true;
   if (this.teacherClick == true) {
     this.teacherClick = false;
+    // this.teacherRole = '';
     event.target.classList.remove('active')
-    console.log(this.teacherClick)
+    console.log(this.teacherClick, this.teacherRole)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;
+    // this.teacherRole = 'Teacher';
     event.target.classList.add('active')
     console.log(this.teacherClick)
   }
@@ -127,6 +134,7 @@ teacherClickHandler(event) {
     password: this.form.get('password').value,
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
+    // role: [this.studentRole]
     }
     console.log('trying to submit:', user)
     this.authService.Register(user).subscribe(data => {

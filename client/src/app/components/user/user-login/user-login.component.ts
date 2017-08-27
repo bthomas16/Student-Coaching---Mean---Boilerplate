@@ -41,7 +41,7 @@ enableForm(){
 
 onLoginSubmit() {
   this.processing = true;
-  this. disableForm();
+  this.disableForm();
   const user = {
     email: this.form.get('email').value,
     password: this.form.get('password').value

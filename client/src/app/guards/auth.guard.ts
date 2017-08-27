@@ -6,6 +6,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
 
   redirectUrl;
+  isStudent;
+  isTeacher;
 
   constructor(
     private authService: AuthService,
@@ -21,4 +23,5 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
 }

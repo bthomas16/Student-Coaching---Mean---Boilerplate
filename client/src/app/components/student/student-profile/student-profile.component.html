@@ -1,0 +1,14 @@
+<div class="flex" *ngIf="checkStudent()">
+  <h2>Welcome to your Student Profile, {{ fullname }}!</h2>
+  <hr>
+</div>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+  {{message}}</div>
+</div>
+
+<div class="flex" *ngIf="!checkStudent()">
+  <h2 class="flex">Become a Student and connect with Pros Today!</h2>
+    <button class="btn btn-success" (click)="becomeStudentRegister()">Click Here</button>
+</div>

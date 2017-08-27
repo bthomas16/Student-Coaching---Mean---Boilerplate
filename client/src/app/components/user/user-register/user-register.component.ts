@@ -16,9 +16,10 @@ export class UserRegisterComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
-  accountSelected = false;
   studentClick = false;
   teacherClick = false;
+  studentRole = '';
+  teacherRole = '';
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
@@ -38,8 +39,9 @@ export class UserRegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(5)
       ])],
-      isStudent: ['', this.isAccountSelected],
-      isTeacher: ['', this.isAccountSelected]
+      // role: [[]],
+      isStudent: [''],
+      isTeacher: ['']
     })
   }
 
@@ -47,14 +49,12 @@ export class UserRegisterComponent implements OnInit {
     this.form.controls['fullname'].disable();
     this.form.controls['email'].disable();
     this.form.controls['password'].disable();
-    this.isAccountSelected['false'].disable()
   }
 
   enableForm(){
     this.form.controls['fullname'].enable();
     this.form.controls['email'].enable();
     this.form.controls['password'].enable();
-    this.isAccountSelected['true'].disable();
   }
 
 // Valid Email
@@ -82,38 +82,42 @@ export class UserRegisterComponent implements OnInit {
     }
 
 // Function to check if an account was selected
-    isAccountSelected() {
-      if (this.studentClick == false && this.teacherClick == false) {
-        this.accountSelected = false
-      } else {
-          this.accountSelected = true
-        }
-      }
+    // isAccountSelected() {
+    //   if (this.studentClick == false && this.teacherClick == false) {
+    //     this.accountSelected = false
+    //   } else {
+    //       this.accountSelected = true
+    //     }
+    //   }
 
   studentClickHandler(event) {
     // this.studentClick = true;
-    console.log('student')
     if (this.studentClick == true) {
       this.studentClick = false;
+      // this.studentRole = '';
       event.target.classList.remove('active')
+      console.log(this.studentClick)
     } else {
       if (this.studentClick == false) {
       this.studentClick = true;
+      // this.studentRole = 'Student';
       event.target.classList.add('active')
+      console.log(this.studentClick)
     }
   }
 }
 
 teacherClickHandler(event) {
   // this.studentClick = true;
-  console.log('teach')
   if (this.teacherClick == true) {
     this.teacherClick = false;
+    // this.teacherRole = '';
     event.target.classList.remove('active')
-    console.log(this.teacherClick)
+    console.log(this.teacherClick, this.teacherRole)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;
+    // this.teacherRole = 'Teacher';
     event.target.classList.add('active')
     console.log(this.teacherClick)
   }
@@ -126,11 +130,13 @@ teacherClickHandler(event) {
     this.disableForm();
     const user = {
     fullname: this.form.get('fullname').value,
-    email: this.form.get('email').value,
+    email: this.form.get('email').value.toLowerCase(),
     password: this.form.get('password').value,
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
+    // role: [this.studentRole]
     }
+    console.log('trying to submit:', user)
     this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';

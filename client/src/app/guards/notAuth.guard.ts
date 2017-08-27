@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class NotAuthGuard implements CanActivate {
 
+isStudent;
+isTeacher;
   constructor(
     private authService: AuthService,
     private router: Router) {}
@@ -17,4 +19,32 @@ export class NotAuthGuard implements CanActivate {
       return true;
     }
   }
+
+
+// canActivateTeacher() {
+//     this.authService.getProfile().subscribe(profile => {
+//       this.isTeacher = profile.user.isTeacher;
+//     });
+//     if (this.authService.loggedIn()) {
+//       this.router.navigate(['/'])
+//       return false;
+//       } else {
+//         if(this.isTeacher == true ) {
+//           return true
+//     }
+//   }
+// }
+// canActivateStudent() {
+//     this.authService.getProfile().subscribe(profile => {
+//       this.isStudent = profile.user.isStudent;
+//     });
+//     if (this.authService.loggedIn()) {
+//       this.router.navigate(['/'])
+//       return false;
+//       } else {
+//         if(this.isStudent == true ) {
+//           return true
+//     }
+//   }
+// }
 }

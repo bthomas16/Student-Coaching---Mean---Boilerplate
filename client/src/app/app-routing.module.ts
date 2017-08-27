@@ -22,10 +22,8 @@ const appRoutes: Routes = [
   { path: 'register', component: UserRegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'login', component: UserLoginComponent, canActivate: [NotAuthGuard] },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-  { path: 'student/profile', component: StudentProfileComponent, canActivate: [AuthGuard]},
-  { path: 'teacher/profile', component: TeacherProfileComponent, canActivate: [AuthGuard, TeacherAuthGuard]},
-  { path: 'student/register', component: StudentRegisterComponent},
-  { path: 'teacher/register', component: TeacherRegisterComponent},
+  { path: 'profile/student', component: StudentProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/teacher', component: TeacherProfileComponent, canActivate: [AuthGuard]},
 
   { path: '**', component: HomeComponent}
 

@@ -16,6 +16,7 @@ export class StudentProfileComponent implements OnInit {
   isTeacher;
   profPic;
   processing = false;
+  show = true;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,11 +24,15 @@ export class StudentProfileComponent implements OnInit {
     return this.isStudent
   }
 
+  hideMessage() {
+    this.show = false;
+  }
+
   becomeStudentRegister() {
     this.isStudent = true;
     this.processing = true;
     const user = { isStudent: this.isStudent}
-    this.authService.Update(user).subscribe(data => {
+    this.authService.updateStudent(user).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
@@ -36,7 +41,7 @@ export class StudentProfileComponent implements OnInit {
         this.messageClass = 'alert alert-success'
         this.message = data.message
         setTimeout(() => {
-          this.router.navigate(['../student/profile'])
+          this.hideMessage();
         }, 1400)
       }
     })

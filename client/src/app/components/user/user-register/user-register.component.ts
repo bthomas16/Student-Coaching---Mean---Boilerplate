@@ -69,38 +69,15 @@ export class UserRegisterComponent implements OnInit {
     }
   }
 
-  // Funciton to ensure passwords match
-    matchingPasswords(password, confirm) {
-      return (group: FormGroup) => {
-        // Check if both fields are the same
-        if (group.controls[password].value === group.controls[confirm].value) {
-          return null; // Return as a match
-        } else {
-          return { 'matchingPasswords': true } // Return as error: do not match
-        }
-      }
-    }
-
-// Function to check if an account was selected
-    // isAccountSelected() {
-    //   if (this.studentClick == false && this.teacherClick == false) {
-    //     this.accountSelected = false
-    //   } else {
-    //       this.accountSelected = true
-    //     }
-    //   }
 
   studentClickHandler(event) {
-    // this.studentClick = true;
     if (this.studentClick == true) {
       this.studentClick = false;
-      // this.studentRole = '';
       event.target.classList.remove('active')
       console.log(this.studentClick)
     } else {
       if (this.studentClick == false) {
       this.studentClick = true;
-      // this.studentRole = 'Student';
       event.target.classList.add('active')
       console.log(this.studentClick)
     }
@@ -108,16 +85,13 @@ export class UserRegisterComponent implements OnInit {
 }
 
 teacherClickHandler(event) {
-  // this.studentClick = true;
   if (this.teacherClick == true) {
     this.teacherClick = false;
-    // this.teacherRole = '';
     event.target.classList.remove('active')
     console.log(this.teacherClick, this.teacherRole)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;
-    // this.teacherRole = 'Teacher';
     event.target.classList.add('active')
     console.log(this.teacherClick)
   }
@@ -134,7 +108,6 @@ teacherClickHandler(event) {
     password: this.form.get('password').value,
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
-    // role: [this.studentRole]
     }
     console.log('trying to submit:', user)
     this.authService.Register(user).subscribe(data => {
@@ -145,9 +118,10 @@ teacherClickHandler(event) {
       this.enableForm();
     } else {
       this.messageClass = 'alert alert-success'
-      this.message = data.message
+      this.message = data.message;
+      this.authService.storeData(data.token, data.user);
       setTimeout(() => {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/profile'])
       }, 1400)
     }
   });

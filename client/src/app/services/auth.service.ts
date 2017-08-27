@@ -64,15 +64,26 @@ checkEmail(email) {
       return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
     }
 
+    teacherCheck() {
+      this.createAuthenticationHeaders();
+      return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
+    }
+
     loggedIn() {
       return tokenNotExpired();
     }
 
-    Update(user) {
+    updateStudent(user) {
         this.createAuthenticationHeaders();
         return this.http.put(this.server + '/authentication/become-student', user, this.options).map(res =>
           res.json())
       }
+
+      updateTeacher(user) {
+          this.createAuthenticationHeaders();
+          return this.http.put(this.server + '/authentication/become-teacher', user, this.options).map(res =>
+            res.json())
+        }
 
     isStudent():any {
       this.createAuthenticationHeaders();
@@ -83,6 +94,16 @@ checkEmail(email) {
          profile = false
      })
    }
+
+   isTeacher():any {
+     this.createAuthenticationHeaders();
+     return this.teacherCheck().subscribe(profile => {
+        if (profile) {
+          profile = true
+        }
+        profile = false
+    })
+  }
 
   //  getLoggedInStudent(): any {
   //    return this.studentLoggedIn;

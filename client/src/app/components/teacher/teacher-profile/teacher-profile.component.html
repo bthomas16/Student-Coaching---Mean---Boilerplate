@@ -1,3 +1,14 @@
-<p>
-  teacher-profile works!
-</p>
+<div class="row show-hide-message" *ngIf="show">
+  <div [ngClass]="messageClass">
+  {{message}}</div>
+</div>
+
+<div class="flex" *ngIf="checkTeacher()">
+  <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
+  <hr>
+</div>
+
+<div class="flex" *ngIf="!checkTeacher()">
+  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
+    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+</div>

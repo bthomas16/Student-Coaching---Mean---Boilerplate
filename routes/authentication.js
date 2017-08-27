@@ -42,7 +42,10 @@ router.post('/register', (req, res) => {
             }
           }
         } else {
-            return res.json({success: true, message: 'User Registered!'});
+          const token = jwt.sign({
+            userId: user._id
+          }, config.secret, { expiresIn: '24h'});
+          res.json({ success: true, message: 'User Registered!', token: token, user: { fullname: user.fullname, email: user.email, isStudent: user.isStudent, isTeacher: user.isTeacher, profPic: user.profPic}});
             }
           })
         }
@@ -149,7 +152,25 @@ router.get('/profile/is-student', (req, res) => {
   })
 })
 
-router.put('/become-student/', (req, res) => {
+router.get('/profile/is-teacher', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).select('isTeacher').exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: err});
+    } else {
+      if (!user) {
+        res.json({ success: false, message: 'User not found'});
+      } else {
+        if(user.isTeacher == false) {
+          res.json({ success: false, message: 'User does not have Teacher permissions'})
+        } else {
+          res.json({ success: true, user: user});
+        }
+      }
+    }
+  })
+})
+
+router.put('/become-student', (req, res) => {
   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});
@@ -163,6 +184,27 @@ router.put('/become-student/', (req, res) => {
             res.json({ succes: false, message: err})
           } else {
               res.json({ success: true, message: 'You are now a Student'})
+          }
+        })
+    }
+  }
+})
+})
+
+router.put('/become-teacher', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+        user.isTeacher = req.body.isTeacher
+        user.save((err) => {
+          if(err) {
+            res.json({ succes: false, message: err})
+          } else {
+              res.json({ success: true, message: 'You are now a Teacher'})
           }
         })
     }

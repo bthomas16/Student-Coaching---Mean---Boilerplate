@@ -15,8 +15,6 @@ import { ApiService } from './services/api.service';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
-import { TeacherRegisterComponent } from './components/teacher/teacher-register/teacher-register.component';
-import { StudentRegisterComponent } from './components/student/student-register/student-register.component';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
@@ -51,9 +49,7 @@ import { ChooseComponent } from './components/user/user-profile/choose/choose.co
     FooterComponent,
     ChooseComponent,
     StudentProfileComponent,
-    TeacherProfileComponent,
-    TeacherRegisterComponent,
-    StudentRegisterComponent
+    TeacherProfileComponent
   ],
   imports: [
     BrowserModule,

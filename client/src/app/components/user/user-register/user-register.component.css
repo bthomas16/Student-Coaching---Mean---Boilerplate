@@ -39,11 +39,11 @@ h1 {
 }
 
 .butt:hover {
-  background-color: rgba(85,177,240,.9);
+  background-color: rgba(85,177,240,.8);
 }
 
 .active {
-  background-color: rgba(85,177,240,.9);
+  background-color: rgba(85,177,240,.7);
 }
 
 .account {
@@ -60,8 +60,20 @@ h1 {
   margin-bottom: 10%;
 }
 
-:host-context(.footy) .registerSubmit {
-  background-color: #5ADA6A;
+:host-context(.footy) .submit {
+  background-color: rgb(90,218,106);
+}
+
+:host-context(.footy) .butt {
+  background-color: rgb(90,218,106);
+}
+
+:host-context(.footy) .butt:hover {
+  background-color: rgba(90,218,106,.8);
+}
+
+:host-context(.footy) .active {
+  background-color: rgba(90,218,106,.7);
 }
 
 /*:host-context(.useIt) form {

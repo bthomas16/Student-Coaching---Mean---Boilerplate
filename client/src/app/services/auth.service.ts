@@ -5,7 +5,10 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
-  server = "http://localhost:8080";
+    // development server
+  // server = "http://localhost:8080";
+    // production server
+  server = "https://agile-dusk-12895.herokuapp.com/"
   authToken;
   user;
   options;
@@ -14,7 +17,6 @@ export class AuthService {
   constructor(private http: Http) { }
 
   createAuthenticationHeaders(){
-    // load token from loadToken()
     this.loadToken();
     this.options = new RequestOptions({
       headers: new Headers({
@@ -30,15 +32,15 @@ export class AuthService {
   }
 
 Register(user) {
-  return this.http.post(this.server + '/authentication/register', user).map(res => res.json());
+  return this.http.post(this.server + 'authentication/register', user).map(res => res.json());
   }
 
 checkEmail(email) {
-  return this.http.get(this.server + '/authentication/register/check-email/' + email).map(res => res.json());
+  return this.http.get(this.server + 'authentication/register/check-email/' + email).map(res => res.json());
   }
 
   Login(user) {
-    return this.http.post(this.server + '/authentication/login', user).map(res => res.json());
+    return this.http.post(this.server + 'authentication/login', user).map(res => res.json());
     }
 
   Logout(){
@@ -56,17 +58,17 @@ checkEmail(email) {
 
     getProfile() {
       this.createAuthenticationHeaders();
-      return this.http.get(this.server + '/authentication/profile', this.options).map(res => res.json());
+      return this.http.get(this.server + 'authentication/profile', this.options).map(res => res.json());
     }
 
     studentCheck() {
       this.createAuthenticationHeaders();
-      return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
+      return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
     }
 
     teacherCheck() {
       this.createAuthenticationHeaders();
-      return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
+      return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
     }
 
     loggedIn() {
@@ -75,13 +77,13 @@ checkEmail(email) {
 
     updateStudent(user) {
         this.createAuthenticationHeaders();
-        return this.http.put(this.server + '/authentication/become-student', user, this.options).map(res =>
+        return this.http.put(this.server + 'authentication/become-student', user, this.options).map(res =>
           res.json())
       }
 
       updateTeacher(user) {
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + '/authentication/become-teacher', user, this.options).map(res =>
+          return this.http.put(this.server + 'authentication/become-teacher', user, this.options).map(res =>
             res.json())
         }
 
@@ -102,12 +104,6 @@ checkEmail(email) {
           profile = true
         }
         profile = false
-    })
-  }
-
-  //  getLoggedInStudent(): any {
-  //    return this.studentLoggedIn;
-  //  }
-
-
+      })
+    }
   }

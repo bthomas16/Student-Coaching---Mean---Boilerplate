@@ -88,7 +88,6 @@ teacherClickHandler(event) {
   if (this.teacherClick == true) {
     this.teacherClick = false;
     event.target.classList.remove('active')
-    console.log(this.teacherClick, this.teacherRole)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;

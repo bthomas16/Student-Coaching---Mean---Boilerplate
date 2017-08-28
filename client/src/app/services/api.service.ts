@@ -6,7 +6,10 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class ApiService {
 
   options;
-  server = "http://localhost:8080";
+  // development server
+  // server = "http://localhost:8080";
+  // production server
+  server = "https://agile-dusk-12895.herokuapp.com/";
 
   constructor(
     private authService: AuthService,
@@ -27,6 +30,6 @@ export class ApiService {
 
 getAllTeachers() {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.server + '/api/get-all-teachers', this.options).map(res => res.json());
+    return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
   }
 }

@@ -43,8 +43,6 @@ command: ng server
 2. Edit Collection names in 'models' folder
   2(a). Auth for students & teachers is available through 'authentication' route
 3. Production database is set up as MongoDB free sandbox (edit in '.env' folder) 
-
-**** To build production
   
 ### Check Database with Mongo shell 
   

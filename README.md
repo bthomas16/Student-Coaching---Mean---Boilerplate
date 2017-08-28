@@ -7,7 +7,7 @@ This is a repo that can be downloaded to bootstrap a MEA(4)N Project.
 1. Form authenticaiton with error feedback for users
 2. Routes hardened against outside attacks
 3. Users may register as student or teacher and access the profiles of their account
-4. Students may contact, view & rate teachers - out of the box 
+4. Students may contact, view & rate teachers - out of the box (coming soon)
 
 ## Instructions to Use
 

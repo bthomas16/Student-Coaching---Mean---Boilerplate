@@ -37,9 +37,10 @@ This is a repo that can be downloaded to bootstrap a MEA(4)N Project.
  3(b). show collections
  3(c). db.<collection name>.find()
 
-## Routes
+## API
 
-1. All Student/Teacher registrations & logins are handled from the 'Authentication' route
+1. All User (student & teacher) registrations & logins are handled from the 'Authentication' route
+2. All get requests from the teacher database are handled in the 'api' route
 
 ## Lincense
 

@@ -10,6 +10,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 
+app.use(cors({
+  origin:'http://localhost:4200'
+}));
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   if (err) {
@@ -19,9 +23,6 @@ mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   }
 });
 
-app.use(cors({
-  origin:'http://localhost:4200'
-}));
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }))

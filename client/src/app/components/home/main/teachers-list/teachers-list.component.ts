@@ -20,7 +20,10 @@ export class TeachersListComponent implements OnInit {
   getAllTeachers() {
   // Function to GET all blogs from database
   this.apiService.getAllTeachers().subscribe(data => {
-    this.teachersList = data.teachers; // Assign array to use in HTML
+    this.teachersList = data.teachers;
+    if(this.teachersList.length >= 6) {
+      this.teachersList.splice(5,1);
+    } // Assign array to use in HTML
   });
 }
 

@@ -7,9 +7,9 @@ export class ApiService {
 
   options;
   // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080/";
   // production server
-  server = "";
+  // server = "";
 
   constructor(
     public authService: AuthService,
@@ -30,6 +30,6 @@ export class ApiService {
 
 getAllTeachers() {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.server + '/api/get-all-teachers', this.options).map(res => res.json());
+    return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
   }
 }

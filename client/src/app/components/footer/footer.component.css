@@ -1,5 +1,6 @@
-.navbar {
+.flex {
   background-color: #DADADA !important;
+  width: 100vw;
 }
 
 li.nav-item a {

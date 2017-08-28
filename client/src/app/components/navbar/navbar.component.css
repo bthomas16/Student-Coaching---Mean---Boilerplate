@@ -43,11 +43,32 @@ li.active a{
 }
 
 .dropdown-menu {
-  background-color: rgba(90,218,106,.85);
+  background-color: rgba(90,218,106,.95);
 }
+
 
 ul.dropdown-menu {
   margin-left: -44%;
+}
+
+#grayOutDiv
+{
+    background-color: #333;
+    opacity: 0.7;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.flash-message
+{
+    z-index: 10000;
+    position: relative;
+    width: 100vw;
 }
 
 @media(max-width:400px) {

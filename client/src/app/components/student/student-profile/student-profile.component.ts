@@ -20,6 +20,10 @@ export class StudentProfileComponent implements OnInit {
 
   constructor(public authService: AuthService, private router: Router) { }
 
+  checkStudent() {
+    return this.isStudent
+  }
+
   hideMessage() {
     this.show = false;
   }

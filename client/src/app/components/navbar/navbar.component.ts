@@ -14,8 +14,9 @@ export class NavbarComponent implements OnInit {
 
   onLogoutClick() {
     this.authService.Logout();
+    this.flashMessagesService.grayOut(true);
     this.flashMessagesService.show('Logged Out', { cssClass: 'alert-info' });
-    this.router.navigate(['/'])
+      this.router.navigate(['/'])
   }
 
   ngOnInit() {

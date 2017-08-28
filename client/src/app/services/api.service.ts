@@ -6,10 +6,13 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class ApiService {
 
   options;
-  server = "http://localhost:8080";
+  // development server
+  // server = "http://localhost:8080";
+  // production server
+  server = "";
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private http: Http
   ) { }
 

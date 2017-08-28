@@ -15,7 +15,7 @@ export class UserProfileComponent implements OnInit {
   profPic;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
 ngOnInit() {
   this.authService.getProfile()

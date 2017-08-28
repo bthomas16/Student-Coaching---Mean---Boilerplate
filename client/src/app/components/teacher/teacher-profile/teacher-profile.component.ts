@@ -18,11 +18,7 @@ export class TeacherProfileComponent implements OnInit {
   processing = false;
   show = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  checkTeacher() {
-    return this.isTeacher
-  }
+  constructor(public authService: AuthService, private router: Router) { }
 
   hideMessage() {
     this.show = false;

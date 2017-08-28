@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit {
-  form: FormGroup;
+  form;
   message;
   messageClass;
   processing = false;
@@ -22,7 +22,7 @@ export class UserRegisterComponent implements OnInit {
   teacherRole = '';
 
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router) {
     this.createForm()
   }
 
@@ -88,7 +88,6 @@ teacherClickHandler(event) {
   if (this.teacherClick == true) {
     this.teacherClick = false;
     event.target.classList.remove('active')
-    console.log(this.teacherClick, this.teacherRole)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;

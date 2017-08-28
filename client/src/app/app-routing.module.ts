@@ -8,8 +8,6 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
 
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
-import { TeacherRegisterComponent } from './components/teacher/teacher-register/teacher-register.component';
-import { StudentRegisterComponent } from './components/student/student-register/student-register.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { StudentAuthGuard } from './guards/student-auth.guard';

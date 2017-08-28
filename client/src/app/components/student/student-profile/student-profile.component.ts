@@ -18,11 +18,7 @@ export class StudentProfileComponent implements OnInit {
   processing = false;
   show = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  checkStudent() {
-    return this.isStudent
-  }
+  constructor(public authService: AuthService, private router: Router) { }
 
   hideMessage() {
     this.show = false;

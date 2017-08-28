@@ -1,4 +1,4 @@
-<div class="flex" *ngIf="!checkTeacher()">
+<div class="flex" *ngIf="!{{ isTeacher }}">
   <h2 class="flex">Become a Teacher and start earning today!</h2>
     <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
 </div>

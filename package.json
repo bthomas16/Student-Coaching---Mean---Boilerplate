@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./app.js",
-    "build": "cd client && ng build --prod && cd .. && node app.js",
+    "start": "node app.js",
+    "build": "cd client && ng build --prod --env=prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

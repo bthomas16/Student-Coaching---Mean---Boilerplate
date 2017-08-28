@@ -9,10 +9,10 @@ export class ApiService {
   // development server
   // server = "http://localhost:8080";
   // production server
-  server = "https://agile-dusk-12895.herokuapp.com/";
+  server = "https://agile-dusk-12895.herokuapp.com";
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private http: Http
   ) { }
 
@@ -30,6 +30,6 @@ export class ApiService {
 
 getAllTeachers() {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
+    return this.http.get(this.server + '/api/get-all-teachers', this.options).map(res => res.json());
   }
 }

@@ -18,7 +18,7 @@ processing = false;
 form;
 previousUrl;
 
-  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private authGuard: AuthGuard) {
+  constructor (private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private authGuard: AuthGuard) {
     this.createForm();
 }
 

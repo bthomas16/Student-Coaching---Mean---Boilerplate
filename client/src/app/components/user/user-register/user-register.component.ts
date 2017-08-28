@@ -22,7 +22,7 @@ export class UserRegisterComponent implements OnInit {
   teacherRole = '';
 
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router) {
     this.createForm()
   }
 

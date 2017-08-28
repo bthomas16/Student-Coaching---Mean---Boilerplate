@@ -9,7 +9,7 @@ import { ApiService } from '../../../../services/api.service';
   styleUrls: ['./teachers-list.component.css']
 })
 export class TeachersListComponent implements OnInit {
-  private teachersList;
+  public teachersList;
 
   constructor(private apiService: ApiService) {
    }

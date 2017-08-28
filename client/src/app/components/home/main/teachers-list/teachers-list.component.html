@@ -1,9 +1,10 @@
 <div class="container">
   <div class="flex">
-    <input type="text" [(ngModel)]="filteredStatus" placeholder="Search Teachers by Name" class="form-control">
+    <!-- <input type="text" [(ngModel)]="filteredStatus" placeholder="Search Teachers by Name" class="form-control"> -->
   </div>
   <div class="teacher-wrapper flex">
-    <div class="flex teacher" *ngFor="let teacher of teachersList | filter: filteredStatus:'firstname'">
+    <!--<div class="flex teacher"  *ngFor="let teacher of teachersList | filter: filteredStatus:'firstname' "> //-->
+    <div class="flex teacher"  *ngFor="let teacher of teachersList">
       {{ teacher.fullname}}
       <br>
       {{ teacher.email }}

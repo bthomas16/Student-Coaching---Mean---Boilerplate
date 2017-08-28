@@ -9,7 +9,7 @@ export class ApiService {
   // development server
   // server = "http://localhost:8080";
   // production server
-  server = "https://agile-dusk-12895.herokuapp.com";
+  server = "";
 
   constructor(
     public authService: AuthService,

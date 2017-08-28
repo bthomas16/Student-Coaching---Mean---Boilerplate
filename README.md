@@ -40,7 +40,5 @@ This is a repo that can be downloaded to bootstrap a MEA(4)N Project.
 
 1. All Student/Teacher registrations & logins are handled from the 'Authentication' route
 
-###
-
-Open Source and free to use :smiley: + :hatching_chick: = :earth_americas:.... or something like that
+### Open Source and free to use :smiley: + :hatching_chick: = :earth_americas: .... or something like that
 

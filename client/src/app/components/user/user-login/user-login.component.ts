@@ -15,7 +15,7 @@ export class UserLoginComponent implements OnInit {
 message;
 messageClass;
 processing = false;
-form: FormGroup;
+form;
 previousUrl;
 
   constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private authGuard: AuthGuard) {

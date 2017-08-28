@@ -11,11 +11,11 @@ const cors = require('cors');
 const port = process.env.PORT || 8080;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.url, {useMongoClient: true}, (err) => {
+mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   if (err) {
     console.log('Could not connect to DB: ', err);
   } else {
-    console.log('Conencted to DB:' + config.db);
+    console.log('Connected to DB:' + config.db);
   }
 });
 
@@ -27,12 +27,12 @@ mongoose.connect(config.url, {useMongoClient: true}, (err) => {
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use(express.static(__dirname + '/client/dist/'));
+app.use(express.static(__dirname + '/public'));
 app.use('/api', api);
 app.use('/authentication', authentication);
 
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname + '/client/dist/index.html'))
+  res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
 

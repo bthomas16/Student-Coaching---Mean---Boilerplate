@@ -106,4 +106,8 @@ checkEmail(email) {
         profile = false
       })
     }
-  }
+
+  //  getLoggedInStudent(): any {
+  //    return this.studentLoggedIn;
+  //  }
+}

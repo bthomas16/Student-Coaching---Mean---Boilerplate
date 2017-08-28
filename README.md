@@ -1,20 +1,21 @@
 # MEAN-Boilerplate
 
-This is a repo that can be downloaded and bootstrap a MEA(4)N Project. 
+This is a repo that can be downloaded to bootstrap a MEA(4)N Project. 
 
 ### Highlights 
 
 1. Form authenticaiton with error feedback for users
 2. Routes hardened against outside attacks
-2. Students may contact, view & rate teachers - out of the box
+3. Users may register as student or teacher and access the profiles of their account
+4. Students may contact, view & rate teachers - out of the box 
 
 ## Instructions to Use
 
 1. Fork & Git Clone <Forked Repo>
-<!--server package.json install-->
+###server package.json install
 2. cd <Forked Repo>  
 3. 'npm install' 
-  <!--angular (client) package.json install-->
+###angular (client) package.json install
 4. cd client
 5. npm install
 
@@ -41,5 +42,5 @@ This is a repo that can be downloaded and bootstrap a MEA(4)N Project.
 
 ###
 
-Open Source and free to use :)
+Open Source and free to use :smiley: + :hatching_chick: = :earth_americas:.... or something like that
 

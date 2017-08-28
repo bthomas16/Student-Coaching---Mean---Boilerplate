@@ -103,9 +103,9 @@ teacherClickHandler(event) {
     this.processing = true;
     this.disableForm();
     const user = {
-    fullname: this.form.get('fullname').value,
-    email: this.form.get('email').value.toLowerCase(),
-    password: this.form.get('password').value,
+    fullname: this.form.get('fullname').value.trim(),
+    email: this.form.get('email').value.toLowerCase().trim(),
+    password: this.form.get('password').value.trim(),
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
     }

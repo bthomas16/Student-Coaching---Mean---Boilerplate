@@ -29,7 +29,6 @@ command: ng server
 #### From the root folder
 1. npm run build
 2. heroku create
-#### copy url
 3. git push heroku master
 #### heroku logs --tail (check build history)
 4. git add .

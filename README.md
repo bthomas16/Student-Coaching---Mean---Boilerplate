@@ -12,20 +12,20 @@ This is a repo that can be downloaded to bootstrap a MEA(4)N Project.
 ## Instructions to Use
 
 1. Fork & Git Clone *Forked Repo*
-server package.json install
+#### Back End - server package.json install
 2. cd *Forked Repo*  
 3. 'npm install' 
-#### angular (client) package.json install
+#### Front End - angular (client) package.json install
 4. cd client
 5. npm install
 
 ### Development Full Stack Build
 #### From the root folder
 command: nodemon
-#### from the client folder
+#### From the client folder
 command: ng server
 
-Production Full Stack Build
+### Production Full Stack Build
 #### From the root folder
 1. npm run build
 2. heroku create

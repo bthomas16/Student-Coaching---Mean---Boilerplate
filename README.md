@@ -12,26 +12,26 @@ This is a repo that can be downloaded to bootstrap a MEA(4)N Project.
 ## Instructions to Use
 
 1. Fork & Git Clone *Forked Repo*
-***server package.json install
+*** server package.json install
 2. cd *Forked Repo*  
 3. 'npm install' 
-***angular (client) package.json install
+*** angular (client) package.json install
 4. cd client
 5. npm install
 
 ### Development Full Stack Build
-**From the root folder
+** From the root folder
 command: nodemon
-**from the client folder
+** from the client folder
 command: ng server
 
 Production Full Stack Build
-**From the root folder
+**** From the root folder
 1. npm run build
 2. heroku create
-****copy url
+**** copy url
 3. git push heroku master
-****heroku logs --tail (check build history)
+**** heroku logs --tail (check build history)
 4. git add .
 5. git commit -m 'first full commit'
 6. git push heroku master
@@ -45,7 +45,7 @@ Production Full Stack Build
   2(a). Auth for students & teachers is available through 'authentication' route
 3. Production database is set up as MongoDB free sandbox (edit in '.env' folder) 
 
-**To build production
+**** To build production
   
 ### Check Database with Mongo shell 
   

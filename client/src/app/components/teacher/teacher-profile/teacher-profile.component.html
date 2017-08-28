@@ -1,3 +1,8 @@
+<div class="flex" *ngIf="!checkTeacher()">
+  <h2 class="flex">Become a Teacher and start earning today!</h2>
+    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+</div>
+
 <div class="row show-hide-message" *ngIf="show">
   <div [ngClass]="messageClass">
   {{message}}</div>
@@ -6,9 +11,4 @@
 <div class="flex" *ngIf="checkTeacher()">
   <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
   <hr>
-</div>
-
-<div class="flex" *ngIf="!checkTeacher()">
-  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
-    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
 </div>

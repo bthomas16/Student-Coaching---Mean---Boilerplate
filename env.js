@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-if (fs.existsSync('./client/dist')) {
+if (fs.existsSync('./public')) {
   process.env.NODE_ENV = 'production';
   process.env.databaseUri = "mongodb://test:test@ds161483.mlab.com:61483/skill-site"; // Databse URI and database name
   process.env.databaseName = 'production database: skill-site'; // Database name

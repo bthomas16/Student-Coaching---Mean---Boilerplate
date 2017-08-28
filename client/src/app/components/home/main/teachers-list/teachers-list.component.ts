@@ -2,16 +2,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { ApiService } from '../../../../services/api.service';
+import { Pipe, PipeTransform } from '@angular/core';
+import { FilterPipe } from '../../../../filter.pipe';
 
 @Component({
   selector: 'app-teachers-list',
   templateUrl: './teachers-list.component.html',
+  // pipes: [FilterPipe],
   styleUrls: ['./teachers-list.component.css']
 })
 export class TeachersListComponent implements OnInit {
-  public teachersList;
+  teachersList;
 
-  constructor(private apiService: ApiService) {
+  constructor(public apiService: ApiService) {
    }
 
   getAllTeachers() {

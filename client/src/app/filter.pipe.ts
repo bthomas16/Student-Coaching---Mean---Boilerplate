@@ -1,41 +1,23 @@
-// import { Pipe, PipeTransform } from '@angular/core';
-//
-// @Pipe({
-//   name: 'filter'
-// })
-// export class FilterPipe implements PipeTransform {
-//   transform(value: any, args: string, propName: string): any {
-//     if(!args) {
-//       return value;
-//     }
-//       const resultArray = [];
-//       for(const item of value) {
-//         if (typeof item[propName] === 'string' && item[propName] instanceof String) {
-//           resultArray.push(item);
-//           }
-//          else if(item[propName] === args) {
-//            resultArray.push(item);
-//          }
-//         }
-//         return resultArray;
-//       }
-//     }
-//
-//
-//     // export class FilterPipe implements PipeTransform {
-//     //   transform(value: any, args: string, propName: string): any {
-//     //     if(!args) {
-//     //       return value;
-//     //     }
-//     //       const resultArray = [];
-//     //       for(const item of value) {
-//     //         if (typeof item[propName] === 'string' && item[propName] instanceof String) {
-//     //           resultArray.push(item);
-//     //           }
-//     //          else if(item[propName] === args) {
-//     //            resultArray.push(item);
-//     //          }
-//     //         }
-//     //         return resultArray;
-//     //       }
-//     //     }
+import { Pipe } from '@angular/core';
+
+@Pipe({
+  name: 'filter'
+})
+export class FilterPipe {
+
+  transform(value, args) {
+    if (!args) {
+      return value;
+    } else if (value) {
+      return value.filter(item => {
+        // tslint:disable-next-line:prefer-const
+        for (let key in item) {
+          if ((typeof item[key] === 'string' || item[key] instanceof String) &&
+            (item[key].indexOf(args) !== -1)) {
+        return true;
+          }
+        }
+      });
+    }
+  }
+}

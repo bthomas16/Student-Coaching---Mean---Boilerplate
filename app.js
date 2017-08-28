@@ -14,6 +14,13 @@ const port = process.env.PORT || 8080;
 //   origin:'http://localhost:4200'
 // }));
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   if (err) {
@@ -23,12 +30,6 @@ mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   }
 });
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-    next();
-});
 
 
 // Body Parser

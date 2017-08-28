@@ -10,17 +10,18 @@ This is a repo that can be downloaded and bootstrap a MEA(4)N Project.
 
 ## Instructions to Use
 
-1. Git Clone <Forked Repo>
+1. Fork & Git Clone <Forked Repo>
 <!--server package.json install-->
-2. 'npm install' 
-3. cd client
-<!--angular (client) package.json install-->
-4. npm install
+2. cd <Forked Repo>  
+3. 'npm install' 
+  <!--angular (client) package.json install-->
+4. cd client
+5. npm install
 
 ## Database Boiletplate
 
 1. Database is named 'mean-boilerplate' 
-  1(a). Edit Database name in 'config' folder
+  1(a). Edit Database name in 'env' folder
 2. Edit Collection names in 'models' folder
   2(a). Auth for students & teachers is available through 'authentication' route
   

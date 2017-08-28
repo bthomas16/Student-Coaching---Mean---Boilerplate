@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +29,7 @@ import { FutureComponent } from './components/home/main/future/future.component'
 import { BottomSignUpComponent } from './components/home/main/bottom-sign-up/bottom-sign-up.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-// import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './filter.pipe';
 import { ChooseComponent } from './components/user/user-profile/choose/choose.component';
 
 
@@ -44,7 +45,7 @@ import { ChooseComponent } from './components/user/user-profile/choose/choose.co
     OptionsComponent,
     TeachersListComponent,
     FutureComponent,
-    // FilterPipe,
+    FilterPipe,
     BottomSignUpComponent,
     FooterComponent,
     ChooseComponent,

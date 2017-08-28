@@ -10,17 +10,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 
-// app.use(cors({
-//   origin:'http://localhost:4200'
-// }));
-
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-  next();
-});
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
   if (err) {
@@ -33,6 +22,18 @@ mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
 
 
 // Body Parser
+
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+//   next();
+// });
+
+app.use(cors({
+  origin:'http://localhost:4200'
+}));
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

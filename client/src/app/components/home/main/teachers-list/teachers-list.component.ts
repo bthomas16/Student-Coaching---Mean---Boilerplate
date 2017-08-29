@@ -13,6 +13,7 @@ import { FilterPipe } from '../../../../filter.pipe';
 })
 export class TeachersListComponent implements OnInit {
   teachersList;
+  filterText;
 
   constructor(public apiService: ApiService) {
    }

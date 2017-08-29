@@ -43,8 +43,8 @@ onLoginSubmit() {
   this.processing = true;
   this.disableForm();
   const user = {
-    email: this.form.get('email').value,
-    password: this.form.get('password').value
+    email: this.form.get('email').value.trim(),
+    password: this.form.get('password').value.trim()
   }
   this.authService.Login(user).subscribe(data => {
     if(!data.success) {

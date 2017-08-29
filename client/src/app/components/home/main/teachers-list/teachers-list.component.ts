@@ -21,7 +21,8 @@ export class TeachersListComponent implements OnInit {
   getAllTeachers() {
   // Function to GET all blogs from database
   this.apiService.getAllTeachers().subscribe(data => {
-    this.teachersList = data.teachers; // Assign array to use in HTML
+    this.teachersList = data.teachers;
+    this.teachersList.length = 6 // Assign array to use in HTML
   });
 }
 

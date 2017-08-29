@@ -10,5 +10,56 @@
 
 <div class="flex" *ngIf="checkTeacher()">
   <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
-  <hr>
 </div>
+
+<hr>
+
+<div class="flex wrapper">
+  <app-teacher-profile-main>Loading...</app-teacher-profile-main>
+  <div class="flex notes">
+    <h3 class="flex"> {{ fullname }}</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat!</p>
+  </div>
+  <div class="flex video">
+    <h1>YOUTUBE VIDEO LINK</h1>
+  </div>
+  <div class="flex stats">
+    <div class="flex half">
+      <h2 class="flex">REVIEWS</h2>
+      <app-teacher-reviews></app-teacher-reviews>
+    </div>
+    <div class="flex half">
+      <h3 class="flex">Professional Experience</h3>
+      <ul>
+        <li><input [disabled]="!edit" type="text" value="" name="skill1" placeholder="Golf Coach at Torrey Pines High School" class="form-control"></li>
+        <li><input [disabled]="!edit" type="text" value="" name="skill2" placeholder="Winner of 2017 Golf Tournament" class="form-control"></li>
+        <li><input [disabled]="!edit" type="text" [value]="" name="skill3" placeholder="Licensed Golf Instructor" class="form-control"></li>
+        <li><input [disabled]="!edit" type="text" [value]="" name="skill4" placeholder="Runner up in Long-Drive Contest" class="form-control"></li>
+        <li><input [disabled]="!edit" type="text" [value]="" name="skill5" placeholder="CIF Champion in D1 High School Tournament" class="form-control"></li>
+        <button *ngIf="!edit && isTeacher" (click)="isEdit()" class="btn btn-warning">Edit</button>
+        <button *ngIf="edit"(click)="isSave()" class="btn btn-primary">Save</button>
+      </ul>
+
+    </div>
+  </div>
+  <div class="flex ratings">
+    <app-teacher-ratings></app-teacher-ratings>
+  </div>
+  <div class="flex coach-become">
+    <div class="flex half">
+        <img src="../../../../assets/golfing.jpg" class="golfing-img">
+    </div>
+    <div class="flex half">
+      <h1>Do you have what it takes to be a great teacher? </h1>
+        <div class="flex" *ngIf="!isTeacher">
+          <button class="btn btn-primary">Become a Teacher</button>
+        </div>
+        <div class="flex" *ngIf="isTeacher">
+          <button class="btn btn-primary">Maximize Potential</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

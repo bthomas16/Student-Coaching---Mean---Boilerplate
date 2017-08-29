@@ -31,6 +31,11 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { FilterPipe } from './filter.pipe';
 import { ChooseComponent } from './components/user/user-profile/choose/choose.component';
+import { TeacherProfileMainComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-main.component';
+import { TeacherProfileScheduleComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-schedule/teacher-profile-schedule.component';
+import { TeacherProfileInfoComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-info/teacher-profile-info.component';
+import { TeacherReviewsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-reviews/teacher-reviews.component';
+import { TeacherRatingsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teacher-ratings.component';
 
 
 @NgModule({
@@ -50,7 +55,12 @@ import { ChooseComponent } from './components/user/user-profile/choose/choose.co
     FooterComponent,
     ChooseComponent,
     StudentProfileComponent,
-    TeacherProfileComponent
+    TeacherProfileComponent,
+    TeacherProfileMainComponent,
+    TeacherProfileScheduleComponent,
+    TeacherProfileInfoComponent,
+    TeacherReviewsComponent,
+    TeacherRatingsComponent
   ],
   imports: [
     BrowserModule,

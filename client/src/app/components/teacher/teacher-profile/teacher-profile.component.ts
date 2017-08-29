@@ -17,8 +17,17 @@ export class TeacherProfileComponent implements OnInit {
   profPic;
   processing = false;
   show = true;
+  edit = false;
 
   constructor(public authService: AuthService, private router: Router) { }
+
+  isEdit() {
+    this.edit = true;
+  }
+
+  isSave() {
+    this.edit = false;
+  }
 
   checkTeacher() {
     return this.isTeacher

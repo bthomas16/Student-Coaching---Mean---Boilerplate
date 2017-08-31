@@ -16,3 +16,8 @@ li.nav-item a {
 .llc:hover {
   cursor:  cell;
 }
+
+.wrapper {
+  position:  fixed;
+  bottom: 0%;
+}

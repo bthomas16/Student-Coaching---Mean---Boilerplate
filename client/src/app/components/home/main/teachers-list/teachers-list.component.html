@@ -3,11 +3,11 @@
     <input type="text" [(ngModel)]="filterText" placeholder="Search Teachers by Name" class="form-control">
   </div>
   <div class="teacher-wrapper flex">
-    <div class="flex teacher"  *ngFor="let teacher of teachersList | filter: filterText ">
+    <div class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:6; let i=index">
     <!-- <div class="flex teacher"  *ngFor="let teacher of teachersList"> -->
-      {{ teacher.fullname}}
-      <br>
-      {{ teacher.email }}
+        {{ teacher.fullname}}
+        <br>
+        {{ teacher.email }}
     </div>
   </div>
 </div>

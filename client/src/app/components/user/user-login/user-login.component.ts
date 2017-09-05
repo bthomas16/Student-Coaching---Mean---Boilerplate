@@ -17,6 +17,7 @@ messageClass;
 processing = false;
 form;
 previousUrl;
+dataDismissAttribute = '';
 
   constructor (private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private authGuard: AuthGuard) {
     this.createForm();
@@ -37,6 +38,14 @@ disableForm() {
 enableForm(){
   this.form.controls['email'].enable();
   this.form.controls['password'].enable();
+}
+
+loginSubmit() {
+  this.dataDismissAttribute="modal"
+  console.log(this.dataDismissAttribute)
+  setTimeout(() => {
+    this.onLoginSubmit();
+  }, 1);
 }
 
 onLoginSubmit() {
@@ -60,10 +69,9 @@ onLoginSubmit() {
         if (this.previousUrl) {
           this.router.navigate([this.previousUrl])
         } else {
-
         this.router.navigate(['/profile/'])
         }
-      }, 1400)
+      }, 1200)
     }
   })
 }

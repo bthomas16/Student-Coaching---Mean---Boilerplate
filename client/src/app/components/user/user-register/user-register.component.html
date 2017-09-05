@@ -1,4 +1,4 @@
-<h1 class="title">Register</h1>
+<!-- <h1 class="title">Register</h1> -->
 
 <div class="row show-hide-message">
   <div [ngClass]="messageClass">
@@ -52,6 +52,6 @@
     </div>
   </div>
 
-  <button [disabled]="!form.valid || processing || !emailValid" class="btn btn-primary submit" value="Submit">Submit</button>
-  <p class="account">Already have an account? <a routerLink="/login"><em class="em">Login Here</em></a></p>
+  <button [disabled]="!form.valid || processing || !emailValid" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="registerSubmit()">Submit</button>
+  <!-- <p class="account">Already have an account? <a routerLink="/login"><em class="em">Login Here</em></a></p> -->
 </form>

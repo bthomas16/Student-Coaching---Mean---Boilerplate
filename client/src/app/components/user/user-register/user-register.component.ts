@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -20,7 +21,7 @@ export class UserRegisterComponent implements OnInit {
   teacherClick = false;
   studentRole = '';
   teacherRole = '';
-
+  dataDismissAttribute = '';
 
   constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router) {
     this.createForm()
@@ -98,8 +99,16 @@ teacherClickHandler(event) {
 }
 }
 
+  registerSubmit() {
+    this.dataDismissAttribute="modal"
+    console.log(this.dataDismissAttribute)
+    setTimeout(() => {
+      this.onRegisterSubmit();
+    }, 1);
+  }
 
   onRegisterSubmit() {
+
     this.processing = true;
     this.disableForm();
     const user = {
@@ -117,12 +126,12 @@ teacherClickHandler(event) {
       this.processing = false;
       this.enableForm();
     } else {
-      this.messageClass = 'alert alert-success'
+      this.messageClass = 'alert alert-success';
       this.message = data.message;
       this.authService.storeData(data.token, data.user);
       setTimeout(() => {
         this.router.navigate(['/profile'])
-      }, 1400)
+      }, 1200)
     }
   });
   }

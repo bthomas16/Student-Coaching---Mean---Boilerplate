@@ -5,3 +5,26 @@
 .options {
   height: 30vh;
 }
+
+.wrapper {
+  padding: 0;
+  margin: auto;
+}
+
+.modall {
+  position: absolute;
+  display: block;
+  top: 0;
+  margin-top: 10em;
+  z-index: 100;
+  color: white;
+  padding: 2em;
+  border-radius: 5px;
+  background-color: purple;
+  width: 80%;
+  height: 30em;
+}
+
+.modalTitle {
+  margin-top: 2.5em;
+}

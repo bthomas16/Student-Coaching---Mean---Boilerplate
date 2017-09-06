@@ -37,6 +37,8 @@ import { TeacherProfileInfoComponent } from './components/teacher/teacher-profil
 import { TeacherReviewsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-reviews/teacher-reviews.component';
 import { TeacherRatingsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teacher-ratings.component';
 
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,7 @@ import { TeacherRatingsComponent } from './components/teacher/teacher-profile/te
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, ApiService, AuthGuard, StudentAuthGuard, TeacherAuthGuard, NotAuthGuard],
+  providers: [AuthService, ApiService, AuthGuard, StudentAuthGuard, TeacherAuthGuard, NotAuthGuard, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

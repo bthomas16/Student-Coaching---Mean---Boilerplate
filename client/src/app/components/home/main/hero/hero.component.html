@@ -4,12 +4,12 @@
     {{message}}</div>
   </div>
   <div class="flex left">
-    <p class="mainTitle">Reinventing Learning</p>
-    <p class="info">Introducing SkillSite, bridging the gap between master and apprentice</p>
+    <p class="flex mainTitle">Reinventing Learning</p>
+    <p class="flex info">Introducing SkillSite, bridging the gap between master and apprentice</p>
   </div>
-  <div class="flex right">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register">Register</button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#login">Login</button>
+  <div class="form-group flex buttons">
+    <button type="button" class="btn btn-primary flex" data-toggle="modal" data-target="#register">Register</button>
+    <button type="button" class="btn btn-primary flex" data-toggle="modal" data-target="#login">Login</button>
 
   <!-- [ Register #1] -->
   <div class="modal fade" id="register" tabindex="-1">
@@ -26,8 +26,7 @@
         </div>
       </div>
        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">&times;</button>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#login" data-dismiss="modal">Don't have an account? <em>Register Here</em></button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login" data-dismiss="modal">Don't have an account? <em>Register Here</em></button>
         </div>
      </div>
     </div>
@@ -48,7 +47,6 @@
         </div>
       </div>
        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">&times;</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-dismiss="modal">Already have an account? <em>Login Here</em></button>
         </div>
        </div>

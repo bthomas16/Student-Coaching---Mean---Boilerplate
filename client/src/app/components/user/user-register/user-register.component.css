@@ -1,9 +1,8 @@
 form {
-  width: 16em;
+  width: 90%;
 }
 
 .help-block {
-  max-width: 99%;
   background-color: rgba(247,244,244,.7);
 }
 
@@ -19,16 +18,6 @@ h1 {
   color: red;
 }
 
-.half {
-  width: 40%;
-}
-
-.full {
-  width: 100%;
-  font-size: 1.4em;
-  color: white;
-}
-
 .buttons {
   margin-bottom: 1em;
 }
@@ -36,6 +25,7 @@ h1 {
 .butt {
   width: 50%;
   background-color: #5563F0;
+  margin-bottom: 1em;
 }
 
 .butt:hover {

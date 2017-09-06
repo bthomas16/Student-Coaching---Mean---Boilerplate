@@ -32,8 +32,8 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="!authService.loggedIn()"><a routerLink="/register">Sign Up</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="!authService.loggedIn()"><a routerLink="/login">Login</a></li>
+        <li class="sign-up" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register">Sign Up</a></li>
+        <li class="sign-up" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login">Login</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right top">
         <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a></li>

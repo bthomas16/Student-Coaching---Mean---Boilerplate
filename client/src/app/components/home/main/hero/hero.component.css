@@ -11,6 +11,7 @@
 
 .half {
   width: 48%;
+  text-align: center;
 }
 
 .left {
@@ -19,15 +20,9 @@
   justify-content: center;
 }
 
-.right {
-  width: 40%;
-}
-
 .mainTitle {
   font-size: 4em;
   font-weight: 800;
-  margin-right: 3.5%;
-  text-align: left;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -36,8 +31,15 @@
   margin: auto;
   margin-top: 2%;
   font-size: 1.4em;
-  text-align: left;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.buttons {
+  width: 40%;
+}
+
+.btn {
+  width: 50%
 }
 
 :host /deep/ h3 {

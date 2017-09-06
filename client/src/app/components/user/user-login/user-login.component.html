@@ -5,6 +5,7 @@
   {{message}}</div>
 </div>
 
+<div class="flex">
 <form [formGroup]="form" (submit)="onLoginSubmit()">
   <div class="form-group">
     <label for="email">Email Addres</label>
@@ -31,3 +32,4 @@
   <button [disabled]="!form.valid || processing" class="btn btn-primary submit" value="Submit" [attr.data-dismiss]="dataDismissAttribute" (click)="loginSubmit()">Submit</button>
   <!-- <p class="account">Don't have an account? <a routerLink="/register"><em class="em">Register Here</em></a></p> -->
 </form>
+</div>

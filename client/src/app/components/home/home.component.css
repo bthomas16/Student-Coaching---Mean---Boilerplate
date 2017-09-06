@@ -16,7 +16,7 @@
   display: block;
   top: 0;
   margin-top: 10em;
-  z-index: 100;
+  z-index: 0;
   color: white;
   padding: 2em;
   border-radius: 5px;
@@ -40,4 +40,20 @@
 .right {
   width: 22.5%;
     margin: 1%;
+}
+
+.fadeOut {
+transition: all .5s ease-in-out;
+opacity: 0;
+visibility: hidden;
+}
+
+.x {
+  right: 0;
+  top:1%;
+  justify-content: flex-end;
+}
+
+.x:hover {
+  cursor: pointer;
 }

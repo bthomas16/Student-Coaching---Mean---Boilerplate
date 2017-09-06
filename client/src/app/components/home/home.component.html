@@ -1,19 +1,35 @@
 <div class="flex">
-<div class="flex modall" [ngClass]="{fade: checkCookies() || cookies}">
+<div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}">
   <div class="flex">
+    <div class="flex x">
+      <i class="fa fa-times fa-1x" aria-hidden="true" (click)="closeInitialModal()"></i>
+    </div>
     <h2 class="flex modalTitle">Welcome to Savvy!</h2>
     <p>This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.
 
       Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
     </div>
-    <form [formGroup]="emailForm" (submit)="emailSubmit()">
-        <div class="flex form">
-          <input type="text" name="email" formControlName="email" value="" class="form-control flex left" placeholder="Email Address">
-          <button type="button" name="button" class="btn btn-default btn-success form-control flex right">Submit</button>
+    <form [formGroup]="emailForm">
+      <div class="form-group">
+        <label for="email">Email Addres</label>
+        <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid}">
+          <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
+          <div class="help-block">
+            <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.dirty">This field is required</li>
+            <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.dirty">Email must contain a minimum of 5 characters</li>
+            <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.dirty">Email must contain fewer than 30 characters</li>
+            <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.dirty">Must be a valid email</li>
+            <li *ngIf="emailMessage"> {{emailMessage}} </li>
+          </div>
         </div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="!emailForm.valid || processing || !emailValid" class="btn btn-primary submit" (click)="emailSubmit()">Submit</button>
+      </div>
     </form>
   </div>
-<div class="flex wrapper" (click)="closeInitialModel()">
+
+<div class="flex wrapper" (click)="closeInitialModal()">
   <app-hero class="hero"><div class="flex"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></div></app-hero>
   <app-options class="options"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-options>
   <app-future class="future"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-future>

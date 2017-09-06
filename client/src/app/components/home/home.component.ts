@@ -41,8 +41,9 @@ export class HomeComponent implements OnInit {
     this.emailForm = this.formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30)
+        Validators.minLength(5),
+        Validators.maxLength(30),
+        this.validateEmail
       ])]
     })
   }
@@ -55,14 +56,30 @@ export class HomeComponent implements OnInit {
     this.emailForm.controls['email'].enable();
   }
 
+  validateEmail(controls){
+    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    if(regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'validateEmail': true
+      }
+    }
+  }
+
   emailSubmit() {
+    this.closeInitialModal();
+    this.onEmailSubmit();
+  }
+
+  onEmailSubmit() {
     this.processing = true;
     this.disableForm();
-    const email = {
-    email: this.emailForm.get('email').value.trim(),
-  }
-    console.log('now submitting email:', email)
-    this.authService.Email(email).subscribe(data => {
+    const emailSubscriber = {
+      email: this.emailForm.get('email').value.trim(),
+    }
+    console.log('now submitting email:', emailSubscriber)
+    this.authService.Email(emailSubscriber).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -71,13 +88,24 @@ export class HomeComponent implements OnInit {
     } else {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-      this.authService.storeData(data.token, data.email);
-      setTimeout(() => {
-        this.router.navigate(['/profile'])
-      }, 1200)
+
     }
   });
   }
+
+  checkEmail() {
+    const emailSubscriber = this.emailForm.get('email').value
+    this.authService.checkEmailSubscriber(emailSubscriber)
+      .subscribe(data => {
+        if (!data.success) {
+          this.emailValid = false;
+          this.emailMessage = data.message;
+        } else {
+          this.emailValid = true;
+          this.emailMessage = data.message;
+        }
+      });
+    }
 
 // Initial Modal
 
@@ -92,8 +120,10 @@ export class HomeComponent implements OnInit {
       },120000)
   }
 
-  closeInitialModel() {
+  closeInitialModal() {
     this.cookies = true;
+    this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
+    this.checkCookies();
   }
 
 

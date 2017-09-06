@@ -35,13 +35,17 @@ Register(user) {
   return this.http.post(this.server + 'authentication/register', user).map(res => res.json());
   }
 
-  Email(email) {
-    return this.http.post(this.server + 'api/new-email', email).map(res => res.json());
+  Email(emailSubscriber) {
+    return this.http.post(this.server + 'api/email-subscriber', emailSubscriber).map(res => res.json());
     }
 
 checkEmail(email) {
   return this.http.get(this.server + 'authentication/register/check-email/' + email).map(res => res.json());
   }
+
+  checkEmailSubscriber(emailSubscriber) {
+    return this.http.get(this.server + 'api/check-subscriber-email/' + emailSubscriber).map(res => res.json());
+    }
 
   Login(user) {
     return this.http.post(this.server + 'authentication/login', user).map(res => res.json());

@@ -108,7 +108,6 @@ teacherClickHandler(event) {
   }
 
   onRegisterSubmit() {
-
     this.processing = true;
     this.disableForm();
     const user = {

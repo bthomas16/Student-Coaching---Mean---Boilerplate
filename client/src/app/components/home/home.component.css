@@ -28,3 +28,16 @@
 .modalTitle {
   margin-top: 2.5em;
 }
+
+.form {
+  margin-top: 10%;
+}
+
+.left {
+  width: 68%;
+  margin: 1%;
+}
+.right {
+  width: 22.5%;
+    margin: 1%;
+}

@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   cookieValue = 'UNKNOWN';
   cookies = false;
-  ideaForm;
+  emailForm;
   message;
   messageClass;
   processing = false;
@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
   }
 
   createForm() {
-    this.ideaForm = this.formBuilder.group({
-      id: ['', Validators.compose([
+    this.emailForm = this.formBuilder.group({
+      email: ['', Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30)
@@ -48,22 +48,21 @@ export class HomeComponent implements OnInit {
   }
 
   disableForm() {
-    this.ideaForm.controls['idea'].disable();
+    this.emailForm.controls['email'].disable();
   }
 
   enableForm(){
-    this.ideaForm.controls['idea'].enable();
+    this.emailForm.controls['email'].enable();
   }
 
-  onIdeaSubmit() {
-
+  emailSubmit() {
     this.processing = true;
     this.disableForm();
-    const idea = {
-    idea: this.ideaForm.get('idea').value.trim(),
+    const email = {
+    email: this.emailForm.get('email').value.trim(),
   }
-    console.log('now submitting idea:', idea)
-    this.authService.Idea(idea).subscribe(data => {
+    console.log('now submitting email:', email)
+    this.authService.Email(email).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
@@ -72,7 +71,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-      this.authService.storeData(data.token, data.idea);
+      this.authService.storeData(data.token, data.email);
       setTimeout(() => {
         this.router.navigate(['/profile'])
       }, 1200)
@@ -90,7 +89,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
         return false
-      },4000)
+      },120000)
   }
 
   closeInitialModel() {

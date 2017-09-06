@@ -35,8 +35,8 @@ Register(user) {
   return this.http.post(this.server + 'authentication/register', user).map(res => res.json());
   }
 
-  Idea(idea) {
-    return this.http.post(this.server + 'api/new-idea', idea).map(res => res.json());
+  Email(email) {
+    return this.http.post(this.server + 'api/new-email', email).map(res => res.json());
     }
 
 checkEmail(email) {

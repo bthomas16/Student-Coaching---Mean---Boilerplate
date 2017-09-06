@@ -6,11 +6,11 @@
 
       Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
     </div>
-    <form [formGroup]="ideaForm" (submit)="ideaSubmit()">
-      <div class="form-group">
-        <input type="text" name="" formControlName="ideas" value="" class="form-control flex">
-        <button type="button" name="button" class="btn btn-default btn-success flex form-control">Submit</button>
-      </div>
+    <form [formGroup]="emailForm" (submit)="emailSubmit()">
+        <div class="flex form">
+          <input type="text" name="email" formControlName="email" value="" class="form-control flex left" placeholder="Email Address">
+          <button type="button" name="button" class="btn btn-default btn-success form-control flex right">Submit</button>
+        </div>
     </form>
   </div>
 <div class="flex wrapper" (click)="closeInitialModel()">

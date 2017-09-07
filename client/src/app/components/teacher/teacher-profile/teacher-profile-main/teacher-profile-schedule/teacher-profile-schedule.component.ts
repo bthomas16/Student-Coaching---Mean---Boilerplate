@@ -30,11 +30,13 @@ export class TeacherProfileScheduleComponent implements OnInit {
   sunM: boolean = false;
   sunA: boolean = false;
   sunE: boolean = false;
+  isDisabled: boolean = false;
 
   constructor(public authService: AuthService) { }
 
 
 onSchedule() {
+  this.isDisabled = true;
   const schedule = {
     monM: this.monM,
     monA: this.monA,
@@ -62,13 +64,13 @@ onSchedule() {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
-      // this.processing = false;
+      this.isDisabled= false;
     } else {
       this.messageClass = 'alert alert-success'
       this.message = data.message
-      // setTimeout(() => {
-      //   this.hideMessage()
-      // }, 1400)
+      setTimeout(() => {
+        this.isDisabled = false;
+      }, 1400);
     }
   })
 }

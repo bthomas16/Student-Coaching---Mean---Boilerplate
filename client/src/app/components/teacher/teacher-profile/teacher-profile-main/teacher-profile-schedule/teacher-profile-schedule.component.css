@@ -1,6 +1,6 @@
 .wrapper {
   /*border: 2px solid black;*/
-  width: 65%;
+  width: 30em;
 }
 
 .butts {
@@ -23,16 +23,19 @@
   margin-left: 10%;
 }
 
-.update button {
-  width: 60%;
+.updateButton {
+  width: 50%;
 }
 
 .examples {
-  width: 38%;
+  width: 48%;
+  pointer-events: none;
 }
 
 .examples button {
-  margin: 1%;
+  margin: .75%;
   line-height: 0;
   font-size: .7em;
+  margin-left: 0;
+  width: 50%;
 }

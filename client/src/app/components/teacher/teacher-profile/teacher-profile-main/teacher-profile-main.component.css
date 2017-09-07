@@ -1,0 +1,11 @@
+.half {
+  padding-left: 12em;
+  padding-right: 12em;
+  margin-top: 0;
+}
+
+@media (max-width: 790px) {
+  .half {
+    width: 100%;
+  }
+}

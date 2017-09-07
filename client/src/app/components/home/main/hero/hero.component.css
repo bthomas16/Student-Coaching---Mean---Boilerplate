@@ -1,8 +1,8 @@
 .wrapper {
   height: 100%;
   background-image: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
     ), url('../../../../../assets/golf.jpg');
   background-size: cover;
   margin-top: -2%;
@@ -18,10 +18,11 @@
   text-align: center;
   color: white;
   justify-content: center;
+  width: 62.5%;
 }
 
 .mainTitle {
-  font-size: 4em;
+  font-size: 4.5em;
   font-weight: 800;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
@@ -30,8 +31,9 @@
   font-weight: 300;
   margin: auto;
   margin-top: 2%;
-  font-size: 1.4em;
+  font-size: 1.65em;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  width: 75%;
 }
 
 .buttons {
@@ -40,6 +42,18 @@
 
 .btn {
   width: 50%
+}
+
+.register {
+  background-color: rgba(27, 172, 252,.9)
+}
+
+.account {
+  cursor: default;
+}
+
+.account em{
+  cursor: pointer;
 }
 
 :host /deep/ h3 {

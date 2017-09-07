@@ -1,0 +1,38 @@
+.wrapper {
+  /*border: 2px solid black;*/
+  width: 65%;
+}
+
+.butts {
+  width: 70%;
+  margin: 0;
+}
+
+.butts button {
+  margin: 1%;
+}
+
+.text {
+  width: 20%;
+  align-self: center;
+  font-size: 1.2em;
+}
+
+.update {
+  margin-top: 2%;
+  margin-left: 10%;
+}
+
+.update button {
+  width: 60%;
+}
+
+.examples {
+  width: 38%;
+}
+
+.examples button {
+  margin: 1%;
+  line-height: 0;
+  font-size: .7em;
+}

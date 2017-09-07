@@ -2,38 +2,44 @@
 <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}">
   <div class="flex">
     <div class="flex x">
-      <i class="fa fa-times fa-1x" aria-hidden="true" (click)="closeInitialModal()"></i>
+      <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeInitialModal()"></i>
     </div>
-    <h2 class="flex modalTitle">Welcome to Savvy!</h2>
-    <p>This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.
+    <div class="flex text">
+      <h2 class="flex modalTitle">Welcome to Savvy!</h2>
+      <p>This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.</p>
 
-      Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
+      <p class="persuade">Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
     </div>
-    <form [formGroup]="emailForm">
-      <div class="form-group">
-        <label for="email">Email Addres</label>
-        <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid}">
-          <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
-          <div class="help-block">
+    </div>
+    <form [formGroup]="emailForm" class="flex">
+      <div class="flex form">
+        <div class="form-group input">
+          <label for="email">Email Addres</label>
+          <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
+            <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
+          </div>
+        </div>
+        <div class="form-group button">
+          <button [disabled]="!emailForm.valid || processing || !emailValid" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
+        </div>
+      </div>
+          <ul class="help-block flex">
             <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.dirty">This field is required</li>
             <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.dirty">Email must contain a minimum of 5 characters</li>
             <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.dirty">Email must contain fewer than 30 characters</li>
             <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.dirty">Must be a valid email</li>
             <li *ngIf="emailMessage"> {{emailMessage}} </li>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button [disabled]="!emailForm.valid || processing || !emailValid" class="btn btn-primary submit" (click)="emailSubmit()">Submit</button>
-      </div>
+          </ul>
     </form>
-  </div>
+</div>
 
-<div class="flex wrapper" [ngClass]="{'monkeys': !checkCookies() || !cookies }" (click)="closeInitialModal()" >
+<div class="flex wrapper" (click)="closeInitialModal()">
+  <div class="flex">
   <app-hero class="hero"><div class="flex"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></div></app-hero>
   <app-options class="options"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-options>
   <app-future class="future"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-future>
   <app-teachers-list class="teachers-list"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-teachers-list>
   <app-bottom-sign-up class="bottom-sign-up"><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-bottom-sign-up>
+</div>
 </div>
 </div>

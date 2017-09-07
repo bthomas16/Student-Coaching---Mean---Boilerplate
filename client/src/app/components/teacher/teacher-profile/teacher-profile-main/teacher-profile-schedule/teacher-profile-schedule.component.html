@@ -1,94 +1,88 @@
-<h2>Schedule:</h2>
+
+<div class="flex wrapper">
+  <h2>Availability:</h2>
+  {{ monM }}
+<div class="flex">
+  <div class="flex text">
+    <p>Monday</p>
+  </div>
+  <div class="flex butts">
+    <button class="btn btn-primary" (click)="monM = !monM" [ngClass]="{'active': monM}">Morning</button>
+    <button class="btn btn-primary" (click)="monA = !monA" [ngClass]="{'active': monA}">Afternoon</button>
+    <button class="btn btn-primary" (click)="monE = !monE" [ngClass]="{'active': monE}">Evening</button>
+  </div>
+</div>
 
 <div class="flex">
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Monday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+  <div class="flex text">
+    <p>Tuesday</p>
+  </div>
+  <div class="flex butts">
+  <button class="btn btn-primary" (click)="tueM = !tueM" [ngClass]="{'active': tueM}">Morning</button>
+  <button class="btn btn-primary" (click)="tueA = !tueA" [ngClass]="{'active': tueA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="tueE = !tueE" [ngClass]="{'active': tueE}">Evening</button>
+</div>
 </div>
 
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Tuesday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+<div class="flex">
+  <div class="flex text">
+    <p>Wednesday</p>
+  </div>
+  <div class="flex butts">
+  <button class="btn btn-primary" (click)="wedM = !wedM" [ngClass]="{'active': wedM}">Morning</button>
+  <button class="btn btn-primary" (click)="wedA = !wedA" [ngClass]="{'active': wedA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="wedE = !wedE" [ngClass]="{'active': wedE}">Evening</button>
+</div>
 </div>
 
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Wednesday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+<div class="flex">
+  <div class="flex text">
+    <p>Thursday</p>
+  </div>
+<div class="flex butts">
+  <button class="btn btn-primary" (click)="thuM = !thuM" [ngClass]="{'active': thuM}">Morning</button>
+  <button class="btn btn-primary" (click)="thuA = !thuA" [ngClass]="{'active': thuA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="thuE = !thuE" [ngClass]="{'active': thuE}">Evening</button>
+</div>
 </div>
 
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Thursday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+<div class="flex">
+  <div class="flex text">
+    <p>Friday</p>
+  </div>
+  <div class="flex butts">
+  <button class="btn btn-primary" (click)="friM = !friM" [ngClass]="{'active': friM}">Morning</button>
+  <button class="btn btn-primary" (click)="friA = !friA" [ngClass]="{'active': friA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="friE = !friE" [ngClass]="{'active': friE}">Evening</button>
+</div>
 </div>
 
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Friday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+<div class="flex">
+  <div class="flex text">
+    <p>Saturday</p>
+  </div>
+  <div class="flex butts">
+  <button class="btn btn-primary" (click)="satM = !satM" [ngClass]="{'active': satM}">Morning</button>
+  <button class="btn btn-primary" (click)="satA = !satA" [ngClass]="{'active': satA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="satE = !satE" [ngClass]="{'active': satE}">Evening</button>
+</div>
 </div>
 
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Saturday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+<div class="flex">
+  <div class="flex text">
+    <p>Sunday</p>
+  </div>
+  <div class="flex butts">
+  <button class="btn btn-primary" (click)="sunM = !sunM" [ngClass]="{'active': sunM}">Morning</button>
+  <button class="btn btn-primary" (click)="sunA = !sunA" [ngClass]="{'active': sunA}">Afternoon</button>
+  <button class="btn btn-primary" (click)="sunE = !sunE" [ngClass]="{'active': sunE}">Evening</button>
 </div>
-
-<div class="btn-group flex" data-toggle="buttons">
-  <p>Sunday</p>
-  <label class="btn btn-secondary">
-    <input type="checkbox" checked autocomplete="off"> Morning
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Afternoon
-  </label>
-  <label class="btn btn-secondary">
-    <input type="checkbox" autocomplete="off"> Evening
-  </label>
+</div>
+<div class="flex update">
+  <button class="btn btn-success"  (click)='onSchedule()'>Update Availability</button>
+  <div class="flex examples">
+    <button class="btn btn-primary active">Available</button>
+    <button class="btn btn-primary">Not Available</button>
+  </div>
 </div>
 </div>

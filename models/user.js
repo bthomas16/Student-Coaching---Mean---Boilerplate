@@ -74,8 +74,28 @@ var studentSchema = new Schema({
     fullname: {type: String, required: true, lowercase: true},
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
-    isTeacher: {type: Boolean, required: false}
-    // role: {type: Array}
+    isTeacher: {type: Boolean, required: false},
+    monM: {type: Boolean, required: false },
+    monA: {type: Boolean, required: false },
+    monE: {type: Boolean, required: false },
+    tueM: {type: Boolean, required: false },
+    tueA: {type: Boolean, required: false },
+    tueE: {type: Boolean, required: false },
+    wedM: {type: Boolean, required: false },
+    wedA: {type: Boolean, required: false },
+    wedE: {type: Boolean, required: false },
+    thuM: {type: Boolean, required: false },
+    thuA: {type: Boolean, required: false },
+    thuE: {type: Boolean, required: false },
+    friM: {type: Boolean, required: false },
+    friA: {type: Boolean, required: false },
+    friE: {type: Boolean, required: false },
+    satM: {type: Boolean, required: false },
+    satA: {type: Boolean, required: false },
+    satE: {type: Boolean, required: false },
+    sunM: {type: Boolean, required: false },
+    sunA: {type: Boolean, required: false },
+    sunE: {type: Boolean, required: false }
   });
 
   studentSchema.pre('save', function(next) {

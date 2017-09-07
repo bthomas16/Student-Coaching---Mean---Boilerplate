@@ -69,6 +69,11 @@ checkEmail(email) {
       return this.http.get(this.server + 'authentication/profile', this.options).map(res => res.json());
     }
 
+    getSchedule() {
+      this.createAuthenticationHeaders();
+      return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
+    }
+
     studentCheck() {
       this.createAuthenticationHeaders();
       return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
@@ -92,6 +97,12 @@ checkEmail(email) {
       updateTeacher(user) {
           this.createAuthenticationHeaders();
           return this.http.put(this.server + 'authentication/become-teacher', user, this.options).map(res =>
+            res.json())
+        }
+
+      updateSchedule(schedule) {
+          this.createAuthenticationHeaders();
+          return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>
             res.json())
         }
 

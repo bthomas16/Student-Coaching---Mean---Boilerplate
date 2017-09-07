@@ -15,22 +15,23 @@
   position: absolute;
   display: block;
   top: 0;
-  margin-top: 10em;
+  margin-top: 11.5em;
   z-index: 0;
   color: white;
-  padding: 2em;
+  padding: .25em;
   border-radius: 5px;
-  background-color: purple;
-  width: 80%;
+  background-color: rgba(	85, 99, 240,.975);
+  width: 56.5%;
   height: 30em;
 }
 
-.modalTitle {
-  margin-top: 2.5em;
+.text {
+  width: 75%;
 }
 
-.form {
-  margin-top: 10%;
+.modalTitle {
+  margin-top: 1.25em;
+  margin-bottom: 1em;
 }
 
 .left {
@@ -39,7 +40,7 @@
 }
 .right {
   width: 22.5%;
-    margin: 1%;
+  margin: 1%;
 }
 
 .fadeOut {
@@ -49,11 +50,41 @@ visibility: hidden;
 }
 
 .x {
-  right: 0;
-  top:1%;
+  top: .5em;
+  right: 1em;
   justify-content: flex-end;
+  position: absolute;
 }
 
 .x:hover {
   cursor: pointer;
+}
+
+ul.help-block {
+  margin: auto;
+  width: 72.5%;
+}
+
+ul.help-block li {
+  list-style: none;
+  margin: 0, auto;
+  line-height: .85;
+}
+
+.form {
+  margin-top: 2em;
+  width: 80%;
+}
+
+.input {
+  width: 65%;
+  margin-right: 1%;
+}
+
+.button {
+  width: 25%;
+}
+
+.persuade {
+  margin-top: 2.5em;
 }

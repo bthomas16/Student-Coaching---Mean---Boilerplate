@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
 var Schema = mongoose.Schema;
+const fs = require('fs');
+const multer = require('multer');
 const bcrypt = require('bcrypt-nodejs');
 
 let emailShortLengthChecker = (email) => {
@@ -75,6 +77,7 @@ var studentSchema = new Schema({
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
     isTeacher: {type: Boolean, required: false},
+    img: {data: Buffer, contentType: String },
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },
     monE: {type: Boolean, required: false },

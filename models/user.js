@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 mongoose.promise = global.Promise;
 var Schema = mongoose.Schema;
+const fs = require('fs');
+const multer = require('multer');
 const bcrypt = require('bcrypt-nodejs');
 
 let emailShortLengthChecker = (email) => {

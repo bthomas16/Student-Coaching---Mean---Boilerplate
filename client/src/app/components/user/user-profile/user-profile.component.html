@@ -3,6 +3,14 @@
     <h3 class="flex">{{ fullname }}</h3>
     <h5 class="flex">{{ email }}</h5>
   </div>
+  <div class="flex">
+    <!-- <form [formGroup]="imgForm" (submit)="onImgSubmit()"> -->
+      <input type="file" (change)="onChange($event)">
+      <button class="btn btn-success" (click)="onImgSubmit()">Submit</button>
+    <!-- </form> -->
+  </div>
+
+
   <div class="flex half">
       <h3 class="flex">Accounts</h3>
       <ul>

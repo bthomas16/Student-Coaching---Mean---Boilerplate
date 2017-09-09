@@ -100,6 +100,13 @@ checkEmail(email) {
             res.json())
         }
 
+        imgSubmit(image) {
+            this.createAuthenticationHeaders();
+            console.log(image, 'poop');
+            return this.http.put(this.server + 'authentication/image-upload', image, this.options).map(res =>
+              res.json())
+          }
+
       updateSchedule(schedule) {
           this.createAuthenticationHeaders();
           return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>

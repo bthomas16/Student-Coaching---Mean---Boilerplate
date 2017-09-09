@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -70,6 +71,7 @@ import { StarRatingModule } from 'angular-star-rating';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     FlashMessagesModule,
     StarRatingModule.forRoot()

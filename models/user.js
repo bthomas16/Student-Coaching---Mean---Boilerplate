@@ -75,6 +75,7 @@ var studentSchema = new Schema({
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
     isTeacher: {type: Boolean, required: false},
+    ratingsArray: [Number],
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },
     monE: {type: Boolean, required: false },

@@ -113,6 +113,18 @@ checkEmail(email) {
             res.json())
         }
 
+        Rate(rated) {
+            this.createAuthenticationHeaders();
+            console.log(rated);
+            return this.http.put(this.server + 'authentication/teacher-rating', rated, this.options).map(res =>
+              res.json())
+          }
+
+          onGetRating() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
+          }
+
     isStudent():any {
       this.createAuthenticationHeaders();
       return this.studentCheck().subscribe(profile => {

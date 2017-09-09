@@ -279,7 +279,7 @@ router.put('/update-schedule', (req, res) => {
           if(err) {
             res.json({ succes: false, message: err})
           } else {
-              res.json({ success: true, message: 'Schedule Updated'})
+              res.json({ success: true, message: 'Availability Updated'})
           }
         })
     }
@@ -287,8 +287,43 @@ router.put('/update-schedule', (req, res) => {
 });
 });
 
+router.put('/teacher-rating', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+      user.ratingsArray = req.body.ratingsArray;
+      user.save((err) => {
+        if(err) {
+          res.json({ succes: false, message: err})
+        } else {
+            res.json({ success: true, message: 'Rating Submitted'})
+          }
+        });
+      }
+    }
+  });
+});
+
 router.get('/get-schedule', (req, res) => {
   User.findOne({ _id: req.decoded.userId }).select('monM monA monE tueM tueA tueE wedM wedA wedE thuM thuA thuE friM friA friE satM satA satE sunM sunA sunE').exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: err});
+    } else {
+      if (!user) {
+        res.json({ success: false, message: 'User not found'});
+      } else {
+        res.json({ success: true, user: user});
+      }
+    }
+  });
+});
+
+router.get('/teacher-rating', (req, res) => {
+  User.findOne({ _id: req.decoded.userId }).select('ratingsArray').exec((err, user) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {

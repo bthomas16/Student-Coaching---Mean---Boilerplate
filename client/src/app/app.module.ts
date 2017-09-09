@@ -39,6 +39,7 @@ import { TeacherReviewsComponent } from './components/teacher/teacher-profile/te
 import { TeacherRatingsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teacher-ratings.component';
 
 import { CookieService } from 'ngx-cookie-service';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { CookieService } from 'ngx-cookie-service';
     HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    StarRatingModule.forRoot()
   ],
   providers: [AuthService, ApiService, AuthGuard, StudentAuthGuard, TeacherAuthGuard, NotAuthGuard, CookieService],
   bootstrap: [AppComponent]

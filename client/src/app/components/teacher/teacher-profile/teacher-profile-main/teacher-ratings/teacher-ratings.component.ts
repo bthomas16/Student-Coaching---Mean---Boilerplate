@@ -14,6 +14,7 @@ export class TeacherRatingsComponent implements OnInit {
   showRating: boolean = false;
   avgRating: number = 0;
   sum: number = 0;
+  okRate: boolean = false;
   message;
   messageClass;
 
@@ -68,6 +69,14 @@ export class TeacherRatingsComponent implements OnInit {
   half() {
     this.rating = 0.5;
     this.showRating = true;
+  }
+
+  canRate() {
+    if(this.okRate === false) {
+      this.okRate = true;
+    } else {
+      this.okRate = false;
+    }
   }
 
   rate() {

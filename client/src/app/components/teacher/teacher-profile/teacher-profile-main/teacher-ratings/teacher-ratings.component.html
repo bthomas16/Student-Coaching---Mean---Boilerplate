@@ -1,10 +1,14 @@
-<div class="row show-hide-message">
-  <div [ngClass]="messageClass">
-  {{message}}
-  </div>
-</div>
+<button class="btn btn-primary fade in out" *ngIf="!okRate" (click)="canRate()">Rate Teacher</button>
 
-<fieldset class="rating">
+<div class="rateModalfade in out" *ngIf="okRate">
+
+  <div class="row show-hide-message">
+    <div [ngClass]="messageClass">
+      {{message}}
+    </div>
+  </div>
+
+  <fieldset class="rating">
     <input type="radio" id="star5" name="rating" value="5"/><label class="icon-star fa-2x full" for="star5" title="Awesome - 5 stars"  (click)="five()"></label>
     <input type="radio" id="star4half" name="rating" value="4.5"/><label class="icon-star-half fa-2x half" for="star4half" title="Pretty good - 4.5 stars"  (click)="fourhalf()"></label>
     <input type="radio" id="star4" name="rating" value="4"/><label class="icon-star fa-2x full" for="star4" title="Pretty good - 4 stars"  (click)="four()"></label>
@@ -15,13 +19,15 @@
     <input type="radio" id="star1half" name="rating" value="1.5"/><label class="icon-star-half fa-2x half" for="star1half" title="Meh - 1.5 stars" (click)="onehalf()"></label>
     <input type="radio" id="star1" name="rating" value="1"/><label class = "icon-star fa-2x full" for="star1" title="Sucks big time - 1 star"  (click)="one()"></label>
     <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="icon-star-half fa-2x half" for="starhalf" title="Sucks big time - 0.5 stars"  (click)="half()"></label>
-</fieldset>
+  </fieldset>
 
-<button class="btn btn-success" (click)="rate()" [disabled]="processing">Rate</button>
+  <button class="btn btn-success" (click)="rate()" [disabled]="processing">Rate</button>
 
-<h3 class="flex" *ngIf="showRating">
-  Current Rating: <span>{{ rating }}</span>
-</h3>
-<h3 class="flex">
-  AvgRating:  <span>{{ avgRating | number : '1.1-1' }}</span>
-</h3>
+  <h3 class="flex" *ngIf="showRating">
+    Current Rating: <span>{{ rating }}</span>
+  </h3>
+  <h3 class="flex">
+    AvgRating:  <span>{{ avgRating | number : '1.1-1' }}</span>
+  </h3>
+
+</div>

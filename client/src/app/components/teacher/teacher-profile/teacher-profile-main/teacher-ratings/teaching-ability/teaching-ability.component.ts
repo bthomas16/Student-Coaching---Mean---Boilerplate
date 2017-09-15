@@ -7,14 +7,17 @@ import { AuthService } from '../../../../../../services/auth.service';
   styleUrls: ['./teaching-ability.component.css']
 })
 export class TeachingAbilityComponent implements OnInit {
-  taRatings: any[];
-  taRating: number;
-  avgTeachingAbilityRating: number;
+  rating: number;
   processing: boolean = false;
-  showTARating: boolean = false;
+  showRating: boolean = false;
   sum: number = 0;
   message;
   messageClass;
+  isChecked1: boolean = false;
+  isChecked2: boolean = false;
+  isChecked3: boolean = false;
+  isChecked4: boolean = false;
+  isChecked5: boolean = false;
 
   @Output() teachingAbilityRated = new EventEmitter<{teachingAbilityRating: number}>();
 
@@ -23,83 +26,70 @@ export class TeachingAbilityComponent implements OnInit {
 
   // Teaching Ability Rating
 
-  tafive() {
-    this.taRating = 5;
-    this.showTARating = true;
+  five() {
+    this.rating = 5
+    this.showRating = true;
+    this.isChecked5 = !this.isChecked5;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
+      teachingAbilityRating: this.rating
     });
   }
 
-  tafourhalf() {
-    this.taRating = 4.5;
-    this.showTARating = true;
+  four() {
+    this.rating = 4;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = !this.isChecked4;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
+      teachingAbilityRating: this.rating
     });
   }
 
-  tafour() {
-    this.taRating = 4;
-    this.showTARating = true;
+  three() {
+    this.rating = 3;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = !this.isChecked3;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
+      teachingAbilityRating: this.rating
     });
   }
 
-  tathreehalf() {
-    this.taRating = 3.5;
-    this.showTARating = true;
+
+  two() {
+    this.rating = 2;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = !this.isChecked2;
+    this.isChecked1 = false;
     this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
+      teachingAbilityRating: this.rating
     });
   }
 
-  tathree() {
-    this.taRating = 3;
-    this.showTARating = true;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
-    });
-  }
 
-  tatwohalf() {
-    this.taRating = 2.5;
-    this.showTARating = true;
+  one() {
+    this.rating = 1;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = !this.isChecked1;
     this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
-    });
-  }
-
-  tatwo() {
-    this.taRating = 2;
-    this.showTARating = true;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
-    });
-  }
-
-  taonehalf() {
-    this.taRating = 1.5;
-    this.showTARating = true;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
-    });
-  }
-
-  taone() {
-    this.taRating = 1;
-    this.showTARating = true;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
-    });
-  }
-
-  tahalf() {
-    this.taRating = 0.5;
-    this.showTARating = true;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.taRating
+      teachingAbilityRating: this.rating
     });
   }
 

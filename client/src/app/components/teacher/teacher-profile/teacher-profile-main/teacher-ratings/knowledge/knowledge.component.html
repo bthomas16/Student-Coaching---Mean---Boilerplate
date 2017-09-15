@@ -1,38 +1,17 @@
 <div class="flex">
-  <!-- <div class="rating knowledge">
-    <input type="radio" id="star5" name="rating" value="5"/><label class="icon-star fa-2x full" for="star5" title="Awesome - 5 stars"  (click)="kfive()"></label>
-    <input type="radio" id="star4half" name="rating" value="4.5"/><label class="icon-star-half fa-2x half" for="star4half" title="Pretty good - 4.5 stars"  (click)="kfourhalf()"></label>
-    <input type="radio" id="star4" name="rating" value="4"/><label class="icon-star fa-2x full" for="star4" title="Pretty good - 4 stars"  (click)="kfour()"></label>
-    <input type="radio" id="star3half" name="rating" value="3.5"/><label class="icon-star-half fa-2x half" for="star3half" title="Meh - 3.5 stars" (click)="kthreehalf()"></label>
-    <input type="radio" id="star3" name="rating" value="3"/><label class="icon-star fa-2x full" for="star3" title="Meh - 3 stars"  (click)="kthree()"></label>
-    <input type="radio" id="star2half" name="rating" value="2.5"/><label class="icon-star-half fa-2x half" for="star2half" title="Kinda bad - 2.5 stars" (click)="ktwohalf()"></label>
-    <input type="radio" id="star2" name="rating" value="2"/><label class="icon-star fa-2x full" for="star2" title="Kinda bad - 2 stars" (click)="ktwo()"></label>
-    <input type="radio" id="star1half" name="rating" value="1.5"/><label class="icon-star-half fa-2x half" for="star1half" title="Meh - 1.5 stars" (click)="konehalf()"></label>
-    <input type="radio" id="star1" name="rating" value="1"/><label class = "icon-star fa-2x full" for="star1" title="Sucks big time - 1 star"  (click)="kone()"></label>
-    <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="icon-star-half fa-2x half" for="starhalf" title="Sucks big time - 0.5 stars"  (click)="khalf()"></label>
-  </div>
-  <h3 class="flex" *ngIf="showKRating">
-    Current Rating: <span>{{ kRating }}</span>
-  </h3> -->
-
-
   <div class="rating">
-    <input type="radio" name="rating"/>
-    <i class="fa fa-star fa-3x star" for="star5" title="Awesome - 5 stars" (click)="kfive()"></i>
-    <input type="radio" name="rating"/>
-    <i class="fa fa-star fa-3x star" for="star4" title="Pretty good - 4 stars" (click)="kfour()"></i>
-    <input type="radio" name="rating"/>
-    <i class="fa fa-star fa-3x star" for="star3" title="Meh - 3 stars" (click)="kthree()"></i>
-    <input type="radio" name="rating"/>
-    <i class="fa fa-star fa-3x star" for="star2" title="Kinda bad - 2 stars" (click)="ktwo()"></i>
-    <input type="radio" name="rating"/>
-    <i class="fa fa-star fa-3x star" for="star1" title="Sucks big time - 1 star" (click)="kone()"></i>
-
-
-
-
+    <input type="radio" name="rating" [checked]="isChecked5"/>
+    <i class="fa fa-star fa-3x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+    <input type="radio" name="rating" [checked]="isChecked4"/>
+    <i class="fa fa-star fa-3x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+    <input type="radio" name="rating" [checked]="isChecked3"/>
+    <i class="fa fa-star fa-3x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+    <input type="radio" name="rating" [checked]="isChecked2"/>
+    <i class="fa fa-star fa-3x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+    <input type="radio" name="rating" [checked]="isChecked1"/>
+    <i class="fa fa-star fa-3x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
   </div>
-  <h3 class="flex" *ngIf="showKRating">
-    Current Rating: <span>{{ kRating }}</span>
+  <h3 class="flex" *ngIf="showRating">
+    Current Rating: <span>{{ rating }}</span>
   </h3>
 </div>

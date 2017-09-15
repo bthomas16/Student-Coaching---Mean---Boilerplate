@@ -7,15 +7,18 @@ import { AuthService } from '../../../../../../services/auth.service';
   styleUrls: ['./knowledge.component.css']
 })
 export class KnowledgeComponent implements OnInit {
-  kRatings: any[];
-  kRating: number;
-  avgKnowledgeRating: number;
-  showKRating: boolean = false;
+  rating: number;
   processing: boolean = false;
-  avgRating: number = 0;
+  showRating: boolean = false;
   sum: number = 0;
   message;
   messageClass;
+  isChecked1: boolean = false;
+  isChecked2: boolean = false;
+  isChecked3: boolean = false;
+  isChecked4: boolean = false;
+  isChecked5: boolean = false;
+
 
   @Output() knowledgeRated = new EventEmitter<{knowledgeRating: number}>();
 
@@ -25,86 +28,73 @@ export class KnowledgeComponent implements OnInit {
 
   // Knowledge Rating
 
-
-  kfive() {
-    this.kRating = 5
-    this.showKRating = true;
+  five() {
+    this.rating = 5
+    this.showRating = true;
+    this.isChecked5 = !this.isChecked5;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
+      knowledgeRating: this.rating
     });
   }
 
-  kfourhalf() {
-    this.kRating = 4.5;
-    this.showKRating = true;
+  four() {
+    this.rating = 4;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = !this.isChecked4;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
+      knowledgeRating: this.rating
     });
   }
 
-  kfour() {
-    this.kRating = 4;
-    this.showKRating = true;
+  three() {
+    this.rating = 3;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = !this.isChecked3;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
     this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
+      knowledgeRating: this.rating
     });
   }
 
-  kthreehalf() {
-    this.kRating = 3.5;
-    this.showKRating = true;
+
+  two() {
+    this.rating = 2;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = !this.isChecked2;
+    this.isChecked1 = false;
     this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
+      knowledgeRating: this.rating
     });
   }
 
-  kthree() {
-    this.kRating = 3;
-    this.showKRating = true;
+
+  one() {
+    this.rating = 1;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = !this.isChecked1;
     this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
+      knowledgeRating: this.rating
     });
   }
 
-  ktwohalf() {
-    this.kRating = 2.5;
-    this.showKRating = true;
-    this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
-    });
-  }
-
-  ktwo() {
-    this.kRating = 2;
-    this.showKRating = true;
-    this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
-    });
-  }
-
-  konehalf() {
-    this.kRating = 1.5;
-    this.showKRating = true;
-    this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
-    });
-  }
-
-  kone() {
-    this.kRating = 1;
-    this.showKRating = true;
-    this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
-    });
-  }
-
-  khalf() {
-    this.kRating = 0.5;
-    this.showKRating = true;
-    this.knowledgeRated.emit({
-      knowledgeRating: this.kRating
-    });
-  }
 
   ngOnInit() {
   }

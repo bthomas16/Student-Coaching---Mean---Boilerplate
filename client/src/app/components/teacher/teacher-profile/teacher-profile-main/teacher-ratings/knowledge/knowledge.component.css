@@ -8,7 +8,7 @@
 .rating > i:before {
   display: inline-block;
   font-family: FontAwesome;
-
+  content: "\f005";
 }
 
 .rating > i {
@@ -32,4 +32,9 @@
 .rating > i:hover ~ input:checked ~ i,
 .rating > input:checked ~ i:hover ~ i {
   color: #FFED85;
+}
+
+span {
+  margin-left: .25em;
+  font-weight: 700;
 }

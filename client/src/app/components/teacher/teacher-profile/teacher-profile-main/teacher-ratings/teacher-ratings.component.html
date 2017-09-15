@@ -11,21 +11,21 @@
 
 <div class="flex">
   <div class="flex third">
-      <h3>Knowledge</h3>
+      <h3 class="flex">Knowledge</h3>
       <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
       <h3 class="flex">
         AvgRating:  <span>{{ avgKnowledgeRating | number : '1.1-1' }}</span>
       </h3>
   </div>
   <div class="flex third">
-      <h3>Professionalism</h3>
+      <h3 class="flex">Professionalism</h3>
       <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
       <h3 class="flex">
         AvgRating:  <span>{{ avgProfessionalismRating | number : '1.1-1' }}</span>
       </h3>
   </div>
   <div class="flex third">
-    <h3>Teaching Ability</h3>
+    <h3 class="flex">Teaching Ability</h3>
     <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
     <h3 class="flex">
       AvgRating:  <span>{{ avgTeachingAbilityRating | number : '1.1-1' }}</span>

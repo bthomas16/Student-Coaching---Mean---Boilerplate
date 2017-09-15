@@ -33,3 +33,8 @@
 .rating > input:checked ~ i:hover ~ i {
   color: #FFED85;
 }
+
+span {
+  margin-left: .25em;
+  font-weight: 700;
+}

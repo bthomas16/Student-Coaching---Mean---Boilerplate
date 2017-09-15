@@ -7,14 +7,17 @@ import { AuthService } from '../../../../../../services/auth.service';
   styleUrls: ['./professionalism.component.css']
 })
 export class ProfessionalismComponent implements OnInit {
-  pRatings: any[];
-  pRating: number;
-  avgProfessionalismRating: number;
+  rating: number;
   processing: boolean = false;
-  showPRating: boolean = false;
+  showRating: boolean = false;
   sum: number = 0;
   message;
   messageClass;
+  isChecked1: boolean = false;
+  isChecked2: boolean = false;
+  isChecked3: boolean = false;
+  isChecked4: boolean = false;
+  isChecked5: boolean = false;
 
   @Output() professionalismRated = new EventEmitter<{ professionalismRating: number} >();
 
@@ -23,87 +26,72 @@ export class ProfessionalismComponent implements OnInit {
 
   }
 
-    //Professionalism Rating
+  five() {
+    this.rating = 5
+    this.showRating = true;
+    this.isChecked5 = !this.isChecked5;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
+    this.professionalismRated.emit({
+      professionalismRating: this.rating
+    });
+  }
 
-    pfive() {
-      this.pRating = 5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
+  four() {
+    this.rating = 4;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = !this.isChecked4;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
+    this.professionalismRated.emit({
+      professionalismRating: this.rating
+    });
+  }
 
-    pfourhalf() {
-      this.pRating = 4.5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
+  three() {
+    this.rating = 3;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = !this.isChecked3;
+    this.isChecked2 = false;
+    this.isChecked1 = false;
+    this.professionalismRated.emit({
+      professionalismRating: this.rating
+    });
+  }
 
-    pfour() {
-      this.pRating = 4;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
 
-    pthreehalf() {
-      this.pRating = 3.5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
+  two() {
+    this.rating = 2;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = !this.isChecked2;
+    this.isChecked1 = false;
+    this.professionalismRated.emit({
+      professionalismRating: this.rating
+    });
+  }
 
-    pthree() {
-      this.pRating = 3;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
 
-    ptwohalf() {
-      this.pRating = 2.5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
-
-    ptwo() {
-      this.pRating = 2;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
-
-    ponehalf() {
-      this.pRating = 1.5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
-
-    pone() {
-      this.pRating = 1;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
-
-    phalf() {
-      this.pRating = 0.5;
-      this.showPRating = true;
-      this.professionalismRated.emit({
-        professionalismRating: this.pRating
-      });
-    }
+  one() {
+    this.rating = 1;
+    this.showRating = true;
+    this.isChecked5 = false;
+    this.isChecked4 = false;
+    this.isChecked3 = false;
+    this.isChecked2 = false;
+    this.isChecked1 = !this.isChecked1;
+    this.professionalismRated.emit({
+      professionalismRating: this.rating
+    });
+  }
 
   ngOnInit() {
   }

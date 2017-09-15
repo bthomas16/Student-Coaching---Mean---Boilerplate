@@ -8,7 +8,7 @@
 .rating > i:before {
   display: inline-block;
   font-family: FontAwesome;
-  /*content: "\f005";*/
+  cursor: pointer;
 }
 
 .rating > i {

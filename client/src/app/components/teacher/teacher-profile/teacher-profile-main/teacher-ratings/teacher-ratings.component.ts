@@ -4,86 +4,79 @@ import { AuthService } from '../../../../../services/auth.service';
 @Component({
   selector: 'app-teacher-ratings',
   templateUrl: './teacher-ratings.component.html',
-  styleUrls: ['./teacher-ratings.component.css']
+  styleUrls: ['./teacher-ratings.component.css'],
 })
+
 export class TeacherRatingsComponent implements OnInit {
-  ratings: Array<number> = [];
-  rating: number;
-  average: number;
+  kRatings: Array<number> = [];
+  pRatings: Array<number> = [];
+  taRatings: Array<number> = [];
+  kRating: number;
+  pRating: number;
+  taRating: number;
+  avgKnowledgeRating: number;
+  avgProfessionalismRating: number;
+  avgTeachingAbilityRating: number;
   processing: boolean = false;
-  showRating: boolean = false;
-  avgRating: number = 0;
+  processing2: boolean = false;
+  showKRating: boolean = false;
+  showPRating: boolean = false;
+  showTARating: boolean = false;
   sum: number = 0;
   okRate: boolean = false;
+  ratedK: boolean = false;
+  ratedP: boolean = false;
+  ratedTA: boolean = false;
   message;
   messageClass;
 
 
-  constructor(public authService: AuthService) {}
-
-  five() {
-    this.rating = 5;
-    this.showRating = true;
+  constructor(public authService: AuthService) {
   }
 
-  fourhalf() {
-    this.rating = 4.5;
-    this.showRating = true;
-  }
-
-  four() {
-    this.rating = 4;
-    this.showRating = true;
-  }
-
-  threehalf() {
-    this.rating = 3.5;
-    this.showRating = true;
-  }
-
-  three() {
-    this.rating = 3;
-    this.showRating = true;
-  }
-
-  twohalf() {
-    this.rating = 2.5;
-    this.showRating = true;
-  }
-
-  two() {
-    this.rating = 2;
-    this.showRating = true;
-  }
-
-  onehalf() {
-    this.rating = 1.5;
-    this.showRating = true;
-  }
-
-  one() {
-    this.rating = 1;
-    this.showRating = true;
-  }
-
-  half() {
-    this.rating = 0.5;
-    this.showRating = true;
-  }
-
-  canRate() {
-    if(this.okRate === false) {
-      this.okRate = true;
-    } else {
-      this.okRate = false;
+    canRate() {
+      if(this.okRate === false) {
+        setTimeout(() => {
+          this.okRate = true;
+          return true
+        }, 200)
+      } else {
+        setTimeout(() => {
+          this.ratedK = false;
+          this.ratedP = false;
+          this.ratedTA = false;
+          this.okRate = false;
+          return false
+        }, 200)
+      }
     }
-  }
+
+    onKnowledgeRated(knowledgeRatedData: {knowledgeRating: number}) {
+      this.kRating = knowledgeRatedData.knowledgeRating
+      this.ratedK = true;
+      console.log(this.kRating)
+    }
+    onProfessionalismRated(professionalismRatedData: {professionalismRating: number}) {
+      this.pRating = professionalismRatedData.professionalismRating
+      this.ratedP = true;
+      console.log(this.pRating)
+    }
+    onTeachingAbilityRated(teachingAbilityRatedData: {teachingAbilityRating: number}) {
+      this.taRating = teachingAbilityRatedData.teachingAbilityRating
+      this.ratedTA = true;
+      console.log(this.taRating)
+    }
+
 
   rate() {
     this.processing = true;
-    this.ratings.push(this.rating)
-    console.log('Ratings Array:', this.ratings)
-    const rated = { ratingsArray: this.ratings }
+    this.kRatings.push(this.kRating);
+    this.pRatings.push(this.pRating);
+    this.taRatings.push(this.taRating);
+    const rated = {
+      kRatingsArray: this.kRatings,
+      pRatingsArray: this.pRatings,
+      taRatingsArray: this.taRatings }
     this.authService.Rate(rated).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -93,16 +86,27 @@ export class TeacherRatingsComponent implements OnInit {
         this.messageClass = 'alert alert-success'
         this.message = data.message
         this.getRating();
+        this.processing = true;
+        setTimeout(()=> {
+          this.okRate = false;
+        }, 1000);
       }
     });
   }
 
   getRating() {
     this.authService.onGetRating().subscribe(data => {
-      this.ratings = data.user.ratingsArray;
-      console.log('omggg', this.ratings);
-      // let ratingsArray = this.ratings.length;
-      this.avgRating = this.ratings.reduce((a, b) => a + b)/this.ratings.length;
+      this.kRatings = data.user.kRatingsArray;
+      this.pRatings = data.user.pRatingsArray;
+      this.taRatings = data.user.taRatingsArray;
+      if(this.kRatings.length == 0 || this.pRatings.length == 0 || this.taRatings.length == 0) {
+        return null;
+      } else {
+      this.avgKnowledgeRating = this.kRatings.reduce((a, b) => a + b)/this.kRatings.length;
+      this.avgProfessionalismRating = this.pRatings.reduce((a, b) => a + b)/this.pRatings.length;
+      this.avgTeachingAbilityRating = this.taRatings.reduce((a, b) => a + b)/this.taRatings.length;
+      return true;
+      }
     });
   }
 

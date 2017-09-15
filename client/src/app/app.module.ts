@@ -40,6 +40,13 @@ import { TeacherRatingsComponent } from './components/teacher/teacher-profile/te
 
 import { CookieService } from 'ngx-cookie-service';
 import { StarRatingModule } from 'angular-star-rating';
+import { ProfessionalismComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/professionalism/professionalism.component';
+import { KnowledgeComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/knowledge/knowledge.component';
+import { TeachingAbilityComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teaching-ability/teaching-ability.component';
+import { ViewTeacherProfileComponent } from './components/user/view-teacher-profile/view-teacher-profile.component';
+import { TeacherSkillsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-skills/teacher-skills.component';
+
+
 
 
 @NgModule({
@@ -64,7 +71,12 @@ import { StarRatingModule } from 'angular-star-rating';
     TeacherProfileScheduleComponent,
     TeacherProfileInfoComponent,
     TeacherReviewsComponent,
-    TeacherRatingsComponent
+    TeacherRatingsComponent,
+    ProfessionalismComponent,
+    KnowledgeComponent,
+    TeachingAbilityComponent,
+    ViewTeacherProfileComponent,
+    TeacherSkillsComponent
   ],
   imports: [
     BrowserModule,

@@ -69,16 +69,6 @@ checkEmail(email) {
       return this.http.get(this.server + 'authentication/profile', this.options).map(res => res.json());
     }
 
-    getSchedule() {
-      this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
-    }
-
-    studentCheck() {
-      this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
-    }
-
     teacherCheck() {
       this.createAuthenticationHeaders();
       return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
@@ -125,27 +115,41 @@ checkEmail(email) {
             return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
           }
 
-    isStudent():any {
-      this.createAuthenticationHeaders();
-      return this.studentCheck().subscribe(profile => {
-         if (profile) {
-           profile = true
-         }
-         profile = false
-     })
-   }
+          getSchedule() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
+          }
 
-   isTeacher():any {
-     this.createAuthenticationHeaders();
-     return this.teacherCheck().subscribe(profile => {
-        if (profile) {
-          profile = true
-        }
-        profile = false
-      })
-    }
+          studentCheck() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
+          }
 
-  //  getLoggedInStudent(): any {
-  //    return this.studentLoggedIn;
-  //  }
+
+          isStudent():any {
+            this.createAuthenticationHeaders();
+            return this.studentCheck().subscribe(profile => {
+              if (profile) {
+               profile = true
+               }
+               profile = false
+           })
+          }
+
+          isTeacher():any {
+           this.createAuthenticationHeaders();
+           return this.teacherCheck().subscribe(profile => {
+              if (profile) {
+                profile = true
+              }
+              profile = false
+            })
+           }
+
+           getTeacherView(id) {
+             this.createAuthenticationHeaders();
+             return this.http.get(this.server + 'authentication/view-teacher-profile/' + id, this.options).map(res =>
+               res.json());
+           }
+
 }

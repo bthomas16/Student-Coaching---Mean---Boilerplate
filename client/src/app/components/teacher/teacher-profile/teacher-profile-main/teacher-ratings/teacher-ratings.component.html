@@ -1,4 +1,5 @@
-<button class="btn btn-primary fade in out" *ngIf="!okRate" (click)="canRate()">Rate Teacher</button>
+
+<button class="btn btn-primary fade in" *ngIf="!okRate" (click)="canRate()">Rate Teacher</button>
 
 <div class="rateModalfade in out" *ngIf="okRate">
 
@@ -8,26 +9,36 @@
     </div>
   </div>
 
-  <fieldset class="rating">
-    <input type="radio" id="star5" name="rating" value="5"/><label class="icon-star fa-2x full" for="star5" title="Awesome - 5 stars"  (click)="five()"></label>
-    <input type="radio" id="star4half" name="rating" value="4.5"/><label class="icon-star-half fa-2x half" for="star4half" title="Pretty good - 4.5 stars"  (click)="fourhalf()"></label>
-    <input type="radio" id="star4" name="rating" value="4"/><label class="icon-star fa-2x full" for="star4" title="Pretty good - 4 stars"  (click)="four()"></label>
-    <input type="radio" id="star3half" name="rating" value="3.5"/><label class="icon-star-half fa-2x half" for="star3half" title="Meh - 3.5 stars" (click)="threehalf()"></label>
-    <input type="radio" id="star3" name="rating" value="3"/><label class="icon-star fa-2x full" for="star3" title="Meh - 3 stars"  (click)="three()"></label>
-    <input type="radio" id="star2half" name="rating" value="2.5"/><label class="icon-star-half fa-2x half" for="star2half" title="Kinda bad - 2.5 stars" (click)="twohalf()"></label>
-    <input type="radio" id="star2" name="rating" value="2"/><label class = "icon-star fa-2x full" for="star2" title="Kinda bad - 2 stars" (click)="two()"></label>
-    <input type="radio" id="star1half" name="rating" value="1.5"/><label class="icon-star-half fa-2x half" for="star1half" title="Meh - 1.5 stars" (click)="onehalf()"></label>
-    <input type="radio" id="star1" name="rating" value="1"/><label class = "icon-star fa-2x full" for="star1" title="Sucks big time - 1 star"  (click)="one()"></label>
-    <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="icon-star-half fa-2x half" for="starhalf" title="Sucks big time - 0.5 stars"  (click)="half()"></label>
-  </fieldset>
+<div class="flex">
+  <div class="flex third">
+      <h3>Knowledge</h3>
+      <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
+      <h3 class="flex">
+        AvgRating:  <span>{{ avgKnowledgeRating | number : '1.1-1' }}</span>
+      </h3>
+  </div>
+  <div class="flex third">
+      <h3>Professionalism</h3>
+      <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
+      <h3 class="flex">
+        AvgRating:  <span>{{ avgProfessionalismRating | number : '1.1-1' }}</span>
+      </h3>
+  </div>
+  <div class="flex third">
+    <h3>Teaching Ability</h3>
+    <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
+    <h3 class="flex">
+      AvgRating:  <span>{{ avgTeachingAbilityRating | number : '1.1-1' }}</span>
+    </h3>
+  </div>
+  <div class="flex half">
+    <input type="text">
+  </div>
+  <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA">Rate</button>
+  <button class="btn btn-warning" (click)="canRate()" [disabled]="processing">Cancel</button>
+</div>
 
-  <button class="btn btn-success" (click)="rate()" [disabled]="processing">Rate</button>
 
-  <h3 class="flex" *ngIf="showRating">
-    Current Rating: <span>{{ rating }}</span>
-  </h3>
-  <h3 class="flex">
-    AvgRating:  <span>{{ avgRating | number : '1.1-1' }}</span>
-  </h3>
+
 
 </div>

@@ -8,6 +8,9 @@ export class AuthGuard implements CanActivate {
   redirectUrl;
   isStudent;
   isTeacher;
+  dataToggle = '';
+  dataTarget = '';
+  showModal: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -19,7 +22,10 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.redirectUrl = state.url;
-      this.router.navigate(['/login'])
+      this.showModal = true;
+      setTimeout(() => {
+        this.router.navigate(['/login'])
+      },500)
       return false;
     }
   }

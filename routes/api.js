@@ -2,8 +2,22 @@ const User = require('../models/user');
 const emailSubscriber = require('../models/email-subscriber')
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, './uploads')
+    },
+    filename: (req, file, cb) => {
+      let ext = path.extname(file.originalname);
+      cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
+    }
+  });
+
+const upload = multer({ storage: storage})
 
 router.get('/get-all-teachers', (req, res) => {
     // Search database for all blog posts
@@ -65,5 +79,35 @@ router.get('/check-subscriber-email/:emailSubscriber', (req, res) => {
     })
   }
 })
+
+router.post('/avatar-upload', upload.any(), (req, res) => {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log('route is hit, matie', req.files)
+  // User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+  //   if (err) {
+  //     res.json({ success: false, message: 'Not a valid user id'});
+  //   } else {
+  //       if(!user) {
+  //         res.json({ success: false, message: 'No User found'});
+  //   } else {
+      if(!req.files) {
+        console.log('fail')
+        res.json({ success: false, message: 'No file was provided'})
+      } else {
+        console.log('success')
+        res.json(req.files.map(file => {
+          let ext = path.extname(file.originalname);
+            return {
+        originalName: file.originalname,
+        filename: file.filename
+      }
+    }));
+      }
+  //   }
+  // }
+  });
+// });
+
 
 module.exports = (router);

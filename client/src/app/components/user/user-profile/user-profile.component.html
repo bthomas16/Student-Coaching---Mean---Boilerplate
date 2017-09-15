@@ -1,14 +1,32 @@
 <div class="flex wrapper" data-dismiss="modal">
+  <div class="flex">
+    <div class="row show-hide-message">
+      <div [ngClass]="messageClass">
+      {{message}}
+      </div>
+    </div>
+  </div>
   <div class="flex half">
     <h3 class="flex">{{ fullname }}</h3>
     <h5 class="flex">{{ email }}</h5>
   </div>
   <div class="flex">
-    <!-- <form [formGroup]="imgForm" (submit)="onImgSubmit()"> -->
-      <input type="file" (change)="onChange($event)">
-      <button class="btn btn-success" (click)="onImgSubmit()">Submit</button>
-    <!-- </form> -->
-  </div>
+      <!-- <input type="file" name="avatar" (change)="onChange($event)">
+      <button class="btn btn-success" (click)="onFileSubmit()">Submit</button> -->
+
+
+  <!-- <label class="upload-button"> -->
+    <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+  <!-- </label> -->
+
+  <button type="button" class="start-upload-btn" (click)="startUpload()">
+    Start Upload
+  </button>
+</div>
+
+<div>
+Response: {{ uploadFile | json }}
+</div>
 
 
   <div class="flex half">

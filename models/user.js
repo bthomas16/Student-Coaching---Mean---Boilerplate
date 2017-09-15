@@ -80,6 +80,7 @@ var studentSchema = new Schema({
     kRatingsArray: [Number],
     pRatingsArray: [Number],
     taRatingsArray: [Number],
+    avatar: {type: String, required: false},
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },
     monE: {type: Boolean, required: false },

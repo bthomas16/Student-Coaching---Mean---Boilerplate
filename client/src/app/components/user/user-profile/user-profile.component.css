@@ -24,6 +24,8 @@ img {
   margin-top: 2%;
 }
 
+.file-over { border: dotted 3px red; }
+
 @media(max-width:845px) {
   .wrapper {
     margin: -0.4em;

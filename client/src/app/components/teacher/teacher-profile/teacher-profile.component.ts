@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-teacher-profile',
@@ -11,15 +11,18 @@ export class TeacherProfileComponent implements OnInit {
   email;
   message;
   messageClass;
+  userID;
   fullname;
   isStudent;
-  isTeacher;
+  isTeacher: boolean = true;
   profPic;
-  processing = false;
-  show = true;
-  edit = false;
+  processing: boolean = false;
+  show: boolean = true;
+  edit: boolean = false;
+  currentUrl;
+  teacherID;
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   isEdit() {
     this.edit = true;
@@ -29,13 +32,7 @@ export class TeacherProfileComponent implements OnInit {
     this.edit = false;
   }
 
-  checkTeacher() {
-    return this.isTeacher
-  }
-
-  hideMessage() {
-    this.show = false;
-  }
+  hideMessage() {}
 
   becomeTeacherRegister() {
     this.isTeacher = true;
@@ -50,19 +47,28 @@ export class TeacherProfileComponent implements OnInit {
         this.messageClass = 'alert alert-success'
         this.message = data.message
         setTimeout(() => {
-          this.hideMessage()
+          this.show = false;
         }, 1400)
       }
     })
   }
 
+  isUserTheTeacher() {
+    if(this.teacherID == this.userID) {
+      return false
+    } else {
+      return true;
+    }
+  }
+
   ngOnInit() {
     this.authService.getProfile()
     .subscribe(profile => {
+      this.userID = profile.user.id
       this.fullname = profile.user.fullname.toUpperCase();
       this.email = profile.user.email;
       this.isTeacher = profile.user.isTeacher;
       this.isTeacher = profile.user.isTeacher;
     })
-  }
+}
 }

@@ -137,36 +137,36 @@ router.get('/profile', (req, res) => {
   });
 });
 
-// Photo Upload
-router.use(multer({ dest: '../uploads/', rename: function(fieldname, filename){
-  return filename
-  },
-}).single('image'));
-
-router.put('/image-upload',function(req,res){
-  console.log('suppers')
-  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
-    if (err) {
-      res.json({ success: false, message: 'Not a valid user id'});
-    } else {
-        if(!user) {
-          res.json({ success: false, message: 'No User found'});
-    } else {
-     user.img.data = fs.readFileSync(req.files.image.path)
-     user.img.contentType = 'image/png';
-     console.log('about to save', user.img)
-     user.img.save((err) => {
-       if(err) {
-         res.json({ succes: false, message: err})
-      } else {
-        console.log('saved')
-       res.json({ success: true, message: 'Photo Uploaded'})
-      }
-    });
-  }
-}
-  });
-  });
+// // Photo Upload
+// router.use(multer({ dest: '../uploads/', rename: function(fieldname, filename){
+//   return filename
+//   },
+// }).single('image'));
+//
+// router.put('/image-upload',function(req,res){
+//   console.log('suppers')
+//   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+//     if (err) {
+//       res.json({ success: false, message: 'Not a valid user id'});
+//     } else {
+//         if(!user) {
+//           res.json({ success: false, message: 'No User found'});
+//     } else {
+//      user.img.data = fs.readFileSync(req.files.image.path)
+//      user.img.contentType = 'image/png';
+//      console.log('about to save', user.img)
+//      user.img.save((err) => {
+//        if(err) {
+//          res.json({ succes: false, message: err})
+//       } else {
+//         console.log('saved')
+//        res.json({ success: true, message: 'Photo Uploaded'})
+//       }
+//     });
+//   }
+// }
+//   });
+//   });
 
 router.get('/profile/is-student', (req, res) => {
   User.findOne({ _id: req.decoded.userId }).select('isStudent').exec((err, user) => {
@@ -295,7 +295,9 @@ router.put('/teacher-rating', (req, res) => {
         if(!user) {
           res.json({ success: false, message: 'No User found'});
     } else {
-      user.ratingsArray = req.body.ratingsArray;
+      user.kRatingsArray = req.body.kRatingsArray;
+      user.pRatingsArray = req.body.pRatingsArray;
+      user.taRatingsArray = req.body.taRatingsArray;
       user.save((err) => {
         if(err) {
           res.json({ succes: false, message: err})
@@ -323,7 +325,7 @@ router.get('/get-schedule', (req, res) => {
 });
 
 router.get('/teacher-rating', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).select('ratingsArray').exec((err, user) => {
+  User.findOne({ _id: req.decoded.userId }).select('kRatingsArray pRatingsArray taRatingsArray').exec((err, user) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {
@@ -334,6 +336,24 @@ router.get('/teacher-rating', (req, res) => {
       }
     }
   });
+});
+
+router.get('/view-teacher-profile/:id', (req,res) => {
+  if(!req.params.id) {
+    res.json({ success: false, message: 'No Blog ID was provided'});
+  } else {
+    User.findOne({ _id: req.params.id}).exec((err, teacher) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid blog ID'});
+    } else {
+      if (!teacher) {
+        res.json({ success: false, message: 'Teacher not found'});
+      } else {
+        res.json({ success: true, teacher: teacher});
+        }
+      }
+    });
+  }
 });
 
 

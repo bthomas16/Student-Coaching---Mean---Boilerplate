@@ -1,16 +1,22 @@
-<div class="flex" *ngIf="!checkTeacher()">
-  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
-    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
-</div>
+
 
 <div class="row show-hide-message" *ngIf="show">
   <div [ngClass]="messageClass">
   {{message}}</div>
 </div>
 
-<div class="flex" *ngIf="checkTeacher()">
+<span *ngIf="!findTeacher && !isTeacher">
+</span>
+  <div class="flex" *ngIf="!isTeacher">
+  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
+  <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+</div>
+
+
+<div class="flex" *ngIf="isTeacher">
   <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
 </div>
+
 
 <hr>
 
@@ -42,7 +48,7 @@
 
     </div>
   </div>
-  <div class="flex ratings">
+  <div class="flex ratings" *ngIf="isUserTheTeacher()">
     <app-teacher-ratings></app-teacher-ratings>
   </div>
   <div class="flex coach-become">

@@ -1,0 +1,33 @@
+<div class="row show-hide-message" *ngIf="show">
+  <div [ngClass]="messageClass">
+  {{message}}</div>
+</div>
+
+<span *ngIf="!findTeacher">
+  <div class="flex wrapper">
+    <div class="flex">
+      <div class="flex half">
+        {{ teacherEmail }}
+        {{ teacherKRatingsArray | number : '1.1-1' }}
+        <app-teacher-profile-info></app-teacher-profile-info>
+        <div class="flex">
+          <button class="btn btn-primary">Contact {{ fullname }}</button>
+        </div>
+      </div>
+      <div class="flex half">
+        <app-teacher-profile-schedule></app-teacher-profile-schedule>
+      </div>
+    </div>
+      <div class="flex">
+        <div class="flex half">
+            <app-teacher-reviews></app-teacher-reviews>
+          <div class="flex">
+            <app-teacher-ratings *ngIf="!isUserTheTeacher()"></app-teacher-ratings>
+        </div>
+        </div>
+        <div class="flex half">
+          <app-teacher-skills></app-teacher-skills>
+        </div>
+      </div>
+  </div>
+</span>

@@ -25,10 +25,19 @@ export class AuthService {
       })
     });
   }
+  createAuthenticationHeadersAvatar(){
+    this.loadToken();
+    this.options = new RequestOptions({
+      headers: new Headers({
+        'Content-Type': 'multipart/formData',
+        'authorization': this.authToken
+      })
+    });
+  }
 
   loadToken() {
     const token = localStorage.getItem('token');
-    this.authToken = token;
+    return this.authToken = token;
   }
 
 Register(user) {
@@ -90,10 +99,10 @@ checkEmail(email) {
             res.json())
         }
 
-        imgSubmit(image) {
-            this.createAuthenticationHeaders();
-            console.log(image, 'poop');
-            return this.http.put(this.server + 'authentication/image-upload', image, this.options).map(res =>
+        fileSubmit(avatar) {
+            this.createAuthenticationHeadersAvatar();
+            console.log(avatar, 'poop');
+            return this.http.put(this.server + 'authentication/avatar-upload', avatar, this.options).map(res =>
               res.json())
           }
 

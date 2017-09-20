@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
+import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -78,7 +80,8 @@ import { NgUploaderModule } from 'ngx-uploader';
     KnowledgeComponent,
     TeachingAbilityComponent,
     ViewTeacherProfileComponent,
-    TeacherSkillsComponent
+    TeacherSkillsComponent,
+    ShufflePipe
   ],
   imports: [
     BrowserModule,

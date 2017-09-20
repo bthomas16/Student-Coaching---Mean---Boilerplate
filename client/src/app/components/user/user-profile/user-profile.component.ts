@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 
 export class UserProfileComponent implements OnInit {
+  id;
   email;
   fullname;
   isStudent;
@@ -16,13 +18,13 @@ export class UserProfileComponent implements OnInit {
   imgForm;
   message;
   messageClass;
-  selectedFile;
 
   formData: FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
+
 
   constructor(public authService: AuthService) {
     this.files = []; // local uploading files array
@@ -50,39 +52,21 @@ onUploadOutput(output: UploadOutput): void {
       }
   }
 
-  startUpload(): void {
-    const event: UploadInput = {
+onStartUpload(): void {
+  const event: UploadInput = {
       type: 'uploadAll',
       url: 'http://localhost:8080/api/avatar-upload',
       method: 'POST',
       concurrency: 0
     };
-
-    this.uploadInput.emit(event);
+    this.uploadInput.emit(event)
   }
-// onChange(event) {
-//   this.selectedFile = event.target.files[0];
-//   console.log('selecting this file here:', this.selectedFile);
-// }
-//
-//   onFileSubmit() {
-//     // const avatar = {name: this.selectedFile.name, size: this.selectedFile.size, type: this.selectedFile.type, webkitRelativePath: "uploads/", lastModified: this.selectedFile.lastModified, lastModifiedDate: this.selectedFile.lastModifiedDate}
-//     const avatar = this.selectedFile;
-//     console.log('howdy', avatar)
-//     this.authService.fileSubmit(avatar).subscribe(data => {
-//       if (!data.success) {
-//         this.messageClass = 'alert alert-danger';
-//         this.message = data.message;
-//       } else {
-//         this.messageClass = 'alert alert-success'
-//         this.message = data.message
-//       }
-//     });
-//   }
+
 
 ngOnInit() {
   this.authService.getProfile()
   .subscribe(profile => {
+    this.id = profile.user._id;
     this.fullname = profile.user.fullname.toUpperCase();
     this.email = profile.user.email;
     this.isStudent = profile.user.isStudent;

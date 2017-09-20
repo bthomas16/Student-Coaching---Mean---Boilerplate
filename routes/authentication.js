@@ -1,20 +1,9 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const express = require('express');
-// const multer = require('multer');
-const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
 
-// const upload = multer({
-//   dest: 'uploads/',
-//   storage: multer.diskStorage({
-//     filename: (req, file, cb) => {
-//       let ext = path.extname(file.originalname);
-//       cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
-//     }
-//   })
-// });
 
 router.post('/register', (req, res) => {
   if(!req.body.email){
@@ -133,7 +122,7 @@ router.use((req, res, next)=> {
 });
 
 router.get('/profile', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).select('email fullname isStudent isTeacher').exec((err, user) => {
+  User.findOne({ _id: req.decoded.userId }).select().exec((err, user) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {
@@ -198,9 +187,9 @@ router.put('/become-student', (req, res) => {
               res.json({ success: true, message: 'You are now a Student'})
           }
         })
+      }
     }
-  }
-});
+  });
 });
 
 router.put('/become-teacher', (req, res) => {
@@ -334,6 +323,60 @@ router.get('/view-teacher-profile/:id', (req,res) => {
   }
 });
 
+router.put('/experience', (req,res) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+        user.experience1 = req.body.experience1,
+        user.experience2 = req.body.experience2,
+        user.experience3 = req.body.experience3,
+        user.experience4 = req.body.experience4,
+        user.experience5 = req.body.experience5
+        user.save((err) => {
+          if(err) {
+            res.json({ succes: false, message: err})
+          } else {
+            console.log('working', user)
+              res.json({ success: true, message: 'Experiences Saved'})
+            }
+          });
+        }
+      }
+    });
+  });
+
+  router.put('/info', (req,res) => {
+    User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+      if (err) {
+        res.json({ success: false, message: 'Not a valid user id'});
+      } else {
+          if(!user) {
+            res.json({ success: false, message: 'No User found'});
+      } else {
+          user.location = req.body.location,
+          user.yrsExperience = req.body.yrsExperience,
+          user.skills = req.body.skills,
+          user.handicap = req.body.handicap,
+          user.cost = req.body.cost
+          console.log('user', user)
+          user.save((err) => {
+            if(err) {
+              res.json({ succes: false, message: err})
+            } else {
+              console.log('working', user)
+                res.json({ success: true, message: 'Experiences Saved'})
+              }
+            });
+          }
+        }
+      });
+    });
+
+
 
 
 
@@ -365,6 +408,40 @@ router.get('/view-teacher-profile/:id', (req,res) => {
 //   }
 //   });
 // });
+
+
+// router.post('/avatar-upload', upload.any(), (req, res) => {
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+//   console.log('route is hit, matie', req.files)
+//   // User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+//   //   if (err) {
+//   //     res.json({ success: false, message: 'Not a valid user id'});
+//   //   } else {
+//   //       if(!user) {
+//   //         res.json({ success: false, message: 'No User found'});
+//   //   } else {
+//       if(!req.files) {
+//         console.log('fail')
+//         res.json({ success: false, message: 'No file was provided'})
+//       } else {
+//         console.log('success')
+//         res.json(req.files.map(file => {
+//           let ext = path.extname(file.originalname);
+//             return {
+//         originalName: file.originalname,
+//         filename: file.filename
+//       }
+//     }));
+//       }
+//   //   }
+//   // }
+//   });
+// // });
+//
+// router.get('/avatar-retrieve', (req, res) => {
+//   res.sendFile( __dirname + '/uploads/50wn1k.jpeg');
+// })
 
 
 

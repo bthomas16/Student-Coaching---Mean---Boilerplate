@@ -11,8 +11,8 @@
             <li><a href="#">About Us</a></li>
             <li><a href="#">Contact Us</a></li>
             <li role="separator" class="divider"></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a routerLink="/register">Sign Up</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a routerLink="/login">Login</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register">Sign Up</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login">Login</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile">Student</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile">Teacher</a></li>
             <li role="separator" class="divider" *ngIf="authService.loggedIn()"></li>

@@ -4,9 +4,10 @@
   </div>
 </div>
 
+<div class="flex main-wrapper">
 <div class="flex wrapper">
   <h2>Availability:</h2>
-<div class="flex">
+<div class="flex text-wrap">
   <div class="flex text">
     <p>Monday</p>
   </div>
@@ -65,11 +66,11 @@
   <div class="flex text">
     <p>Saturday</p>
   </div>
-  <div class="flex butts">
-  <button class="btn btn-primary" [disabled]="processing" (click)="satM = !satM" [ngClass]="{'active': satM}">Morning</button>
-  <button class="btn btn-primary" [disabled]="processing" (click)="satA = !satA" [ngClass]="{'active': satA}">Afternoon</button>
-  <button class="btn btn-primary" [disabled]="processing" (click)="satE = !satE" [ngClass]="{'active': satE}">Evening</button>
-</div>
+    <div class="flex butts">
+    <button class="btn btn-primary" [disabled]="processing" (click)="satM = !satM" [ngClass]="{'active': satM}">Morning</button>
+    <button class="btn btn-primary" [disabled]="processing" (click)="satA = !satA" [ngClass]="{'active': satA}">Afternoon</button>
+    <button class="btn btn-primary" [disabled]="processing" (click)="satE = !satE" [ngClass]="{'active': satE}">Evening</button>
+  </div>
 </div>
 
 <div class="flex">
@@ -77,10 +78,10 @@
     <p>Sunday</p>
   </div>
   <div class="flex butts">
-  <button class="btn btn-primary" [disabled]="processing" (click)="sunM = !sunM" [ngClass]="{'active': sunM}">Morning</button>
-  <button class="btn btn-primary" [disabled]="processing" (click)="sunA = !sunA" [ngClass]="{'active': sunA}">Afternoon</button>
-  <button class="btn btn-primary" [disabled]="processing" (click)="sunE = !sunE" [ngClass]="{'active': sunE}">Evening</button>
-</div>
+    <button class="btn btn-primary" [disabled]="processing" (click)="sunM = !sunM" [ngClass]="{'active': sunM}">Morning</button>
+    <button class="btn btn-primary" [disabled]="processing" (click)="sunA = !sunA" [ngClass]="{'active': sunA}">Afternoon</button>
+    <button class="btn btn-primary" [disabled]="processing" (click)="sunE = !sunE" [ngClass]="{'active': sunE}">Evening</button>
+  </div>
 </div>
 <div class="flex update">
   <button class="btn btn-success updateButton"  (click)='onSchedule()' [disabled]="processing">Update Availability</button>
@@ -88,5 +89,6 @@
     <button class="btn btn-primary active">Available</button>
     <button class="btn btn-primary">Not Available</button>
   </div>
+</div>
 </div>
 </div>

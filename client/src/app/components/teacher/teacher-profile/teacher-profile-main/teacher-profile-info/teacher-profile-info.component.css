@@ -1,0 +1,46 @@
+.main-wrapper {
+  height: 32em;
+  margin: 1em;
+  width: 90%;
+  background-color: #2B2A2A;
+  color: white;
+}
+
+.wrap {
+  justify-content: space-between;
+}
+
+.image {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.profile-pic {
+  /*max-height: 32em;*/
+  max-width: 155%;
+}
+
+.name {
+  margin-bottom: 2em;
+}
+
+.left {
+  text-align: left;
+  justify-content: flex-start;
+  margin-left: 1.5em;
+}
+
+.butts {
+  margin-top: 2em;
+}
+
+.butt {
+  margin-left: .5em;
+  margin-right: .5em;
+  width: 40%;
+}
+
+em {
+  margin: .2em;
+  font-weight: 800;
+}

@@ -3,6 +3,42 @@ li {
   margin: 1%;
 }
 
+.img {
+  width: 50%;
+  justify-content: flex-start;
+}
+
 .golfing-img {
-  width: 49em;
+  width: 100%;
+  left: 0;
+  margin: 0;
+  position: relative;
+}
+
+.notes {
+  width: 100%;
+  margin-top: 1em;
+  background-color: #5563f0;
+  color: white;
+  padding: 3em;
+}
+
+.notes-text {
+  width: 85%;
+  font-size: 1.4em;
+}
+
+.left-text {
+  width: 82.75%;
+  font-size: 1.4em;
+  justify-content: flex-start;
+}
+
+.right {
+  width: 45%;
+  margin: 2.5%;
+}
+
+.right p {
+  font-size: 250%;
 }

@@ -15,17 +15,14 @@
       <button class="btn btn-success" (click)="onFileSubmit()">Submit</button> -->
 
 
+
   <!-- <label class="upload-button"> -->
     <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
   <!-- </label> -->
 
-  <button type="button" class="start-upload-btn" (click)="startUpload()">
+  <button type="button" class="start-upload-btn" (click)="onStartUpload()">
     Start Upload
   </button>
-</div>
-
-<div>
-Response: {{ uploadFile | json }}
 </div>
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -21,18 +22,60 @@ export class TeacherProfileComponent implements OnInit {
   edit: boolean = false;
   currentUrl;
   teacherID;
+  experienceForm;
+  experience1;
+  experience2;
+  experience3;
+  experience4;
+  experience5;
+  isEdit: boolean = false;
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {}
-
-  isEdit() {
-    this.edit = true;
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
+    this.createForm();
   }
 
-  isSave() {
-    this.edit = false;
+  createForm(){
+    this.experienceForm = this.formBuilder.group({
+      experience1: ['', Validators.required],
+      experience2: ['', Validators.required],
+      experience3: ['', Validators.required],
+      experience4: ['', Validators.required],
+      experience5: ['', Validators.required]
+    });
   }
 
-  hideMessage() {}
+  canEdit() {
+    this.experienceForm.reset();
+    this.isEdit = false;
+  }
+
+  experienceSubmit() {
+    this.experience1 = this.experienceForm.get('experience1').value.trim(),
+    this.experience2 = this.experienceForm.get('experience2').value.trim(),
+    this.experience3 = this.experienceForm.get('experience3').value.trim(),
+    this.experience4 = this.experienceForm.get('experience4').value.trim(),
+    this.experience5 = this.experienceForm.get('experience5').value.trim()
+    this.isEdit = false;
+    const experience = {
+      experience1: this.experience1,
+      experience2: this.experience2,
+      experience3: this.experience3,
+      experience4: this.experience4,
+      experience5: this.experience5
+    }
+    console.log('experience is:', experience)
+    this.authService.onExperienceSubmit(experience).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.isEdit = true;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+          this.isEdit = false;
+      }
+    })
+  }
 
   becomeTeacherRegister() {
     this.isTeacher = true;
@@ -64,11 +107,16 @@ export class TeacherProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile()
     .subscribe(profile => {
-      this.userID = profile.user.id
+      this.userID = profile.user.id;
       this.fullname = profile.user.fullname.toUpperCase();
       this.email = profile.user.email;
       this.isTeacher = profile.user.isTeacher;
-      this.isTeacher = profile.user.isTeacher;
-    })
-}
+      this.isStudent = profile.user.isStudent;
+      this.experience1 = profile.user.experience1;
+      this.experience2 = profile.user.experience2;
+      this.experience3 = profile.user.experience3;
+      this.experience4 = profile.user.experience4;
+      this.experience5 = profile.user.experience5;
+    });
+  }
 }

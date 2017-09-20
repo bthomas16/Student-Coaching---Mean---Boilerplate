@@ -9,7 +9,6 @@ import { FilterPipe } from '../../../../filter.pipe';
 @Component({
   selector: 'app-teachers-list',
   templateUrl: './teachers-list.component.html',
-  // pipes: [FilterPipe],
   styleUrls: ['./teachers-list.component.css'],
   providers: [ShufflePipe]
 })

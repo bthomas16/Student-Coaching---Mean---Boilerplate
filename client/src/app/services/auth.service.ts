@@ -25,15 +25,6 @@ export class AuthService {
       })
     });
   }
-  createAuthenticationHeadersAvatar(){
-    this.loadToken();
-    this.options = new RequestOptions({
-      headers: new Headers({
-        'Content-Type': 'multipart/formData',
-        'authorization': this.authToken
-      })
-    });
-  }
 
   loadToken() {
     const token = localStorage.getItem('token');
@@ -99,17 +90,22 @@ checkEmail(email) {
             res.json())
         }
 
-        fileSubmit(avatar) {
-            this.createAuthenticationHeadersAvatar();
-            console.log(avatar, 'poop');
-            return this.http.put(this.server + 'authentication/avatar-upload', avatar, this.options).map(res =>
-              res.json())
-          }
-
       updateSchedule(schedule) {
           this.createAuthenticationHeaders();
           return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>
             res.json())
+        }
+
+        onExperienceSubmit(experience) {
+          this.createAuthenticationHeaders();
+          console.log(experience);
+          return this.http.put(this.server + 'authentication/experience', experience, this.options).map(res => res.json());
+        }
+
+        onInfoSubmit(info) {
+          this.createAuthenticationHeaders();
+          console.log(info);
+          return this.http.put(this.server + 'authentication/info', info, this.options).map(res => res.json());
         }
 
         Rate(rated) {
@@ -160,5 +156,12 @@ checkEmail(email) {
              return this.http.get(this.server + 'authentication/view-teacher-profile/' + id, this.options).map(res =>
                res.json());
            }
+
+          //  startUpload(event) {
+          //    this.createAuthenticationHeaders();
+          //    console.log('service:', event);
+          //    return this.http.post(this.server + 'authentication/avatar-upload', event, this.options).map(res =>
+          //      res.json());
+          //  }
 
 }

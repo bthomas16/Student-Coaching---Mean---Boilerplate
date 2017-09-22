@@ -1,43 +1,72 @@
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container fluid noMarg">
+<div class="flex bar">
+  <div class="flex logo">
+    <p>SAVVY</p>
+  </div>
+  <div class="flex options" *ngIf="!authService.loggedIn()">
+    <a data-toggle="modal" data-target="#login">Login</a>
+    <a data-toggle="modal" data-target="#register">Sign Up</a>
+  </div>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed dropped" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <div class="btn-group">
-          <button type="button" class="btn dropdown-toggle dropper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Options <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li role="separator" class="divider"></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register">Sign Up</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login">Login</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile">Student</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile">Teacher</a></li>
-            <li role="separator" class="divider" *ngIf="authService.loggedIn()"></li>
-            <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a>
-            </li>
-          </ul>
-        </div>
-      </button>
-      <a  class="navbar-brand white" routerLink="home" *ngIf="!authService.loggedIn()">Skill Site</a>
-      <a  class="navbar-brand white" routerLink="profile" *ngIf="authService.loggedIn()">Skill Site</a>
-    </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="profile/student">Student</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="profile/teacher">Teacher</a></li>
 
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="sign-up" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register">Sign Up</a></li>
-        <li class="sign-up" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login">Login</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right top">
-        <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()">Logout</a></li>
-      </ul>
+  <a (click)="canShowMenu()"><i class="fa fa-user fa-2x" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
+
+  <!-- </button> -->
+</div>
+
+
+<div class="flex menu" *ngIf="showMenu">
+  <div class="flex menu-item">
+    <div>
+      <a (click)="showMenu = !showMenu">About Us</a>
     </div>
   </div>
-</nav>
+  <div class="flex menu-item">
+    <div>
+      <a (click)="showMenu = !showMenu">Contact Us</a>
+    </div>
+  </div>
+  <span class="line"></span>
+  <div class="flex menu-item">
+    <div class="login" *ngIf="!authService.loggedIn()">
+      <a data-toggle="modal" data-target="#register" (click)="showMenu = !showMenu">Sign Up</a>
+    </div>
+  </div>
+  <div class="flex menu-item">
+    <div *ngIf="!authService.loggedIn()">
+      <a data-toggle="modal" data-target="#login" (click)="showMenu = !showMenu">Login</a>
+    </div>
+  </div>
+  <div class="flex menu-item">
+    <div *ngIf="authService.loggedIn()">
+      <a routerLink="/student/profile" (click)="showMenu = !showMenu">Student</a>
+    </div>
+  </div>
+    <div class="flex menu-item">
+      <div *ngIf="authService.loggedIn()">
+        <a routerLink="/teacher/profile" (click)="showMenu = !showMenu">Teacher</a>
+      </div>
+    </div>
+    <span class="line" *ngIf="authService.loggedIn()"></span>
+    <div class="flex menu-item">
+      <div *ngIf="authService.loggedIn()">
+        <a routerLink="/teacher/profile" (click)="onLogoutClick()">Logout</a>
+      </div>
+    </div>
+
+
+
+
+  <!-- <ul class="dropdown-menu" >
+    <li><a (click)="showMenu = !showMenu">About Us</a></li>
+    <li><a (click)="showMenu = !showMenu">Contact Us</a></li>
+    <li role="separator" class="divider"></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register" (click)="showMenu = !showMenu">Sign Up</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login" (click)="showMenu = !showMenu">Login</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile" (click)="showMenu = !showMenu">Student</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile" (click)="showMenu = !showMenu">Teacher</a></li>
+    <li role="separator" class="divider" *ngIf="authService.loggedIn()"></li>
+    <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()" (click)="showMenu = !showMenu">Logout</a>
+    </li>
+  </ul> -->
+</div>

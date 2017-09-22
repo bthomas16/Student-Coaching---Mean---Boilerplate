@@ -10,13 +10,23 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class NavbarComponent implements OnInit {
 
+  showMenu: boolean = false;
+
   constructor(public authService: AuthService, private router: Router, private flashMessagesService: FlashMessagesService) { }
 
   onLogoutClick() {
+    this.showMenu = false;
     this.authService.Logout();
     this.flashMessagesService.grayOut(true);
     this.flashMessagesService.show('Logged Out', { cssClass: 'alert-info form-control' });
       this.router.navigate(['/'])
+  }
+
+  canShowMenu() {
+    if(this.showMenu === false) {
+      return this.showMenu = true
+    } else
+    return this.showMenu = false;
   }
 
   ngOnInit() {

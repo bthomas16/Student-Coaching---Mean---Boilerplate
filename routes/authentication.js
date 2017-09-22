@@ -1,8 +1,22 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
+
+const storage = multer.diskStorage({
+    destination: (req, files, cb) => {
+      cb(null, './routes/uploads')
+    },
+    filename: (req, files, cb) => {
+      let ext = path.extname(file.originalname);
+      cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
+    }
+  });
+
+const upload = multer({ storage: storage})
 
 
 router.post('/register', (req, res) => {
@@ -376,38 +390,68 @@ router.put('/experience', (req,res) => {
       });
     });
 
+    router.put('/video', (req,res) => {
+      User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+        if (err) {
+          res.json({ success: false, message: 'Not a valid user id'});
+        } else {
+            if(!user) {
+              res.json({ success: false, message: 'No User found'});
+        } else {
+            user.video = req.body.video,
+            console.log('userVideo is:', user.video)
+            user.save((err) => {
+              if(err) {
+                res.json({ succes: false, message: err})
+              } else {
+                console.log('working', user)
+                  res.json({ success: true, message: 'Video Saved'})
+                }
+              });
+            }
+          }
+        });
+      });
+
 
 
 
 
 // FILES UPLOADS
 
-// router.post('/avatar-upload', upload.any(), (req, res) => {
-//   // req.file is the `avatar` file
-//   // req.body will hold the text fields, if there were any
-//   console.log('route is hit, matie', req.files)
-//   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
-//     if (err) {
-//       res.json({ success: false, message: 'Not a valid user id'});
-//     } else {
-//         if(!user) {
-//           res.json({ success: false, message: 'No User found'});
-//     } else {
-//       if(!req.files) {
-//         res.json({ success: false, message: 'No file was provided'})
-//       } else {
-//         res.json(req.files.map(file => {
-//           let ext = path.extname(file.originalname);
-//             return {
-//         originalName: file.originalname,
-//         filename: file.filename
-//       }
-//     }));
-//       }
-//     }
-//   }
-//   });
-// });
+router.post('/avatar-upload', upload.any(), (req, res) => {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log('route is hit, matie here files', req.files, "or singular:", req.file, 'and the body:', req.body);
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      console.log('1')
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+      console.log('2')
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+      console.log('3')
+      if(!req.files) {
+        console.log('4')
+        res.json({ success: false, message: 'No file was provided'})
+      } else {
+        console.log('5')
+        res.json(req.files.map(file => {
+          let ext = path.extname(file.originalname);
+          console.log('6')
+            return {
+        originalName: file.originalname,
+        filename: file.filename
+      }
+    }));
+      }
+    }
+  }
+  });
+});
+
 
 
 // router.post('/avatar-upload', upload.any(), (req, res) => {

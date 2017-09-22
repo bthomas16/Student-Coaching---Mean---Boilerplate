@@ -1,7 +1,5 @@
 .main-wrapper {
-  height: 32em;
-  margin: 1em;
-  width: 90%;
+  width: 100%;
   background-color: #2B2A2A;
   color: white;
 }
@@ -12,22 +10,24 @@
 
 .image {
   justify-content: flex-start;
-  align-items: flex-start;
+  left: 0;
+  width: 35%;
 }
 
 .profile-pic {
-  /*max-height: 32em;*/
-  max-width: 155%;
+  height: 400px;
+  width: 275px;
 }
 
 .name {
-  margin-bottom: 2em;
+  font-size: 1.2em;
+  text-align: right;
+  margin-left: 5em;
 }
 
 .left {
-  text-align: left;
-  justify-content: flex-start;
-  margin-left: 1.5em;
+  justify-content: center;
+  width: 55%;
 }
 
 .butts {
@@ -40,7 +40,165 @@
   width: 40%;
 }
 
-em {
-  margin: .2em;
-  font-weight: 800;
+.infos  {
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 15%;
+}
+
+.h5 {
+  width: 60%;
+  text-align: right;
+}
+
+.edit {
+  margin-left: 6.5em;
+  margin-top: .35em;
+  margin-bottom: .35em;
+  width: 50%;
+}
+
+.help-block li {
+  margin: .25em;
+}
+
+@media(max-width: 875px){
+  .profile-pic {
+      height: 350px;
+  }
+}
+
+@media(max-width: 600px){
+
+  .wrap {
+    width: 100%;
+    align-content: flex-start;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .image {
+    width: 40%;
+    align-self: flex-start;
+    padding: 0;
+  }
+
+  .profile-pic {
+    position: relative;
+    margin-top: 0;
+    align-self: flex-start;
+  }
+
+  .left {
+    width: 50%;
+    margin-top: 0;
+    right: 0;
+  }
+
+  .infos {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ps {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .edit {
+    width: 100%;
+    margin-left: 4em;
+  }
+
+  .name {
+    margin-bottom: 0;
+  }
+
+  @media(max-width: 480px) {
+
+    .main-wrapper {
+      width: 100%;
+      margin: 0;
+    }
+
+    .wrap {
+      padding: 0;
+      width: 100%;
+    }
+
+    .left {
+      width: 100%;
+    }
+
+  .image {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .profile-pic {
+    border: 2px solid lightgrey;
+    width: justify;
+    /*width: 100%;  To Fill */
+    margin: 0;
+    margin-top: .5em;
+    border-radius: 50%;
+  }
+
+  .infos {
+    padding: 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .ps {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .name {
+    width: 100%;
+    text-align: center;
+  }
+
+  .name {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .full {
+    width: 100%;
+  }
+
+    .h5 {
+      width: auto;
+      margin: 5%;
+      display: inline-block;
+    }
+  }
+
+  .edit {
+    margin: 0;
+    width: 50%;
+    margin-top: .2em;
+    margin-bottom: .5em;
+  }
+
+  form {
+    margin-top: .5em;
+  }
+
+
+  form button {
+    margin: .25em;
+  }
+
+  img {
+  }
+
+
 }

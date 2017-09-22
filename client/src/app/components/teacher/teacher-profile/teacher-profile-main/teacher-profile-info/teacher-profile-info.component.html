@@ -1,13 +1,9 @@
 <div class="flex main-wrapper">
   <div class="flex wrap">
-    <div class="flex third image">
+    <div class="flex image">
       <img class="profile-pic" src="https://4.bp.blogspot.com/-BHhUazKytmw/VbCfWPqrOJI/AAAAAAAAB7c/qj6WVX3du-s/s1600/51b91bba5a3fd9b6c8b9c53bc0ab6c65.jpg" alt="">
     </div>
-    <div class="flex half left info">
-      <h3 class="flex name">{{ fullname }}</h3>
-      <p class="flex" *ngIf="yetRated">{{ avgRating | number : '1.1-1' }}</p>
-        <p class="flex" *ngIf="!yetRated">Not Yet Rated</p>
-      <p class="flex"> {{ numberOfRatings }} Students</p>
+    <div class="flex half left">
       <div class="flex" *ngIf="location == undefined">
           <h2>Please Update Your Information</h2>
       </div>
@@ -48,20 +44,24 @@
       </form>
       </div>
 
-    <div class="flex" *ngIf="!isEdit && location !== undefined">
-      <h5 class="flex"> <em>{{ location }}</em> </h5>
-      <h5 class="flex"> <em>{{ yrsExperience }}</em> Years</h5>
-      <h5 class="flex"> <em>{{ skills }}</em> </h5>
-      <h5 class="flex"> <em>{{ handicap }}</em> Under</h5>
-      <h5 class="flex"> $ <em>{{ cost }}</em> /hr</h5>
-    </div>
-
-    <div class="flex">
-      <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning">Edit</button>
+    <div class="flex infos" *ngIf="!isEdit && location !== undefined">
+      <h3 class="h5" *ngIf="!yetRated">Not Yet Rated</h3>
+        <p class="name">{{ fullname }}</p>
+        <p class="h5 full" *ngIf="yetRated">{{ avgRating | number : '1.1-1' }}</p>
+        <p class="h5"> {{ numberOfRatings }} Students</p>
+        <p class="h5"> {{ location }}</p>
+        <p class="h5"> {{ yrsExperience }}Years</p>
+        <p class="h5"> {{ skills }}</p>
+        <p class="h5"> {{ handicap }}Under</p>
+        <p class="h5"> $ {{ cost }}/hr</p>
+        <div class="flex editWrap">
+          <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+      </div>
     </div>
       <!-- <div class="flex butts">
         <button class="btn btn-success butt">Contact</button>
         <button class="btn btn-primary butt">Review</button>
       </div> -->
   </div>
+</div>
 </div>

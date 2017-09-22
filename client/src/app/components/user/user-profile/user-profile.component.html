@@ -12,17 +12,15 @@
   </div>
   <div class="flex">
       <!-- <input type="file" name="avatar" (change)="onChange($event)">
-      <button class="btn btn-success" (click)="onFileSubmit()">Submit</button> -->
+      <button class="btn btn-success" (click)="fileSubmit()">Submit</button> -->
 
+      <input #fileInput type="file"/>
+    <button (click)="addFile()">Add</button>
 
+    <!-- <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+    <button type="button" class="start-upload-btn" (click)="onStartUpload()">
+    Start Upload</button> -->
 
-  <!-- <label class="upload-button"> -->
-    <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
-  <!-- </label> -->
-
-  <button type="button" class="start-upload-btn" (click)="onStartUpload()">
-    Start Upload
-  </button>
 </div>
 
 

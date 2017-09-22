@@ -90,6 +90,7 @@ var studentSchema = new Schema({
     skills: String,
     handicap: String,
     cost: String,
+    video: String,
     avatar: {type: String, required: false},
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },

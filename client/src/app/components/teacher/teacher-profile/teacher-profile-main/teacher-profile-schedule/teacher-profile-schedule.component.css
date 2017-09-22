@@ -45,7 +45,65 @@
 .examples button {
   margin: .1em;
   line-height: 0;
-  font-size: 100%;
+  font-size: 1em;
   margin-left: 0;
   width: 100%;
+}
+
+@media (max-width: 10250px) {
+  .updateButton {
+    font-size: 1em
+  }
+  .text {
+    font-size: .75em;
+  }
+
+  .butts button {
+    font-size: .9em;
+  }
+
+}
+
+@media (max-width: 650px) {
+  .updateButton {
+    font-size: 1em
+  }
+  .examples button {
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 525px) {
+  .text {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 465px) {
+  .text {
+    font-size: .8em;
+  }
+  .butts button {
+    font-size: .75em;
+  }
+
+.examples {
+  width: 40%;
+  margin-left: 0;
+}
+
+.examples button {
+  width: 100%;
+  font-size: .65em;
+}
+  .update {
+    padding: .25em;
+  }
+
+  .updateButton {
+    font-size: .7em;
+    width: 55%;
+  }
+
+
 }

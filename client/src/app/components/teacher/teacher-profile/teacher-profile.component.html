@@ -1,10 +1,5 @@
 
 
-<div class="row show-hide-message" *ngIf="show">
-  <div [ngClass]="messageClass">
-  {{message}}</div>
-</div>
-
 <span *ngIf="!isTeacher">
 </span>
   <div class="flex" *ngIf="!isTeacher">
@@ -26,61 +21,87 @@
     <h3 class="flex left-text"> {{ fullname }}</h3>
     <p class="notes-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat!</p>
   </div>
-  <!-- <div class="flex video">
-    <h1>YOUTUBE VIDEO LINK</h1>
-  </div> -->
-  <div class="flex stats">
-    <div class="flex half">
+  <div class="flex vidWrap">
+    <div class="flex vidDiv">
+      <div class="row show-hide-message" *ngIf="show">
+        <div [ngClass]="messageClass">
+        {{message}}</div>
+      </div>
+      <div class="flex">
+        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+      </div>
+      <form [formGroup]="videoForm" (submit)="videoSubmit()" class="flex">
+        <input type="text" placeholder="https://www.youtube.com/watch?v=4OWyMRFSBrM" value="{{ video }}" name="videoLink" formControlName="videoLink">
+        <button class="btn btn-success">Submit</button>
+      </form>
+      <div class="flex vidText">
+        <p>
+          Upload a video introducing yourself to students, or showing off your skills. <span>(Optional)</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="flex half reviews">
       <h2 class="flex">REVIEWS</h2>
       <app-teacher-reviews></app-teacher-reviews>
     </div>
-    <div class="flex half">
+    <div class="flex half exp">
       <h3 class="flex">Professional Experience</h3>
       <h6 *ngIf="experience1 == undefined" class="flex">Please Update Your Experiences </h6>
-      <form [formGroup]="experienceForm" (submit)="experienceSubmit()">
+      <form [formGroup]="experienceForm" (submit)="experienceSubmit()" *ngIf="isEdit">
         <ul>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience1.errors && experienceForm.controls.experience1.dirty), 'has-success': !experienceForm.controls.experience1.errors}"><input *ngIf="isEdit" type="text" [value]="" name="experience1" placeholder="Golf Coach at Torrey Pines High School" class="form-control" formControlName="experience1">
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience1.errors && experienceForm.controls.experience1.dirty), 'has-success': !experienceForm.controls.experience1.errors}"><input type="text" value="{{ experience1 }}" name="experience1" placeholder="Golf Coach at Torrey Pines High School" class="form-control" formControlName="experience1">
             <ul class="help-block">
               <li *ngIf="experienceForm.controls.experience1.errors?.required && experienceForm.controls.experience1.dirty">This field is required
               </li>
             </ul>
-          <h5 *ngIf="!isEdit">{{ experience1 }}</h5></li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience2.errors && experienceForm.controls.experience2.dirty), 'has-success': !experienceForm.controls.experience2.errors}"><input *ngIf="isEdit" type="text" [value]="" name="experience2" placeholder="Winner of 2017 Golf Tournament" class="form-control" formControlName="experience2">
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience2.errors && experienceForm.controls.experience2.dirty), 'has-success': !experienceForm.controls.experience2.errors}"><input type="text" value="{{ experience2 }}" name="experience2" placeholder="Winner of 2017 Golf Tournament" class="form-control" formControlName="experience2">
             <ul class="help-block">
               <li *ngIf="experienceForm.controls.experience2.errors?.required && experienceForm.controls.experience2.dirty">This field is required
               </li>
             </ul>
-          <h5 *ngIf="!isEdit">{{ experience2 }}</h5></li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience3.errors && experienceForm.controls.experience3.dirty), 'has-success': !experienceForm.controls.experience3.errors}"><input *ngIf="isEdit" type="text" [value]="" name="experience3" placeholder="Licensed Golf Instructor" class="form-control" formControlName="experience3">
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience3.errors && experienceForm.controls.experience3.dirty), 'has-success': !experienceForm.controls.experience3.errors}"><input type="text" value="{{ experience3 }}" name="experience3" placeholder="Licensed Golf Instructor" class="form-control" formControlName="experience3">
             <ul class="help-block">
               <li *ngIf="experienceForm.controls.experience3.errors?.required && experienceForm.controls.experience3.dirty">This field is required
               </li>
             </ul>
-          <h5 *ngIf="!isEdit">{{ experience3 }}</h5></li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience4.errors && experienceForm.controls.experience4.dirty), 'has-success': !experienceForm.controls.experience4.errors}"><input *ngIf="isEdit" type="text" [value]="" name="experience4" placeholder="Runner up in Long-Drive Contest" class="form-control" formControlName="experience4">
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience4.errors && experienceForm.controls.experience4.dirty), 'has-success': !experienceForm.controls.experience4.errors}"><input type="text" value="{{ experience4 }}" name="experience4" placeholder="Runner up in Long-Drive Contest" class="form-control" formControlName="experience4">
             <ul class="help-block">
               <li *ngIf="experienceForm.controls.experience4.errors?.required && experienceForm.controls.experience4.dirty">This field is required
               </li>
             </ul>
-          <h5 *ngIf="!isEdit">{{ experience4 }}</h5></li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience5.errors && experienceForm.controls.experience5.dirty), 'has-success': !experienceForm.controls.experience5.errors}"><input *ngIf="isEdit" type="text" [value]="" name="experience5" placeholder="CIF Champion in D1 High School Tournament" class="form-control" formControlName="experience5">
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience5.errors && experienceForm.controls.experience5.dirty), 'has-success': !experienceForm.controls.experience5.errors}"><input type="text" value="{{ experience5 }}" name="experience5" placeholder="CIF Champion in D1 High School Tournament" class="form-control" formControlName="experience5">
             <ul class="help-block">
               <li *ngIf="experienceForm.controls.experience5.errors?.required && experienceForm.controls.experience5.dirty">This field is required
               </li>
             </ul>
-          <h5 *ngIf="!isEdit">{{ experience5 }}</h5></li>
+          </li>
             <button [disabled]="!experienceForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
-            <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning">Edit</button>
             <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
         </ul>
       </form>
+      <ul class="flex experiences" *ngIf="!isEdit">
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience1 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience2 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience3 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience4 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience5 }}</span></li>
+      </ul>
+      <div class="flex">
+        <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+      </div>
 
     </div>
   </div>
   <!-- <div class="flex ratings">
     <app-teacher-ratings></app-teacher-ratings>
   </div> -->
-  <div class="flex">
+  <!-- <div class="flex">
     <div class="flex half img">
         <img src="../../../../assets/golfing.jpg" class="golfing-img">
     </div>
@@ -94,5 +115,5 @@
         </div>
 
     </div>
-  </div>
+  </div> -->
 </div>

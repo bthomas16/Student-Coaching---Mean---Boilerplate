@@ -6,10 +6,6 @@
   height: 30vh;
 }
 
-.wrapper {
-  padding: 0;
-  margin: auto;
-}
 
 .modall {
   position: absolute;
@@ -87,4 +83,10 @@ ul.help-block li {
 
 .persuade {
   margin-top: 2.5em;
+}
+
+@media(max-width: 500px) {
+  .hero {
+    margin-top: -.2em;
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+// import { FormData } from '@angular/forms';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
@@ -96,6 +97,20 @@ checkEmail(email) {
             res.json())
         }
 
+        // uploadFile(file) {
+        //   this.createAuthenticationHeaders();
+        //   console.log(file);
+        //   return this.http.put(this.server + 'authentication/avatar-upload', file, this.options).map(res => res.json());
+        // }
+
+        upload(fileToUpload: any) {
+          this.createAuthenticationHeaders();
+          let input = new FormData();
+          input.append("file", fileToUpload);
+          console.log('input is:', input);
+          return this.http.post(this.server + 'authentication/avatar-upload', input, this.options);
+        }
+
         onExperienceSubmit(experience) {
           this.createAuthenticationHeaders();
           console.log(experience);
@@ -106,6 +121,12 @@ checkEmail(email) {
           this.createAuthenticationHeaders();
           console.log(info);
           return this.http.put(this.server + 'authentication/info', info, this.options).map(res => res.json());
+        }
+
+        onVideoSubmit(video) {
+          this.createAuthenticationHeaders();
+          console.log(video);
+          return this.http.put(this.server + 'authentication/video', video, this.options).map(res => res.json());
         }
 
         Rate(rated) {

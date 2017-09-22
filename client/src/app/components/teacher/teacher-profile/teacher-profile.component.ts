@@ -18,7 +18,7 @@ export class TeacherProfileComponent implements OnInit {
   isTeacher: boolean = true;
   profPic;
   processing: boolean = false;
-  show: boolean = true;
+  show: boolean = false;
   edit: boolean = false;
   currentUrl;
   teacherID;
@@ -29,9 +29,13 @@ export class TeacherProfileComponent implements OnInit {
   experience4;
   experience5;
   isEdit: boolean = false;
+  videoForm;
+  videoLink;
+  video;
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
     this.createForm();
+    this.createVideoForm();
   }
 
   createForm(){
@@ -41,6 +45,33 @@ export class TeacherProfileComponent implements OnInit {
       experience3: ['', Validators.required],
       experience4: ['', Validators.required],
       experience5: ['', Validators.required]
+    });
+  }
+
+  createVideoForm(){
+    this.videoForm = this.formBuilder.group({
+      videoLink: ['']
+    });
+  }
+
+  videoSubmit() {
+    this.videoLink = this.videoForm.get('videoLink').value.trim();
+    console.log('videoLink is:', this.videoLink);
+    const video = {
+      video: this.videoLink
+    }
+    this.authService.onVideoSubmit(video).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.show = true;
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.show = false
+        }, 1200);
+      }
     });
   }
 
@@ -117,6 +148,7 @@ export class TeacherProfileComponent implements OnInit {
       this.experience3 = profile.user.experience3;
       this.experience4 = profile.user.experience4;
       this.experience5 = profile.user.experience5;
+      this.video = profile.user.video;
     });
   }
 }

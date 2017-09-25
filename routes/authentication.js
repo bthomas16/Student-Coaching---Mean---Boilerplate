@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
       cb(null, './routes/uploads')
     },
     filename: (req, files, cb) => {
-      let ext = path.extname(file.originalname);
+      let ext = path.extname(files.originalname);
       cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
     }
   });
@@ -116,6 +116,63 @@ router.post('/login', (req, res) => {
     }
   }
 });
+
+router.put('/avatar-upload/:id', upload.any(), (req, res) => {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log('route is hit, matie here files', req.files[0]);
+  User.findOne({ _id: req.params.id }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
+      if(!req.files) {
+        console.log('4')
+        res.json({ success: false, message: 'No file was provided'})
+      } else {
+        console.log('5')
+        user.profPicName = req.files[0].filename;
+        console.log('this means it workd', user.profPicName)
+        user.save((err) => {
+          if(err) {
+            res.json({ succes: false, message: err})
+          } else {
+            res.json(req.files.map(file => {
+                let ext = path.extname(file.originalname);
+                console.log('6')
+                  // return {
+                return {
+              originalName: file.originalname,
+              filename: file.filename
+              }
+          }));
+        }
+      });
+        }
+        }
+      }
+    });
+  });
+
+  router.get('/avatar-retrieve/:id', (req, res) => {
+    User.findOne({ _id: req.params.id }).select('profPicName').exec((err, user) => {
+      if (err) {
+        res.json({ success: false, message: err});
+      } else {
+        if (!user) {
+          res.json({ success: false, message: 'User not found'});
+        } else {
+          console.log(user.profPicName)
+          res.sendFile( __dirname + '/uploads/' + user.profPicName);
+        }
+      }
+    });
+    });
+
+
+
 
 
 // Any routes below this middleware will require authentication / headers
@@ -321,11 +378,11 @@ router.get('/teacher-rating', (req, res) => {
 
 router.get('/view-teacher-profile/:id', (req,res) => {
   if(!req.params.id) {
-    res.json({ success: false, message: 'No Blog ID was provided'});
+    res.json({ success: false, message: 'No Teacher ID was provided'});
   } else {
     User.findOne({ _id: req.params.id}).exec((err, teacher) => {
     if (err) {
-      res.json({ success: false, message: 'Not a valid blog ID'});
+      res.json({ success: false, message: 'Not a valid teacher ID'});
     } else {
       if (!teacher) {
         res.json({ success: false, message: 'Teacher not found'});
@@ -336,6 +393,35 @@ router.get('/view-teacher-profile/:id', (req,res) => {
     });
   }
 });
+
+router.get('/get-featured-teacher', (req, res) => {
+    User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+      if (err) {
+        res.json({ success: false, message: 'Not a valid user id'});
+      } else {
+          if(!user) {
+            res.json({ success: false, message: 'No User found'});
+      } else {
+
+    User.find({isTeacher: 'true'}, (err, teachers) => {
+      if (err) {
+        res.json({ success: false, message: err });
+      } else {
+        if (teachers.length === 0) {
+          res.json({ success: false, message: 'No teachers found' });
+        } else {
+          const featuredTeacher = Math.floor((Math.random() * (teachers.length - 1)) + 1);
+          console.log('We made it here!', featuredTeacher)
+          res.json({ success: true, teacher: teachers[featuredTeacher] });
+        }
+      }
+    });
+    }
+    }
+  });// Sort teachers from newest to oldest
+  });
+
+
 
 router.put('/experience', (req,res) => {
   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
@@ -413,26 +499,47 @@ router.put('/experience', (req,res) => {
         });
       });
 
+      router.put('/updated-teacher-bio', (req,res) => {
+        User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+          if (err) {
+            res.json({ success: false, message: 'Not a valid user id'});
+          } else {
+              if(!user) {
+                res.json({ success: false, message: 'No User found'});
+          } else {
+              user.bio = req.body.bio,
+              console.log('userBio is:', user.bio)
+              user.save((err) => {
+                if(err) {
+                  res.json({ succes: false, message: err})
+                } else {
+                  console.log('working', user)
+                    res.json({ success: true, message: 'Video Saved'})
+                  }
+                });
+              }
+            }
+          });
+        });
+
 
 
 
 
 // FILES UPLOADS
 
-router.post('/avatar-upload', upload.any(), (req, res) => {
+router.post('/avatar-upload/:id', upload.any(), (req, res) => {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
   console.log('route is hit, matie here files', req.files, "or singular:", req.file, 'and the body:', req.body);
-  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+
+  User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
-      console.log('1')
       res.json({ success: false, message: 'Not a valid user id'});
     } else {
-      console.log('2')
         if(!user) {
           res.json({ success: false, message: 'No User found'});
     } else {
-      console.log('3')
       if(!req.files) {
         console.log('4')
         res.json({ success: false, message: 'No file was provided'})
@@ -483,9 +590,6 @@ router.post('/avatar-upload', upload.any(), (req, res) => {
 //   });
 // // });
 //
-// router.get('/avatar-retrieve', (req, res) => {
-//   res.sendFile( __dirname + '/uploads/50wn1k.jpeg');
-// })
 
 
 

@@ -1,20 +1,25 @@
 .bar {
   justify-content: space-between;
-  height: 2.4em;
+  padding: .25em;
   background-color: #5563F0;
 }
 
 .logo {
   justify-content: flex-start;
-  padding-top: .65em;
   width: 25%;
 }
 
-.logo p {
-  font-size: 1.3em;
-  font-weight: 550;
+.logo a {
+  font-size: 2em;
   margin-left: 2em;
   color: white;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .options {
@@ -23,16 +28,21 @@
   padding-right: 5em;
 }
 
+
 .options a {
   display: inline-block;
-  margin-left: 1.5em;
-  margin-right: 1.5em;
+  margin-left: .5em;
+  margin-right: .5em;
   font-size: 1.4em;
   color: white;
+  text-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-a:hover {
+.options a:hover {
   cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .fa-user {
@@ -44,18 +54,23 @@ a:hover {
   right: 0;
   width: 10%;
   position: absolute;
-  background-color: #5563F0;
+  background-color: rgba(85,99,240,.9);
 }
 
-.menu-item {
+.menu-item  {
   justify-content: flex-start;
-}
-
-.menu-item div a {
   color: white;
-  margin-left: .35em;
   font-size: 1.2em;
   line-height: 2;
+  margin-left: .5em;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background-color: #5563F0;
+  font-size: 1.3em;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  cursor: pointer;
 }
 
 .line {
@@ -63,24 +78,65 @@ a:hover {
   width: 100%;
 }
 
-@media(max-width: 500px ) {
-  .logo {
-    padding-top: .4em;
-  }
-  .logo p{
-    padding-right: 1em;
-    border-right: 1px solid lightgrey;
-    height: 100%;
+.browse {
+  font-size: 1.2em;
+  color: white;
+  width: 20%;
+  position: absolute;
+  left: 40%;
+  right:40%;
+  text-decoration: none;
+}
+
+.browse:hover {
+  cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+@media(max-width: 1200px ) {
+  .menu {
+    width: 20%;
   }
 
   .options {
-    padding: .25em;
+    padding-right: 2em;
   }
 
   .options a {
-    display: inline-block;
-    margin-left: .5em;
-    margin-right: .5em;
-    font-size: 1.2em;
+    margin: 0;
+  }
+}
+
+@media(max-width: 700px ) {
+  .browse {
+    display: none;
+  }
+
+  .logo a {
+    margin-left: .25em;
+  }
+
+  .options a {
+    padding: .35em;
+  }
+}
+
+@media(max-width: 500px ) {
+
+  .menu {
+    width: 40%;
+  }
+  .options {
+    padding: 0;
+  }
+}
+
+@media(max-width: 400px ) {
+  .menu {
+    width: 60%;
   }
 }

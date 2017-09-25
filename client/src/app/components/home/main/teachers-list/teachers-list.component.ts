@@ -15,6 +15,7 @@ import { FilterPipe } from '../../../../filter.pipe';
 export class TeachersListComponent implements OnInit {
   teachersList;
   filterText;
+  id: number;
 
   constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {
 
@@ -24,7 +25,7 @@ export class TeachersListComponent implements OnInit {
   // Function to GET all blogs from database
   this.apiService.getAllTeachers().subscribe(data => {
     data.teachers = this.shufflePipe.transform(data.teachers)
-    this.teachersList = data.teachers;
+    this.teachersList = data.teachers
   });
 }
 

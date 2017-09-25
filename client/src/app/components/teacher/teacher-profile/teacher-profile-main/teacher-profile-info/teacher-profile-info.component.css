@@ -5,29 +5,23 @@
 }
 
 .wrap {
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .image {
   justify-content: flex-start;
-  left: 0;
-  width: 35%;
+  position: relative;
+  left: -1.65em;
+  width: 45%;
 }
 
 .profile-pic {
-  height: 400px;
-  width: 275px;
+  height: 375px;
+  /*width: 275px;*/
 }
 
-.name {
-  font-size: 1.2em;
-  text-align: right;
-  margin-left: 5em;
-}
-
-.left {
-  justify-content: center;
-  width: 55%;
+.stats {
+  width: justify;
 }
 
 .butts {
@@ -52,7 +46,6 @@
 }
 
 .edit {
-  margin-left: 6.5em;
   margin-top: .35em;
   margin-bottom: .35em;
   width: 50%;
@@ -60,6 +53,18 @@
 
 .help-block li {
   margin: .25em;
+}
+
+.stars {
+  margin-bottom: 1em;
+}
+
+.left em {
+  margin-right: .5em;
+}
+
+.name {
+  font-size: 1.4em;
 }
 
 @media(max-width: 875px){
@@ -75,6 +80,11 @@
     align-content: flex-start;
     justify-content: space-between;
     padding: 0;
+    margin-left: 1em;
+  }
+
+  .stats {
+    padding-left: 1em;
   }
 
   .image {
@@ -88,108 +98,44 @@
     margin-top: 0;
     align-self: flex-start;
   }
-
-  .left {
-    width: 50%;
-    margin-top: 0;
-    right: 0;
-  }
-
-  .infos {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .ps {
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .edit {
-    width: 100%;
-    margin-left: 4em;
-  }
-
-  .name {
-    margin-bottom: 0;
-  }
+}
 
   @media(max-width: 480px) {
 
     .main-wrapper {
       width: 100%;
-      margin: 0;
+      margin-left: .25em;
     }
 
     .wrap {
       padding: 0;
       width: 100%;
-    }
-
-    .left {
-      width: 100%;
+      margin-left: 1em;
+      margin-bottom: 0;
     }
 
   .image {
-    width: 100%;
-    justify-content: center;
+    width: 30%;
+    /*justify-content: center;*/
     padding: 0;
     margin: 0;
   }
 
   .profile-pic {
-    border: 2px solid lightgrey;
-    width: justify;
-    /*width: 100%;  To Fill */
-    margin: 0;
-    margin-top: .5em;
-    border-radius: 50%;
+    width: 220px;
   }
 
-  .infos {
-    padding: 0;
-    width: 100%;
-    margin: 0;
-  }
-
-  .ps {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .name {
-    width: 100%;
-    text-align: center;
-  }
-
-  .name {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .full {
-    width: 100%;
-  }
-
-    .h5 {
-      width: auto;
-      margin: 5%;
-      display: inline-block;
-    }
+  .rating i {
+    font-size: 1.4em;
   }
 
   .edit {
-    margin: 0;
-    width: 50%;
-    margin-top: .2em;
-    margin-bottom: .5em;
+    width: auto;
   }
 
   form {
     margin-top: .5em;
+    width: 95%;
   }
 
 
@@ -199,6 +145,51 @@
 
   img {
   }
+}
+
+@media(max-width: 380px) {
+  .wrap {
+    margin-left: 1.5em;
+  }
+  .rating i {
+    font-size: 1em;
+  }
+
+  .profile-pic {
+    width: 185px;
+  }
+
+  form {
+    width: 80%;
+    margin-left: .5em;
+  }
+}
 
 
+
+/*STARS*/
+
+.rating {
+  border: none;
+  float: left;
+
+}
+
+.rating > input  { display: none; }
+.rating > i:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  cursor: pointer;
+}
+
+.rating > i {
+  color: #ddd;
+  float: right;
+  margin: .1em;
+}
+
+.rating > input:checked ~ i {
+  color: #00FF99;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: green;
 }

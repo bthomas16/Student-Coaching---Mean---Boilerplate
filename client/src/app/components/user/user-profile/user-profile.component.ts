@@ -27,23 +27,25 @@ export class UserProfileComponent implements OnInit {
 
 
   constructor(public authService: AuthService) {
-    // this.files = []; // local uploading files array
-    // this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
-    // this.humanizeBytes = humanizeBytes;
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
+    this.humanizeBytes = humanizeBytes;
 }
 
 @ViewChild("fileInput") fileInput;
 
-addFile(): void {
-let fi = this.fileInput.nativeElement;
-if (fi.files && fi.files[0]) {
-    let fileToUpload = fi.files[0];
-    console.log('component fileToUpload is:', fileToUpload)
-    this.authService.upload(fileToUpload).subscribe(res => {
-            console.log(res);
-        });
-    }
-}
+// addFile(): void {
+// let fi = this.fileInput.nativeElement;
+// if (fi.files && fi.files[0]) {
+//     let fileToUpload = {
+//       file: fi.files[0],
+//     }
+//     console.log('component fileToUpload is:', fileToUpload)
+//     this.authService.upload(fileToUpload).subscribe(res => {
+//             console.log(res);
+//         });
+//     }
+// }
 
 
 // onChange(event) {
@@ -64,35 +66,36 @@ if (fi.files && fi.files[0]) {
 //     });
 //   }
 
-// onUploadOutput(output: UploadOutput): void {
-//     if (output.type === 'allAddedToQueue') {
-//       } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-//         this.files.push(output.file);
-//       } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-//         // update current data in files array for uploading file
-//         const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
-//         this.files[index] = output.file;
-//       } else if (output.type === 'removed') {
-//         // remove file from array when removed
-//         this.files = this.files.filter((file: UploadFile) => file !== output.file);
-//       } else if (output.type === 'dragOver') {
-//         this.dragOver = true;
-//       } else if (output.type === 'dragOut') {
-//         this.dragOver = false;
-//       } else if (output.type === 'drop') {
-//         this.dragOver = false;
-//       }
-//   }
-//
-// onStartUpload(): void {
-//   const event: UploadInput = {
-//       type: 'uploadAll',
-//       url: 'http://localhost:8080/api/avatar-upload',
-//       method: 'POST',
-//       concurrency: 0
-//     };
-//     this.uploadInput.emit(event)
-//   }
+onUploadOutput(output: UploadOutput): void {
+    if (output.type === 'allAddedToQueue') {
+      } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
+        this.files.push(output.file);
+      } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
+        // update current data in files array for uploading file
+        const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
+        this.files[index] = output.file;
+      } else if (output.type === 'removed') {
+        // remove file from array when removed
+        this.files = this.files.filter((file: UploadFile) => file !== output.file);
+      } else if (output.type === 'dragOver') {
+        this.dragOver = true;
+      } else if (output.type === 'dragOut') {
+        this.dragOver = false;
+      } else if (output.type === 'drop') {
+        this.dragOver = false;
+      }
+  }
+
+onStartUpload(): void {
+  const event: UploadInput = {
+      type: 'uploadAll',
+      url: "http://localhost:8080/authentication/avatar-upload/" + this.id,
+      method: 'PUT',
+      concurrency: 0
+    };
+    console.log(event)
+    this.uploadInput.emit(event)
+  }
 
 
 ngOnInit() {

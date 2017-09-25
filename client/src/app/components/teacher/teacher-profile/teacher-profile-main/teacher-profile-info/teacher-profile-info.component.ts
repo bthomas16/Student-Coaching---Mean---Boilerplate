@@ -21,7 +21,13 @@ export class TeacherProfileInfoComponent implements OnInit {
   skills;
   handicap;
   cost;
+  profPic;
   isEdit: boolean = false;
+  isChecked1: boolean = false;
+  isChecked2: boolean = false;
+  isChecked3: boolean = false;
+  isChecked4: boolean = false;
+  isChecked5: boolean = false;
 
   avgKnowledgeRating: number;
   avgProfessionalismRating: number;
@@ -79,10 +85,18 @@ export class TeacherProfileInfoComponent implements OnInit {
     })
   }
 
-
+  // getProfPic() {
+  //   this.authService.onGetProfPic().subscribe(img => {
+  //     var image = new Image()
+  //     image.src = img
+  //     this.profPic = image.src
+  //     console.log(this.profPic)
+  //   })
+  // }
 
 
   ngOnInit() {
+    // this.getProfPic();
     this.authService.getProfile()
     .subscribe(profile => {
       this.userID = profile.user.id;
@@ -104,7 +118,26 @@ export class TeacherProfileInfoComponent implements OnInit {
       this.avgTeachingAbilityRating = profile.user.taRatingsArray.reduce((a, b) => a + b)/profile.user.taRatingsArray.length;
       this.avgRating = (this.avgKnowledgeRating + this.avgProfessionalismRating + this.avgTeachingAbilityRating)/3;
       this.numberOfRatings = profile.user.kRatingsArray.length;
+      if(this.avgRating >= 4.5) {
+        this.isChecked5 = true;
+      } else {
+        if(this.avgRating >= 3.5) {
+          this.isChecked4 = true;
+        } else {
+          if(this.avgRating >= 2.5) {
+            this.isChecked3 = true;
+          } else {
+            if(this.avgRating >= 1.5) {
+              this.isChecked2 = true;
+            } else {
+              if(this.avgRating >= 0.5) {
+                this.isChecked1 = true;
+              }
+            }
+          }
+        }
       }
+    }
     });
   }
 }

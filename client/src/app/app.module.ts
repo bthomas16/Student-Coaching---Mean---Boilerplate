@@ -49,6 +49,7 @@ import { TeacherSkillsComponent } from './components/teacher/teacher-profile/tea
 
 // import { Ng2UploaderModule } from 'ng2-uploader';
 import { NgUploaderModule } from 'ngx-uploader';
+import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
 
 
 
@@ -81,7 +82,8 @@ import { NgUploaderModule } from 'ngx-uploader';
     TeachingAbilityComponent,
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
-    ShufflePipe
+    ShufflePipe,
+    FeaturedTeacherComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,11 @@ li {
   margin: 1%;
 }
 
+textarea {
+  color: black;
+  width: 35em;
+}
+
 .vidWrap {
   padding: 2em;
   width: 55%;
@@ -174,5 +179,9 @@ span {
 
   .vidDiv button {
     width: 40%;
+  }
+
+  .vidText p {
+    font-size: 1em;
   }
 }

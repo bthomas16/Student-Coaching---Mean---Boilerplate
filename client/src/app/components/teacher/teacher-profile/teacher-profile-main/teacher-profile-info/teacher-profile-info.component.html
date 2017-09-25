@@ -1,63 +1,79 @@
 <div class="flex main-wrapper">
   <div class="flex wrap">
-    <div class="flex image">
-      <img class="profile-pic" src="https://4.bp.blogspot.com/-BHhUazKytmw/VbCfWPqrOJI/AAAAAAAAB7c/qj6WVX3du-s/s1600/51b91bba5a3fd9b6c8b9c53bc0ab6c65.jpg" alt="">
+    <div class="flex half image">
+      <img src="{{ profPic }}" alt="">
     </div>
-    <div class="flex half left">
+    <div class="flex half stats">
       <div class="flex" *ngIf="location == undefined">
           <h2>Please Update Your Information</h2>
       </div>
-      <div class="flex">
-      <form [formGroup]="infoForm" (submit)="infoSubmit()">
-          <div [ngClass]="{'has-error': (infoForm.controls.location.errors && infoForm.controls.location.dirty), 'has-success': !infoForm.controls.location.errors}"><input *ngIf="isEdit" type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" formControlName="location">
-            <ul class="help-block">
-              <li *ngIf="infoForm.controls.location.errors?.required && infoForm.controls.location.dirty">This field is required
-              </li>
-            </ul>
-          </div>
-          <div [ngClass]="{'has-error': (infoForm.controls.yrsExperience.errors && infoForm.controls.yrsExperience.dirty), 'has-success': !infoForm.controls.yrsExperience.errors}"><input *ngIf="isEdit" type="number" [value]="" name="yrsExperience" placeholder="3 Years" class="form-control" formControlName="yrsExperience">
-            <ul class="help-block">
-              <li *ngIf="infoForm.controls.yrsExperience.errors?.required && infoForm.controls.yrsExperience.dirty">This field is required
-              </li>
-            </ul>
-          </div>
-          <div [ngClass]="{'has-error': (infoForm.controls.skills.errors && infoForm.controls.skills.dirty), 'has-success': !infoForm.controls.skills.errors}"><input *ngIf="isEdit" type="text" [value]="" name="skills" placeholder="Short game, Putting, Driving" class="form-control" formControlName="skills">
-            <ul class="help-block">
-              <li *ngIf="infoForm.controls.skills.errors?.required && infoForm.controls.skills.dirty">This field is required
-              </li>
-            </ul>
-          </div>
-          <div [ngClass]="{'has-error': (infoForm.controls.handicap.errors && infoForm.controls.handicap.dirty), 'has-success': !infoForm.controls.handicap.errors}"><input *ngIf="isEdit" type="number" [value]="" name="handicap" placeholder="12" class="form-control" formControlName="handicap">
-            <ul class="help-block">
-              <li *ngIf="infoForm.controls.handicap.errors?.required && infoForm.controls.handicap.dirty">This field is required
-              </li>
-            </ul>
-          </div>
-          <div [ngClass]="{'has-error': (infoForm.controls.cost.errors && infoForm.controls.cost.dirty), 'has-success': !infoForm.controls.cost.errors}"><input *ngIf="isEdit" type="number" [value]="" name="cost" placeholder="65" class="form-control" formControlName="cost">
-            <ul class="help-block">
-              <li *ngIf="infoForm.controls.cost.errors?.required && infoForm.controls.cost.dirty">This field is required
-              </li>
-            </ul>
-            <button type="submit" [disabled]="!infoForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
-          </div>
-      </form>
-      </div>
 
-    <div class="flex infos" *ngIf="!isEdit && location !== undefined">
-      <h3 class="h5" *ngIf="!yetRated">Not Yet Rated</h3>
-        <p class="name">{{ fullname }}</p>
-        <p class="h5 full" *ngIf="yetRated">{{ avgRating | number : '1.1-1' }}</p>
-        <p class="h5"> {{ numberOfRatings }} Students</p>
-        <p class="h5"> {{ location }}</p>
-        <p class="h5"> {{ yrsExperience }}Years</p>
-        <p class="h5"> {{ skills }}</p>
-        <p class="h5"> {{ handicap }}Under</p>
-        <p class="h5"> $ {{ cost }}/hr</p>
-        <div class="flex editWrap">
-          <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
-      </div>
+
+    <div class="flex" *ngIf="!isEdit && location !== undefined">
+      <h3 class="flex" *ngIf="!yetRated">Not Yet Rated</h3>
+        <p class="flex name">{{ fullname }}</p>
+
+        <div class="flex stars">
+          <div class="rating">
+            <input type="radio" [checked]="isChecked5"/>
+            <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+            <input type="radio" [checked]="isChecked4"/>
+            <i class="fa fa-star fa-2x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+            <input type="radio" [checked]="isChecked3"/>
+            <i class="fa fa-star fa-2x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+            <input type="radio" [checked]="isChecked2"/>
+            <i class="fa fa-star fa-2x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+            <input type="radio" [checked]="isChecked1"/>
+            <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+          </div>
+        </div>
+
+
+        <!-- <p class="flex" *ngIf="yetRated">{{ avgRating | number : '1.1-1' }}</p> -->
+        <p class="flex left"> <em>{{ numberOfRatings }}</em> Students</p>
+        <p class="flex left"> {{ location }}</p>
+        <p class="flex left"> {{ yrsExperience }}Years</p>
+        <p class="flex left"> {{ skills }}</p>
+        <p class="flex left"> {{ handicap }}Under</p>
+        <p class="flex left"> $ {{ cost }}/hr</p>
+        <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
     </div>
+
+    <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
+        <div [ngClass]="{'has-error': (infoForm.controls.location.errors && infoForm.controls.location.dirty), 'has-success': !infoForm.controls.location.errors}"><input *ngIf="isEdit" type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" formControlName="location">
+          <ul class="help-block">
+            <li *ngIf="infoForm.controls.location.errors?.required && infoForm.controls.location.dirty">This field is required
+            </li>
+          </ul>
+        </div>
+        
+        <div [ngClass]="{'has-error': (infoForm.controls.yrsExperience.errors && infoForm.controls.yrsExperience.dirty), 'has-success': !infoForm.controls.yrsExperience.errors}"><input *ngIf="isEdit" type="number" [value]="" name="yrsExperience" placeholder="3 Years" class="form-control" formControlName="yrsExperience">
+          <ul class="help-block">
+            <li *ngIf="infoForm.controls.yrsExperience.errors?.required && infoForm.controls.yrsExperience.dirty">This field is required
+            </li>
+          </ul>
+        </div>
+        <div [ngClass]="{'has-error': (infoForm.controls.skills.errors && infoForm.controls.skills.dirty), 'has-success': !infoForm.controls.skills.errors}"><input *ngIf="isEdit" type="text" [value]="" name="skills" placeholder="Short game, Putting, Driving" class="form-control" formControlName="skills">
+          <ul class="help-block">
+            <li *ngIf="infoForm.controls.skills.errors?.required && infoForm.controls.skills.dirty">This field is required
+            </li>
+          </ul>
+        </div>
+        <div [ngClass]="{'has-error': (infoForm.controls.handicap.errors && infoForm.controls.handicap.dirty), 'has-success': !infoForm.controls.handicap.errors}"><input *ngIf="isEdit" type="number" [value]="" name="handicap" placeholder="12" class="form-control" formControlName="handicap">
+          <ul class="help-block">
+            <li *ngIf="infoForm.controls.handicap.errors?.required && infoForm.controls.handicap.dirty">This field is required
+            </li>
+          </ul>
+        </div>
+        <div [ngClass]="{'has-error': (infoForm.controls.cost.errors && infoForm.controls.cost.dirty), 'has-success': !infoForm.controls.cost.errors}"><input *ngIf="isEdit" type="number" [value]="" name="cost" placeholder="65" class="form-control" formControlName="cost">
+          <ul class="help-block">
+            <li *ngIf="infoForm.controls.cost.errors?.required && infoForm.controls.cost.dirty">This field is required
+            </li>
+          </ul>
+          <button type="submit" [disabled]="!infoForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
+        </div>
+    </form>
       <!-- <div class="flex butts">
         <button class="btn btn-success butt">Contact</button>
         <button class="btn btn-primary butt">Review</button>

@@ -50,6 +50,16 @@
   width: 100%;
 }
 
+.btn-default {
+  background-color: #686767;
+  color: darkgrey;
+}
+
+.active {
+  background-color: #5563F0;
+  color: white;
+}
+
 @media (max-width: 10250px) {
   .updateButton {
     font-size: 1em
@@ -84,7 +94,8 @@
     font-size: .8em;
   }
   .butts button {
-    font-size: .75em;
+    font-size: .8em;
+    font-weight: 600;
   }
 
 .examples {
@@ -97,11 +108,11 @@
   font-size: .65em;
 }
   .update {
-    padding: .25em;
+    /*padding: .05em;*/
   }
 
   .updateButton {
-    font-size: .7em;
+    font-size: .95em;
     width: 55%;
   }
 

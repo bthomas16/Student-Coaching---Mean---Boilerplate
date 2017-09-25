@@ -4,10 +4,20 @@
   </div>
   <div class="teacher-wrapper flex">
     <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:6; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
-    <!-- <div class="flex teacher"  *ngFor="let teacher of teachersList"> -->
-        {{ teacher.fullname}}
+        <!-- {{ teacher.fullname}}
         <br>
-        {{ teacher.email }}
-    </a>
+        {{ teacher.email }} -->
+        <div class="flex mediaDiv">
+          <div class="flex pic">
+              <img src="http://jameystegmaier.com/wp-content/uploads/2012/11/scarlett-Johanssen.jpg">
+          </div>
+            <div class="flex info">
+              <p id="fullname">{{teacher.fullname.toUpperCase()}}</p>
+              <p class="flex" id="location"> {{ teacher.location }}</p>
+              <p class="flex" id="skills">{{ teacher.skills }}</p>
+              <p class="flex" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr</p>
+            </div>
+        </div>
+      </a>
   </div>
 </div>

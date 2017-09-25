@@ -1,59 +1,68 @@
 .wrapper {
-  width: 100vw;
   background-color: rgba(215,215,215,.2);
+  background-color: #2B2A2A;
 }
 
+/*LEFT*/
+
 .half {
-  width: 49%;
-  margin:0;
-  height: 28em;
+  padding: 1.5em;
 }
+
+.left {
+  justify-content: flex-start;
+  color: white;
+}
+
+.text {
+  text-align: left;
+}
+
+.mainTitle {
+  font-size: 2.25em;
+  width: 90%;
+  margin-bottom: 1.5em;
+}
+
+.form {
+  width: 90%;
+  justify-content: flex-start;
+  margin-bottom: .5em;
+}
+
+.subText {
+  width: 100%;
+  text-align: left;
+  font-size: 1em;
+  margin-top: .85em;
+  justify-content: flex-start;
+}
+
+input {
+  width: 60%;
+  margin: 0;
+  text-align: center;
+  color: black;
+}
+
+.submit {
+  width: 25%;
+  font-size: 1.2em;
+  padding: 0;
+  background-color: #5563F0;
+  border: 1px solid #5563F0;
+}
+
+
+
+/*RIGHT*/
 
 .right {
   background-color: #5563F0;
   color: white;
-  width: 50vw;
-  margin-right: -1%;
-  flex-wrap: nowrap;
+  width: 51%;
 }
 
-.text {
-  justify-content: flex-start;
-  text-align: left;
-  margin-left: 5%;
-  margin-bottom: 0;
-}
-
-.text h2 {
-  font-size: 2.2em;
-  font-weight: 800;
-}
-
-.text p {
-  font-size: 1.25em;
-  color: rgb(80,80,80);
-  margin-bottom: -10%;
-}
-
-form {
-  margin: auto;
-}
-
-.input {
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.input input {
-  width: 40%;
-  padding: 1%;
-}
-
-button {
-  margin-top: 2%;
-  width: 40%;
-  font-size: 1.2em;
-}
 
 .quote {
   font-size: 2.2em;
@@ -79,8 +88,107 @@ button {
   margin: auto;
 }
 
+.fa-quote-right {
+  font-size: 2.5em;
+}
+
 .i {
   margin-bottom: 1.5%;
   justify-content: flex-start;
   width: 75%;
+}
+
+
+/*MEDIA*/
+
+
+@media(max-width: 700px) {
+  input {
+    width: 100%;
+  }
+  .submit {
+    width: 100%;
+    font-size: 1em;
+    margin-top: .5em;
+  }
+
+  .subText {
+    font-size: .75em;
+  }
+
+  .fa-quote-right {
+    font-size: 1.8em;
+  }
+
+  .right * {
+    width: 100%;
+  }
+
+  .i {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+
+  }
+
+  .quote {
+    margin-top: 1em;
+    font-size: 1.45em;
+    line-height: 1.5;
+    width: 100%;
+    justify-content: center;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+
+  .author {
+    font-weight: 700;
+    font-size: 1em;
+    /*width: 100%;*/
+    text-align: left;
+    margin: auto;
+    margin-top: .5em;
+  }
+
+  .mainTitle {
+    font-size: 1.25em;
+    width: 95%;
+  }
+
+}
+
+@media(max-width:445px) {
+  .half {
+    width: 95%;
+  }
+
+  .left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .left * {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .right p {
+    /*font-size: 1.5em;*/
+    width: 100%;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .quote {
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .i {
+    width: 100%;
+  }
 }

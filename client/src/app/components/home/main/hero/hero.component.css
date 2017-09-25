@@ -1,11 +1,9 @@
 .wrapper {
   height: 100%;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2)
-    ), url('../../../../../assets/golf.jpg');
+  background-image: url('../../../../../assets/golf.jpg');
   background-size: cover;
-  width: 100vw;
+  background-position:bottom;
+  width: 100%;
 }
 
 .half {
@@ -13,34 +11,31 @@
   text-align: center;
 }
 
-.left {
-  text-align: center;
+
+.mainText{
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: white;
-  justify-content: center;
   width: 62.5%;
 }
-
 .mainTitle {
-  font-size: 4.5em;
+  font-size: 3.5em;
   font-weight: 800;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .info {
-  font-weight: 300;
-  margin: auto;
-  margin-top: 2%;
-  font-size: 1.65em;
+  width: 68%;
+  margin-top: 2em;
+  font-size: 1.25em;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  width: 75%;
+  font-weight: 400;
+  line-height: 2;
 }
 
 .buttons {
-  width: 40%;
-}
-
-.btn {
-  width: 50%
+  width: 35%;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,.5)
 }
 
 .register {
@@ -48,14 +43,108 @@
 }
 
 .account {
-  cursor: default;
+  color: rgba(0,0,0,.6);
+  font-size: 1.2em;
 }
 
 .account em{
+  cursor: pointer;
+  color: darkblue;
+  text-shadow: none;
+}
+
+.account em:hover{
+  color: rgba(85, 99, 240,1);
+  text-shadow: -.01px 0 black, 0 .01px black, .01px 0 black, 0 -0.01px black;
   cursor: pointer;
 }
 
 :host /deep/ h3 {
   color: blue;
   font-size: 10em;
+}
+
+.modal-header {
+  border: none;
+}
+
+.bigtitle {
+  font: 3.4em;
+  width: 10%;
+}
+
+
+/*MODAL*/
+
+.modal-content {
+  background-color: #5563F0;
+  color: white;
+}
+
+@media(max-width: 780px) {
+
+  .wrapper {
+    background-position: right;
+      background-size: cover;
+      height: 100%;
+      background-image: url('../../../../../assets/golf1.jpg');
+      background-size: cover;
+      width: 100%;
+  }
+  .mainText{
+    width: 90%;
+  }
+  .mainTitle {
+    font-size: 3.5em;
+  }
+
+  .info {
+    margin-top: 1em;
+    width: 85%;
+  }
+
+  .buttons {
+    padding-bottom: 0;
+    width: 75%;
+  }
+
+}
+
+@media(max-width: 500px) {
+  .mainTitle {
+    font-size: 2em;
+  }
+  .mainText {
+    width: 100%;
+  }
+
+  .info {
+    width: 90%;
+    font-size: 1em;
+    margin-top: 2.5em;
+    line-height: 1.5;
+  }
+}
+
+@media(max-height:475px) {
+  .info {
+    font-size: 1em;
+    /*margin-top: 2.5em;*/
+    /*line-height: 1.5;*/
+  }
+
+  .account {
+    font-size: .95em;
+  }
+
+  .buttons {
+    padding: .5em;
+    padding-bottom: 0;
+  }
+}
+
+@media(max-height:375px) {
+  .info {
+    display: none;
+}
 }

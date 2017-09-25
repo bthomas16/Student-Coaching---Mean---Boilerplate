@@ -31,11 +31,13 @@ export class TeacherProfileScheduleComponent implements OnInit {
   sunA: boolean = false;
   sunE: boolean = false;
   processing: boolean = false;
+  show: boolean = false;
 
   constructor(public authService: AuthService) { }
 
 
 onSchedule() {
+  this.show = true;
   this.processing = true;
   const schedule = {
     monM: this.monM,
@@ -70,6 +72,7 @@ onSchedule() {
       this.message = data.message
       setTimeout(() => {
         this.processing = false;
+        this.show = false;
       }, 1800);
     }
   })

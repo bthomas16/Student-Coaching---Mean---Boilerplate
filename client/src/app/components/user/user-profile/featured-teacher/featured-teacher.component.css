@@ -1,0 +1,42 @@
+.featuredCoach {
+  justify-content:flex-start;
+text-align: left;
+color:#5563F0;
+font-weight: bold;
+}
+
+p em {
+  margin-right: .5em;
+}
+
+.middle {
+  margin: 1em;
+}
+
+.stars {
+  padding-top: .75em;
+}
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input  { display: none; }
+.rating > i:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  cursor: pointer;
+}
+
+.rating > i {
+  color: #ddd;
+  float: right;
+  margin: .1em;
+}
+
+.rating > input:checked ~ i {
+  color: #00FF99;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: green;
+}

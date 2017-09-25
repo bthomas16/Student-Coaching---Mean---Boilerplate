@@ -91,6 +91,12 @@ checkEmail(email) {
             res.json())
         }
 
+        onBioFormSubmit(bio) {
+            this.createAuthenticationHeaders();
+            return this.http.put(this.server + 'authentication/updated-teacher-bio', bio, this.options).map(res =>
+              res.json())
+          }
+
       updateSchedule(schedule) {
           this.createAuthenticationHeaders();
           return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>
@@ -103,12 +109,10 @@ checkEmail(email) {
         //   return this.http.put(this.server + 'authentication/avatar-upload', file, this.options).map(res => res.json());
         // }
 
-        upload(fileToUpload: any) {
+        upload(fileToUpload) {
           this.createAuthenticationHeaders();
-          let input = new FormData();
-          input.append("file", fileToUpload);
-          console.log('input is:', input);
-          return this.http.post(this.server + 'authentication/avatar-upload', input, this.options);
+          console.log(fileToUpload, 'services consoled it')
+          return this.http.post(this.server + 'authentication/avatar-upload', fileToUpload, this.options);
         }
 
         onExperienceSubmit(experience) {
@@ -151,6 +155,11 @@ checkEmail(email) {
             return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
           }
 
+          getFeaturedTeacher() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/get-featured-teacher', this.options).map(res => res.json());
+          }
+
 
           isStudent():any {
             this.createAuthenticationHeaders();
@@ -175,6 +184,12 @@ checkEmail(email) {
            getTeacherView(id) {
              this.createAuthenticationHeaders();
              return this.http.get(this.server + 'authentication/view-teacher-profile/' + id, this.options).map(res =>
+               res.json());
+           }
+
+           onGetProfPic() {
+             this.createAuthenticationHeaders();
+             return this.http.get(this.server + 'authentication/avatar-retrieve', this.options).map(res =>
                res.json());
            }
 

@@ -1,4 +1,7 @@
-
+<div class="row show-hide-message" *ngIf="show">
+  <div [ngClass]="messageClass">
+  {{message}}</div>
+</div>
 
 <span *ngIf="!isTeacher">
 </span>
@@ -19,14 +22,23 @@
   <app-teacher-profile-main>Loading...</app-teacher-profile-main>
   <div class="flex notes">
     <h3 class="flex left-text"> {{ fullname }}</h3>
-    <p class="notes-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat!</p>
+    <span *ngIf="!isBioEdit">
+    <p class="notes-text">{{bio}}</p>
+    <div class="flex">
+      <button class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Edit</button>
+    </div>
+    </span>
+    <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
+      <textarea name="bio" formControlName="bio" placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat" value="{{bio}}"></textarea>
+      <div class="flex save">
+        <button type="button" class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Cancel</button>
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+
   </div>
   <div class="flex vidWrap">
     <div class="flex vidDiv">
-      <div class="row show-hide-message" *ngIf="show">
-        <div [ngClass]="messageClass">
-        {{message}}</div>
-      </div>
       <div class="flex">
         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
       </div>

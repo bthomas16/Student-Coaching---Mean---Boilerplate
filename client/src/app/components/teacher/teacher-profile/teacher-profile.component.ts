@@ -32,10 +32,15 @@ export class TeacherProfileComponent implements OnInit {
   videoForm;
   videoLink;
   video;
+  bioForm;
+  bio;
+  isBioEdit: boolean = false;
+
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
     this.createForm();
     this.createVideoForm();
+    this.createBioForm()
   }
 
   createForm(){
@@ -51,6 +56,33 @@ export class TeacherProfileComponent implements OnInit {
   createVideoForm(){
     this.videoForm = this.formBuilder.group({
       videoLink: ['']
+    });
+  }
+
+  createBioForm() {
+    this.bioForm = this.formBuilder.group({
+      bio: ['']
+    });
+  }
+
+  bioFormSubmit() {
+    let teacherBio = this.bioForm.get('bio').value;
+    const bio = {
+      bio: teacherBio
+    }
+    this.authService.onBioFormSubmit(bio).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.show = true;
+        this.isBioEdit = false;
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.show = false
+        }, 1200);
+      }
     });
   }
 
@@ -149,6 +181,7 @@ export class TeacherProfileComponent implements OnInit {
       this.experience4 = profile.user.experience4;
       this.experience5 = profile.user.experience5;
       this.video = profile.user.video;
+      this.bio = profile.user.bio;
     });
   }
 }

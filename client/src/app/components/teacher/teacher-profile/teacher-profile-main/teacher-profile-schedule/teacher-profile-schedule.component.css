@@ -60,6 +60,10 @@
   color: white;
 }
 
+.noClicks {
+  pointer-events: none;
+}
+
 @media (max-width: 10250px) {
   .updateButton {
     font-size: 1em
@@ -71,7 +75,6 @@
   .butts button {
     font-size: .9em;
   }
-
 }
 
 @media (max-width: 650px) {

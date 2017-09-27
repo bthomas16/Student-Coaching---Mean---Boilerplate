@@ -47,13 +47,13 @@
   font-size: 1.2em;
 }
 
-.account em{
+.account a{
   cursor: pointer;
   color: darkblue;
   text-shadow: none;
 }
 
-.account em:hover{
+.account a:hover{
   color: rgba(85, 99, 240,1);
   text-shadow: -.01px 0 black, 0 .01px black, .01px 0 black, 0 -0.01px black;
   cursor: pointer;
@@ -129,10 +129,9 @@
     padding-bottom: 0;
     width: 75%;
   }
-
 }
 
-@media(max-width: 500px) {
+@media(max-width: 525px) {
   .mainTitle {
     font-size: 2em;
   }
@@ -146,13 +145,15 @@
     margin-top: 2.5em;
     line-height: 1.5;
   }
+  .account a {
+    width: 100%;
+    display: inline-block;
+  }
 }
 
 @media(max-height:475px) {
   .info {
     font-size: 1em;
-    /*margin-top: 2.5em;*/
-    /*line-height: 1.5;*/
   }
 
   .account {

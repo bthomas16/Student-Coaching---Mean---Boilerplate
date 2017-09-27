@@ -43,7 +43,7 @@
         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
       </div>
       <form [formGroup]="videoForm" (submit)="videoSubmit()" class="flex">
-        <input type="text" placeholder="https://www.youtube.com/watch?v=4OWyMRFSBrM" value="{{ video }}" name="videoLink" formControlName="videoLink">
+        <input type="text" placeholder="https://www.youtube.com/watch?v=4OWyMRFSBrM" value="{{ videoUrl }}" name="videoLink" formControlName="videoLink">
         <button class="btn btn-success">Submit</button>
       </form>
       <div class="flex vidText">

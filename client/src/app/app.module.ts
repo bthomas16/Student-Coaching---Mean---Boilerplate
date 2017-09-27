@@ -51,6 +51,7 @@ import { TeacherSkillsComponent } from './components/teacher/teacher-profile/tea
 import { NgUploaderModule } from 'ngx-uploader';
 import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
 import {TruncatePipe} from './pipes/truncate.pipe';
+import { UserLoginRedirectComponent } from './components/user/user-login/user-login-redirect/user-login-redirect.component';
 
 
 
@@ -85,7 +86,8 @@ import {TruncatePipe} from './pipes/truncate.pipe';
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
     FeaturedTeacherComponent,
-    TruncatePipe
+    TruncatePipe,
+    UserLoginRedirectComponent
   ],
   imports: [
     BrowserModule,

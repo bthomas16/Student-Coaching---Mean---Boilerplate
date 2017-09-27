@@ -33,7 +33,6 @@ import { BottomSignUpComponent } from './components/home/main/bottom-sign-up/bot
 import { FooterComponent } from './components/footer/footer.component';
 
 import { FilterPipe } from './filter.pipe';
-import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
 import { ChooseComponent } from './components/user/user-profile/choose/choose.component';
 import { TeacherProfileMainComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-main.component';
 import { TeacherProfileScheduleComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-schedule/teacher-profile-schedule.component';
@@ -85,7 +84,6 @@ import {TruncatePipe} from './pipes/truncate.pipe';
     TeachingAbilityComponent,
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
-    ShufflePipe,
     FeaturedTeacherComponent,
     TruncatePipe
   ],

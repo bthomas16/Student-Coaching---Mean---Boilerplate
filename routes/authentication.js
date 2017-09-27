@@ -206,7 +206,6 @@ router.get('/profile', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
 // Photo Upload
 // router.use(multer({ dest: '../uploads/', rename: function(fieldname, filename){
 //   return filename
@@ -238,8 +237,6 @@ router.get('/profile', (req, res) => {
 //   });
 //   });
 
-=======
->>>>>>> a151d1c1250531b8bed4427b9b59b446604ce8ff
 router.get('/profile/is-student', (req, res) => {
   User.findOne({ _id: req.decoded.userId }).select('isStudent').exec((err, user) => {
     if (err) {

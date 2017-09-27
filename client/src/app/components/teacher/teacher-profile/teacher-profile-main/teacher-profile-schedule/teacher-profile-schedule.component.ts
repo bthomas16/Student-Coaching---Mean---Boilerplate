@@ -86,7 +86,7 @@ onSchedule() {
     this.route.params.subscribe(params => {
     this.viewTeacherID = params['id'];
       if(this.viewTeacherID) {
-      console.log('no params', this.route.params)
+      console.log('we have params in the schedule component', this.route.params)
       this.isParams = true;
     this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
       this.monM = viewTeacher.teacher.monM;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-teacher-profile',
@@ -30,17 +31,17 @@ export class TeacherProfileComponent implements OnInit {
   experience5;
   isEdit: boolean = false;
   videoForm;
-  videoLink;
-  video;
+  videoUrl;
+  // safeVideoUrl: SafeResourceUrl;
   bioForm;
   bio;
   isBioEdit: boolean = false;
 
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, public sanitizer: DomSanitizer) {
     this.createForm();
     this.createVideoForm();
-    this.createBioForm()
+    this.createBioForm();
   }
 
   createForm(){
@@ -87,10 +88,10 @@ export class TeacherProfileComponent implements OnInit {
   }
 
   videoSubmit() {
-    this.videoLink = this.videoForm.get('videoLink').value.trim();
-    console.log('videoLink is:', this.videoLink);
+    let videoLink = this.videoForm.get('videoLink').value.trim();
+    console.log('videoLink is:', videoLink);
     const video = {
-      video: this.videoLink
+      video: videoLink
     }
     this.authService.onVideoSubmit(video).subscribe(data => {
       if (!data.success) {
@@ -180,8 +181,10 @@ export class TeacherProfileComponent implements OnInit {
       this.experience3 = profile.user.experience3;
       this.experience4 = profile.user.experience4;
       this.experience5 = profile.user.experience5;
-      this.video = profile.user.video;
+      this.videoUrl = profile.user.video;
       this.bio = profile.user.bio;
+      console.log(this.videoUrl);
+      // this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoUrl);
     });
   }
 }

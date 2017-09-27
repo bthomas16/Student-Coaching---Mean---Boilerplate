@@ -102,7 +102,7 @@ export class TeacherProfileInfoComponent implements OnInit {
     this.route.params.subscribe(params => {
     this.viewTeacherID = params['id'];
       if(this.viewTeacherID) {
-      console.log('no params', this.route.params)
+      console.log('we have some params in the teacher info component!', this.route.params)
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
            this.userID = viewTeacher.teacher.id;

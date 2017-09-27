@@ -9,6 +9,7 @@ import { ViewTeacherProfileComponent } from './components/user/view-teacher-prof
 
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
+import { UserLoginRedirectComponent } from './components/user/user-login/user-login-redirect/user-login-redirect.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { StudentAuthGuard } from './guards/student-auth.guard';
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'register', component: UserRegisterComponent, canActivate: [NotAuthGuard] },
-  { path: 'login', component: UserLoginComponent, canActivate: [NotAuthGuard] },
+  { path: 'login', component: UserLoginRedirectComponent, canActivate: [NotAuthGuard] },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'profile/student', component: StudentProfileComponent, canActivate: [AuthGuard]},
   { path: 'profile/teacher', component: TeacherProfileComponent, canActivate: [AuthGuard]},

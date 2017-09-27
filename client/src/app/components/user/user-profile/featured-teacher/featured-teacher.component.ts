@@ -9,8 +9,8 @@ import { AuthService } from '../../../../services/auth.service';
 })
 export class FeaturedTeacherComponent implements OnInit {
   featuredTeacherId;
-  featuredFullname;
-  featuredEmail;
+  fullname;
+  email;
   location;
   yrsExperience;
   id;
@@ -45,8 +45,8 @@ export class FeaturedTeacherComponent implements OnInit {
         this.allTeacher = featured.teacher[0];
         this.featuredTeacherId = featured.teacher._id;
         this.route = "../view-teacher-profile/" + this.featuredTeacherId;
-        this.featuredFullname = featured.teacher.fullname.toUpperCase();
-        this.featuredEmail = featured.teacher.email;
+        this.fullname = featured.teacher.fullname.toUpperCase();
+        this.email = featured.teacher.email;
         this.location = featured.teacher.location;
         this.yrsExperience = featured.teacher.yrsExperience;
         this.skills = featured.teacher.skills;

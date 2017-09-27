@@ -22,7 +22,8 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.redirectUrl = state.url;
-      this.showModal = true;
+      this.dataToggle = 'modal';
+      this.dataTarget = '#login'
       setTimeout(() => {
         this.router.navigate(['/login'])
       },500)

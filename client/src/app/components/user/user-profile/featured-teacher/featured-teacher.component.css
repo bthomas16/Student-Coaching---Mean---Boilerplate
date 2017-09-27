@@ -5,12 +5,10 @@ color:#5563F0;
 font-weight: bold;
 }
 
-p em {
-  margin-right: .5em;
-}
 
 .middle {
-  margin: 1em;
+  margin-top: .5em;
+  margin-bottom: 1.5em;
   color: #5563F0;
   font-size: 1.75em;
   font-weight: bold;
@@ -25,11 +23,23 @@ p em {
 }
 
 .featuredPic {
-  height: 200px;
+  height: 350px;
   border: 1px solid #5563F0;
 }
 
+.leftText {
+  justify-content: flex-start;
+}
 
+.full {
+  width: 100%;
+  text-align: left;
+}
+
+.number {
+  margin-left: .5em;
+  margin-top: .25em;
+}
 
 /*MEDIA*/
 

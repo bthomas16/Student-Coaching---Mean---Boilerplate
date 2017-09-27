@@ -68,9 +68,31 @@
   border: none;
 }
 
-.bigtitle {
-  font: 3.4em;
-  width: 10%;
+.registerText {
+  width: 50%;
+  justify-content: center;
+  padding-left: 1em;
+}
+
+.bigTitle {
+  font: 4.5em;
+  align-self: flex-start;
+  text-align: left;
+  margin-bottom: 1em;
+  width: 100%;
+  font-weight: bolder;
+}
+
+.littleText {
+  margin-top: 1em;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+
+.form {
+  width: 45%;
 }
 
 

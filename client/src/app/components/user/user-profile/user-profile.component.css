@@ -1,3 +1,36 @@
-.choose {
-  margin-top: 2.5em;
+.maximize {
+  margin-top: 2em;
+}
+
+.img {
+  width: 50%;
+  justify-content: flex-start;
+}
+
+.golfing-img {
+  width: 100%;
+  left: 0;
+  margin: 0;
+  position: relative;
+}
+
+.right {
+  width: 45%;
+  margin: 2.5%;
+}
+
+.right p {
+  font-size: 250%;
+}
+
+.featured {
+  background-color: #F2F2F2;
+  padding: 1em;
+}
+
+
+@media(max-width: 650px) {
+  .half {
+    width: 100%;
+  }
 }

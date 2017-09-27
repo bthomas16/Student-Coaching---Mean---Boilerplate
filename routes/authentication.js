@@ -377,6 +377,13 @@ router.get('/teacher-rating', (req, res) => {
 });
 
 router.get('/view-teacher-profile/:id', (req,res) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+    if (err) {
+      res.json({ success: false, message: 'Not a valid user id'});
+    } else {
+        if(!user) {
+          res.json({ success: false, message: 'No User found'});
+    } else {
   if(!req.params.id) {
     res.json({ success: false, message: 'No Teacher ID was provided'});
   } else {
@@ -392,6 +399,9 @@ router.get('/view-teacher-profile/:id', (req,res) => {
       }
     });
   }
+}
+}
+});
 });
 
 router.get('/get-featured-teacher', (req, res) => {

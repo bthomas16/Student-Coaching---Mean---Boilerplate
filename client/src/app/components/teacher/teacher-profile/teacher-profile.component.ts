@@ -66,9 +66,9 @@ export class TeacherProfileComponent implements OnInit {
   }
 
   bioFormSubmit() {
-    let teacherBio = this.bioForm.get('bio').value;
+    this.bio = this.bioForm.get('bio').value;
     const bio = {
-      bio: teacherBio
+      bio: this.bio
     }
     this.authService.onBioFormSubmit(bio).subscribe(data => {
       if(!data.success) {

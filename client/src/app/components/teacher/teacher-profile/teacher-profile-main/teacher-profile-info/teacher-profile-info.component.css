@@ -4,10 +4,6 @@
   color: white;
 }
 
-.wrap {
-  justify-content: center;
-}
-
 .image {
   justify-content: flex-start;
   position: relative;
@@ -51,6 +47,13 @@
   width: 50%;
 }
 
+.contact {
+  width: 75%;
+  margin-top: .35em;
+  margin-bottom: .35em;
+  /*padding: .5em;*/
+}
+
 .help-block li {
   margin: .25em;
 }
@@ -74,7 +77,6 @@
 }
 
 @media(max-width: 600px){
-
   .wrap {
     width: 100%;
     align-content: flex-start;
@@ -104,7 +106,6 @@
 
     .main-wrapper {
       width: 100%;
-      margin-left: .25em;
     }
 
     .wrap {
@@ -127,10 +128,6 @@
 
   .rating i {
     font-size: 1.4em;
-  }
-
-  .edit {
-    width: auto;
   }
 
   form {

@@ -1,29 +1,63 @@
+<div class="flex featured">
+  <app-featured-teacher></app-featured-teacher>
+</div>
+<!--
 <div class="flex wrapper" data-dismiss="modal">
+  <div class="flex">
+    <div class="row show-hide-message">
+      <div [ngClass]="messageClass">
+      {{message}}
+      </div>
+    </div>
+  </div>
   <div class="flex half">
     <h3 class="flex">{{ fullname }}</h3>
     <h5 class="flex">{{ email }}</h5>
   </div>
   <div class="flex">
-    <!-- <form [formGroup]="imgForm" (submit)="onImgSubmit()"> -->
-      <input type="file" (change)="onChange($event)">
-      <button class="btn btn-success" (click)="onImgSubmit()">Submit</button>
-    <!-- </form> -->
+
+
+    <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+    <button type="button" class="start-upload-btn" (click)="onStartUpload()">
+    Start Upload</button>
+
+
+</div> -->
+
+
+
+
+
+<app-teachers-list>Loading...</app-teachers-list>
+
+<div class="flex maximize">
+  <div class="flex half img">
+      <img src="../../../../assets/golfing.jpg" class="golfing-img">
   </div>
-
-
-  <div class="flex half">
-      <h3 class="flex">Accounts</h3>
-      <ul>
-        <li>
-          {{ isStudent }}
-        </li>
-        <li>
-          {{ isTeacher }}
-        </li>
-      </ul>
+  <div class="flex half right" *ngIf="!isTeacher">
+    <p>Do you have what it takes to become a teacher? </p>
+      <div class="flex">
+        <a class="btn btn-primary" routerLink="../profile/teacher">Maximize Potential</a>
+      </div>
+  </div>
+  <div class="flex half right" *ngIf="isTeacher">
+    <p>Make some magic happen</p>
+      <div class="flex">
+        <a class="btn btn-primary" routerLink="../profile/teacher">Enter Teacher Dashboard</a>
+      </div>
   </div>
 </div>
 
-<app-choose><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-choose>
 
-<app-teachers-list><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-teachers-list>
+<!-- <div class="flex choose">
+  <app-choose><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-choose>
+</div> -->
+
+
+<!-- <input type="file" name="avatar" (change)="onChange($event)">
+<button class="btn btn-success" (click)="fileSubmit()">Submit</button> -->
+
+
+
+<!-- <input #fileInput type="file"/>
+<button (click)="addFile()">Add</button> -->

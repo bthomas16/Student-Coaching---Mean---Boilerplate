@@ -1,0 +1,40 @@
+.rating {
+  border: none;
+  float: left;
+
+}
+
+.rating > input  { display: none; }
+.rating > i:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  cursor: pointer;
+}
+
+.rating > i {
+  color: #ddd;
+  float: right;
+  margin: .1em;
+}
+
+/*star clicked*/
+
+.rating > input:checked ~ i,
+.rating:not(:checked) > i:hover,
+.rating:not(:checked) > i:hover ~ i {
+  color: #FFD700;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: orange;
+}
+
+.rating > input:checked + i:hover,
+.rating > input:checked ~ i:hover,
+.rating > i:hover ~ input:checked ~ i,
+.rating > input:checked ~ i:hover ~ i {
+  color: #FFED85;
+}
+
+span {
+  margin-left: .25em;
+  font-weight: 700;
+}

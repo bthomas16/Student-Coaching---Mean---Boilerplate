@@ -1,85 +1,142 @@
-.navbar {
+.bar {
+  justify-content: space-between;
+  padding: .25em;
   background-color: #5563F0;
-  height: 1em;
-  margin-bottom: 0;
 }
 
-.navbar-brand {
-  font-weight: 600;
-  font-size: 1.8em;
-  border-right: 2px solid white;
+.logo {
+  justify-content: flex-start;
+  width: 25%;
 }
 
-li a {
+.logo a {
+  font-size: 2em;
+  margin-left: 2em;
   color: white;
-  font-weight: bold;
-  font-size: 1.6em;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.options {
+  justify-content: flex-end;
+  width: 75%;
+  padding-right: 5em;
+}
+
+
+.options a {
+  display: inline-block;
+  margin-left: .5em;
+  margin-right: .5em;
+  font-size: 1.4em;
+  color: white;
+  text-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.options a:hover {
+  cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-user {
+  color: white;
+  margin-right: 2em;
+}
+
+.menu {
+  right: 0;
+  width: 10%;
+  position: absolute;
+  background-color: rgba(85,99,240,.9);
+}
+
+.menu-item  {
+  justify-content: flex-start;
+  color: white;
+  font-size: 1.2em;
+  line-height: 2;
+  margin-left: .5em;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background-color: #5563F0;
+  font-size: 1.3em;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   cursor: pointer;
 }
 
-li a:hover {
-  color: rgba(85,177,240,.9) !important;
-  background-color: rgba(137,143,253,.7);
-  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+.line {
+  border: 1px solid white;
+  width: 100%;
 }
 
-li.active a{
-  color: rgba(85,177,240,.9) !important;
-  background-color: white !important;
-  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
-  border: .1px solid white;
+.browse {
+  font-size: 1.2em;
+  color: white;
+  width: 20%;
+  position: absolute;
+  left: 40%;
+  right:40%;
+  text-decoration: none;
 }
 
-.dropper {
-  /*border: 2px solid black;*/
-  box-shadow: 2px 1px 1px black;
-  margin: auto;
-  top: 0;
-  margin-top: -0.75em;
+.browse:hover {
+  cursor: pointer;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.btn {
-  background-color: #898FFD;
-  color: black;
+i:hover {
+  cursor: pointer;
 }
 
-.dropdown-menu {
-  background-color: rgba(90,218,106,.95);
-}
+@media(max-width: 1200px ) {
+  .menu {
+    width: 20%;
+  }
 
+  .options {
+    padding-right: 2em;
+  }
 
-ul.dropdown-menu {
-  margin-left: -44%;
-}
-
-#grayOutDiv
-{
-    background-color: #333;
-    opacity: 0.7;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    z-index: 9999;
-}
-
-.flash-message
-{
-    z-index: 10000;
-    position: relative;
-    width: 100vw;
-}
-
-@media(max-width:400px) {
-  .navbar-brand{
-    font-size: 1.4em;
+  .options a {
+    margin: 0;
   }
 }
 
-@media(max-width:340px) {
-  .navbar-brand{
-    font-size: .9em;
+@media(max-width: 700px ) {
+  .browse {
+    display: none;
+  }
+
+  .logo a {
+    margin-left: .25em;
+  }
+
+  .options a {
+    padding: .35em;
+  }
+}
+
+@media(max-width: 500px ) {
+
+  .menu {
+    width: 40%;
+  }
+  .options {
+    padding: 0;
+  }
+}
+
+@media(max-width: 400px ) {
+  .menu {
+    width: 60%;
   }
 }

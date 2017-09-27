@@ -1,11 +1,24 @@
-.half {
-  padding-left: 12em;
-  padding-right: 12em;
-  margin-top: 0;
+.wrapper {
+  margin-top: 1em;
+  background-color: #F2F2F2;
+}
+@media (max-width: 1035px){
+  .info {
+    width: 50%;
+  }
+
+  .schedule {
+    width: 45%;
+  }
 }
 
-@media (max-width: 790px) {
-  .half {
-    width: 100%;
-  }
+  @media(max-width: 740px){
+    .half {
+      width: 90%;
+    }
+
+    .schedule {
+      margin-top: 0;
+      width: 100%;
+    }
 }

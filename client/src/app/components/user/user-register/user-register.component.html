@@ -7,7 +7,7 @@
 </div>
 
 <div class="flex">
-<form [formGroup]="form" (submit)="onRegisterSubmit()">
+<form [formGroup]="form">
   <div class="form-group">
     <label for="fullname">First Name</label>
     <div>
@@ -45,16 +45,22 @@
     </div>
   </div>
 
-  <div class="flex">
-    <div class="btn btn-primary butt" (click)='studentClickHandler($event)'>
+  <div class="flex role">
+    <div class="flex" *ngIf="!studentClick && !teacherClick">
+      <h6 class="instructions">*Pleas select your account(s) role</h6>
+    </div>
+    <div class="flex" *ngIf="studentClick || teacherClick">
+      <h6 class="gotThis">You're going crush this!</h6>
+    </div>
+    <div class="btn btn-default butt" (click)='studentClickHandler($event)'>
       Student
     </div>
-    <div class="btn btn-primary butt" (click)='teacherClickHandler($event)'>
+    <div class="btn btn-default butt" (click)='teacherClickHandler($event)'>
       Teacher
     </div>
   </div>
 
-  <button [disabled]="!form.valid || processing || !emailValid" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="registerSubmit()">Submit</button>
+  <button [disabled]="!form.valid || processing || !emailValid || (!studentClick && !teacherClick)" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="registerSubmit()">Submit</button>
   <!-- <p class="account">Already have an account? <a routerLink="/login"><em class="em">Login Here</em></a></p> -->
 </form>
 </div>

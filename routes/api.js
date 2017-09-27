@@ -2,8 +2,22 @@ const User = require('../models/user');
 const emailSubscriber = require('../models/email-subscriber')
 const jwt = require('jsonwebtoken');
 const express = require('express');
+// const multer = require('multer');
+const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, './routes/uploads')
+//     },
+//     filename: (req, file, cb) => {
+//       let ext = path.extname(file.originalname);
+//       cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
+//     }
+//   });
+//
+// const upload = multer({ storage: storage})
 
 router.get('/get-all-teachers', (req, res) => {
     // Search database for all blog posts
@@ -65,5 +79,43 @@ router.get('/check-subscriber-email/:emailSubscriber', (req, res) => {
     })
   }
 })
+
+// router.post('/avatar-upload', upload.any(), (req, res) => {
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+//   console.log('route is hit, matie', req.files.id);
+//   User.findOne({ _id: req.files.id }).exec((err, user) => {
+//     if (err) {
+//       console.log('1')
+//       res.json({ success: false, message: 'Not a valid user id'});
+//     } else {
+//       console.log('2')
+//         if(!user) {
+//           res.json({ success: false, message: 'No User found'});
+//     } else {
+//       console.log('3')
+//       if(!req.files) {
+//         console.log('4')
+//         res.json({ success: false, message: 'No file was provided'})
+//       } else {
+//         console.log('5')
+//         res.json(req.files.map(file => {
+//           let ext = path.extname(file.originalname);
+//           console.log('6')
+//             return {
+//         originalName: file.originalname,
+//         filename: file.filename
+//       }
+//     }));
+//       }
+//     }
+//   }
+//   });
+// });
+//
+// router.get('/avatar-retrieve', (req, res) => {
+//   res.sendFile( __dirname + '/uploads/50wn1k.jpeg');
+// })
+
 
 module.exports = (router);

@@ -6,6 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class ApiService {
 
   options;
+  authToken;
   // development server
   // server = "http://localhost:8080/";
   // production server
@@ -18,8 +19,7 @@ export class ApiService {
 
   // Function to create headers, add token, to be used in HTTP requests
   createAuthenticationHeaders() {
-    this.authService.loadToken(); // Get token so it can be attached to headers
-    // Headers configuration options
+    this.authService.loadToken();
     this.options = new RequestOptions({
       headers: new Headers({
         'Content-Type': 'application/json', // Format set to JSON
@@ -28,8 +28,14 @@ export class ApiService {
     });
   }
 
-getAllTeachers() {
+  loadToken() {
+    const token = localStorage.getItem('token');
+    return this.authToken = token;
+  }
+
+  getAllTeachers() {
     this.createAuthenticationHeaders(); // Create headers
     return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
   }
+
 }

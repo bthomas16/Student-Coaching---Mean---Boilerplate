@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
+import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +42,18 @@ import { TeacherReviewsComponent } from './components/teacher/teacher-profile/te
 import { TeacherRatingsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teacher-ratings.component';
 
 import { CookieService } from 'ngx-cookie-service';
-import { StarRatingModule } from 'angular-star-rating';
+import { ProfessionalismComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/professionalism/professionalism.component';
+import { KnowledgeComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/knowledge/knowledge.component';
+import { TeachingAbilityComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teaching-ability/teaching-ability.component';
+import { ViewTeacherProfileComponent } from './components/user/view-teacher-profile/view-teacher-profile.component';
+import { TeacherSkillsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-skills/teacher-skills.component';
+
+// import { Ng2UploaderModule } from 'ng2-uploader';
+import { NgUploaderModule } from 'ngx-uploader';
+import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
+import {TruncatePipe} from './pipes/truncate.pipe';
+
+
 
 
 @NgModule({
@@ -66,7 +79,15 @@ import { StarRatingModule } from 'angular-star-rating';
     TeacherProfileScheduleComponent,
     TeacherProfileInfoComponent,
     TeacherReviewsComponent,
-    TeacherRatingsComponent
+    TeacherRatingsComponent,
+    ProfessionalismComponent,
+    KnowledgeComponent,
+    TeachingAbilityComponent,
+    ViewTeacherProfileComponent,
+    TeacherSkillsComponent,
+    ShufflePipe,
+    FeaturedTeacherComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -76,7 +97,7 @@ import { StarRatingModule } from 'angular-star-rating';
     HttpClientModule,
     AppRoutingModule,
     FlashMessagesModule,
-    StarRatingModule.forRoot()
+    NgUploaderModule
   ],
   providers: [AuthService, ApiService, AuthGuard, StudentAuthGuard, TeacherAuthGuard, NotAuthGuard, CookieService],
   bootstrap: [AppComponent]

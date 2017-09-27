@@ -1,63 +1,116 @@
-<div class="flex" *ngIf="!checkTeacher()">
-  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
-    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
-</div>
-
 <div class="row show-hide-message" *ngIf="show">
   <div [ngClass]="messageClass">
   {{message}}</div>
 </div>
 
-<div class="flex" *ngIf="checkTeacher()">
-  <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
+<span *ngIf="!isTeacher">
+</span>
+  <div class="flex" *ngIf="!isTeacher">
+  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
+  <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+  <hr>
 </div>
+<!--
 
-<hr>
+<div class="flex" *ngIf="isTeacher">
+  <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
+</div> -->
 
-<div class="flex wrapper">
+
+
+<div class="flex" *ngIf="isTeacher">
   <app-teacher-profile-main>Loading...</app-teacher-profile-main>
   <div class="flex notes">
-    <h3 class="flex"> {{ fullname }}</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat!</p>
+      <h3 class="flex left-text"> {{ fullname }}</h3>
+    <div *ngIf="!isBioEdit" class="flex">
+      <p class="notes-text">{{bio}}</p>
+    <div class="flex">
+      <button class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Edit</button>
+    </div>
   </div>
-  <div class="flex video">
-    <h1>YOUTUBE VIDEO LINK</h1>
+    <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
+      <textarea name="bio" formControlName="bio" placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat" value="{{bio}}"></textarea>
+      <div class="flex save">
+        <button type="button" class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Cancel</button>
+        <button type="submit" class="btn btn-success" [disabled]="!bioForm.controls.bio.value">Save</button>
+      </div>
+    </form>
+
   </div>
-  <div class="flex stats">
-    <div class="flex half">
+  <div class="flex vidWrap">
+    <div class="flex vidDiv">
+      <div class="flex">
+        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+      </div>
+      <form [formGroup]="videoForm" (submit)="videoSubmit()" class="flex">
+        <input type="text" placeholder="https://www.youtube.com/watch?v=4OWyMRFSBrM" value="{{ video }}" name="videoLink" formControlName="videoLink">
+        <button class="btn btn-success">Submit</button>
+      </form>
+      <div class="flex vidText">
+        <p>
+          Upload a video introducing yourself to students, or showing off your skills. <span>(Optional)</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="flex half reviews">
       <h2 class="flex">REVIEWS</h2>
       <app-teacher-reviews></app-teacher-reviews>
     </div>
-    <div class="flex half">
+    <div class="flex half exp">
       <h3 class="flex">Professional Experience</h3>
-      <ul>
-        <li><input [disabled]="!edit" type="text" value="" name="skill1" placeholder="Golf Coach at Torrey Pines High School" class="form-control"></li>
-        <li><input [disabled]="!edit" type="text" value="" name="skill2" placeholder="Winner of 2017 Golf Tournament" class="form-control"></li>
-        <li><input [disabled]="!edit" type="text" [value]="" name="skill3" placeholder="Licensed Golf Instructor" class="form-control"></li>
-        <li><input [disabled]="!edit" type="text" [value]="" name="skill4" placeholder="Runner up in Long-Drive Contest" class="form-control"></li>
-        <li><input [disabled]="!edit" type="text" [value]="" name="skill5" placeholder="CIF Champion in D1 High School Tournament" class="form-control"></li>
-        <button *ngIf="!edit && isTeacher" (click)="isEdit()" class="btn btn-warning">Edit</button>
-        <button *ngIf="edit"(click)="isSave()" class="btn btn-primary">Save</button>
+      <h6 *ngIf="experience1 == undefined" class="flex">Please Update Your Experiences </h6>
+      <form [formGroup]="experienceForm" (submit)="experienceSubmit()" *ngIf="isEdit">
+        <ul>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience1.errors && experienceForm.controls.experience1.dirty), 'has-success': !experienceForm.controls.experience1.errors}"><input type="text" value="{{ experience1 }}" name="experience1" placeholder="Golf Coach at Torrey Pines High School" class="form-control" formControlName="experience1">
+            <ul class="help-block">
+              <li *ngIf="experienceForm.controls.experience1.errors?.required && experienceForm.controls.experience1.dirty">This field is required
+              </li>
+            </ul>
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience2.errors && experienceForm.controls.experience2.dirty), 'has-success': !experienceForm.controls.experience2.errors}"><input type="text" value="{{ experience2 }}" name="experience2" placeholder="Winner of 2017 Golf Tournament" class="form-control" formControlName="experience2">
+            <ul class="help-block">
+              <li *ngIf="experienceForm.controls.experience2.errors?.required && experienceForm.controls.experience2.dirty">This field is required
+              </li>
+            </ul>
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience3.errors && experienceForm.controls.experience3.dirty), 'has-success': !experienceForm.controls.experience3.errors}"><input type="text" value="{{ experience3 }}" name="experience3" placeholder="Licensed Golf Instructor" class="form-control" formControlName="experience3">
+            <ul class="help-block">
+              <li *ngIf="experienceForm.controls.experience3.errors?.required && experienceForm.controls.experience3.dirty">This field is required
+              </li>
+            </ul>
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience4.errors && experienceForm.controls.experience4.dirty), 'has-success': !experienceForm.controls.experience4.errors}"><input type="text" value="{{ experience4 }}" name="experience4" placeholder="Runner up in Long-Drive Contest" class="form-control" formControlName="experience4">
+            <ul class="help-block">
+              <li *ngIf="experienceForm.controls.experience4.errors?.required && experienceForm.controls.experience4.dirty">This field is required
+              </li>
+            </ul>
+          </li>
+          <li [ngClass]="{'has-error': (experienceForm.controls.experience5.errors && experienceForm.controls.experience5.dirty), 'has-success': !experienceForm.controls.experience5.errors}"><input type="text" value="{{ experience5 }}" name="experience5" placeholder="CIF Champion in D1 High School Tournament" class="form-control" formControlName="experience5">
+            <ul class="help-block">
+              <li *ngIf="experienceForm.controls.experience5.errors?.required && experienceForm.controls.experience5.dirty">This field is required
+              </li>
+            </ul>
+          </li>
+            <button [disabled]="!experienceForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
+        </ul>
+      </form>
+      <ul class="flex experiences" *ngIf="!isEdit">
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience1 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience2 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience3 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience4 }}</span></li>
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience5 }}</span></li>
       </ul>
+      <div class="flex">
+        <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+      </div>
 
     </div>
   </div>
-  <div class="flex ratings">
+  <!-- <div class="flex ratings">
     <app-teacher-ratings></app-teacher-ratings>
-  </div>
-  <div class="flex coach-become">
-    <div class="flex half">
-        <img src="../../../../assets/golfing.jpg" class="golfing-img">
-    </div>
-    <div class="flex half">
-      <h1>Do you have what it takes to be a great teacher? </h1>
-        <div class="flex" *ngIf="!isTeacher">
-          <button class="btn btn-primary">Become a Teacher</button>
-        </div>
-        <div class="flex" *ngIf="isTeacher">
-          <button class="btn btn-primary">Maximize Potential</button>
-        </div>
-
-    </div>
-  </div>
+  </div> -->
 </div>

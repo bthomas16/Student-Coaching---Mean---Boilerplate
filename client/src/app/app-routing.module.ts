@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserRegisterComponent} from './components/user/user-register/user-register.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { ViewTeacherProfileComponent } from './components/user/view-teacher-profile/view-teacher-profile.component';
 
 import { StudentProfileComponent } from './components/student/student-profile/student-profile.component';
 import { TeacherProfileComponent } from './components/teacher/teacher-profile/teacher-profile.component';
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'profile/student', component: StudentProfileComponent, canActivate: [AuthGuard]},
   { path: 'profile/teacher', component: TeacherProfileComponent, canActivate: [AuthGuard]},
+  { path: 'view-teacher-profile/:id', component: ViewTeacherProfileComponent, canActivate: [AuthGuard]},
 
   { path: '**', component: HomeComponent}
 

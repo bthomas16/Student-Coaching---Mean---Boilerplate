@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-profile-main.component.css']
 })
 export class TeacherProfileMainComponent implements OnInit {
+  showModal: boolean = false;
 
   constructor() { }
+
 
   ngOnInit() {
   }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+// import { FormData } from '@angular/forms';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
@@ -28,7 +29,7 @@ export class AuthService {
 
   loadToken() {
     const token = localStorage.getItem('token');
-    this.authToken = token;
+    return this.authToken = token;
   }
 
 Register(user) {
@@ -69,16 +70,6 @@ checkEmail(email) {
       return this.http.get(this.server + 'authentication/profile', this.options).map(res => res.json());
     }
 
-    getSchedule() {
-      this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
-    }
-
-    studentCheck() {
-      this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
-    }
-
     teacherCheck() {
       this.createAuthenticationHeaders();
       return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
@@ -100,10 +91,9 @@ checkEmail(email) {
             res.json())
         }
 
-        imgSubmit(image) {
+        onBioFormSubmit(bio) {
             this.createAuthenticationHeaders();
-            console.log(image, 'poop');
-            return this.http.put(this.server + 'authentication/image-upload', image, this.options).map(res =>
+            return this.http.put(this.server + 'authentication/updated-teacher-bio', bio, this.options).map(res =>
               res.json())
           }
 
@@ -111,6 +101,36 @@ checkEmail(email) {
           this.createAuthenticationHeaders();
           return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>
             res.json())
+        }
+
+        // uploadFile(file) {
+        //   this.createAuthenticationHeaders();
+        //   console.log(file);
+        //   return this.http.put(this.server + 'authentication/avatar-upload', file, this.options).map(res => res.json());
+        // }
+
+        upload(fileToUpload) {
+          this.createAuthenticationHeaders();
+          console.log(fileToUpload, 'services consoled it')
+          return this.http.post(this.server + 'authentication/avatar-upload', fileToUpload, this.options);
+        }
+
+        onExperienceSubmit(experience) {
+          this.createAuthenticationHeaders();
+          console.log(experience);
+          return this.http.put(this.server + 'authentication/experience', experience, this.options).map(res => res.json());
+        }
+
+        onInfoSubmit(info) {
+          this.createAuthenticationHeaders();
+          console.log(info);
+          return this.http.put(this.server + 'authentication/info', info, this.options).map(res => res.json());
+        }
+
+        onVideoSubmit(video) {
+          this.createAuthenticationHeaders();
+          console.log(video);
+          return this.http.put(this.server + 'authentication/video', video, this.options).map(res => res.json());
         }
 
         Rate(rated) {
@@ -125,27 +145,59 @@ checkEmail(email) {
             return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
           }
 
-    isStudent():any {
-      this.createAuthenticationHeaders();
-      return this.studentCheck().subscribe(profile => {
-         if (profile) {
-           profile = true
-         }
-         profile = false
-     })
-   }
+          getSchedule() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
+          }
 
-   isTeacher():any {
-     this.createAuthenticationHeaders();
-     return this.teacherCheck().subscribe(profile => {
-        if (profile) {
-          profile = true
-        }
-        profile = false
-      })
-    }
+          studentCheck() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
+          }
 
-  //  getLoggedInStudent(): any {
-  //    return this.studentLoggedIn;
-  //  }
+          getFeaturedTeacher() {
+            this.createAuthenticationHeaders();
+            return this.http.get(this.server + 'authentication/get-featured-teacher', this.options).map(res => res.json());
+          }
+
+
+          isStudent():any {
+            this.createAuthenticationHeaders();
+            return this.studentCheck().subscribe(profile => {
+              if (profile) {
+               profile = true
+               }
+               profile = false
+           })
+          }
+
+          isTeacher():any {
+           this.createAuthenticationHeaders();
+           return this.teacherCheck().subscribe(profile => {
+              if (profile) {
+                profile = true
+              }
+              profile = false
+            })
+           }
+
+           getTeacherView(id) {
+             this.createAuthenticationHeaders();
+             return this.http.get(this.server + 'authentication/view-teacher-profile/' + id, this.options).map(res =>
+               res.json());
+           }
+
+           onGetProfPic() {
+             this.createAuthenticationHeaders();
+             return this.http.get(this.server + 'authentication/avatar-retrieve', this.options).map(res =>
+               res.json());
+           }
+
+          //  startUpload(event) {
+          //    this.createAuthenticationHeaders();
+          //    console.log('service:', event);
+          //    return this.http.post(this.server + 'authentication/avatar-upload', event, this.options).map(res =>
+          //      res.json());
+          //  }
+
 }

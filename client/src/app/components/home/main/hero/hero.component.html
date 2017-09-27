@@ -1,17 +1,23 @@
 <div class="flex wrapper">
-  <div class="row show-hide-message">
+  <!-- <div class="row show-hide-message">
     <div [ngClass]="messageClass">
     {{message}}</div>
-  </div>
-  <div class="flex left">
-    <p class="flex mainTitle">Reinventing Learning</p>
-    <p class="flex info">Introducing Skillsite, a connector of professionals looking to teach, and students looking to learn.</p>
-  </div>
-  <div class="form-group flex buttons">
-    <button type="button" class="btn btn-primary flex register" data-toggle="modal" data-target="#register">Register</button>
-    <p class="account">Already have an account? <a data-toggle="modal" data-target="#login"><em class="em">Login Here</em></a></p>
+  </div> -->
 
-  <!-- [ Register #1] -->
+
+  <div class="flex mainText">
+    <p class="flex mainTitle">Reinventing Learning</p>
+    <p class="flex info">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+  </div>
+  <div class="flex">
+    <div class="buttons">
+      <button type="button" class="btn btn-primary flex register" data-toggle="modal" data-target="#register">Sign Up</button>
+      <p class="account">Already have an account? <a data-toggle="modal" data-target="#login"><em class="em">Login Here</em></a>
+      </p>
+    </div>
+  </div>
+
+  <!-- [ <Re></Re>gister #1] -->
   <div class="modal fade" id="register" tabindex="-1">
     <div class="modal-dialog">
      <div class="modal-content">
@@ -19,13 +25,28 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title caps"><strong>User Register</strong></h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <app-user-register></app-user-register>
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+          {{message}}</div>
         </div>
       </div>
-       <div class="modal-footer">
+      <div class="flex">
+        <div class="flex half registerText">
+            <h2 class="flex bigTitle">Start improving your golf skills now</h2>
+            <p class="flex littleText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+        </div>
+        <div class="flex half form">
+          <div class="modal-body">
+            <div class="form-group">
+              <app-user-register></app-user-register>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+       <div class="modal-footer flex">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login" data-dismiss="modal">Already have an account? <em>Login Here</em></button>
         </div>
      </div>
@@ -40,17 +61,20 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title caps"><strong>User Login</strong></h4>
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+          {{message}}</div>
+        </div>
       </div>
       <div class="modal-body">
         <div class="form-group">
           <app-user-login></app-user-login>
         </div>
       </div>
-       <div class="modal-footer">
+       <div class="modal-footer flex">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-dismiss="modal">Don't have an account? <em>Register Here</em></button>
         </div>
        </div>
       </div>
     </div>
   </div>
-</div>

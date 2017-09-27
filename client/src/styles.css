@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .flex {
@@ -10,6 +13,7 @@ body {
   align-items: center;
   text-align: center;
   flex-wrap: wrap;
+  font-family: 'Roboto', sans-serif;
 }
 
 ul.help-block {
@@ -53,8 +57,11 @@ label {
 }
 
 .half {
-  width: 45%;
-  margin: 2%;
+  width: 48%;
+}
+
+.third {
+  width: 33%;
 }
 
 .glyphicon-refresh-animate {

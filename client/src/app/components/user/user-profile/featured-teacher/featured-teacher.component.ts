@@ -13,11 +13,14 @@ export class FeaturedTeacherComponent implements OnInit {
   featuredEmail;
   location;
   yrsExperience;
+  id;
   skills;
   handicap;
   cost;
   profPic;
   allTeacher;
+  bio: String = '';
+  route: String;
 
   isEdit: boolean = false;
   isChecked1: boolean = false;
@@ -33,13 +36,15 @@ export class FeaturedTeacherComponent implements OnInit {
   numberOfRatings: number;
   yetRated: boolean = false;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {
+   }
 
   ngOnInit() {
     this.authService.getFeaturedTeacher()
       .subscribe(featured => {
         this.allTeacher = featured.teacher[0];
-        // this.featuredTeacherId = featured.teacher.id;
+        this.featuredTeacherId = featured.teacher._id;
+        this.route = "../view-teacher-profile/" + this.featuredTeacherId;
         this.featuredFullname = featured.teacher.fullname.toUpperCase();
         this.featuredEmail = featured.teacher.email;
         this.location = featured.teacher.location;
@@ -47,6 +52,7 @@ export class FeaturedTeacherComponent implements OnInit {
         this.skills = featured.teacher.skills;
         this.handicap = featured.teacher.handicap;
         this.cost = featured.teacher.cost;
+        this.bio = featured.teacher.bio;
         if(featured.teacher.kRatingsArray.length == 0 || featured.teacher.pRatingsArray.length == 0 || featured.teacher.taRatingsArray.length == 0) {
           return null;
         } else {

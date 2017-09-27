@@ -1,5 +1,4 @@
 <div class="flex main-wrapper">
-  <div class="flex wrap">
     <div class="flex half image">
       <img src="{{ profPic }}" alt="">
     </div>
@@ -36,7 +35,12 @@
         <p class="flex left"> {{ skills }}</p>
         <p class="flex left"> {{ handicap }}Under</p>
         <p class="flex left"> $ {{ cost }}/hr</p>
-        <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+        <span *ngIf="!isParams" class="flex">
+          <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+        </span>
+        <span *ngIf="isParams" class="flex">
+          <a href="mailto:{{email}}" class="btn btn-primary contact">Contact {{fullname}}</a>
+        </span>
     </div>
 
     <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
@@ -46,7 +50,7 @@
             </li>
           </ul>
         </div>
-        
+
         <div [ngClass]="{'has-error': (infoForm.controls.yrsExperience.errors && infoForm.controls.yrsExperience.dirty), 'has-success': !infoForm.controls.yrsExperience.errors}"><input *ngIf="isEdit" type="number" [value]="" name="yrsExperience" placeholder="3 Years" class="form-control" formControlName="yrsExperience">
           <ul class="help-block">
             <li *ngIf="infoForm.controls.yrsExperience.errors?.required && infoForm.controls.yrsExperience.dirty">This field is required
@@ -79,5 +83,4 @@
         <button class="btn btn-primary butt">Review</button>
       </div> -->
   </div>
-</div>
 </div>

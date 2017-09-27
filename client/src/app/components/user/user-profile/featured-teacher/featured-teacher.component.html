@@ -1,16 +1,16 @@
 <div class="flex wrapper">
   <div class="flex half">
     <h4 class="flex featuredCoach">Featured Coach</h4>
-    <img src="../../../../../assets/blankProf.png" alt="">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi2X9m-SwhTNvs8OaV3-1Eol9CoE6EUU9jcgOnQ3FTffIQQSjLDA" alt="" class="featuredPic">
   </div>
   <div class="flex half">
     <div class="flex top">
       <div class="flex">
-        <div class="flex half">
+        <div class="flex half q">
           <h3 class="flex">{{ featuredFullname }}</h3>
           <p class="flex"><em>Skills:</em> {{skills}}</p>
         </div>
-        <div class="flex half stars">
+        <div class="flex half stars q">
           <div class="rating">
             <input type="radio" [checked]="isChecked5"/>
             <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
@@ -23,7 +23,6 @@
             <input type="radio" [checked]="isChecked1"/>
             <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
             <p>{{numberOfRatings}} <em>Students</em></p>
-            <p>Handicap index of: {{handicap}}</p>
           </div>
         </div>
 
@@ -31,11 +30,10 @@
       <p>{{Location}}</p>
     </div>
     <div class="flex middle">
-        <!-- {{ featuredBio }} -->
-        CREATE A FEATURED BIO - tagline
+        "{{bio | truncate:100}}"
     </div>
     <div class="flex contact-button">
-      <a href="mailto:{{featuredEmail}}" class="btn btn-primary contact">
+      <a routerLink="{{route}}" class="btn btn-primary contact">
         CONTACT {{ featuredFullname }}
       </a>
     </div>

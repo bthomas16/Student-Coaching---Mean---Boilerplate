@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex featured">
   <app-featured-teacher></app-featured-teacher>
 </div>
 <!--
@@ -30,10 +30,28 @@
 
 <app-teachers-list>Loading...</app-teachers-list>
 
-
-<div class="flex choose">
-  <app-choose><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-choose>
+<div class="flex maximize">
+  <div class="flex half img">
+      <img src="../../../../assets/golfing.jpg" class="golfing-img">
+  </div>
+  <div class="flex half right" *ngIf="!isTeacher">
+    <p>Do you have what it takes to become a teacher? </p>
+      <div class="flex">
+        <a class="btn btn-primary" routerLink="../profile/teacher">Maximize Potential</a>
+      </div>
+  </div>
+  <div class="flex half right" *ngIf="isTeacher">
+    <p>Make some magic happen</p>
+      <div class="flex">
+        <a class="btn btn-primary" routerLink="../profile/teacher">Enter Teacher Dashboard</a>
+      </div>
+  </div>
 </div>
+
+
+<!-- <div class="flex choose">
+  <app-choose><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button></app-choose>
+</div> -->
 
 
 <!-- <input type="file" name="avatar" (change)="onChange($event)">

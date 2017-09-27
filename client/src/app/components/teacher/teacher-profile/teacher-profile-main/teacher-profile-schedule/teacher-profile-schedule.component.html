@@ -12,9 +12,9 @@
     <p>Monday</p>
   </div>
   <div class="flex butts">
-    <button class="btn btn-default" [disabled]="processing" (click)="monM = !monM" [ngClass]="{'active': monM}">Morning</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="monA = !monA" [ngClass]="{'active': monA}">Afternoon</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="monE = !monE" [ngClass]="{'active': monE}">Evening</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="monM = !monM" [ngClass]="{'active': monM}">Morning</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="monA = !monA" [ngClass]="{'active': monA}">Afternoon</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="monE = !monE" [ngClass]="{'active': monE}">Evening</button>
   </div>
 </div>
 
@@ -23,9 +23,9 @@
     <p>Tuesday</p>
   </div>
   <div class="flex butts">
-  <button class="btn btn-default" [disabled]="processing" (click)="tueM = !tueM" [ngClass]="{'active': tueM}">Morning</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="tueA = !tueA" [ngClass]="{'active': tueA}">Afternoon</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="tueE = !tueE" [ngClass]="{'active': tueE}">Evening</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="tueM = !tueM" [ngClass]="{'active': tueM}">Morning</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="tueA = !tueA" [ngClass]="{'active': tueA}">Afternoon</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="tueE = !tueE" [ngClass]="{'active': tueE}">Evening</button>
 </div>
 </div>
 
@@ -34,9 +34,9 @@
     <p>Wednesday</p>
   </div>
   <div class="flex butts">
-  <button class="btn btn-default" [disabled]="processing" (click)="wedM = !wedM" [ngClass]="{'active': wedM}">Morning</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="wedA = !wedA" [ngClass]="{'active': wedA}">Afternoon</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="wedE = !wedE" [ngClass]="{'active': wedE}">Evening</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="wedM = !wedM" [ngClass]="{'active': wedM}">Morning</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="wedA = !wedA" [ngClass]="{'active': wedA}">Afternoon</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="wedE = !wedE" [ngClass]="{'active': wedE}">Evening</button>
 </div>
 </div>
 
@@ -45,9 +45,9 @@
     <p>Thursday</p>
   </div>
 <div class="flex butts">
-  <button class="btn btn-default" [disabled]="processing" (click)="thuM = !thuM" [ngClass]="{'active': thuM}">Morning</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="thuA = !thuA" [ngClass]="{'active': thuA}">Afternoon</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="thuE = !thuE" [ngClass]="{'active': thuE}">Evening</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="thuM = !thuM" [ngClass]="{'active': thuM}">Morning</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="thuA = !thuA" [ngClass]="{'active': thuA}">Afternoon</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="thuE = !thuE" [ngClass]="{'active': thuE}">Evening</button>
 </div>
 </div>
 
@@ -56,9 +56,9 @@
     <p>Friday</p>
   </div>
   <div class="flex butts">
-  <button class="btn btn-default" [disabled]="processing" (click)="friM = !friM" [ngClass]="{'active': friM}">Morning</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="friA = !friA" [ngClass]="{'active': friA}">Afternoon</button>
-  <button class="btn btn-default" [disabled]="processing" (click)="friE = !friE" [ngClass]="{'active': friE}">Evening</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="friM = !friM" [ngClass]="{'active': friM}">Morning</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="friA = !friA" [ngClass]="{'active': friA}">Afternoon</button>
+  <button class="btn btn-default" [disabled]="processing || isParams" (click)="friE = !friE" [ngClass]="{'active': friE}">Evening</button>
 </div>
 </div>
 
@@ -67,9 +67,9 @@
     <p>Saturday</p>
   </div>
     <div class="flex butts">
-    <button class="btn btn-default" [disabled]="processing" (click)="satM = !satM" [ngClass]="{'active': satM}">Morning</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="satA = !satA" [ngClass]="{'active': satA}">Afternoon</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="satE = !satE" [ngClass]="{'active': satE}">Evening</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="satM = !satM" [ngClass]="{'active': satM}">Morning</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="satA = !satA" [ngClass]="{'active': satA}">Afternoon</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="satE = !satE" [ngClass]="{'active': satE}">Evening</button>
   </div>
 </div>
 
@@ -78,13 +78,13 @@
     <p>Sunday</p>
   </div>
   <div class="flex butts">
-    <button class="btn btn-default" [disabled]="processing" (click)="sunM = !sunM" [ngClass]="{'active': sunM}">Morning</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="sunA = !sunA" [ngClass]="{'active': sunA}">Afternoon</button>
-    <button class="btn btn-default" [disabled]="processing" (click)="sunE = !sunE" [ngClass]="{'active': sunE}">Evening</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="sunM = !sunM" [ngClass]="{'active': sunM}">Morning</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="sunA = !sunA" [ngClass]="{'active': sunA}">Afternoon</button>
+    <button class="btn btn-default" [disabled]="processing || isParams" (click)="sunE = !sunE" [ngClass]="{'active': sunE}">Evening</button>
   </div>
 </div>
 <div class="flex update">
-  <button class="btn btn-success updateButton"  (click)='onSchedule()' [disabled]="processing">Update Availability</button>
+  <button class="btn btn-success updateButton"  (click)='onSchedule()' [disabled]="processing" *ngIf="!isParams">Update Availability</button>
   <div class="flex examples">
     <button class="btn btn-default active">Available</button>
     <button class="btn btn-default">Not Available</button>

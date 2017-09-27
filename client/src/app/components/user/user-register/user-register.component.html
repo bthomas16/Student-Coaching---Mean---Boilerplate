@@ -47,7 +47,10 @@
 
   <div class="flex role">
     <div class="flex" *ngIf="!studentClick && !teacherClick">
-      <h6>*Pleas select which account(s) you would like to create</h6>
+      <h6 class="instructions">*Pleas select your account(s) role</h6>
+    </div>
+    <div class="flex" *ngIf="studentClick || teacherClick">
+      <h6 class="gotThis">You're going crush this!</h6>
     </div>
     <div class="btn btn-default butt" (click)='studentClickHandler($event)'>
       Student

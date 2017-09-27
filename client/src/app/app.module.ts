@@ -50,6 +50,7 @@ import { TeacherSkillsComponent } from './components/teacher/teacher-profile/tea
 // import { Ng2UploaderModule } from 'ng2-uploader';
 import { NgUploaderModule } from 'ngx-uploader';
 import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
+import {TruncatePipe} from './pipes/truncate.pipe';
 
 
 
@@ -83,7 +84,8 @@ import { FeaturedTeacherComponent } from './components/user/user-profile/feature
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
     ShufflePipe,
-    FeaturedTeacherComponent
+    FeaturedTeacherComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ h1 {
 }
 
 .role {
-  margin-top: 1.75em;
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -53,6 +53,13 @@ h1 {
   background-color: #1BACFC;
 }
 
+.instructions {
+  color: lightgrey;
+}
+
+.gotThis {
+  color: rgba(0,255,143,1);
+}
 /*Look in parent component for the class 'useIt' and then apply the following styles to 'h1' tags in this component*/
 :host-context(.useIt) h1 {
   color: white;

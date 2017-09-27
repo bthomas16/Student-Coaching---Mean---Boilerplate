@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
@@ -22,6 +23,8 @@ export class TeacherProfileInfoComponent implements OnInit {
   handicap;
   cost;
   profPic;
+  viewTeacherID;
+  isParams: boolean = false;
   isEdit: boolean = false;
   isChecked1: boolean = false;
   isChecked2: boolean = false;
@@ -37,7 +40,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   yetRated: boolean = false;
 
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     this.location = '';
     this.createForm();
   }
@@ -96,7 +99,61 @@ export class TeacherProfileInfoComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.getProfPic();
+    this.route.params.subscribe(params => {
+    this.viewTeacherID = params['id'];
+      if(this.viewTeacherID) {
+      console.log('no params', this.route.params)
+      this.isParams = true;
+         this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
+           this.userID = viewTeacher.teacher.id;
+           this.fullname = viewTeacher.teacher.fullname.toUpperCase();
+           this.email =viewTeacher.teacher.email;
+           this.isStudent =viewTeacher.teacher.isStudent;
+           this.isTeacher =viewTeacher.teacher.isTeacher;
+           this.location =viewTeacher.teacher.location;
+           this.yrsExperience =viewTeacher.teacher.yrsExperience;
+           this.skills =viewTeacher.teacher.skills;
+           this.handicap =viewTeacher.teacher.handicap;
+           this.cost =viewTeacher.teacher.cost;
+           if(viewTeacher.teacher.kRatingsArray.length == 0 ||viewTeacher.teacher.pRatingsArray.length == 0 ||viewTeacher.teacher.taRatingsArray.length == 0) {
+             return null;
+           } else {
+             this.yetRated = true;
+             this.avgKnowledgeRating =viewTeacher.teacher.kRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.kRatingsArray.length;
+             this.avgProfessionalismRating =viewTeacher.teacher.pRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.pRatingsArray.length;
+             this.avgTeachingAbilityRating =viewTeacher.teacher.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.taRatingsArray.length;
+             this.avgRating = (this.avgKnowledgeRating + this.avgProfessionalismRating + this.avgTeachingAbilityRating)/3;
+             this.numberOfRatings =viewTeacher.teacher.kRatingsArray.length;
+             if(this.avgRating >= 4.5) {
+               this.isChecked5 = true;
+             } else {
+               if(this.avgRating >= 3.5) {
+                 this.isChecked4 = true;
+               } else {
+                 if(this.avgRating >= 2.5) {
+                   this.isChecked3 = true;
+                 } else {
+                   if(this.avgRating >= 1.5) {
+                     this.isChecked2 = true;
+                   } else {
+                     if(this.avgRating >= 0.5) {
+                       this.isChecked1 = true;
+                     }
+                   }
+                 }
+               }
+             }
+           }
+           return true
+         });
+       }
+     });
+    // if(viewTeacher.includes(substring) !== 1) {
+    //   console.log('sup deewwed')
+    //   return true;
+    // }
+    if(!this.viewTeacherID) {
+    this.isParams = false;
     this.authService.getProfile()
     .subscribe(profile => {
       this.userID = profile.user.id;
@@ -139,5 +196,6 @@ export class TeacherProfileInfoComponent implements OnInit {
       }
     }
     });
+  }
   }
 }

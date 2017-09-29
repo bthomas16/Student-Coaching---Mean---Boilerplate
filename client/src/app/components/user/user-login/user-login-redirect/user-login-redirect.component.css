@@ -8,19 +8,16 @@
   width: 100%;
 }
 
-.full {
-  width: 100%;
-  text-align: center;
-}
 
 .wrap {
-  border: 1px solid darkblue;
+  width: 60%;
   background-color: #5563F0;
   padding-top: 2em;
   padding-bottom: 2em;
   position: fixed;
   top: 10em;
   justify-content: center;
+  z-index: 10;
 }
 
 .wrap h4 {
@@ -29,9 +26,6 @@
   font-weight: bold;
 }
 
-app-user-login {
-  width: 100%;
-}
 
 @media(max-width:800px) {
   .wrap {
@@ -47,6 +41,6 @@ app-user-login {
 
 @media(max-width:420px) {
   .wrap {
-    width: 95%;
+    width: 90%;
   }
 }

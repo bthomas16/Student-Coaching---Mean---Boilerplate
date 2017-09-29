@@ -38,3 +38,9 @@ span {
   margin-left: .25em;
   font-weight: 700;
 }
+
+@media(max-width:650px) {
+  .fa-3x {
+    font-size: 2em;
+  }
+}

@@ -41,6 +41,10 @@ font-weight: bold;
   margin-top: .25em;
 }
 
+.noMouse {
+  pointer-events: none;
+}
+
 /*MEDIA*/
 
 @media(max-width: 700px) {

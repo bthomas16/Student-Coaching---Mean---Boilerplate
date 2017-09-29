@@ -9,21 +9,20 @@
         <p class="full">{{location}}</p>
         <p><em>Skills:</em> {{skills}}</p>
             <div class="flex leftText">
-              <div class="rating">
+              <div class="rating noMouse">
                 <input type="radio" [checked]="isChecked5"/>
-                <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+                <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars"></i>
                 <input type="radio" [checked]="isChecked4"/>
-                <i class="fa fa-star fa-2x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+                <i class="fa fa-star fa-2x star" for="star4" title="Pretty good - 4 stars"></i>
                 <input type="radio" [checked]="isChecked3"/>
-                <i class="fa fa-star fa-2x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+                <i class="fa fa-star fa-2x star" for="star3" title="Meh - 3 stars"></i>
                 <input type="radio" [checked]="isChecked2"/>
-                <i class="fa fa-star fa-2x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+                <i class="fa fa-star fa-2x star" for="star2" title="Kinda bad - 2 stars"></i>
                 <input type="radio" [checked]="isChecked1"/>
-                <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+                <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star"></i>
               </div>
             </div>
             <p class="full number">{{numberOfRatings}} <em>Students</em></p>
-        <p>{{Location}}</p>
     <div class="flex middle leftText">
         "{{bio | truncate:100}}"
     </div>

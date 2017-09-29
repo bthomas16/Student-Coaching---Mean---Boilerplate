@@ -29,7 +29,7 @@
     </div>
   </div>
     <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
-      <textarea name="bio" formControlName="bio" placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut tempore aperiam numquam sequi veniam assumenda natus, molestias, nihil fugit possimus, doloremque cupiditate in cumque libero totam porro, sunt placeat quaerat" value="{{bio}}"></textarea>
+      <textarea name="bio" formControlName="bio" placeholder="Write your Bio here ~ approx 200 characters" value="{{ bio }}"></textarea>
       <div class="flex save">
         <button type="button" class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Cancel</button>
         <button type="submit" class="btn btn-success" [disabled]="!bioForm.controls.bio.value">Save</button>
@@ -37,6 +37,7 @@
     </form>
 
   </div>
+
   <div class="flex vidWrap">
     <div class="flex vidDiv">
       <div class="flex">

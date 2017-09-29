@@ -21,7 +21,7 @@ const config = require('../config/db');
 
 router.get('/get-all-teachers', (req, res) => {
     // Search database for all blog posts
-    User.find({isTeacher: 'true'}, (err, teachers) => {
+    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }}, (err, teachers) => {
       // Check if error was found or not
       if (err) {
         res.json({ success: false, message: err }); // Return error message

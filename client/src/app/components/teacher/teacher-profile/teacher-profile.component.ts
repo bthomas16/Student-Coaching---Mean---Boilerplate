@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-teacher-profile',
@@ -32,13 +32,12 @@ export class TeacherProfileComponent implements OnInit {
   isEdit: boolean = false;
   videoForm;
   videoUrl;
-  // safeVideoUrl: SafeResourceUrl;
   bioForm;
   bio;
   isBioEdit: boolean = false;
 
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, public sanitizer: DomSanitizer) {
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
     this.createForm();
     this.createVideoForm();
     this.createBioForm();
@@ -183,8 +182,6 @@ export class TeacherProfileComponent implements OnInit {
       this.experience5 = profile.user.experience5;
       this.videoUrl = profile.user.video;
       this.bio = profile.user.bio;
-      console.log(this.videoUrl);
-      // this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoUrl);
     });
   }
 }

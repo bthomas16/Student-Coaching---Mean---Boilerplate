@@ -148,10 +148,6 @@ export class TeacherProfileInfoComponent implements OnInit {
          });
        }
      });
-    // if(viewTeacher.includes(substring) !== 1) {
-    //   console.log('sup deewwed')
-    //   return true;
-    // }
     if(!this.viewTeacherID) {
     this.isParams = false;
     this.authService.getProfile()

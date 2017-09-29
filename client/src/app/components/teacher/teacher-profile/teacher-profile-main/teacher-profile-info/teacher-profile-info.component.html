@@ -35,14 +35,15 @@
         <p class="flex left"> {{ skills }}</p>
         <p class="flex left"> {{ handicap }}Under</p>
         <p class="flex left"> $ {{ cost }}/hr</p>
-        <span *ngIf="!isParams" class="flex">
-          <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
-        </span>
         <span *ngIf="isParams" class="flex">
           <a href="mailto:{{email}}" class="btn btn-primary contact">Contact {{fullname}}</a>
         </span>
     </div>
 
+    <span *ngIf="!isParams" class="flex">
+      <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+    </span>
+    
     <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
         <div [ngClass]="{'has-error': (infoForm.controls.location.errors && infoForm.controls.location.dirty), 'has-success': !infoForm.controls.location.errors}"><input *ngIf="isEdit" type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" formControlName="location">
           <ul class="help-block">

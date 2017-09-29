@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
+import { ActivatedRoute } from '@angular/router'
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -30,9 +31,17 @@ export class TeacherRatingsComponent implements OnInit {
   ratedTA: boolean = false;
   message;
   messageClass;
+  yetRated;
+  id;
+  fullname;
+  email;
+  location;
 
 
-  constructor(public authService: AuthService) {
+  teacherFullname;
+
+
+  constructor(public authService: AuthService, private route: ActivatedRoute) {
   }
 
     canRate() {
@@ -86,33 +95,64 @@ export class TeacherRatingsComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success'
         this.message = data.message
-        this.getRating();
-        this.processing = true;
+        this.processing = false;
         setTimeout(()=> {
           this.okRate = false;
-        }, 1000);
-      }
-    });
-  }
-
-  getRating() {
-    this.authService.onGetRating().subscribe(data => {
-      this.kRatings = data.user.kRatingsArray;
-      this.pRatings = data.user.pRatingsArray;
-      this.taRatings = data.user.taRatingsArray;
-      if(this.kRatings.length == 0 || this.pRatings.length == 0 || this.taRatings.length == 0) {
-        return null;
-      } else {
-      this.avgKnowledgeRating = this.kRatings.reduce((a, b) => a + b)/this.kRatings.length;
-      this.avgProfessionalismRating = this.pRatings.reduce((a, b) => a + b)/this.pRatings.length;
-      this.avgTeachingAbilityRating = this.taRatings.reduce((a, b) => a + b)/this.taRatings.length;
-      return true;
+        }, 1400);
       }
     });
   }
 
   ngOnInit() {
-    this.getRating();
+    this.route.params.subscribe(params => {
+    let viewTeacherID = params['id'];
+       this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
+        //  this.userID = viewTeacher.teacher.id;
+         this.teacherFullname = viewTeacher.teacher.fullname.toUpperCase();
+          //  this.email =viewTeacher.teacher.email;
+          //  this.isStudent =viewTeacher.teacher.isStudent;
+          //  this.isTeacher =viewTeacher.teacher.isTeacher;
+          //  this.location =viewTeacher.teacher.location;
+          //  this.yrsExperience =viewTeacher.teacher.yrsExperience;
+          //  this.skills =viewTeacher.teacher.skills;
+          //  this.handicap =viewTeacher.teacher.handicap;
+          //  this.cost =viewTeacher.teacher.cost;
+          //  if(viewTeacher.teacher.kRatingsArray.length == 0 ||viewTeacher.teacher.pRatingsArray.length == 0 ||viewTeacher.teacher.taRatingsArray.length == 0) {
+          //    return null;
+          //  } else {
+          //    this.yetRated = true;
+          //    this.avgKnowledgeRating =viewTeacher.teacher.kRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.kRatingsArray.length;
+          //    this.avgProfessionalismRating =viewTeacher.teacher.pRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.pRatingsArray.length;
+          //    this.avgTeachingAbilityRating =viewTeacher.teacher.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.taRatingsArray.length;
+          //    this.avgRating = (this.avgKnowledgeRating + this.avgProfessionalismRating + this.avgTeachingAbilityRating)/3;
+          //    this.numberOfRatings =viewTeacher.teacher.kRatingsArray.length;
+          //    if(this.avgRating >= 4.5) {
+          //      this.isChecked5 = true;
+          //    } else {
+          //      if(this.avgRating >= 3.5) {
+          //        this.isChecked4 = true;
+          //      } else {
+          //        if(this.avgRating >= 2.5) {
+          //          this.isChecked3 = true;
+          //        } else {
+          //          if(this.avgRating >= 1.5) {
+          //            this.isChecked2 = true;
+          //          } else {
+          //            if(this.avgRating >= 0.5) {
+          //              this.isChecked1 = true;
+          //            }
+          //          }
+          //        }
+          //      }
+          //    }
+          //  }
+           return true
+         });
+     });
+    this.authService.getProfile().subscribe(profile => {
+      this.fullname = profile.user.fullname.toUpperCase();
+      this.email = profile.user.email;
+    });
   }
 
 

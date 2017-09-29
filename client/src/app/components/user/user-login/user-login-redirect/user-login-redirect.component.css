@@ -14,41 +14,40 @@
   text-align: center;
 }
 
-.half {
-  width: 40%;
+.wrap {
   border: 1px solid darkblue;
   background-color: #5563F0;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  position: absolute;
-  top: 15em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  position: fixed;
+  top: 10em;
   justify-content: center;
 }
 
-.half h4 {
+.wrap h4 {
   margin-bottom: 1.5em;
   color: white;
   font-weight: bold;
 }
 
-.half app-user-login {
+app-user-login {
   width: 100%;
 }
 
 @media(max-width:800px) {
-  .half {
+  .wrap {
     width: 65%;
   }
 }
 
 @media(max-width:600px) {
-  .half {
+  .wrap {
     width: 85%;
   }
 }
 
 @media(max-width:420px) {
-  .half {
+  .wrap {
     width: 95%;
   }
 }

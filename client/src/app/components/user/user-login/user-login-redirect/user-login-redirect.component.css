@@ -1,23 +1,24 @@
 
 
 .imgBackground {
-  height: 88vh;
+  width: 100vw;
+  height: 100vh;
   background-image: url('http://seniorgolfinsider.com/wp-content/uploads/2016/12/2-use.jpg');
   background-size: cover;
   background-position: center;
-  width: 100%;
+  align-items: flex-start;
+  padding-top: 10em;
 }
 
 
 .wrap {
-  width: 60%;
+  width: 65%;
   background-color: #5563F0;
   padding-top: 2em;
   padding-bottom: 2em;
-  position: fixed;
-  top: 10em;
   justify-content: center;
   z-index: 10;
+  border: .2px solid white;
 }
 
 .wrap h4 {
@@ -26,10 +27,14 @@
   font-weight: bold;
 }
 
+app-user-login {
+  width: 100%;
+}
+
 
 @media(max-width:800px) {
   .wrap {
-    width: 100%;
+    width: 75%;
   }
 }
 

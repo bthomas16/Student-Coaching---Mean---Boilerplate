@@ -43,7 +43,7 @@
     <span *ngIf="!isParams" class="flex">
       <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
     </span>
-    
+
     <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
         <div [ngClass]="{'has-error': (infoForm.controls.location.errors && infoForm.controls.location.dirty), 'has-success': !infoForm.controls.location.errors}"><input *ngIf="isEdit" type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" formControlName="location">
           <ul class="help-block">

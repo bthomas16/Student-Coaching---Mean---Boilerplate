@@ -7,9 +7,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  // server = "http://localhost:8080/";
+  server = "http://localhost:8080/";
     // production server
-  server = ""
+  // server = ""
   authToken;
   user;
   options;
@@ -143,11 +143,6 @@ checkEmail(email) {
           onGetRating() {
             this.createAuthenticationHeaders();
             return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
-          }
-
-          getSchedule() {
-            this.createAuthenticationHeaders();
-            return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
           }
 
           studentCheck() {

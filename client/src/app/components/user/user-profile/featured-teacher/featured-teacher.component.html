@@ -23,8 +23,9 @@
               </div>
             </div>
             <p class="full number">{{numberOfRatings}} <em>Students</em></p>
-    <div class="flex middle leftText">
-        "{{bio | truncate:100}}"
+    <div class="flex middle leftText" *ngFor="let teacher of teachersList  | filter: filterText | slice:0:1; let i=index">
+        "{{teacher.text}}"
+        - {{teacher.author}}
     </div>
     <div class="flex">
       <a routerLink="{{route}}" class="btn btn-primary contact">

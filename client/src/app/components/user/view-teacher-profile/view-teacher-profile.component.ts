@@ -59,9 +59,12 @@ export class ViewTeacherProfileComponent implements OnInit {
           this.teacherID = data.teacher.id;
           this.teacherEmail = data.teacher.email;
           this.teacherFullname = data.teacher.fullname;
-          this.teacherKRatingsArray = data.teacher.kRatingsArray.reduce((a, b) => a + b)/data.teacher.kRatingsArray.length;
-          this.teacherPRatingsArray = data.teacher.pRatingsArray.reduce((a, b) => a + b)/data.teacher.pRatingsArray.length;
-          this.teacherTARatingsArray = data.teacher.taRatingsArray.reduce((a, b) => a + b)/data.teacher.taRatingsArray.length;
+          if(data.teacher.ratings.kRatingsArray == null || undefined) {
+            return null
+          }
+          this.teacherKRatingsArray = data.teacher.ratings.kRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.kRatingsArray.length;
+          this.teacherPRatingsArray = data.teacher.ratings.pRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.pRatingsArray.length;
+          this.teacherTARatingsArray = data.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.taRatingsArray.length;
       }
     });
   }

@@ -13,24 +13,85 @@ import { FilterPipe } from '../../../../filter.pipe';
   providers: [ShufflePipe]
 })
 export class TeachersListComponent implements OnInit {
-  teachersList;
   filterText;
   id: number;
 
-  constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {
+  isChecked1: boolean = false;
+  isChecked2: boolean = false;
+  isChecked3: boolean = false;
+  isChecked4: boolean = false;
+  isChecked5: boolean = false;
+  yetRated: boolean = false;
 
-   }
+  tempkRatingsArray: Array<number> = [];
+  temppRatingsArray: Array<number> = [];
+  temptaRatingsArray: Array<number> = [];
 
-  getAllTeachers() {
-  // Function to GET all blogs from database
-  this.apiService.getAllTeachers().subscribe(data => {
-    data.teachers = this.shufflePipe.transform(data.teachers)
-    this.teachersList = data.teachers
-  });
-}
+  avgkRating;
+  avgpRating;
+  avgtaRating;
+  numberOfRatings;
+  avgTotalRating;
+
+  teacher;
+  teachersList;
+  teachersArray;
+  teacherRatingArray;
+  ratingsArray: Array<any> = [];
+
+
+  constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {}
 
   ngOnInit() {
-    this.getAllTeachers();
-  }
+    this.apiService.getAllTeachers().subscribe(data => {
+      data.teachers = this.shufflePipe.transform(data.teachers)
+      this.teachersList = data.teachers
+      console.log(this.teachersList.length)
+        if(this.teachersList.length !== null || 0 ) {
+         //  Loop through teachers array to get each teacher
+        for(const teacher of this.teachersList) {
+          // this.teacherRatingArray = teacher.ratings;
+          let teacherRatings = [];
+          const rate = {
+            rating: teacher.ratings,
+            number: this.avgTotalRating || 5
+          }
+          teacherRatings.push(rate)
+          this.teacherRatingArray = teacherRatings;
+          console.log(this.teacherRatingArray, 'mlk')
 
+          for(let rating of this.teacherRatingArray){
+          console.log(rating, 'normal rating')
+          this.tempkRatingsArray.push(rating.kRatings)
+          this.temppRatingsArray.push(rating.pRatings)
+          this.temptaRatingsArray.push(rating.taRatings)
+        // }
+       // get averages of all individual arrays
+        let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+        let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
+        let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+       //  get number of ratings
+        this.numberOfRatings = this.tempkRatingsArray.length;
+        //  get total array average
+        this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
+
+        // this.teacherRatingArray = [{
+        //   rating: rating,
+        //   avgRating: this.avgTotalRating
+        //   }]
+        //   console.log(this.teacherRatingArray, 'meekppers')
+        }
+      }
+      // let everything = {
+      //   teacher: this.teacher,
+      //   teachersRating: this.avgTotalRating,
+      //   numerRated: this.numberOfRatings
+      // }
+      // this.ratingsArray.push(everything)
+      // console.log(this.ratingsArray, "Raating Array")
+
+       }
+      return false;
+    });
+  }
 }

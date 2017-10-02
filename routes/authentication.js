@@ -323,27 +323,27 @@ router.put('/update-schedule', (req, res) => {
         if(!user) {
           res.json({ success: false, message: 'No User found'});
     } else {
-        user.monM = req.body.monM,
-        user.monA = req.body.monA,
-        user.monE = req.body.monE,
-        user.tueM = req.body.tueM,
-        user.tueA = req.body.tueA,
-        user.tueE = req.body.tueE,
-        user.wedM = req.body.wedM,
-        user.wedA = req.body.wedA,
-        user.wedE = req.body.wedE,
-        user.thuM = req.body.thuM,
-        user.thuA = req.body.thuA,
-        user.thuE = req.body.thuE,
-        user.friM = req.body.friM,
-        user.friA = req.body.friA,
-        user.friE = req.body.friE,
-        user.satM = req.body.satM,
-        user.satA = req.body.satA,
-        user.satE = req.body.satE,
-        user.sunM = req.body.sunM,
-        user.sunA = req.body.sunA,
-        user.sunE = req.body.sunE
+          user.monM = req.body.monM,
+          user.monA = req.body.monA,
+          user.monE = req.body.monE,
+          user.tueM = req.body.tueM,
+          user.tueA = req.body.tueA,
+          user.tueE = req.body.tueE,
+          user.wedM = req.body.wedM,
+          user.wedA = req.body.wedA,
+          user.wedE = req.body.wedE,
+          user.thuM = req.body.thuM,
+          user.thuA = req.body.thuA,
+          user.thuE = req.body.thuE,
+          user.friM = req.body.friM,
+          user.friA = req.body.friA,
+          user.friE = req.body.friE,
+          user.satM = req.body.satM,
+          user.satA = req.body.satA,
+          user.satE = req.body.satE,
+          user.sunM = req.body.sunM,
+          user.sunA = req.body.sunA,
+          user.sunE = req.body.sunE
         user.save((err) => {
           if(err) {
             res.json({ succes: false, message: err})
@@ -357,51 +357,64 @@ router.put('/update-schedule', (req, res) => {
 });
 
 router.put('/teacher-rating', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+  User.findOne({ _id: req.decoded.userId }).exec((err, userRating) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});
     } else {
-        if(!user) {
-          res.json({ success: false, message: 'No User found'});
+        if(!userRating) {
+          res.json({ success: false, message: 'No User is logged in'});
     } else {
-      user.kRatingsArray = req.body.kRatingsArray;
-      user.pRatingsArray = req.body.pRatingsArray;
-      user.taRatingsArray = req.body.taRatingsArray;
-      user.save((err) => {
-        if(err) {
-          res.json({ succes: false, message: err})
+      User.findOne({ _id: req.body.beingRatedId }).exec((err, userBeingRated) => {
+        if (err) {
+          res.json({ success: false, message: 'Not a valid user-to-rate id'});
         } else {
-            res.json({ success: true, message: 'Rating Submitted'})
+          if(!userBeingRated) {
+            res.json({ success: false, message: 'No User will be Rated'});
+          } else {
+              if(userBeingRated == userRating) {
+                res.json({ success: false, message: "You can't rate yourself :("})
+              } else {
+              userBeingRated.ratings.push({
+                kRatings: req.body.kRatings,
+                pRatings: req.body.pRatings,
+                taRatings: req.body.taRatings,
+                text: req.body.text,
+                author: req.body.author
+              })
+              let tempAvg = ((req.body.kRatings + req.body.pRatings + req.body.taRatings)/3)
+              console.log(tempAvg, 'tempAvg')
+              if(userBeingRated.avgRating !== null || undefined) {
+                userBeingRated.avgRating = tempAvg;
+              }
+                let newAvgRating = ((userBeingRated.avgRating + tempAvg)/2)
+                console.log(newAvgRating, 'test')
+              userBeingRated.avgRating = newAvgRating;
+              userBeingRated.save((err) => {
+                if(err) {
+                  res.json({ succes: false, message: err})
+                } else {
+                  // console.log({user: user.ratings})
+                    res.json({ success: true, message: 'Rating Submitted'})
+                  }
+                });
+                }
+              }
+            }
+            });
           }
-        });
-      }
-    }
-  });
-});
-
-router.get('/get-schedule', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).select('monM monA monE tueM tueA tueE wedM wedA wedE thuM thuA thuE friM friA friE satM satA satE sunM sunA sunE').exec((err, user) => {
-    if (err) {
-      res.json({ success: false, message: err});
-    } else {
-      if (!user) {
-        res.json({ success: false, message: 'User not found'});
-      } else {
-        res.json({ success: true, user: user});
-      }
-    }
-  });
-});
+        }
+      });
+    });
 
 router.get('/teacher-rating', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).select('kRatingsArray pRatingsArray taRatingsArray').exec((err, user) => {
+  User.findOne({ _id: req.decoded.userId }).select('ratings').exec((err, ratings) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {
-      if (!user) {
-        res.json({ success: false, message: 'User not found'});
+      if (!ratings) {
+        res.json({ success: false, message: 'Not yet Rated'});
       } else {
-        res.json({ success: true, user: user});
+        res.json({ success: true, ratings: ratings});
       }
     }
   });
@@ -444,14 +457,14 @@ router.get('/get-featured-teacher', (req, res) => {
             res.json({ success: false, message: 'No User found'});
       } else {
 
-    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }}, (err, teachers) => {
+    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, ratings: {'$ne': null }}, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
         if (teachers.length === 0) {
           res.json({ success: false, message: 'No teachers found' });
         } else {
-          const featuredTeacher = Math.floor((Math.random() * (teachers.length - 1)) + 1);
+          const featuredTeacher = Math.floor((Math.random() * (teachers.length)));
           console.log('We made it here!', featuredTeacher)
           res.json({ success: true, teacher: teachers[featuredTeacher] });
         }

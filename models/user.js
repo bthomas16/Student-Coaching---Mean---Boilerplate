@@ -79,12 +79,13 @@ var studentSchema = new Schema({
     isTeacher: {type: Boolean, required: false},
     ratings:[{
       kRatings: Number,
-      pRatings:  Number ,
+      pRatings:  Number,
       taRatings: Number,
       text: String,
       author: String
     }],
-    avgRating: Number,
+    avgRatingArray: [Number],
+    avgRatingNumber: Number,
     experience1: String,
     experience2: String,
     experience3: String,

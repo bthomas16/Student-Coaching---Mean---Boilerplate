@@ -1,8 +1,8 @@
 <div class="flex featured">
   <app-featured-teacher></app-featured-teacher>
 </div>
-<!--
-<div class="flex wrapper" data-dismiss="modal">
+
+<!-- <div class="flex wrapper" data-dismiss="modal">
   <div class="flex">
     <div class="row show-hide-message">
       <div [ngClass]="messageClass">
@@ -14,17 +14,18 @@
     <h3 class="flex">{{ fullname }}</h3>
     <h5 class="flex">{{ email }}</h5>
   </div>
-  <div class="flex">
+  <div class="flex"> -->
 
+<h1>Should be pic</h1>
+<img [src]="[server] + '/routes/uploads/' + [profPic]" alt="">
 
     <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
     <button type="button" class="start-upload-btn" (click)="onStartUpload()">
     Start Upload</button>
 
 
-</div> -->
 
-
+{{profPic}}
 
 
 

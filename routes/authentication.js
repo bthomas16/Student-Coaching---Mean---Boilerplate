@@ -371,7 +371,7 @@ router.put('/teacher-rating', (req, res) => {
           if(!userBeingRated) {
             res.json({ success: false, message: 'No User will be Rated'});
           } else {
-              if(userBeingRated == userRating) {
+              if(req.decoded.userId === req.body.beingRatedId) {
                 res.json({ success: false, message: "You can't rate yourself :("})
               } else {
               userBeingRated.ratings.push({
@@ -381,14 +381,11 @@ router.put('/teacher-rating', (req, res) => {
                 text: req.body.text,
                 author: req.body.author
               })
-              let tempAvg = ((req.body.kRatings + req.body.pRatings + req.body.taRatings)/3)
+              const tempAvg = ((req.body.kRatings + req.body.pRatings + req.body.taRatings)/3)
               console.log(tempAvg, 'tempAvg')
-              if(userBeingRated.avgRating !== null || undefined) {
-                userBeingRated.avgRating = tempAvg;
-              }
-                let newAvgRating = ((userBeingRated.avgRating + tempAvg)/2)
-                console.log(newAvgRating, 'test')
-              userBeingRated.avgRating = newAvgRating;
+              userBeingRated.avgRatingArray.push(tempAvg)
+              const newAvg = userBeingRated.avgRatingArray.reduce((a, b) => a + b)/userBeingRated.avgRatingArray.length;
+              userBeingRated.avgRatingNumber = newAvg;
               userBeingRated.save((err) => {
                 if(err) {
                   res.json({ succes: false, message: err})
@@ -407,7 +404,7 @@ router.put('/teacher-rating', (req, res) => {
     });
 
 router.get('/teacher-rating', (req, res) => {
-  User.findOne({ _id: req.decoded.userId }).select('ratings').exec((err, ratings) => {
+  User.findOne({ _id: req.decoded.userId }).select('ratings avgRating').exec((err, ratings) => {
     if (err) {
       res.json({ success: false, message: err});
     } else {
@@ -457,7 +454,7 @@ router.get('/get-featured-teacher', (req, res) => {
             res.json({ success: false, message: 'No User found'});
       } else {
 
-    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, ratings: {'$ne': null }}, (err, teachers) => {
+    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, avgRatingNumber: {'$ne': null }}, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {

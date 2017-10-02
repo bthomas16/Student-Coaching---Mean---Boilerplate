@@ -38,49 +38,57 @@ export class TeachersListComponent implements OnInit {
   teachersArray;
   teacherRatingArray;
   ratingsArray: Array<any> = [];
+  newArray;
 
-
+  avgRatingNumber;
   constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {}
 
   ngOnInit() {
     this.apiService.getAllTeachers().subscribe(data => {
       data.teachers = this.shufflePipe.transform(data.teachers)
       this.teachersList = data.teachers
-      console.log(this.teachersList.length)
-        if(this.teachersList.length !== null || 0 ) {
+      // console.log(this.teachersList.length, 'length')
+      if(this.teachersList == undefined) {
+        return false
+      }
+        if(this.teachersList.length !== null || undefined ) {
          //  Loop through teachers array to get each teacher
         for(const teacher of this.teachersList) {
           // this.teacherRatingArray = teacher.ratings;
-          let teacherRatings = [];
-          const rate = {
-            rating: teacher.ratings,
-            number: this.avgTotalRating || 5
-          }
-          teacherRatings.push(rate)
-          this.teacherRatingArray = teacherRatings;
-          console.log(this.teacherRatingArray, 'mlk')
-
-          for(let rating of this.teacherRatingArray){
-          console.log(rating, 'normal rating')
-          this.tempkRatingsArray.push(rating.kRatings)
-          this.temppRatingsArray.push(rating.pRatings)
-          this.temptaRatingsArray.push(rating.taRatings)
-        // }
-       // get averages of all individual arrays
-        let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-        let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
-        let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-       //  get number of ratings
-        this.numberOfRatings = this.tempkRatingsArray.length;
-        //  get total array average
-        this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
-
-        // this.teacherRatingArray = [{
-        //   rating: rating,
-        //   avgRating: this.avgTotalRating
-        //   }]
-        //   console.log(this.teacherRatingArray, 'meekppers')
-        }
+            this.avgRatingNumber = teacher.avgRatingNumber || null
+            console.log(this.avgRatingNumber, 'avg')
+      //     let teacherRatings = [];
+      //     const rate = {
+      //       rating: teacher.ratings,
+      //       number: this.avgTotalRating || 5
+      //     }
+      //     teacherRatings.push(rate)
+      //     this.teacherRatingArray = teacherRatings;
+      //     console.log(this.teacherRatingArray, 'mlk')
+       //
+      //     for(let rating in this.teacherRatingArray){
+      //     console.log(rating, 'normal rating')
+      //     this.tempkRatingsArray.push(rating.kRatings)
+      //     this.temppRatingsArray.push(rating.pRatings)
+      //     this.temptaRatingsArray.push(rating.taRatings)
+      //   // }
+      //  // get averages of all individual arrays
+      //   let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+      //   let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
+      //   let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+      //  //  get number of ratings
+      //   this.numberOfRatings = this.tempkRatingsArray.length;
+      //   //  get total array average
+      //   this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
+      //   this.newArray.push(this.avgTotalRating)
+      //   console.log(this.newArray, 'this is nte newest array')
+       //
+      //   // this.teacherRatingArray = [{
+      //   //   rating: rating,
+      //   //   avgRating: this.avgTotalRating
+      //   //   }]
+      //   //   console.log(this.teacherRatingArray, 'meekppers')
+      //   }
       }
       // let everything = {
       //   teacher: this.teacher,

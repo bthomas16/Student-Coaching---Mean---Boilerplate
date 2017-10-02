@@ -18,12 +18,15 @@ export class UserProfileComponent implements OnInit {
   selectedFile;
   message;
   messageClass;
+  profPic;
 
   formData: FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
+
+  server = "https://skill-site.herokuapp.com"
 
 
   constructor(public authService: AuthService) {
@@ -106,6 +109,8 @@ ngOnInit() {
     this.email = profile.user.email;
     this.isStudent = profile.user.isStudent;
     this.isTeacher = profile.user.isTeacher;
+    this.profPic = profile.user.profPicName;
+    // this.profPic = 'localhost:4200/uploads/' + this.profPic
   });
 }
 

@@ -15,18 +15,18 @@
                 <div class="flex half stars">
                   <!-- {{teacher.ratings[i].text}} -->
                   <div class="rating">
-                    <input type="radio" [checked]="avgTotalRating >=4.5"/>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
                     <i class="fa fa-star fa-1x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
-                    <input type="radio" [checked]="avgTotalRating >=3.5"/>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
                     <i class="fa fa-star fa-1x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
-                    <input type="radio" [checked]="avgTotalRating >=2.5"/>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
                     <i class="fa fa-star fa-1x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
-                    <input type="radio" [checked]="avgTotalRating >=1.5"/>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
                     <i class="fa fa-star fa-1x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
-                    <input type="radio" [checked]="avgTotalRating >=0.5"/>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
                     <i class="fa fa-star fa-1x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
                   </div>
-                  <p>{{numberOfRatings}} Ratings</p>
+                  <p>{{teacher.avgRatingArray.length}} Ratings</p>
                 </div>
               </div>
               <p class="flex" id="location"> {{ teacher.location }}</p>

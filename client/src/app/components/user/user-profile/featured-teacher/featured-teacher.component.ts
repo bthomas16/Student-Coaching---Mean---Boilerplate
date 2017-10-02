@@ -12,6 +12,7 @@ import { FilterPipe } from '../../../../filter.pipe';
   providers: [ShufflePipe]
 })
 export class FeaturedTeacherComponent implements OnInit {
+  filterText;
   featuredTeacherId;
   fullname;
   email;
@@ -24,7 +25,7 @@ export class FeaturedTeacherComponent implements OnInit {
   profPic;
   allTeacher;
   bio: String = '';
-  route: String;
+  route: String = '../view-teacher-profile/'
 
   isChecked1: boolean = false;
   isChecked2: boolean = false;
@@ -54,7 +55,7 @@ export class FeaturedTeacherComponent implements OnInit {
       this.fullname = featured.teacher.fullname;
       this.handicap = featured.teacher.handicap;
       this.skills = featured.teacher.skills;
-      this.route = ""
+      this.route = this.route + featured.teacher._id;
 
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings

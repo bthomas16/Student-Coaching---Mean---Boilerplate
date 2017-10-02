@@ -69,6 +69,7 @@ import { UserLoginRedirectComponent } from './components/user/user-login/user-lo
     TeachersListComponent,
     FutureComponent,
     FilterPipe,
+    ShufflePipe,
     BottomSignUpComponent,
     FooterComponent,
     ChooseComponent,
@@ -84,7 +85,6 @@ import { UserLoginRedirectComponent } from './components/user/user-login/user-lo
     TeachingAbilityComponent,
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
-    ShufflePipe,
     FeaturedTeacherComponent,
     TruncatePipe,
     UserLoginRedirectComponent

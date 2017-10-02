@@ -9,6 +9,10 @@ import { AuthService } from '../../../../../services/auth.service';
   styleUrls: ['./teacher-profile-info.component.css']
 })
 export class TeacherProfileInfoComponent implements OnInit {
+  kRating;
+  pRating;
+  taRating;
+
   infoForm;
   message;
   messageClass;
@@ -24,6 +28,13 @@ export class TeacherProfileInfoComponent implements OnInit {
   cost;
   profPic;
   viewTeacherID;
+  ratingsList;
+  text;
+
+  tempkRatingsArray: Array<number> = [];
+  temppRatingsArray: Array<number> = [];
+  temptaRatingsArray: Array<number> = [];
+  avgTotalRating: number;
   isParams: boolean = false;
   isEdit: boolean = false;
   isChecked1: boolean = false;
@@ -102,7 +113,6 @@ export class TeacherProfileInfoComponent implements OnInit {
     this.route.params.subscribe(params => {
     this.viewTeacherID = params['id'];
       if(this.viewTeacherID) {
-      console.log('we have some params in the teacher info component!', this.route.params)
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
            this.userID = viewTeacher.teacher.id;
@@ -115,83 +125,103 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.skills =viewTeacher.teacher.skills;
            this.handicap =viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
-           if(viewTeacher.teacher.kRatingsArray.length == 0 ||viewTeacher.teacher.pRatingsArray.length == 0 ||viewTeacher.teacher.taRatingsArray.length == 0) {
-             return null;
-           } else {
+          //  if ratings array is not 0, do this operation
+           if(viewTeacher.teacher.ratings.length !== null || 0 ) {
              this.yetRated = true;
-             this.avgKnowledgeRating =viewTeacher.teacher.kRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.kRatingsArray.length;
-             this.avgProfessionalismRating =viewTeacher.teacher.pRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.pRatingsArray.length;
-             this.avgTeachingAbilityRating =viewTeacher.teacher.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.taRatingsArray.length;
-             this.avgRating = (this.avgKnowledgeRating + this.avgProfessionalismRating + this.avgTeachingAbilityRating)/3;
-             this.numberOfRatings =viewTeacher.teacher.kRatingsArray.length;
-             if(this.avgRating >= 4.5) {
-               this.isChecked5 = true;
-             } else {
-               if(this.avgRating >= 3.5) {
-                 this.isChecked4 = true;
-               } else {
-                 if(this.avgRating >= 2.5) {
-                   this.isChecked3 = true;
-                 } else {
-                   if(this.avgRating >= 1.5) {
-                     this.isChecked2 = true;
+            //  Loop through ratings array
+           for(let rating of viewTeacher.teacher.ratings) {
+             this.tempkRatingsArray.push(rating.kRatings)
+             this.temppRatingsArray.push(rating.pRatings)
+             this.temptaRatingsArray.push(rating.taRatings)
+          }
+          // get averages of all individual arrays
+           let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+           let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
+           let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+          //  get number of ratings
+           this.numberOfRatings = this.tempkRatingsArray.length;
+           //  get total array average
+           this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
+          //  set star states based on total average array value
+           if(this.avgTotalRating >= 4.5) {
+                  this.isChecked5 = true;
+                } else {
+                   if(this.avgTotalRating >= 3.5) {
+                     this.isChecked4 = true;
                    } else {
-                     if(this.avgRating >= 0.5) {
-                       this.isChecked1 = true;
+                     if(this.avgTotalRating >= 2.5) {
+                       this.isChecked3 = true;
+                     } else {
+                       if(this.avgTotalRating >= 1.5) {
+                         this.isChecked2 = true;
+                       } else {
+                         if(this.avgTotalRating >= 0.5) {
+                           this.isChecked1 = true;
+                         }
+                       }
                      }
                    }
                  }
-               }
-             }
-           }
-           return true
-         });
-       }
-     });
-    if(!this.viewTeacherID) {
-    this.isParams = false;
-    this.authService.getProfile()
-    .subscribe(profile => {
-      this.userID = profile.user.id;
-      this.fullname = profile.user.fullname.toUpperCase();
-      this.email = profile.user.email;
-      this.isStudent = profile.user.isStudent;
-      this.isTeacher = profile.user.isTeacher;
-      this.location = profile.user.location;
-      this.yrsExperience = profile.user.yrsExperience;
-      this.skills = profile.user.skills;
-      this.handicap = profile.user.handicap;
-      this.cost = profile.user.cost;
-      if(profile.user.kRatingsArray.length == 0 || profile.user.pRatingsArray.length == 0 || profile.user.taRatingsArray.length == 0) {
-        return null;
-      } else {
-      this.yetRated = true;
-      this.avgKnowledgeRating = profile.user.kRatingsArray.reduce((a, b) => a + b)/profile.user.kRatingsArray.length;
-      this.avgProfessionalismRating = profile.user.pRatingsArray.reduce((a, b) => a + b)/profile.user.pRatingsArray.length;
-      this.avgTeachingAbilityRating = profile.user.taRatingsArray.reduce((a, b) => a + b)/profile.user.taRatingsArray.length;
-      this.avgRating = (this.avgKnowledgeRating + this.avgProfessionalismRating + this.avgTeachingAbilityRating)/3;
-      this.numberOfRatings = profile.user.kRatingsArray.length;
-      if(this.avgRating >= 4.5) {
-        this.isChecked5 = true;
-      } else {
-        if(this.avgRating >= 3.5) {
-          this.isChecked4 = true;
-        } else {
-          if(this.avgRating >= 2.5) {
-            this.isChecked3 = true;
-          } else {
-            if(this.avgRating >= 1.5) {
-              this.isChecked2 = true;
-            } else {
-              if(this.avgRating >= 0.5) {
-                this.isChecked1 = true;
               }
-            }
-          }
-        }
-      }
-    }
-    });
+            });
+         return true;
+         }
+       });
+      if(!this.viewTeacherID) {
+      this.isParams = false;
+      this.authService.getProfile()
+      .subscribe(profile => {
+        this.userID = profile.user.id;
+        this.fullname = profile.user.fullname.toUpperCase();
+        this.email =profile.user.email;
+        this.isStudent =profile.user.isStudent;
+        this.isTeacher =profile.user.isTeacher;
+        this.location =profile.user.location;
+        this.yrsExperience =profile.user.yrsExperience;
+        this.skills =profile.user.skills;
+        this.handicap =profile.user.handicap;
+        this.cost =profile.user.cost;
+       //  if ratings array is not 0, do this operation
+        if(profile.user.ratings.length !== null || 0 ) {
+          this.yetRated = true;
+         //  Loop through ratings array
+        for(let rating of profile.user.ratings) {
+          this.tempkRatingsArray.push(rating.kRatings)
+          this.temppRatingsArray.push(rating.pRatings)
+          this.temptaRatingsArray.push(rating.taRatings)
+       }
+       // get averages of all individual arrays
+        let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+        let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
+        let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
+       //  get number of ratings
+        this.numberOfRatings = this.tempkRatingsArray.length;
+        //  get total array average
+        this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
+       //  set star states based on total average array value
+        if(this.avgTotalRating >= 4.5) {
+               this.isChecked5 = true;
+             } else {
+                if(this.avgTotalRating >= 3.5) {
+                  this.isChecked4 = true;
+                } else {
+                  if(this.avgTotalRating >= 2.5) {
+                    this.isChecked3 = true;
+                  } else {
+                    if(this.avgTotalRating >= 1.5) {
+                      this.isChecked2 = true;
+                    } else {
+                      if(this.avgTotalRating >= 0.5) {
+                        this.isChecked1 = true;
+                      }
+                    }
+                  }
+                }
+              }
+           }
+         });
+      return true;
   }
+  return false
   }
 }

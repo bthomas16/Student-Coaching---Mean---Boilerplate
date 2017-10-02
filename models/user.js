@@ -77,9 +77,14 @@ var studentSchema = new Schema({
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
     isTeacher: {type: Boolean, required: false},
-    kRatingsArray: [Number],
-    pRatingsArray: [Number],
-    taRatingsArray: [Number],
+    ratings:[{
+      kRatings: Number,
+      pRatings:  Number ,
+      taRatings: Number,
+      text: String,
+      author: String
+    }],
+    avgRating: Number,
     experience1: String,
     experience2: String,
     experience3: String,

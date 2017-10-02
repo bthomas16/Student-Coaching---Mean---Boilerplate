@@ -145,11 +145,6 @@ checkEmail(email) {
             return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
           }
 
-          getSchedule() {
-            this.createAuthenticationHeaders();
-            return this.http.get(this.server + 'authentication/get-schedule', this.options).map(res => res.json());
-          }
-
           studentCheck() {
             this.createAuthenticationHeaders();
             return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());

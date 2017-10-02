@@ -22,7 +22,9 @@
 }
 
 .text {
-  width: 75%;
+  width: 100%;
+  padding: 2em;
+  padding-bottom: 0;
 }
 
 .modalTitle {
@@ -85,6 +87,9 @@ ul.help-block li {
   margin-top: 2.5em;
 }
 
+button {
+  text-align: center;
+}
 @media(max-width:750px) {
   .modall {
     margin-top: 5.5em;
@@ -92,7 +97,7 @@ ul.help-block li {
     padding: .25em;
     border-radius: 5px;
     background-color: rgba(	85, 99, 240,.975);
-    width: 95%;
+    width: 100%;
     height: justify;
   }
 }

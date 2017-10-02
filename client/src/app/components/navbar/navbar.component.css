@@ -55,7 +55,7 @@
   width: 10%;
   position: absolute;
   background-color: rgb(85,99,240);
-  z-index: 100;
+  z-index: 10000;
 }
 
 .menu-item  {

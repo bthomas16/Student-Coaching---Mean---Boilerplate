@@ -39,7 +39,10 @@
 }
 
 .register {
-  background-color: rgba(27, 172, 252,.9)
+  background-color: rgba(27, 172, 252,.9);
+  width: 80%;
+  color: white;
+  font-weight: bold;
 }
 
 .account {

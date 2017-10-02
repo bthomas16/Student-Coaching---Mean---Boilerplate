@@ -33,7 +33,7 @@ router.get('/get-all-teachers', (req, res) => {
           res.json({ success: true, teachers: teachers }); // Return success and teachers array
         }
       }
-    }).sort({ '_id': -1 }); // Sort teachers from newest to oldest
+    })
   });
 
   router.post('/email-subscriber', (req, res) => {

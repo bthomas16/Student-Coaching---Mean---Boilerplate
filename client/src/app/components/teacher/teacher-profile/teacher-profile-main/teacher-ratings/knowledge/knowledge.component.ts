@@ -10,7 +10,6 @@ export class KnowledgeComponent implements OnInit {
   rating: number;
   processing: boolean = false;
   showRating: boolean = false;
-  sum: number = 0;
   message;
   messageClass;
   isChecked1: boolean = false;

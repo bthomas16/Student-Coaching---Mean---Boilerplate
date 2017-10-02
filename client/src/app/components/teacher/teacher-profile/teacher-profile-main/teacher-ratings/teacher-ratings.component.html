@@ -32,10 +32,10 @@
     </h5>
   </div>
   <div class="flex">
-    <textarea class="form-control" ngModel required #stuff placeholder="Describe your experience here"></textarea>
+    <textarea class="form-control" (keyup)="getText($event)" placeholder="Describe your experience here"></textarea>
   </div>
   <div class="flex butts">
     <button class="btn btn-warning" (click)="canRate()" [disabled]="processing">Cancel</button>
-    <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA || stuff.value == ''">Rate</button>
+    <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA || text == null">Rate</button>
   </div>
 </div>

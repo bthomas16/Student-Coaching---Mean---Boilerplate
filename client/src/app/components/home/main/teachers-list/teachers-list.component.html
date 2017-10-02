@@ -4,15 +4,31 @@
   </div>
   <div class="teacher-wrapper flex">
     <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:6; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
-        <!-- {{ teacher.fullname}}
         <br>
-        {{ teacher.email }} -->
         <div class="flex mediaDiv">
           <div class="flex pic">
               <img src="http://jameystegmaier.com/wp-content/uploads/2012/11/scarlett-Johanssen.jpg">
           </div>
             <div class="flex info">
-              <p id="fullname">{{teacher.fullname.toUpperCase()}}</p>
+              <div class="flex">
+                <p id="fullname">{{teacher.fullname.toUpperCase()}}</p>
+                <div class="flex half stars">
+                  <!-- {{teacher.ratings[i].text}} -->
+                  <div class="rating">
+                    <input type="radio" [checked]="avgTotalRating >=4.5"/>
+                    <i class="fa fa-star fa-1x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+                    <input type="radio" [checked]="avgTotalRating >=3.5"/>
+                    <i class="fa fa-star fa-1x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+                    <input type="radio" [checked]="avgTotalRating >=2.5"/>
+                    <i class="fa fa-star fa-1x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+                    <input type="radio" [checked]="avgTotalRating >=1.5"/>
+                    <i class="fa fa-star fa-1x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+                    <input type="radio" [checked]="avgTotalRating >=0.5"/>
+                    <i class="fa fa-star fa-1x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+                  </div>
+                  <p>{{numberOfRatings}} Ratings</p>
+                </div>
+              </div>
               <p class="flex" id="location"> {{ teacher.location }}</p>
               <p class="flex" id="skills">{{ teacher.skills }}</p>
               <p class="flex" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr</p>

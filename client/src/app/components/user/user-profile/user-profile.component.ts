@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = "https://skill-site.herokuapp.com"
+  server = ""
 
 
   constructor(public authService: AuthService) {
@@ -92,7 +92,7 @@ onUploadOutput(output: UploadOutput): void {
 onStartUpload(): void {
   const event: UploadInput = {
       type: 'uploadAll',
-      url: "http://localhost:8080/authentication/avatar-upload/" + this.id,
+      url: "https://localhost:8080/authentication/avatar-upload/" + this.id,
       method: 'PUT',
       concurrency: 0
     };
@@ -110,7 +110,7 @@ ngOnInit() {
     this.isStudent = profile.user.isStudent;
     this.isTeacher = profile.user.isTeacher;
     this.profPic = profile.user.profPicName;
-    // this.profPic = 'localhost:4200/uploads/' + this.profPic
+    this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id
   });
 }
 

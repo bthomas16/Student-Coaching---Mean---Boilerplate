@@ -1,13 +1,13 @@
 <div class="flex wrapper">
-  <div class="flex half">
+  <div class="flex half pic">
     <h4 class="flex featuredCoach">Featured Coach</h4>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi2X9m-SwhTNvs8OaV3-1Eol9CoE6EUU9jcgOnQ3FTffIQQSjLDA" alt="" class="featuredPic">
+    <img [src]="[profPic]" alt="" class="featuredPic">
   </div>
-  <div class="flex half leftText">
+  <div class="flex half leftText push">
         <h3 class="full">{{ fullname }}</h3>
         <p class="full">Handicap Index of <strong>{{handicap}}</strong></p>
         <p class="full">{{location}}</p>
-        <p><em>Skills:</em> {{skills}}</p>
+        <p>{{skills}}</p>
             <div class="flex leftText">
               <div class="rating noMouse">
                 <input type="radio" [checked]="isChecked5"/>
@@ -27,9 +27,11 @@
         "{{teacher.text}}"
         - {{teacher.author}}
     </div>
-    <div class="flex">
-      <a routerLink="{{route}}" class="btn btn-primary contact">
-        CONTACT {{ fullname }}
+    <div class="flex contact">
+      <a routerLink="{{route}}" class="flex contact">
+        <button class="btn btn-primary">
+          CONTACT {{ fullname }}
+        </button>
       </a>
     </div>
   </div>

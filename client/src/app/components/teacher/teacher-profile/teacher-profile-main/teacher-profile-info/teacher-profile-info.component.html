@@ -1,6 +1,16 @@
 <div class="flex main-wrapper">
-    <div class="flex half image">
-      <img src="{{ profPic }}" alt="">
+    <div class="flex half image" *ngIf="!isEdit && profPic == null">
+      <span *ngIf="!isParams" class="flex">
+        <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+      </span>
+    </div>
+    <div class="flex half image" *ngIf="!isEdit">
+      <img [src]="[profPic]" alt="" class="profPic">
+    </div>
+    <div class="flex half" *ngIf="isEdit">
+      <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+      <button type="button" class="start-upload-btn" (click)="onStartUpload()">
+      Start Upload</button>
     </div>
     <div class="flex half stats">
       <div class="flex" *ngIf="location == undefined">
@@ -8,34 +18,34 @@
       </div>
 
 
-    <div class="flex" *ngIf="!isEdit && location !== undefined">
+    <div class="flex info" *ngIf="!isEdit && location !== undefined">
       <h3 class="flex" *ngIf="!yetRated">Not Yet Rated</h3>
         <p class="flex name">{{ fullname }}</p>
 
         <div class="flex stars">
           <div class="rating">
             <input type="radio" [checked]="isChecked5"/>
-            <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+            <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
             <input type="radio" [checked]="isChecked4"/>
-            <i class="fa fa-star fa-2x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+            <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
             <input type="radio" [checked]="isChecked3"/>
-            <i class="fa fa-star fa-2x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+            <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
             <input type="radio" [checked]="isChecked2"/>
-            <i class="fa fa-star fa-2x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+            <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
             <input type="radio" [checked]="isChecked1"/>
-            <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+            <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
           </div>
+          <p class="flex left numberRatings"> <em>{{ numberOfRatings }}</em> Students</p>
         </div>
 
 
         <!-- <p class="flex" *ngIf="yetRated">{{ avgRating | number : '1.1-1' }}</p> -->
-        <p class="flex left"> <em>{{ numberOfRatings }}</em> Students</p>
         <p class="flex left"> {{ location }}</p>
         <p class="flex left"> {{ yrsExperience }}Years</p>
         <p class="flex left"> {{ skills }}</p>
         <p class="flex left"> {{ handicap }}Under</p>
         <p class="flex left"> $ {{ cost }}/hr</p>
-        <span *ngIf="isParams" class="flex">
+        <span *ngIf="isParams" class="flex contactDiv">
           <a href="mailto:{{email}}" class="btn btn-primary contact">Contact {{fullname}}</a>
         </span>
     </div>

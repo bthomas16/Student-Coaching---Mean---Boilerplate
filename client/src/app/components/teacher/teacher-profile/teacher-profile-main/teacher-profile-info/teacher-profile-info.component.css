@@ -2,18 +2,19 @@
   width: 100%;
   background-color: #2B2A2A;
   color: white;
+  justify-content: space-between;
 }
 
 .image {
   justify-content: flex-start;
   position: relative;
-  left: -1.65em;
+  /*left: -1.65em;*/
   width: 45%;
 }
 
-.profile-pic {
+.profPic {
   height: 375px;
-  /*width: 275px;*/
+  width: 275px;
 }
 
 .stats {
@@ -30,12 +31,6 @@
   width: 40%;
 }
 
-.infos  {
-  justify-content: flex-end;
-  text-align: right;
-  padding-right: 15%;
-}
-
 .h5 {
   width: 60%;
   text-align: right;
@@ -46,12 +41,24 @@
   margin-bottom: .35em;
   width: 50%;
 }
+.contactDiv {
+  justify-content: flex-start;
+}
 
 .contact {
-  width: 60%;
+  /*width: 60%;*/
   margin-top: .35em;
   margin-bottom: .35em;
   /*padding: .5em;*/
+}
+
+.info {
+  justify-content: flex-start;
+}
+
+.left {
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .help-block li {
@@ -60,6 +67,7 @@
 
 .stars {
   margin-bottom: 1em;
+  justify-content: flex-start;
 }
 
 .left em {
@@ -68,10 +76,26 @@
 
 .name {
   font-size: 1.4em;
+
+  justify-content: flex-start;
+}
+
+.fa-star {
+  font-size: 2em;
+}
+
+.numberRatings {
+  font-size: .75em;
+}
+@media(max-width: 1105px){
+  .profPic {
+      height: 350px;
+      width: 250px
+  }
 }
 
 @media(max-width: 875px){
-  .profile-pic {
+  .profPic {
       height: 350px;
   }
 }
@@ -90,13 +114,17 @@
   }
 
   .image {
-    width: 40%;
+    width: 50%;
     align-self: flex-start;
     padding: 0;
   }
 
-  .profile-pic {
-    position: relative;
+  .info {
+    width: 100%;
+  }
+
+  .profPic {
+    /*position: relative;*/
     margin-top: 0;
     align-self: flex-start;
   }
@@ -104,6 +132,10 @@
     font-size: .75em;
     width: 80%;
     padding: .5em;
+  }
+
+  .fa-star {
+    font-size: 1.5em;
   }
 }
 
@@ -116,23 +148,20 @@
     .wrap {
       padding: 0;
       width: 100%;
-      margin-left: 1em;
+      /*margin-left: 1em;*/
       margin-bottom: 0;
     }
 
+
   .image {
-    width: 30%;
+    width: 50%;
     /*justify-content: center;*/
     padding: 0;
     margin: 0;
   }
 
-  .profile-pic {
-    width: 220px;
-  }
-
-  .rating i {
-    font-size: 1.4em;
+  .info {
+    width: 100%;
   }
 
   form {
@@ -144,27 +173,32 @@
   form button {
     margin: .25em;
   }
-
-  img {
+  .fa-star {
+    font-size: 1.5em;
   }
 }
 
 @media(max-width: 380px) {
-  .wrap {
-    margin-left: 1.5em;
-  }
-  .rating i {
-    font-size: 1em;
-  }
 
-  .profile-pic {
-    width: 185px;
+  .left {
+    line-height: 1;
+    width: 100%;
   }
 
   form {
     width: 80%;
     margin-left: .5em;
   }
+
+    .fa-star {
+      font-size: 1.25em;
+    }
+  }
+
+  @media(max-width: 300px) {
+    .fa-star {
+      font-size: 1em;
+    }
 }
 
 

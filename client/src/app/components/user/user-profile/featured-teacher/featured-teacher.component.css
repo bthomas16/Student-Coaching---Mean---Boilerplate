@@ -14,10 +14,6 @@ font-weight: bold;
   font-weight: bold;
 }
 
-.contact {
-  background-color: #1BACFC;
-}
-
 .stars {
   padding-top: .75em;
 }
@@ -29,6 +25,21 @@ font-weight: bold;
 
 .leftText {
   justify-content: flex-start;
+  /*padding-left: 1em;*/
+}
+
+.leftText p {
+  text-align: left;
+}
+
+.contact {
+  justify-content: flex-start;
+}
+
+.contact button {
+  color: white;
+  background-color: #1BACFC;
+  font-size: 1em;
 }
 
 .full {
@@ -52,11 +63,15 @@ font-weight: bold;
     width: 100%;
   }
   .featuredPic {
-    height: 150px;
+    height: 185px;
   }
 }
 
 @media(max-width: 600px) {
+
+  .wrapper {
+    justify-content: space-between;
+  }
   .middle {
     font-size: .8em;
   }
@@ -70,6 +85,9 @@ font-weight: bold;
   .featuredCoach {
     margin-bottom: 1em;
   }
+  .featuredPic {
+    height: 205px;
+    }
   }
 
 

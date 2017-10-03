@@ -7,31 +7,37 @@
         <br>
         <div class="flex mediaDiv">
           <div class="flex pic">
-              <img src="http://jameystegmaier.com/wp-content/uploads/2012/11/scarlett-Johanssen.jpg">
+              <img [src]="['http://localhost:8080/authentication/avatar-retrieve/' + teacher._id]">
           </div>
             <div class="flex info">
               <div class="flex">
-                <p id="fullname">{{teacher.fullname.toUpperCase()}}</p>
+                <div class="flex half fullname">
+                  <p>{{teacher.fullname.toUpperCase()}}</p>
+                </div>
                 <div class="flex half stars">
-                  <!-- {{teacher.ratings[i].text}} -->
-                  <div class="rating">
-                    <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
-                    <i class="fa fa-star fa-1x star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
-                    <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
-                    <i class="fa fa-star fa-1x star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
-                    <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
-                    <i class="fa fa-star fa-1x star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
-                    <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
-                    <i class="fa fa-star fa-1x star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
-                    <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
-                    <i class="fa fa-star fa-1x star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+                  <div class="flex fullname" style="color: grey" *ngIf="!teacher.avgRatingNumber">
+                    Not Yet Rated
                   </div>
-                  <p>{{teacher.avgRatingArray.length}} Ratings</p>
+                  <div class="rating" *ngIf="teacher.avgRatingNumber">
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
+                    <i class="fa fa-star fa-1x star" for="star5"></i>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
+                    <i class="fa fa-star fa-1x star" for="star4"></i>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
+                    <i class="fa fa-star fa-1x star" for="star3"></i>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
+                    <i class="fa fa-star fa-1x star" for="star2"></i>
+                    <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
+                    <i class="fa fa-star fa-1x star" for="star1"></i>
+                  </div>
+                  <p class="numberRatings" *ngIf="teacher.avgRatingNumber">{{teacher.avgRatingArray.length}} Ratings</p>
                 </div>
               </div>
-              <p class="flex" id="location"> {{ teacher.location }}</p>
-              <p class="flex" id="skills">{{ teacher.skills }}</p>
-              <p class="flex" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr</p>
+              <span class="flex left">
+                <p class="flex" id="location"> {{ teacher.location }}</p>
+                <p class="flex" id="skills">{{ teacher.skills }}</p>
+                <p class="flex" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr</p>
+              </span>
             </div>
         </div>
       </a>

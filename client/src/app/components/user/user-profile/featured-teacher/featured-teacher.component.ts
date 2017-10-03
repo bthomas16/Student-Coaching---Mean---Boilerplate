@@ -52,10 +52,13 @@ export class FeaturedTeacherComponent implements OnInit {
   ngOnInit() {
     this.authService.getFeaturedTeacher()
     .subscribe(featured => {
-      this.fullname = featured.teacher.fullname;
+      this.id = featured.teacher._id;
+      this.fullname = featured.teacher.fullname.toUpperCase();
       this.handicap = featured.teacher.handicap;
       this.skills = featured.teacher.skills;
       this.route = this.route + featured.teacher._id;
+      this.profPic = featured.teacher.profPicName;
+      this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id
 
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings

@@ -14,6 +14,7 @@ import { FilterPipe } from '../../../../filter.pipe';
 })
 export class TeachersListComponent implements OnInit {
   filterText;
+  profPic;
   id: number;
 
   isChecked1: boolean = false;
@@ -56,48 +57,10 @@ export class TeachersListComponent implements OnInit {
         for(const teacher of this.teachersList) {
           // this.teacherRatingArray = teacher.ratings;
             this.avgRatingNumber = teacher.avgRatingNumber || null
-            console.log(this.avgRatingNumber, 'avg')
-      //     let teacherRatings = [];
-      //     const rate = {
-      //       rating: teacher.ratings,
-      //       number: this.avgTotalRating || 5
-      //     }
-      //     teacherRatings.push(rate)
-      //     this.teacherRatingArray = teacherRatings;
-      //     console.log(this.teacherRatingArray, 'mlk')
-       //
-      //     for(let rating in this.teacherRatingArray){
-      //     console.log(rating, 'normal rating')
-      //     this.tempkRatingsArray.push(rating.kRatings)
-      //     this.temppRatingsArray.push(rating.pRatings)
-      //     this.temptaRatingsArray.push(rating.taRatings)
-      //   // }
-      //  // get averages of all individual arrays
-      //   let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-      //   let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
-      //   let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-      //  //  get number of ratings
-      //   this.numberOfRatings = this.tempkRatingsArray.length;
-      //   //  get total array average
-      //   this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
-      //   this.newArray.push(this.avgTotalRating)
-      //   console.log(this.newArray, 'this is nte newest array')
-       //
-      //   // this.teacherRatingArray = [{
-      //   //   rating: rating,
-      //   //   avgRating: this.avgTotalRating
-      //   //   }]
-      //   //   console.log(this.teacherRatingArray, 'meekppers')
-      //   }
-      }
-      // let everything = {
-      //   teacher: this.teacher,
-      //   teachersRating: this.avgTotalRating,
-      //   numerRated: this.numberOfRatings
-      // }
-      // this.ratingsArray.push(everything)
-      // console.log(this.ratingsArray, "Raating Array")
-
+            this.id = teacher._id;
+            this.profPic = teacher.profPicName;
+            this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id; 
+          }
        }
       return false;
     });

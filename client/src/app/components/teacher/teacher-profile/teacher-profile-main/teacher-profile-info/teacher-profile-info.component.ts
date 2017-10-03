@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../../../../services/auth.service';
@@ -16,7 +18,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   infoForm;
   message;
   messageClass;
-  userID;
+  id;
   fullname;
   email;
   isStudent;
@@ -50,10 +52,20 @@ export class TeacherProfileInfoComponent implements OnInit {
   numberOfRatings: number;
   yetRated: boolean = false;
 
+  formData: FormData;
+  files: UploadFile[];
+  uploadInput: EventEmitter<UploadInput>;
+  humanizeBytes: Function;
+  dragOver: boolean;
+
+
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     this.location = '';
     this.createForm();
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
+    this.humanizeBytes = humanizeBytes;
   }
 
 
@@ -108,6 +120,37 @@ export class TeacherProfileInfoComponent implements OnInit {
   //   })
   // }
 
+  onUploadOutput(output: UploadOutput): void {
+      if (output.type === 'allAddedToQueue') {
+        } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
+          this.files.push(output.file);
+        } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
+          // update current data in files array for uploading file
+          const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
+          this.files[index] = output.file;
+        } else if (output.type === 'removed') {
+          // remove file from array when removed
+          this.files = this.files.filter((file: UploadFile) => file !== output.file);
+        } else if (output.type === 'dragOver') {
+          this.dragOver = true;
+        } else if (output.type === 'dragOut') {
+          this.dragOver = false;
+        } else if (output.type === 'drop') {
+          this.dragOver = false;
+        }
+    }
+
+  onStartUpload(): void {
+    const event: UploadInput = {
+        type: 'uploadAll',
+        url: "http://localhost:8080/authentication/avatar-upload/" + this.id,
+        method: 'PUT',
+        concurrency: 0
+      };
+      console.log(event)
+      this.uploadInput.emit(event)
+    }
+
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -115,7 +158,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       if(this.viewTeacherID) {
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
-           this.userID = viewTeacher.teacher.id;
+           this.id = viewTeacher.teacher._id;
            this.fullname = viewTeacher.teacher.fullname.toUpperCase();
            this.email =viewTeacher.teacher.email;
            this.isStudent =viewTeacher.teacher.isStudent;
@@ -125,6 +168,8 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.skills =viewTeacher.teacher.skills;
            this.handicap =viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
+           this.profPic = viewTeacher.teacher.profPic;
+           this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length !== null || 0 ) {
              this.yetRated = true;
@@ -171,7 +216,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       this.isParams = false;
       this.authService.getProfile()
       .subscribe(profile => {
-        this.userID = profile.user.id;
+        this.id = profile.user._id;
         this.fullname = profile.user.fullname.toUpperCase();
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;
@@ -181,6 +226,8 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.skills =profile.user.skills;
         this.handicap =profile.user.handicap;
         this.cost =profile.user.cost;
+        this.profPic = profile.user.profPic;
+        this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id;
        //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length !== null || 0 ) {
           this.yetRated = true;

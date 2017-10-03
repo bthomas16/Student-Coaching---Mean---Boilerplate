@@ -1,34 +1,35 @@
 <div class="flex wrapper">
-  <div class="flex half pic">
+  <div class="flex pic">
     <h4 class="flex featuredCoach">Featured Coach</h4>
     <img [src]="[profPic]" alt="" class="featuredPic">
   </div>
-  <div class="flex half leftText push">
-        <h3 class="full">{{ fullname }}</h3>
-        <p class="full">Handicap Index of <strong>{{handicap}}</strong></p>
-        <p class="full">{{location}}</p>
-        <p>{{skills}}</p>
-            <div class="flex leftText">
+  <div class="flex right">
+        <h3 class="flex">{{ fullname }}</h3>
+        <div class="flex closeTogether">
+          <p class="flex">Handicap Index: &nbsp;{{handicap}}</p>
+          <p class="flex">{{skills}}</p>
+        </div>
+            <div class="flex">
               <div class="rating noMouse">
                 <input type="radio" [checked]="isChecked5"/>
-                <i class="fa fa-star fa-2x star" for="star5" title="Awesome - 5 stars"></i>
+                <i class="fa fa-star star" for="star5" title="Awesome - 5 stars"></i>
                 <input type="radio" [checked]="isChecked4"/>
-                <i class="fa fa-star fa-2x star" for="star4" title="Pretty good - 4 stars"></i>
+                <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars"></i>
                 <input type="radio" [checked]="isChecked3"/>
-                <i class="fa fa-star fa-2x star" for="star3" title="Meh - 3 stars"></i>
+                <i class="fa fa-star star" for="star3" title="Meh - 3 stars"></i>
                 <input type="radio" [checked]="isChecked2"/>
-                <i class="fa fa-star fa-2x star" for="star2" title="Kinda bad - 2 stars"></i>
+                <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars"></i>
                 <input type="radio" [checked]="isChecked1"/>
-                <i class="fa fa-star fa-2x star" for="star1" title="Sucks big time - 1 star"></i>
+                <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star"></i>
               </div>
             </div>
-            <p class="full number">{{numberOfRatings}} <em>Students</em></p>
-    <div class="flex middle leftText" *ngFor="let teacher of teachersList  | filter: filterText | slice:0:1; let i=index">
-        "{{teacher.text}}"
-        - {{teacher.author}}
+            <p class="flex number"><em>{{numberOfRatings}} Students</em></p>
+    <div class="flex ratingContent" *ngFor="let teacher of teachersList | slice:0:1; let i=index">
+        <h4 class="flex ratingText">"{{teacher.text}}"</h4>
+        <h5 class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</h5>
     </div>
     <div class="flex contact">
-      <a routerLink="{{route}}" class="flex contact">
+      <a routerLink="{{route}}" class="flex contactLink">
         <button class="btn btn-primary">
           CONTACT {{ fullname }}
         </button>

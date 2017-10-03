@@ -124,6 +124,9 @@ i:hover {
   .options a {
     padding: .35em;
   }
+  .fa-user {
+    margin-right: 1.25em;
+  }
 }
 
 @media(max-width: 500px ) {
@@ -134,10 +137,18 @@ i:hover {
   .options {
     padding: 0;
   }
+
+  .fa-user {
+    margin-right: .75em;
+  }
 }
 
 @media(max-width: 400px ) {
   .menu {
     width: 60%;
+  }
+
+  .fa-user {
+    margin-right: .5em;
   }
 }

@@ -1,0 +1,187 @@
+.wrapper {
+  width: 34.5em;
+  box-shadow: 3px 2.5px 1.5px grey;
+  margin: 1em;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.third {
+  width: 5em;
+  margin-left: 1.45em;
+}
+
+.third p {
+  font-size: 1.25em;
+  font-weight: bolder;
+}
+
+.right {
+  width: 25.5em;
+}
+
+.bottom {
+  justify-content: flex-start;
+  margin-top: -1.25em;
+
+}
+
+.bottom h5 {
+  justify-content: flex-start;
+  margin-left: 1.75em;
+}
+
+.circleRating {
+  margin: 1em;
+}
+
+.ratingNumber {
+  width: 1em;
+  border-radius: .5em;
+  background-color: #5563F0;
+  border-bottom: 1px solid black;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 1em;
+}
+
+p.ratingType {
+  font-size: .85em;
+  color: darkgrey;
+}
+
+.ratingNumber {
+  color: white;
+}
+
+.ratingType {
+  font-size: .85em;
+  width: 100%;
+}
+
+@media(max-width: 625px) {
+  .wrapper {
+    width: 24.5em;
+  }
+
+  .third {
+    width: 2.5em;
+    margin-left: 1.45em;
+  }
+
+  .third p {
+    font-size: 1.25em;
+    font-weight: bolder;
+    margin-left: 1em;
+  }
+
+  .right {
+    width: 18em;
+  }
+
+  .circleRating {
+    margin: .25em;
+  }
+
+  .ratingType {
+    font-size: .35em;
+  }
+
+  .ratingNumber {
+    color: white;
+    font-size: .75em;
+  }
+
+  .bottom h5 {
+    justify-content: flex-start;
+    margin-left: 1.25em;
+  }
+}
+
+@media(max-width: 430px) {
+  .wrapper {
+    width: 18.5em;
+  }
+
+  .third {
+    width: 1.5em;
+    /*margin-left: 1.45em;*/
+  }
+
+  .third p {
+    font-size: 1.25em;
+    font-weight: bolder;
+    margin-left: 1em;
+    margin-top: .5em;
+  }
+
+  .right {
+    width: 18.5em;
+  }
+
+  p.ratingType {
+    font-size: .75em;
+  }
+
+  .ratingNumber {
+    color: white;
+    width: .75em;
+    font-size: .95em;
+  }
+
+  .bottom {
+    margin-top: -0.75em;
+  }
+
+  .bottom h5 {
+    justify-content: flex-start;
+    margin-left: 1em;
+  }
+}
+
+@media(max-width: 325px) {
+  .wrapper {
+    width: 15.5em;
+  }
+
+  .third {
+    width: 1.5em;
+    /*margin-left: 1.45em;*/
+  }
+
+  .third p {
+    font-size: 1.25em;
+    font-weight: bolder;
+    margin-left: 1em;
+    margin-top: .5em;
+  }
+
+  .right {
+    width: 15.5em;
+  }
+
+  .circleRating {
+    margin: .25em;
+  }
+
+  p.ratingType {
+    font-size: .55em;
+  }
+
+
+  .ratingNumber {
+    color: white;
+    /*width: .25em;*/
+    font-size: .75em;
+  }
+
+  .bottom {
+    margin-top: -0.75em;
+  }
+
+  .bottom h5 {
+    justify-content: flex-start;
+    margin-left: 1em;
+  }
+
+}

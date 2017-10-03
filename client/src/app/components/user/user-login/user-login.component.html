@@ -1,24 +1,25 @@
 
 
-<div class="flex">
   <div class="row show-hide-message">
     <div [ngClass]="messageClass">
-      {{message}}</div>
+      {{message}}
     </div>
-<form [formGroup]="form">
-  <div class="form-group">
-    <label for="email">Email Addres</label>
-    <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty), 'has-success': form.controls.email.valid && form.controls.email.dirty}">
+  </div>
+  <div class="flex">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="email">Email Addres</label>
+      <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty), 'has-success': form.controls.email.valid && form.controls.email.dirty}">
       <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email@emailaddress.com"
       formControlName="email">
       <ul class="help-block">
         <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': form.controls.password.valid && form.controls.password.dirty}">
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': form.controls.password.valid && form.controls.password.dirty}">
       <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password"
       formControlName="password">
       <ul class="help-block">

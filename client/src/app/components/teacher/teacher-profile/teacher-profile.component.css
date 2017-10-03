@@ -98,6 +98,11 @@ textarea {
   font-size: 250%;
 }
 
+.reviewsContainer {
+  background-color: #F7F4F4;
+  margin-top: 1em;
+}
+
 .reviews {
   padding: 2em;
 }
@@ -143,6 +148,14 @@ span {
 
 @media(max-width: 1100px){
   .vidWrap {
+    width: 100%;
+  }
+
+  .reviews {
+    width: 100%;
+  }
+
+  .exp {
     width: 100%;
   }
 

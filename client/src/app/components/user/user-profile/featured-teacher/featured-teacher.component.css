@@ -30,7 +30,7 @@
 .featuredCoach {
   color:#5563F0;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.75em;
 }
 
 .fa-star {
@@ -70,7 +70,7 @@
 }
 
 .contact {
-  width: 20em;
+  width: 60%;
   justify-content: center;
   text-align: center;
 }
@@ -156,6 +156,9 @@
   .fa-star {
     font-size: 1.75em;
   }
+  .contact {
+    width: 80%;
+  }
 }
 
 @media(max-width:525px) {
@@ -179,11 +182,14 @@
   }
 
   .featuredCoach {
-    font-size: 1.25em;
+    font-size: 2em;
+    margin-bottom: .25em;
   }
   .right * {
     line-height: .9;
   }
+
+
 
   .contact button {
     font-size: 1em;

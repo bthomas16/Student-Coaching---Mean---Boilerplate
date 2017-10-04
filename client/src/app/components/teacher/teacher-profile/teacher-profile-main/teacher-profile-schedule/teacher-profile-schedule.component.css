@@ -1,7 +1,5 @@
 .main-wrapper {
-  padding: 1em;
   height: 32em;
-  background-color: #F2F2F2;
 }
 
 .butts {
@@ -83,6 +81,11 @@
   }
   .examples button {
     font-size: .8em;
+  }
+
+  .main-wrapper {
+    height: 28em;
+    padding-left: .5em;
   }
 }
 

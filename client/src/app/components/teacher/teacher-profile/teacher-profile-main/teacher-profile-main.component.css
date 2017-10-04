@@ -1,7 +1,11 @@
 .wrapper {
-  margin-top: 1em;
   background-color: #F2F2F2;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
 }
+
 @media (max-width: 1035px){
   .info {
     width: 50%;
@@ -14,7 +18,7 @@
 
   @media(max-width: 740px){
     .half {
-      width: 90%;
+      width: 100%;
     }
 
     .schedule {

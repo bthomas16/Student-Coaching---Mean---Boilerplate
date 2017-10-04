@@ -33,6 +33,8 @@ export class TeacherProfileInfoComponent implements OnInit {
   ratingsList;
   text;
 
+  isFileReady: boolean = false;
+
   tempkRatingsArray: Array<number> = [];
   temppRatingsArray: Array<number> = [];
   temptaRatingsArray: Array<number> = [];
@@ -79,11 +81,6 @@ export class TeacherProfileInfoComponent implements OnInit {
     });
   }
 
-  canEdit() {
-    this.infoForm.reset();
-    this.isEdit = false;
-  }
-
   infoSubmit() {
     this.location = this.infoForm.get('location').value.trim(),
     this.yrsExperience = this.infoForm.get('yrsExperience').value,
@@ -96,6 +93,11 @@ export class TeacherProfileInfoComponent implements OnInit {
       skills: this.skills,
       handicap: this.handicap,
       cost: this.cost
+    }
+    console.log(this.files.length, 'before')
+    if(this.files.length === 1 ) {
+      console.log(this.files.length, 'after')
+      this.onStartUpload()
     }
     console.log('experience is:', info);
     this.authService.onInfoSubmit(info).subscribe(data => {
@@ -121,8 +123,12 @@ export class TeacherProfileInfoComponent implements OnInit {
   // }
 
   onUploadOutput(output: UploadOutput): void {
+    this.isFileReady = true;
       if (output.type === 'allAddedToQueue') {
         } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
+          // if(output.file) {
+          //   this.isFileReady = true;
+          // }
           this.files.push(output.file);
         } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
           // update current data in files array for uploading file
@@ -138,6 +144,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         } else if (output.type === 'drop') {
           this.dragOver = false;
         }
+
     }
 
   onStartUpload(): void {
@@ -149,6 +156,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       };
       console.log(event)
       this.uploadInput.emit(event)
+      this.files = [];
     }
 
 

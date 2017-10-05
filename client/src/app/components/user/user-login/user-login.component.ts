@@ -83,6 +83,7 @@ onLoginSubmit() {
       this.previousUrl = this.authGuard.redirectUrl
       this.authGuard.redirectUrl = undefined;
     }
+    window.scrollTo(0, 0);
   }
 
 }

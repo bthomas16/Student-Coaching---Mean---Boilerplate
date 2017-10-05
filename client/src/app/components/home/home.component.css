@@ -97,6 +97,11 @@ button {
   text-align: center;
 }
 
+.bottom-sign-up {
+  margin-top: 1.50em;
+  margin-bottom: 1.75em;
+}
+
 @media(max-width:750px) {
   .modall {
     margin-left: 5%;
@@ -138,6 +143,11 @@ button {
   .button {
     width: 40%;
     font-size: 1.15em;
+  }
+
+  .bottom-sign-up {
+    margin-top: 1.25em;
+    margin-bottom: 1.5em;
   }
 
 }

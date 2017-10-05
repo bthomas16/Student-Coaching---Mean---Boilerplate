@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,16 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // showMenu: boolean = false;
   title = 'app';
 
+  constructor(private apiService: ApiService){
 
-  // noShowMenu() {
-  //   console.log('hippy', this.showMenu)
-  //   if(this.showMenu = true) {
-  //     this.showMenu = false;
-  //   } else {
-  //     this.showMenu = true;
-  //   }
-  // }
+  }
+
+
+  changeMenu() {
+    let showMenu = true;
+    this.apiService.changeMenuFalse(showMenu);
+  }
 }

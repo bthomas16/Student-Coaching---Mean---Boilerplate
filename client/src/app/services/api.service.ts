@@ -5,6 +5,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 @Injectable()
 export class ApiService {
 
+  showMenu: boolean = false;
   options;
   authToken;
   // development server
@@ -42,4 +43,22 @@ export class ApiService {
     return this.http.post(this.server + 'api/email-subscriber', emailSubscriber).map(res => res.json());
     }
 
-}
+    changeMenuFalse(showMenu) {
+      console.log(showMenu)
+        showMenu = false;
+        this.showMenu = false;
+        console.log(showMenu)
+        return false
+      }
+
+      changeMenuTrue(showMenu) {
+        console.log(showMenu)
+          showMenu = true;
+          this.showMenu = true;
+          return true;
+        }
+
+        getMenuStatus() {
+          return this.showMenu
+        }
+  }

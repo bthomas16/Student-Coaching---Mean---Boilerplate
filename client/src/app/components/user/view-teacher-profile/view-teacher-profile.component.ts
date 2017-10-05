@@ -79,5 +79,6 @@ export class ViewTeacherProfileComponent implements OnInit {
           this.teacherTARatingsArray = data.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.taRatingsArray.length;
       }
     });
+    window.scrollTo(0, 0);
   }
   }

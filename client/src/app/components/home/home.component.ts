@@ -130,5 +130,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCookies();
+    window.scrollTo(0, 0);
   }
 }

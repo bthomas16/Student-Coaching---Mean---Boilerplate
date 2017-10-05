@@ -96,8 +96,12 @@ img.pic {
     width: 18em;
   }
 
-  .pic {
+  .picDiv {
     width: 6em;
+  }
+
+  img.pic {
+    max-width: 8.25em;
   }
 
   .infoDiv {

@@ -10,31 +10,32 @@
 
   <a class="browse" routerLink="profile">Browse Coaches</a>
 
-  <a (click)="showMenu =! showMenu"><i class="fa fa-user fa-2x" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
+  <a (click)="changeMenuTrue()"><i class="fa fa-user fa-2x" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
 
   <!-- </button> -->
 </div>
 
 
+
 <div class="flex menu" *ngIf="showMenu">
   <!-- <div class="flex menu-item"> -->
-      <a (click)="showMenu = !showMenu" class="flex menu-item">About Us</a>
+      <a (click)="changeMenuFalse()" class="flex menu-item" routerLink="company-info">About Us</a>
   <!-- </div> -->
   <!-- <div class="flex menu-item"> -->
-      <a (click)="showMenu = !showMenu" class="flex menu-item">Contact Us</a>
+      <a (click)="changeMenuFalse()" class="flex menu-item" routerLink="company-info">Contact Us</a>
   <!-- </div> -->
   <span class="line"></span>
   <!-- <div class="flex menu-item" *ngIf="!authService.loggedIn()"> -->
-      <a data-toggle="modal" data-target="#register" (click)="showMenu = !showMenu" class="flex menu-item" *ngIf="!authService.loggedIn()">Sign Up</a>
+      <a data-toggle="modal" data-target="#register" (click)="changeMenuFalse()" class="flex menu-item" *ngIf="!authService.loggedIn()">Sign Up</a>
   <!-- </div> -->
   <!-- <div class="flex menu-item" *ngIf="!authService.loggedIn()"> -->
-      <a data-toggle="modal" data-target="#login" (click)="showMenu = !showMenu" class="flex menu-item" *ngIf="!authService.loggedIn()">Login</a>
+      <a data-toggle="modal" data-target="#login" (click)="changeMenuFalse()" class="flex menu-item" *ngIf="!authService.loggedIn()">Login</a>
   <!-- </div> -->
   <!-- <div class="flex menu-item" *ngIf="authService.loggedIn()"> -->
-      <a routerLink="profile/student" (click)="showMenu = !showMenu" class="flex menu-item" *ngIf="authService.loggedIn()">Student</a>
+      <a routerLink="profile/student" (click)="changeMenuFalse()" class="flex menu-item" *ngIf="authService.loggedIn()">Student</a>
   <!-- </div> -->
     <!-- <div class="flex menu-item" *ngIf="authService.loggedIn()"> -->
-        <a routerLink="profile/teacher" (click)="showMenu = !showMenu" class="flex menu-item" *ngIf="authService.loggedIn()">Teacher</a>
+        <a routerLink="profile/teacher" (click)="changeMenuFalse()" class="flex menu-item" *ngIf="authService.loggedIn()">Teacher</a>
     <!-- </div> -->
     <span class="line" *ngIf="authService.loggedIn()"></span>
     <!-- <div class="flex menu-item" *ngIf="authService.loggedIn()"> -->
@@ -45,7 +46,7 @@
 
 
   <!-- <ul class="dropdown-menu" >
-    <li><a (click)="showMenu = !showMenu">About Us</a></li>
+    <li><a (click)="changeMenuFalse()">About Us</a></li>
     <li><a (click)="showMenu = !showMenu">Contact Us</a></li>
     <li role="separator" class="divider"></li>
     <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register" (click)="showMenu = !showMenu">Sign Up</a></li>

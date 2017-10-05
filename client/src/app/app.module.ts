@@ -38,12 +38,12 @@ import { TeacherProfileMainComponent } from './components/teacher/teacher-profil
 import { TeacherProfileScheduleComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-schedule/teacher-profile-schedule.component';
 import { TeacherProfileInfoComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-profile-info/teacher-profile-info.component';
 import { TeacherReviewsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-reviews/teacher-reviews.component';
-import { TeacherRatingsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teacher-ratings.component';
+import { TeacherRatingsComponent } from './components/user/view-teacher-profile/teacher-ratings/teacher-ratings.component';
 
 import { CookieService } from 'ngx-cookie-service';
-import { ProfessionalismComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/professionalism/professionalism.component';
-import { KnowledgeComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/knowledge/knowledge.component';
-import { TeachingAbilityComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-ratings/teaching-ability/teaching-ability.component';
+import { ProfessionalismComponent } from './components/user/view-teacher-profile/teacher-ratings/professionalism/professionalism.component';
+import { KnowledgeComponent } from './components/user/view-teacher-profile/teacher-ratings/knowledge/knowledge.component';
+import { TeachingAbilityComponent } from './components/user/view-teacher-profile/teacher-ratings/teaching-ability/teaching-ability.component';
 import { ViewTeacherProfileComponent } from './components/user/view-teacher-profile/view-teacher-profile.component';
 import { TeacherSkillsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-skills/teacher-skills.component';
 
@@ -52,6 +52,9 @@ import { NgUploaderModule } from 'ngx-uploader';
 import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
 import {TruncatePipe} from './pipes/truncate.pipe';
 import { UserLoginRedirectComponent } from './components/user/user-login/user-login-redirect/user-login-redirect.component';
+import { CompanyInfoComponent } from './components/company-info/company-info.component';
+import { ContactComponent } from './components/company-info/contact/contact.component';
+import { AboutComponent } from './components/company-info/about/about.component';
 
 
 
@@ -87,7 +90,10 @@ import { UserLoginRedirectComponent } from './components/user/user-login/user-lo
     TeacherSkillsComponent,
     FeaturedTeacherComponent,
     TruncatePipe,
-    UserLoginRedirectComponent
+    UserLoginRedirectComponent,
+    CompanyInfoComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

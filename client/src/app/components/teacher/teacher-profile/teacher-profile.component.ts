@@ -183,5 +183,6 @@ export class TeacherProfileComponent implements OnInit {
       this.videoUrl = profile.user.video;
       this.bio = profile.user.bio;
     });
+    window.scrollTo(0, 0);
   }
 }

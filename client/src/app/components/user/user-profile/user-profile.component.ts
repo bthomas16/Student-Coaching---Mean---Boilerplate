@@ -112,6 +112,7 @@ ngOnInit() {
     this.profPic = profile.user.profPicName;
     this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id
   });
+  window.scrollTo(0, 0)
 }
 
 }

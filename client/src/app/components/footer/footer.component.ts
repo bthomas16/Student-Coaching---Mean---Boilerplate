@@ -15,6 +15,7 @@ export class FooterComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
+  show: boolean = false;
 
   constructor(private formBuilder: FormBuilder, public apiService: ApiService, public authService: AuthService) {
     this.createForm()
@@ -63,10 +64,19 @@ export class FooterComponent implements OnInit {
       this.message = data.message;
       this.processing = false;
       this.enableForm();
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 1200)
     } else {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-
+      this.processing = true;
+      this.emailForm.reset();
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 1200)
     }
   });
   }

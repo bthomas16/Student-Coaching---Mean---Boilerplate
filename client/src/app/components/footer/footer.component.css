@@ -24,6 +24,20 @@ li.nav-item a {
   padding-left: 35%;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link span {
+  text-decoration: none;
+  font-size: 1.25em;
+  color:#5563F0;
+}
+
+.link span:hover {
+  color:#1BACFC;
+}
+
 .mailList {
   padding-left: 5%;
 }
@@ -33,9 +47,9 @@ li.nav-item a {
 }
 
 .button {
-  width: 35%;
+  width: 20%;
   padding: 0;
-  font-size: .75em;
+  font-size: .765em;
 }
 
 .submit {
@@ -43,6 +57,11 @@ li.nav-item a {
   font-size: 1.5em;
   padding: .325em;
   align-self: center;
+  background-color: #1BACFC;
+}
+
+.submit:hover {
+  background-color: #5563F0;
 }
 
 .bottomFooter {

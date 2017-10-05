@@ -55,5 +55,6 @@ export class StudentProfileComponent implements OnInit {
       this.isStudent = profile.user.isStudent;
       this.isTeacher = profile.user.isTeacher;
     })
+    window.scrollTo(0, 0);
   }
 }

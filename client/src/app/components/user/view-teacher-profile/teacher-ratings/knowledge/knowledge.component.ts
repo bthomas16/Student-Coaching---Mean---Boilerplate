@@ -1,16 +1,15 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { AuthService } from '../../../../../../services/auth.service';
+import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
-  selector: 'app-teaching-ability',
-  templateUrl: './teaching-ability.component.html',
-  styleUrls: ['./teaching-ability.component.css']
+  selector: 'app-knowledge',
+  templateUrl: './knowledge.component.html',
+  styleUrls: ['./knowledge.component.css']
 })
-export class TeachingAbilityComponent implements OnInit {
+export class KnowledgeComponent implements OnInit {
   rating: number;
   processing: boolean = false;
   showRating: boolean = false;
-  sum: number = 0;
   message;
   messageClass;
   isChecked1: boolean = false;
@@ -19,12 +18,14 @@ export class TeachingAbilityComponent implements OnInit {
   isChecked4: boolean = false;
   isChecked5: boolean = false;
 
-  @Output() teachingAbilityRated = new EventEmitter<{teachingAbilityRating: number}>();
+
+  @Output() knowledgeRated = new EventEmitter<{knowledgeRating: number}>();
 
   constructor(public authService: AuthService) {
+
   }
 
-  // Teaching Ability Rating
+  // Knowledge Rating
 
   five() {
     this.rating = 5
@@ -34,8 +35,8 @@ export class TeachingAbilityComponent implements OnInit {
     this.isChecked3 = false;
     this.isChecked2 = false;
     this.isChecked1 = false;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.rating
+    this.knowledgeRated.emit({
+      knowledgeRating: this.rating
     });
   }
 
@@ -47,8 +48,8 @@ export class TeachingAbilityComponent implements OnInit {
     this.isChecked3 = false;
     this.isChecked2 = false;
     this.isChecked1 = false;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.rating
+    this.knowledgeRated.emit({
+      knowledgeRating: this.rating
     });
   }
 
@@ -60,8 +61,8 @@ export class TeachingAbilityComponent implements OnInit {
     this.isChecked3 = !this.isChecked3;
     this.isChecked2 = false;
     this.isChecked1 = false;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.rating
+    this.knowledgeRated.emit({
+      knowledgeRating: this.rating
     });
   }
 
@@ -74,8 +75,8 @@ export class TeachingAbilityComponent implements OnInit {
     this.isChecked3 = false;
     this.isChecked2 = !this.isChecked2;
     this.isChecked1 = false;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.rating
+    this.knowledgeRated.emit({
+      knowledgeRating: this.rating
     });
   }
 
@@ -88,10 +89,11 @@ export class TeachingAbilityComponent implements OnInit {
     this.isChecked3 = false;
     this.isChecked2 = false;
     this.isChecked1 = !this.isChecked1;
-    this.teachingAbilityRated.emit({
-      teachingAbilityRating: this.rating
+    this.knowledgeRated.emit({
+      knowledgeRating: this.rating
     });
   }
+
 
   ngOnInit() {
   }

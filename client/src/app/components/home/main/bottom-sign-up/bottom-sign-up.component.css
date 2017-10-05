@@ -1,7 +1,7 @@
 .wrapper {
   width: 100vw;
   background-color: #5563F0;
-  padding: 1em;
+  padding: 2.5em;
   color: white;
   font-family: 'Roboto', sans-serif;;
 }
@@ -28,6 +28,14 @@
   color: white;
   text-decoration: none;
   border: .25px solid white;
+}
+
+.signUp {
+  background-color: #1BACFC;
+}
+
+.signUp:hover {
+  background-color: rgba(27,172,252,.7);
 }
 
 @media(max-width:700px) {

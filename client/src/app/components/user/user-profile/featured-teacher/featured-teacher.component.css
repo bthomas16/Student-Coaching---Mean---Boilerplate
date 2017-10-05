@@ -55,13 +55,16 @@
 
 .ratingContent * {
   color:#5563F0;
-  line-height: .1;
 }
 
 .ratingText {
   font-weight: 700;
   font-size: 1.5em;
   margin-bottom: .65em;
+  display: inline;
+  flex-wrap: wrap;
+  /*line-height: 2;*/
+  margin-bottom: 0;
 }
 
 .ratingAuthor {
@@ -82,9 +85,9 @@
 .contact button {
   background-color: #1BACFC;
   border: none;
-  padding: .75em;
   width: 100%;
   text-align: center;
+  font-size: 1.25em;
   box-shadow: 3px 2.5px 1.5px grey;
 }
 

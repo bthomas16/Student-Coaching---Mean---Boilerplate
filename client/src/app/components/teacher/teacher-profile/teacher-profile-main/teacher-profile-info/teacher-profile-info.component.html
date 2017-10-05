@@ -15,31 +15,28 @@
           <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
           <input type="radio" [checked]="isChecked1"/>
           <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
-          <p class="numberRatings"> {{ numberOfRatings }} &nbsp; Students</p>
+          <p class="numberRatings"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
         </div>
       </div>
   </div>
 
 <div class="flex sb">
   <div class="flex half imageDiv">
-    <div class="flex image" *ngIf="!isEdit && profPic == null">
-      <span *ngIf="!isParams" class="flex">
-        <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Add a Profile Picture!</button>
-      </span>
-    </div>
     <div class="flex half image" *ngIf="!isEdit">
       <img [src]="[profPic]" alt="" class="profPic">
     </div>
-    <div class="flex half" *ngIf="isEdit">
-      <label class="btn btn-default btn-file">
+    <div class="flex" *ngIf="isEdit">
+      <label class="btn btn-info btn-file fileBrowse">
     Browse Files
-        <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" style="display:none">
+        <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
     </label>
+    <h6 *ngIf="isFileReady" class="flex">File Ready!</h6>
 
 
-      <button type="button" class="btn btn-primary" (click)="onStartUpload()">
+
+      <!-- <button type="button" class="btn btn-primary" (click)="onStartUpload()">
         Start Upload
-      </button>
+      </button> -->
     </div>
   </div>
 
@@ -90,7 +87,7 @@
           </li>
         </ul>
         <button type="submit" [disabled]="!infoForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
+        <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="isEdit = !isEdit" name="button">Cancel</button>
       </div>
     </form>
     <!-- <div class="flex butts">
@@ -101,7 +98,7 @@
 
 </div>
 <div *ngIf="!isParams" class="flex editDiv">
-  <button type="button" *ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+  <button type="button" (click)="isEdit = !isEdit" class="btn btn-warning edit" *ngIf="!isEdit">Edit</button>
 </div>
 <div *ngIf="isParams" class="flex contactDiv">
   <a href="mailto:{{email}}" class="btn btn-primary contact">CONTACT {{fullname}}</a>

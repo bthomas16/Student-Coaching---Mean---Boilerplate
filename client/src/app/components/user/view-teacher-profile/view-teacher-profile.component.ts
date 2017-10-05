@@ -28,6 +28,12 @@ export class ViewTeacherProfileComponent implements OnInit {
   teacherTARatingsArray;
   teacherAvgRatings;
 
+  experience1;
+  experience2;
+  experience3;
+  experience4;
+  experience5;
+
   findTeacher: boolean = true;
 
   constructor(public authService: AuthService, private activatedRoute: ActivatedRoute) {}
@@ -48,6 +54,12 @@ export class ViewTeacherProfileComponent implements OnInit {
       this.userEmail = profile.user.email;
       this.userIsStudent = profile.user.isStudent;
       this.userIsTeacher = profile.user.isTeacher;
+      this.experience1 = profile.user.experience1;
+      this.experience2 = profile.user.experience2;
+      this.experience3 = profile.user.experience3;
+      this.experience4 = profile.user.experience4;
+      this.experience5 = profile.user.experience5;
+
     })
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.authService.getTeacherView(this.currentUrl.id).subscribe(data => {

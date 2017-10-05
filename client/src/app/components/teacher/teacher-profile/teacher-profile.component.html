@@ -7,7 +7,9 @@
 </span>
   <div class="flex" *ngIf="!isTeacher">
   <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
-  <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+  <div class="flex">
+    <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
+  </div>
   <hr>
 </div>
 <!--
@@ -54,7 +56,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="flex reviewsContainer">
     <div class="flex half reviews">
       <h2 class="flex">REVIEWS</h2>

@@ -59,6 +59,10 @@
   color:#5563F0;
 }
 
+.rateTeacher {
+  width: 20em;
+}
+
 @media(max-width:650px) {
   .teacherName {
     padding-left: 1em;
@@ -87,6 +91,9 @@
   .r {
     font-size: 1.45em;
     font-weight: bold;
+  }
+  .rateTeacher {
+    width: 12em;
   }
 }
 

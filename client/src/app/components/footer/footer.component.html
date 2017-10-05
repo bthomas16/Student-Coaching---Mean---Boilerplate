@@ -1,4 +1,4 @@
-<nav class="flex wrapper">
+<!-- <nav class="flex wrapper">
   <div class="container">
     <ul class="nav navbar-nav navbar-left navbar-sticky">
       <li class="nav-item"><a href="#">Skill Site</a></li>
@@ -10,4 +10,45 @@
     </ul>
 
   </div>
-</nav>
+</nav> -->
+<div class="flex wrapper">
+  <div class="flex half company">
+    <h3 class="flex">
+      <strong>Company</strong>
+    </h3>
+    <p class="flex">
+      About Us
+    </p>
+    <p class="flex">
+      Contact Us
+    </p>
+  </div>
+  <div class="flex half mailList">
+    <h3 class="flex">
+      <strong>Join Our Mailing List</strong>
+    </h3>
+    <form [formGroup]="emailForm" class="flex">
+      <div class="flex form">
+        <!-- <ul class="help-block flex">
+          <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.touched">This field is required</li>
+          <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.touched">Email must contain a minimum of 5 characters</li>
+          <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.touched">Email must contain fewer than 30 characters</li>
+          <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.touched">Must be a valid email</li>
+          <li *ngIf="emailMessage"> {{emailMessage}} </li>
+        </ul> -->
+        <div class="input">
+          <label for="email">Email Addres</label>
+          <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
+            <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
+          </div>
+        </div>
+        <div class="button">
+          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="flex bottomFooter">
+    <h5><strong>&copy; savvy 2017</strong></h5>
+  </div>
+</div>

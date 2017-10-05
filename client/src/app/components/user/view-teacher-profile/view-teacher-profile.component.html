@@ -8,15 +8,21 @@
     <div class="flex">
       <app-teacher-profile-main></app-teacher-profile-main>
     </div>
-      <div class="flex">
+      <div class="flex review-exp-wrapper">
         <div class="flex half">
             <app-teacher-reviews></app-teacher-reviews>
-          <div class="flex">
+          <div class="flex rate">
             <app-teacher-ratings *ngIf="!isUserTheTeacher()"></app-teacher-ratings>
+          </div>
         </div>
-        </div>
-        <div class="flex half">
-          <app-teacher-skills></app-teacher-skills>
+        <div class="flex half exp">
+          <ul class="flex experiences" *ngIf="!isEdit">
+            <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience1 }}</span></li>
+            <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience2 }}</span></li>
+            <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience3 }}</span></li>
+            <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience4 }}</span></li>
+            <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience5 }}</span></li>
+          </ul>
         </div>
       </div>
   </div>

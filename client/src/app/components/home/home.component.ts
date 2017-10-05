@@ -1,6 +1,7 @@
 import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   emailValid;
   emailMessage;
 
-  constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, private router: Router) {
+  constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, public apiService: ApiService, private router: Router) {
     this.createForm()
   }
 
@@ -79,7 +80,7 @@ export class HomeComponent implements OnInit {
       email: this.emailForm.get('email').value.trim(),
     }
     console.log('now submitting email:', emailSubscriber)
-    this.authService.Email(emailSubscriber).subscribe(data => {
+    this.apiService.Email(emailSubscriber).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;

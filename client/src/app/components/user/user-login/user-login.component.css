@@ -5,3 +5,12 @@ form {
 .submit {
   background-color: #1BACFC;
 }
+
+@media(max-width:600px) {
+  .showMessage {
+    width: 75%;
+  }
+  .message {
+    font-size: .95em;
+  }
+}

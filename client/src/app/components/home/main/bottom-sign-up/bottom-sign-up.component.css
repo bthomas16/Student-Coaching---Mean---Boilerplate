@@ -8,12 +8,14 @@
 
 .left {
   justify-content: flex-start;
-  /*margin-left: 1em;*/
-
+  width: 45%;
+  /*margin-left: 5%;*/
 }
 
 .left h2 {
   text-align: left;
+  font-weight: bolder;
+  font-size: 1.75em;
 }
 
 .left p {
@@ -21,18 +23,21 @@
   text-align: left;
 }
 
-
 .btn {
   width: 50%;
   color: white;
   text-decoration: none;
+  border: .25px solid white;
 }
 
 @media(max-width:700px) {
+  .left {
+    width: 64%;
+  }
 
   .left h2 {
     font-size: 1.4em;
-    font-weight: bolder;
+
   }
 
   .left p {

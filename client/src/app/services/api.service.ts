@@ -38,4 +38,8 @@ export class ApiService {
     return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
   }
 
+  Email(emailSubscriber) {
+    return this.http.post(this.server + 'api/email-subscriber', emailSubscriber).map(res => res.json());
+    }
+
 }

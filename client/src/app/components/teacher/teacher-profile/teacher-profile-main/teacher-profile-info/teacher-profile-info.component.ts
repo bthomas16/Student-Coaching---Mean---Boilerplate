@@ -66,7 +66,7 @@ export class TeacherProfileInfoComponent implements OnInit {
     this.location = '';
     this.createForm();
     this.files = []; // local uploading files array
-    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
+    this.uploadInput = new EventEmitter<UploadInput>() || null; // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
   }
 
@@ -113,22 +113,11 @@ export class TeacherProfileInfoComponent implements OnInit {
     })
   }
 
-  // getProfPic() {
-  //   this.authService.onGetProfPic().subscribe(img => {
-  //     var image = new Image()
-  //     image.src = img
-  //     this.profPic = image.src
-  //     console.log(this.profPic)
-  //   })
-  // }
 
   onUploadOutput(output: UploadOutput): void {
     this.isFileReady = true;
       if (output.type === 'allAddedToQueue') {
-        } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-          // if(output.file) {
-          //   this.isFileReady = true;
-          // }
+        } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') {
           this.files.push(output.file);
         } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
           // update current data in files array for uploading file
@@ -144,7 +133,6 @@ export class TeacherProfileInfoComponent implements OnInit {
         } else if (output.type === 'drop') {
           this.dragOver = false;
         }
-
     }
 
   onStartUpload(): void {
@@ -156,7 +144,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       };
       console.log(event)
       this.uploadInput.emit(event)
-      this.files = [];
+      this.isFileReady = false;
     }
 
 
@@ -179,7 +167,7 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.profPic = viewTeacher.teacher.profPic;
            this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id;
           //  if ratings array is not 0, do this operation
-           if(viewTeacher.teacher.ratings.length !== null || 0 ) {
+           if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
             //  Loop through ratings array
            for(let rating of viewTeacher.teacher.ratings) {
@@ -237,7 +225,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.profPic = profile.user.profPic;
         this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id;
        //  if ratings array is not 0, do this operation
-        if(profile.user.ratings.length !== null || 0 ) {
+        if(profile.user.ratings.length) {
           this.yetRated = true;
          //  Loop through ratings array
         for(let rating of profile.user.ratings) {

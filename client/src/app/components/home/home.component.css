@@ -6,15 +6,21 @@
   height: 30vh;
 }
 
+.fadeOut {
+transition: all .5s ease-in-out;
+opacity: 0;
+visibility: hidden;
+}
+
 
 .modall {
   position: fixed;
   display: block;
   top: 0;
-  margin-top: 11.5em;
+  margin-top: 10%;
+  margin-left: 22.25%;
   z-index: 0;
   color: white;
-  padding: .25em;
   border-radius: 5px;
   background-color: rgba(	85, 99, 240,.975);
   width: 56.5%;
@@ -22,14 +28,22 @@
 }
 
 .text {
-  width: 100%;
   padding: 2em;
-  padding-bottom: 0;
 }
 
 .modalTitle {
-  margin-top: 1.25em;
-  margin-bottom: 1em;
+  font-size: 4em;
+  /*margin-top: .5em;*/
+}
+
+.explain {
+  margin-top: .5em;
+  font-size: 1.15em;
+}
+
+.persuade {
+  margin-top: 2em;
+  font-size: .95em;
 }
 
 .left {
@@ -41,25 +55,20 @@
   margin: 1%;
 }
 
-.fadeOut {
-transition: all .5s ease-in-out;
-opacity: 0;
-visibility: hidden;
-}
-
-.x {
+.xClose {
   top: .5em;
   right: 1em;
   justify-content: flex-end;
   position: absolute;
 }
 
-.x:hover {
+.xClose:hover {
   cursor: pointer;
 }
 
 ul.help-block {
   margin: auto;
+  margin-bottom: 1em;
   width: 72.5%;
 }
 
@@ -67,10 +76,11 @@ ul.help-block li {
   list-style: none;
   margin: 0, auto;
   line-height: .85;
+  padding: .25em;
 }
 
 .form {
-  margin-top: 2em;
+  margin-bottom: 2em;
   width: 80%;
 }
 
@@ -83,27 +93,77 @@ ul.help-block li {
   width: 25%;
 }
 
-.persuade {
-  margin-top: 2.5em;
-}
-
 button {
   text-align: center;
 }
+
 @media(max-width:750px) {
   .modall {
-    margin-top: 5.5em;
+    margin-left: 5%;
+    margin-top: 15%;
+    margin-bottom: 1.5em;
     color: white;
-    padding: .25em;
-    border-radius: 5px;
-    background-color: rgba(	85, 99, 240,.975);
-    width: 100%;
-    height: justify;
+    width: 90%;
   }
 }
 
-@media(max-width: 500px) {
-  .hero {
-    margin-top: -.2em;
+@media(max-width:650px) {
+  .modall {
+    margin-top: 20%;
+  }
+}
+
+@media(max-width:525px) {
+  .modall {
+    margin-top: 24%;
+  }
+}
+
+@media(max-width:421px) {
+  .modalTitle {
+    font-size: 2.5em;
+    margin-top: .5em;
+  }
+  form {
+    margin: 0;
+  }
+
+  .modall {
+    margin-top: 18.5%;
+  }
+
+  .input {
+    width: 58%;
+  }
+  .button {
+    width: 40%;
+    font-size: 1.15em;
+  }
+
+}
+
+@media(max-width:321px) {
+  .modall {
+    margin-top: 22.5%;
+  }
+
+  .text {
+    padding: .5em;
+  }
+
+  .explain {
+    font-size: .95em;
+  }
+
+  .persuade {
+    font-size: .75em;
+  }
+
+  .input {
+    width: 58%;
+  }
+  .button {
+    width: 40%;
+    font-size: 1em;
   }
 }

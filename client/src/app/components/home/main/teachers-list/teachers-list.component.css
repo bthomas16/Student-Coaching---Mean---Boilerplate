@@ -14,23 +14,23 @@ input {
   justify-content: space-between;
 }
 
-.pic {
-  width: 6.5em;
+.picDiv {
+  max-width: 8em;
   justify-content: flex-start;
   left: 0;
 }
 
-.pic img {
+img.pic {
   height: 125px;
   max-width: 200px;
 }
 
-.info {
-  width: 20.5em;
+.infoDiv {
+  width: 14.5em;
   /*padding-right: 10em;*/
   justify-content: space-between;
 }
-.info p {
+.infoDiv p {
   line-height: .85;
 }
 
@@ -48,55 +48,26 @@ input {
   width: 100%;
 }
 
-@media(max-width: 800px) {
-  .teacher {
-    width: 28.5em;
-  }
-
-  .pic {
-    width:5.5em;
-  }
-
-  .pic img {
-    height: 105px;
-  }
-
-  .info {
-    width: 21.5em;
-  }
-
-  .info p {
-  font-size: .95em;
-  line-height: .65;
-  }
-
-  .fullname {
-    width: 20%;
-  }
-
-  .stars {
-    width: 80%;
-  }
-}
-
 @media(max-width: 420px) {
 
   .teacher {
-    width: 21em;
+    width: 20em;
+    margin: .5em;
   }
-  .info {
-    width: 10em;
+  .infoDiv {
+    width: 10.5em;
     justify-content: flex-start;
     align-items: center;
     align-self: center;
     margin-top: .5em;
   }
 
-  .pic {
-    width: 7.5em;
+  .picDiv {
+    width: 8.5em;
   }
-  .pic img {
-    height: 120px;
+
+  img.pic {
+    max-width: 8.5em;
   }
 
 
@@ -104,7 +75,7 @@ input {
     font-size: 1.2em;
     width: 100%;
   }
-  .info p {
+  .infoDiv p {
   font-size: .75em;
   line-height: .55;
   }
@@ -122,18 +93,18 @@ input {
 
 @media(max-width: 335px) {
   .teacher {
-    width: 17em;
+    width: 18em;
   }
 
   .pic {
-    width: 7em;
+    width: 6em;
   }
 
-  .info {
-    width: 10em;
+  .infoDiv {
+    width: 9em;
   }
 
-  .info p {
+  .infoDiv p {
     padding-left: 1em;
     font-size: .75em;
     line-height: .45;

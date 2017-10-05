@@ -9,6 +9,7 @@
 .topDiv {
   justify-content: center;
   flex-wrap: nowrap;
+  padding-left: 2.5%;
 }
 
 .sb {
@@ -46,6 +47,7 @@
 
 .right {
   width:65%;
+  padding-left: 7%;
   justify-content: flex-start;
 }
 
@@ -79,6 +81,14 @@ p.left {
 
 .edit {
   width: 75%;
+}
+
+.fileBrowse {
+  width: auto;
+  padding: .5em;
+  font-size: 1.25em;
+  border: 2px solid white;
+  position: absolute;
 }
 
 
@@ -120,6 +130,9 @@ p.left {
   .stats .info p.left {
     width: 100%;
     justify-content: flex-start;
+  }
+  .save-edit {
+    width: 48%;
   }
 }
 
@@ -193,6 +206,12 @@ p.left {
     line-height: 1.25;
     margin: 0;
   }
+  .fileBrowse {
+    width: auto;
+    font-size: 1em;
+    border: 2px solid white;
+    position: absolute;
+  }
 }
 
 @media(max-width:325px) {
@@ -212,6 +231,12 @@ p.left {
     line-height: 100.95em;
     margin: 0;
     margin-bottom: .25em;
+  }
+
+  .save-edit {
+    width: 100%;
+    padding: 0;
+    margin: .25em;
   }
 }
 

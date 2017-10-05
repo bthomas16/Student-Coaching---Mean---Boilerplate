@@ -1,17 +1,23 @@
 <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}">
   <div class="flex">
-    <div class="flex x">
+    <div class="flex xClose">
       <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeInitialModal()"></i>
     </div>
     <div class="flex text">
-      <h2 class="flex modalTitle">Welcome to Savvy!</h2>
-      <p>This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.</p>
-
+      <p class="flex modalTitle"><strong>savvy</strong></p>
+      <p class="explain">This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.</p>
       <p class="persuade">Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
     </div>
     </div>
     <form [formGroup]="emailForm" class="flex">
       <div class="flex form">
+        <ul class="help-block flex">
+          <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.touched">This field is required</li>
+          <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.touched">Email must contain a minimum of 5 characters</li>
+          <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.touched">Email must contain fewer than 30 characters</li>
+          <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.touched">Must be a valid email</li>
+          <li *ngIf="emailMessage"> {{emailMessage}} </li>
+        </ul>
         <div class="form-group input">
           <label for="email">Email Addres</label>
           <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
@@ -19,16 +25,9 @@
           </div>
         </div>
         <div class="form-group button">
-          <button [disabled]="!emailForm.valid || processing || !emailValid" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
+          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
         </div>
       </div>
-          <ul class="help-block flex">
-            <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.dirty">This field is required</li>
-            <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.dirty">Email must contain a minimum of 5 characters</li>
-            <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.dirty">Email must contain fewer than 30 characters</li>
-            <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.dirty">Must be a valid email</li>
-            <li *ngIf="emailMessage"> {{emailMessage}} </li>
-          </ul>
     </form>
 </div>
 

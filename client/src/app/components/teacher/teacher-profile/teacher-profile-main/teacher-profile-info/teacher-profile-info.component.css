@@ -180,12 +180,13 @@ p.left {
   }
   .stats .info p.left{
     line-height: 1.5;
+    font-size: .8em;
   }
   .main-wrapper {
     height: 22.5em;
   }
   .sb {
-    margin-top: -4.25em;
+    margin-top: -3.em;
   }
   .topDiv {
     margin-top: -1.85em;

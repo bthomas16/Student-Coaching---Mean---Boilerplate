@@ -186,15 +186,10 @@ p.left {
     height: 22.5em;
   }
   .sb {
-    margin-top: -3.em;
+    margin-top: -3em;
   }
   .topDiv {
     margin-top: -1.85em;
-  }
-
-
-  .stats {
-    margin-top: 5em;
   }
 }
 

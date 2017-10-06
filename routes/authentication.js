@@ -457,11 +457,11 @@ router.get('/get-featured-teacher', (req, res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-
-    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, avgRatingNumber: {'$ne': null }}, (err, teachers) => {
+    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, profPicName: {'$ne': null }}, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
+        console.log(teachers.length)
         if (teachers.length === 0) {
           res.json({ success: false, message: 'No teachers found' });
         } else {

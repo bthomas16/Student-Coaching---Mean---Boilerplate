@@ -52,6 +52,7 @@ export class FeaturedTeacherComponent implements OnInit {
   ngOnInit() {
     this.authService.getFeaturedTeacher()
     .subscribe(featured => {
+      console.log(featured.teacher)
       this.id = featured.teacher._id;
       this.fullname = featured.teacher.fullname.toUpperCase();
       this.handicap = featured.teacher.handicap;
@@ -62,7 +63,7 @@ export class FeaturedTeacherComponent implements OnInit {
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings
      //  if ratings array is not 0, do this operation
-      if( this.teachersList.length !== null || 0 ) {
+      if(this.teachersList.length !== null || 0 ) {
         this.yetRated = true;
        //  Loop through ratings array
       for(let rating of this.teachersList) {
@@ -98,9 +99,7 @@ export class FeaturedTeacherComponent implements OnInit {
                 }
               }
             }
-           return false;
          }
        });
-    return false;
   }
 }

@@ -99,7 +99,7 @@
 </div>
 <div *ngIf="!isParams" class="flex editDiv">
   <button type="button" (click)="isEdit = !isEdit" class="btn btn-warning edit" *ngIf="!isEdit">Edit</button>
+</div>
 <div *ngIf="isParams" class="flex contactDiv">
   <a href="mailto:{{email}}" class="btn btn-primary contact">CONTACT {{fullname}}</a>
-</div>
 </div>

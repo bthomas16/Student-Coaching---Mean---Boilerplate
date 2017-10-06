@@ -39,7 +39,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
 
   findTeacher: boolean = true;
 
-  constructor(public authService: AuthService, public apiService: ApiService, private activatedRoute: ActivatedRoute) {}
+  constructor(public authService: AuthService, public apiService: ApiService, private route: ActivatedRoute) {}
 
 
   isUserTheTeacher() {
@@ -65,6 +65,33 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+    let viewTeacherID = params['id'];
+      if(viewTeacherID) {
+         this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
+           if(!viewTeacher.success) {
+             this.messageClass ='alert alert-danger';
+             this.message = viewTeacher.message
+           } else {
+               this.findTeacher = false;
+               this.teacherID = viewTeacher.teacher.id;
+               this.teacherEmail = viewTeacher.teacher.email;
+               this.teacherFullname = viewTeacher.teacher.fullname;
+               this.experience1 = viewTeacher.teacher.experience1,
+               this.experience2 = viewTeacher.teacher.experience2,
+               this.experience3 = viewTeacher.teacher.experience3,
+               this.experience4 = viewTeacher.teacher.experience4,
+               this.experience5 = viewTeacher.teacher.experience5
+               if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
+                 return null
+               }
+               this.teacherKRatingsArray = viewTeacher.teacher.ratings.kRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.kRatingsArray.length;
+               this.teacherPRatingsArray = viewTeacher.teacher.ratings.pRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.pRatingsArray.length;
+               this.teacherTARatingsArray = viewTeacher.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.taRa
+             }
+         })
+         return true;
+       }
     this.authService.getProfile().subscribe(profile => {
       this.userID = profile.user.id
       this.userFullname = profile.user.fullname.toUpperCase();
@@ -76,25 +103,8 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
       this.experience3 = profile.user.experience3;
       this.experience4 = profile.user.experience4;
       this.experience5 = profile.user.experience5;
-    })
-    this.currentUrl = this.activatedRoute.snapshot.params;
-    this.authService.getTeacherView(this.currentUrl.id).subscribe(data => {
-      if(!data.success) {
-        this.messageClass ='alert alert-danger';
-        this.message = data.message
-      } else {
-          this.findTeacher = false;
-          this.teacherID = data.teacher.id;
-          this.teacherEmail = data.teacher.email;
-          this.teacherFullname = data.teacher.fullname;
-          if(data.teacher.ratings.kRatingsArray == null || undefined) {
-            return null
-          }
-          this.teacherKRatingsArray = data.teacher.ratings.kRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.kRatingsArray.length;
-          this.teacherPRatingsArray = data.teacher.ratings.pRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.pRatingsArray.length;
-          this.teacherTARatingsArray = data.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/data.teacher.ratings.taRatingsArray.length;
-      }
     });
+  });
     window.scrollTo(0, 0);
   }
   }

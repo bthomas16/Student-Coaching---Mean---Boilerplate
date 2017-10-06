@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service'
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './view-teacher-profile.component.html',
   styleUrls: ['./view-teacher-profile.component.css']
 })
-export class ViewTeacherProfileComponent implements OnInit {
+export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked {
   message;
   messageClass;
   userID;
@@ -15,7 +16,7 @@ export class ViewTeacherProfileComponent implements OnInit {
   userFullname;
   userIsStudent: boolean = true;
   userIsTeacher: boolean = true;
-  // profPic;
+  canRate: boolean = false;
   processing: boolean = false;
   show: boolean = true;
   edit: boolean = false;
@@ -34,9 +35,11 @@ export class ViewTeacherProfileComponent implements OnInit {
   experience4;
   experience5;
 
+  showRate: boolean = false;
+
   findTeacher: boolean = true;
 
-  constructor(public authService: AuthService, private activatedRoute: ActivatedRoute) {}
+  constructor(public authService: AuthService, public apiService: ApiService, private activatedRoute: ActivatedRoute) {}
 
 
   isUserTheTeacher() {
@@ -45,6 +48,20 @@ export class ViewTeacherProfileComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
+  }
+
+  openRating(){
+    this.canRate = true;
+    this.apiService.openRating(this.canRate)
+  }
+
+  ngAfterContentChecked(){
+    this.canRate =  this.apiService.getRatingStatus();
   }
 
   ngOnInit() {
@@ -59,7 +76,6 @@ export class ViewTeacherProfileComponent implements OnInit {
       this.experience3 = profile.user.experience3;
       this.experience4 = profile.user.experience4;
       this.experience5 = profile.user.experience5;
-
     })
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.authService.getTeacherView(this.currentUrl.id).subscribe(data => {

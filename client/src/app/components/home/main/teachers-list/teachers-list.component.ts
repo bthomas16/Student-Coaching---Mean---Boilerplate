@@ -59,7 +59,7 @@ export class TeachersListComponent implements OnInit {
             this.avgRatingNumber = teacher.avgRatingNumber || null
             this.id = teacher._id;
             this.profPic = teacher.profPicName;
-            this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id; 
+            this.profPic = 'https://skill-site.herokuapp.com/authentication/avatar-retrieve/' + this.id; 
           }
        }
       return false;

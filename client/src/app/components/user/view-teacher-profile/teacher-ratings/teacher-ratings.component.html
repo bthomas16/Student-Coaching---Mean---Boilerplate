@@ -1,41 +1,38 @@
-
-<button class="btn btn-primary rateTeacher" *ngIf="!okRate" (click)="canRate()">RATE {{teacherFullname}}</button>
-
-
-
-<div class="flex ratingModal" *ngIf="okRate">
+<div class="flex">
   <div class="row show-hide-message">
     <div [ngClass]="messageClass">
       {{message}}
     </div>
   </div>
-  <div class="flex teacherName" (click)="canRate()">Rating {{teacherFullname}}</div>
+  <div class="flex closeButton" >
+    <i class="fa fa-times" (click)="closeRating()"></i>
+  </div>
+  <div class="flex teacherName">Rating {{teacherFullname}}</div>
   <div class="flex third">
       <h3 class="flex r">Knowledge</h3>
       <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
       <h5 class="flex">
-        AvgRating:  <span class="rating">{{ avgKnowledgeRating | number : '1.1-1' }}</span>
+        <em>Rating:</em> &nbsp; <span class="rating">{{ kRating | number : '1.1-1' }}/5</span>
       </h5>
   </div>
   <div class="flex third">
       <h3 class="flex r">Professionalism</h3>
       <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
       <h5 class="flex">
-        AvgRating:  <span class="rating">{{ avgProfessionalismRating | number : '1.1-1' }}</span>
+        <em>Rating:</em> &nbsp; <span class="rating">{{ pRating | number : '1.1-1' }}/5</span>
       </h5>
   </div>
   <div class="flex third">
     <h3 class="flex r">Teaching Ability</h3>
     <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
     <h5 class="flex">
-      AvgRating:  <span class="rating">{{ avgTeachingAbilityRating | number : '1.1-1' }}</span>
+      <em>Rating:</em> &nbsp; <span class="rating">{{ taRating | number : '1.1-1' }}/5</span>
     </h5>
   </div>
   <div class="flex">
     <textarea class="form-control" (keyup)="getText($event)" placeholder="Describe your experience here"></textarea>
   </div>
   <div class="flex butts">
-    <button class="btn btn-warning" (click)="canRate()" [disabled]="processing">Cancel</button>
     <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA || text == null">Rate</button>
   </div>
 </div>

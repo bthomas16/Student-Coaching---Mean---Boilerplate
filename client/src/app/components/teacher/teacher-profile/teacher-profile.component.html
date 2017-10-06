@@ -3,10 +3,8 @@
   {{message}}</div>
 </div>
 
-<span *ngIf="!isTeacher">
-</span>
-  <div class="flex" *ngIf="!isTeacher">
-  <h2 class="flex">Become a Teacher and connect with Pros Today!</h2>
+<div class="flex becomeTeacher" *ngIf="!isTeacher">
+  <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
   <div class="flex">
     <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
   </div>

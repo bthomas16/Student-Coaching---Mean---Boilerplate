@@ -6,12 +6,13 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class ApiService {
 
   showMenu: boolean = false;
+  canRate: boolean = false;
   options;
   authToken;
   // development server
-  server = "http://localhost:8080/";
+  // server = "http://localhost:8080/";
   // production server
-  // server = "";
+  server = "";
 
   constructor(
     public authService: AuthService,
@@ -44,21 +45,30 @@ export class ApiService {
     }
 
     changeMenuFalse(showMenu) {
-      console.log(showMenu)
-        showMenu = false;
         this.showMenu = false;
-        console.log(showMenu)
         return false
       }
 
-      changeMenuTrue(showMenu) {
-        console.log(showMenu)
-          showMenu = true;
-          this.showMenu = true;
-          return true;
-        }
+    changeMenuTrue(showMenu) {
+        this.showMenu = true;
+        return true;
+      }
 
-        getMenuStatus() {
-          return this.showMenu
-        }
+    getMenuStatus() {
+      return this.showMenu
+    }
+
+    closeRating(canRate) {
+        this.canRate = false;
+        return false
+      }
+
+    openRating(canRate) {
+        this.canRate = true;
+        return true;
+      }
+
+    getRatingStatus() {
+      return this.canRate;
+    }
   }

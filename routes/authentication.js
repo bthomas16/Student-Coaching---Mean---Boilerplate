@@ -164,8 +164,12 @@ router.put('/avatar-upload/:id', upload.any(), (req, res) => {
         if (!user) {
           res.json({ success: false, message: 'User not found'});
         } else {
-          console.log(user.profPicName)
-          res.sendFile( __dirname + '/uploads/' + user.profPicName);
+          console.log(user.profPicName, 'define me!')
+          if(user.profPicName === undefined) {
+            res.json({success: false, message: 'Add a Picture!' })
+          } else{
+            res.sendFile( __dirname + '/uploads/' + user.profPicName);
+          }
         }
       }
     });

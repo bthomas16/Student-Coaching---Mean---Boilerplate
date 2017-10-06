@@ -58,7 +58,7 @@ export class FeaturedTeacherComponent implements OnInit {
       this.skills = featured.teacher.skills;
       this.route = this.route + featured.teacher._id;
       this.profPic = featured.teacher.profPicName;
-      this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id
+      this.profPic = 'https://skill-site.herokuapp.com/authentication/avatar-retrieve/' + this.id
 
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings

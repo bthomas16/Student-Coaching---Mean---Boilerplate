@@ -38,9 +38,31 @@ span {
   margin-left: .25em;
   font-weight: 700;
 }
+.fa-star {
+  font-size: 2.8em;
+}
 
-@media(max-width:650px) {
-  .fa-3x {
+@media(max-width:1220px) {
+  .fa-star {
+    font-size: 2.25em;
+  }
+
+}
+
+@media(max-width:775px) {
+  .fa-star {
+    font-size: 2em;
+  }
+}
+
+@media(max-width:719px) {
+  .fa-star {
+    font-size: 2.65em;
+  }
+}
+
+@media(max-width:421px) {
+  .fa-star {
     font-size: 2em;
   }
 }

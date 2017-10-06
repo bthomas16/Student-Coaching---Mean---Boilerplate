@@ -2,9 +2,24 @@
   margin-top: 1.25em;
 }
 
+.ratingButton {
+  margin: 1.25em;
+}
+
+.ratingDiv {
+  width: 100%;
+  justify-content: center;
+}
+
 .rate {
-  margin-top: 1em;
-  margin-bottom: 1.5em;
+  position: fixed;
+  top: 8.5%;
+  width: 85%;
+  border: 2px solid black;
+  z-index: 1000;
+  background-color: #5563F0;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .exp {
@@ -41,12 +56,28 @@
   font-size: 1em;
 }
 
-
-
-
 @media(max-width:900px) {
   .half {
     width: 100%;
     padding: 1em;
+  }
+}
+
+@media(max-width: 650px) {
+
+  .exp {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .experiences {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .experiences li i {
+    align-self: flex-start;
+    margin-left: 0;
+    font-size: .85em;
   }
 }

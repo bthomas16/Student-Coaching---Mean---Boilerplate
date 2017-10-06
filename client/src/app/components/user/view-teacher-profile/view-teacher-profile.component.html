@@ -5,17 +5,19 @@
 
 <span *ngIf="!findTeacher">
   <div class="flex wrapper">
-    <div class="flex">
+    <div class="flex" (click)="closeRating()">
       <app-teacher-profile-main></app-teacher-profile-main>
     </div>
       <div class="flex review-exp-wrapper">
         <div class="flex half">
-            <app-teacher-reviews></app-teacher-reviews>
-          <div class="flex rate">
-            <app-teacher-ratings *ngIf="!isUserTheTeacher()"></app-teacher-ratings>
-          </div>
+            <app-teacher-reviews (click)="closeRating()"></app-teacher-reviews>
+            <div class="flex ratingButton" *ngIf="!isUserTheTeacher()">
+              <button class="btn btn-primary" (click)="openRating()">
+                RATE {{teacherFullname.toUpperCase()}}
+              </button>
+            </div>
         </div>
-        <div class="flex half exp">
+        <div class="flex half exp" (click)="closeRating()">
           <ul class="flex experiences" *ngIf="!isEdit">
             <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience1 }}</span></li>
             <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience2 }}</span></li>
@@ -27,3 +29,9 @@
       </div>
   </div>
 </span>
+
+<div class="flex ratingDiv" *ngIf="canRate">
+  <div class="flex rate" >
+    <app-teacher-ratings></app-teacher-ratings>
+  </div>
+</div>

@@ -137,10 +137,6 @@ p.left {
 }
 
 @media(max-width:750px) {
-  .image img.profPic {
-    /*width: 16.5em;*/
-    max-height: 20.5em;
-  }
   .topDiv {
     justify-content: center;
     width: 100%;
@@ -150,7 +146,7 @@ p.left {
 @media(max-width:650px) {
   .image img.profPic {
     width: 14em;
-    max-height: 20.5em;
+    max-height: 18.5em;
     margin-left: 5.5em;
   }
   .name {
@@ -178,26 +174,33 @@ p.left {
 
 @media(max-width:450px) {
   .image img.profPic {
-    width: 12em;
-    max-height: 20.5em;
+    width: 12.5em;
+    max-height: 15.5em;
+    margin-left: 4em;
   }
   .stats .info p.left{
     line-height: 1.5;
   }
   .main-wrapper {
-    height: 26em;
+    height: 22.5em;
   }
   .sb {
-    margin-top: -1.5em;
+    margin-top: -5.5em;
+  }
+  .topDiv {
+    margin-top: -1.85em;
+  }
+
+
+  .stats {
+    margin-top: 5em;
   }
 }
 
 @media(max-width:400px) {
-
-
   .image img.profPic {
     width: 10em;
-    max-height: 20.5em;
+    max-height: 12.5em;
     margin-left: 2em;
   }
   .info p.left {
@@ -211,6 +214,14 @@ p.left {
     font-size: 1em;
     border: 2px solid white;
     position: absolute;
+  }
+
+  .stats {
+    width: 45%;
+  }
+
+  .stats .info p.left{
+    line-height: 1.65;
   }
 }
 

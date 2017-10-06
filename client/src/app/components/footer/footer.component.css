@@ -36,6 +36,7 @@ li.nav-item a {
 
 .link span:hover {
   color:#1BACFC;
+  cursor: pointer
 }
 
 .mailList {
@@ -118,6 +119,7 @@ li.nav-item a {
     width:100%;
     justify-content: flex-start;
     border-bottom: 1px solid darkgrey;
+    padding-bottom: .75em;
   }
 
   .company .flex {

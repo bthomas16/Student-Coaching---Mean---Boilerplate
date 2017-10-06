@@ -1,7 +1,7 @@
 <div class="flex main-wrapper">
 
   <!-- LEFT HALF -->
-  <div class="flex topDiv">
+  <div class="flex topDiv" *ngIf="!isEdit">
       <p class="flex third name">{{ fullname }}</p>
       <div class="flex right">
         <div class="rating">
@@ -19,6 +19,10 @@
         </div>
       </div>
   </div>
+
+
+
+
 
 <div class="flex sb">
   <div class="flex half imageDiv">
@@ -43,11 +47,7 @@
   <!-- RIGHT HALF -->
 
   <div class="flex half stats">
-    <div class="flex" *ngIf="location == undefined">
-      <h2>Please Update Your Information</h2>
-    </div>
     <div class="flex info" *ngIf="!isEdit && location !== undefined">
-      <h3 class="flex" *ngIf="!yetRated">Not Yet Rated</h3>
       <p class="flex left"> {{ location }}</p>
       <p class="flex left"> {{ yrsExperience }} &nbsp; Years Experience</p>
       <p class="flex left"> {{ skills }}</p>
@@ -99,7 +99,6 @@
 </div>
 <div *ngIf="!isParams" class="flex editDiv">
   <button type="button" (click)="isEdit = !isEdit" class="btn btn-warning edit" *ngIf="!isEdit">Edit</button>
-</div>
 <div *ngIf="isParams" class="flex contactDiv">
   <a href="mailto:{{email}}" class="btn btn-primary contact">CONTACT {{fullname}}</a>
 </div>

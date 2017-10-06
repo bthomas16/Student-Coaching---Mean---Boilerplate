@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
+import { ApiService } from '../../../../services/api.service';
 import { ActivatedRoute } from '@angular/router'
 import { NgForm } from '@angular/forms';
 
@@ -13,20 +14,13 @@ export class TeacherRatingsComponent implements OnInit {
   kRating: number;
   pRating: number;
   taRating: number;
-  text;
-  avgKnowledgeRating: number;
-  avgProfessionalismRating: number;
-  avgTeachingAbilityRating: number;
   processing: boolean = false;
-  processing2: boolean = false;
-  showKRating: boolean = false;
-  showPRating: boolean = false;
-  showTARating: boolean = false;
   sum: number = 0;
-  okRate: boolean = false;
+  canRate: boolean = false;
   ratedK: boolean = false;
   ratedP: boolean = false;
   ratedTA: boolean = false;
+  text;
   message;
   messageClass;
   yetRated;
@@ -35,50 +29,27 @@ export class TeacherRatingsComponent implements OnInit {
   email;
   location;
   beingRatedId;
-
-
   teacherFullname;
 
 
-  constructor(public authService: AuthService, private route: ActivatedRoute) {
+  constructor(public authService: AuthService, public apiService: ApiService, private route: ActivatedRoute) {
   }
-
-    canRate() {
-      if(this.okRate === false) {
-        setTimeout(() => {
-          this.okRate = true;
-          return true
-        }, 200)
-      } else {
-        setTimeout(() => {
-          this.ratedK = false;
-          this.ratedP = false;
-          this.ratedTA = false;
-          this.okRate = false;
-          return false
-        }, 200)
-      }
-    }
 
     onKnowledgeRated(knowledgeRatedData: {knowledgeRating: number}) {
       this.kRating = knowledgeRatedData.knowledgeRating
       this.ratedK = true;
-      console.log(this.kRating)
     }
     onProfessionalismRated(professionalismRatedData: {professionalismRating: number}) {
       this.pRating = professionalismRatedData.professionalismRating
       this.ratedP = true;
-      console.log(this.pRating)
     }
     onTeachingAbilityRated(teachingAbilityRatedData: {teachingAbilityRating: number}) {
       this.taRating = teachingAbilityRatedData.teachingAbilityRating
       this.ratedTA = true;
-      console.log(this.taRating)
     }
 
 getText(event) {
   this.text = event.target.value
-  // return this.text
 }
 
   rate() {
@@ -101,11 +72,26 @@ getText(event) {
         this.message = data.message
         this.processing = false;
         setTimeout(()=> {
-          this.okRate = false;
+          this.closeRating();
         }, 1400);
       }
     });
   }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
+  }
+
+  // openRating(){
+  //   this.canRate = true;
+  //   this.apiService.openRating(this.canRate)
+  // }
+  //
+  // ngAfterContentChecked(){
+  //   return this.apiService.getRatingStatus();
+  // }
+
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -72,7 +72,6 @@ router.get('/register/check-email/:email', (req, res) => {
   if(!req.params.email) {
     res.json({ succes: false, message: "E-mail was not provided"});
   } else {
-    console.log('should save')
     User.findOne({ email: req.params.email}, (err, user) => {
       if(err) {
         res.json({ succes: false, message: err})
@@ -120,7 +119,6 @@ router.post('/login', (req, res) => {
 router.put('/avatar-upload/:id', upload.any(), (req, res) => {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
-  console.log('route is hit, matie here files', req.files[0]);
   User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});
@@ -129,19 +127,15 @@ router.put('/avatar-upload/:id', upload.any(), (req, res) => {
           res.json({ success: false, message: 'No User found'});
     } else {
       if(!req.files) {
-        console.log('4')
         res.json({ success: false, message: 'No file was provided'})
       } else {
-        console.log('5')
         user.profPicName = req.files[0].filename;
-        console.log('this means it workd', user.profPicName)
         user.save((err) => {
           if(err) {
             res.json({ succes: false, message: err})
           } else {
             res.json(req.files.map(file => {
                 let ext = path.extname(file.originalname);
-                console.log('6')
                   // return {
                 return {
               originalName: file.originalname,
@@ -164,7 +158,6 @@ router.put('/avatar-upload/:id', upload.any(), (req, res) => {
         if (!user) {
           res.json({ success: false, message: 'User not found'});
         } else {
-          console.log(user.profPicName, 'define me!')
           if(user.profPicName === undefined) {
             res.json({success: false, message: 'Add a Picture!' })
           } else{
@@ -209,37 +202,6 @@ router.get('/profile', (req, res) => {
     }
   });
 });
-
-// Photo Upload
-// router.use(multer({ dest: '../uploads/', rename: function(fieldname, filename){
-//   return filename
-//   },
-// }).single('image'));
-//
-// router.put('/image-upload',function(req,res){
-//   console.log('suppers')
-//   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
-//     if (err) {
-//       res.json({ success: false, message: 'Not a valid user id'});
-//     } else {
-//         if(!user) {
-//           res.json({ success: false, message: 'No User found'});
-//     } else {
-//      user.img.data = fs.readFileSync(req.files.image.path)
-//      user.img.contentType = 'image/png';
-//      console.log('about to save', user.img)
-//      user.img.save((err) => {
-//        if(err) {
-//          res.json({ succes: false, message: err})
-//       } else {
-//         console.log('saved')
-//        res.json({ success: true, message: 'Photo Uploaded'})
-//       }
-//     });
-//   }
-// }
-//   });
-//   });
 
 router.get('/profile/is-student', (req, res) => {
   User.findOne({ _id: req.decoded.userId }).select('isStudent').exec((err, user) => {
@@ -386,7 +348,6 @@ router.put('/teacher-rating', (req, res) => {
                 author: req.body.author
               })
               const tempAvg = ((req.body.kRatings + req.body.pRatings + req.body.taRatings)/3)
-              console.log(tempAvg, 'tempAvg')
               userBeingRated.avgRatingArray.push(tempAvg)
               const newAvg = userBeingRated.avgRatingArray.reduce((a, b) => a + b)/userBeingRated.avgRatingArray.length;
               userBeingRated.avgRatingNumber = newAvg;
@@ -394,7 +355,6 @@ router.put('/teacher-rating', (req, res) => {
                 if(err) {
                   res.json({ succes: false, message: err})
                 } else {
-                  // console.log({user: user.ratings})
                     res.json({ success: true, message: 'Rating Submitted'})
                   }
                 });
@@ -461,12 +421,10 @@ router.get('/get-featured-teacher', (req, res) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
-        console.log(teachers.length)
         if (teachers.length === 0) {
           res.json({ success: false, message: 'No teachers found' });
         } else {
           const featuredTeacher = Math.floor((Math.random() * (teachers.length)));
-          console.log('We made it here!', featuredTeacher)
           res.json({ success: true, teacher: teachers[featuredTeacher] });
         }
       }
@@ -495,7 +453,6 @@ router.put('/experience', (req,res) => {
           if(err) {
             res.json({ succes: false, message: err})
           } else {
-            console.log('working', user)
               res.json({ success: true, message: 'Experiences Saved'})
             }
           });
@@ -517,12 +474,10 @@ router.put('/experience', (req,res) => {
           user.skills = req.body.skills,
           user.handicap = req.body.handicap,
           user.cost = req.body.cost
-          console.log('user', user)
           user.save((err) => {
             if(err) {
               res.json({ succes: false, message: err})
             } else {
-              console.log('working', user)
                 res.json({ success: true, message: 'Experiences Saved'})
               }
             });
@@ -540,12 +495,10 @@ router.put('/experience', (req,res) => {
               res.json({ success: false, message: 'No User found'});
         } else {
             user.video = req.body.video,
-            console.log('userVideo is:', user.video)
             user.save((err) => {
               if(err) {
                 res.json({ succes: false, message: err})
               } else {
-                console.log('working', user)
                   res.json({ success: true, message: 'Video Saved'})
                 }
               });
@@ -563,12 +516,10 @@ router.put('/experience', (req,res) => {
                 res.json({ success: false, message: 'No User found'});
           } else {
               user.bio = req.body.bio,
-              console.log('userBio is:', user.bio)
               user.save((err) => {
                 if(err) {
                   res.json({ succes: false, message: err})
                 } else {
-                  console.log('working', user)
                     res.json({ success: true, message: 'Video Saved'})
                   }
                 });
@@ -584,10 +535,6 @@ router.put('/experience', (req,res) => {
 // FILES UPLOADS
 
 router.post('/avatar-upload/:id', upload.any(), (req, res) => {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  console.log('route is hit, matie here files', req.files, "or singular:", req.file, 'and the body:', req.body);
-
   User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});
@@ -596,13 +543,10 @@ router.post('/avatar-upload/:id', upload.any(), (req, res) => {
           res.json({ success: false, message: 'No User found'});
     } else {
       if(!req.files) {
-        console.log('4')
         res.json({ success: false, message: 'No file was provided'})
       } else {
-        console.log('5')
         res.json(req.files.map(file => {
           let ext = path.extname(file.originalname);
-          console.log('6')
             return {
         originalName: file.originalname,
         filename: file.filename
@@ -613,38 +557,6 @@ router.post('/avatar-upload/:id', upload.any(), (req, res) => {
   }
   });
 });
-
-
-
-// router.post('/avatar-upload', upload.any(), (req, res) => {
-//   // req.file is the `avatar` file
-//   // req.body will hold the text fields, if there were any
-//   console.log('route is hit, matie', req.files)
-//   // User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
-//   //   if (err) {
-//   //     res.json({ success: false, message: 'Not a valid user id'});
-//   //   } else {
-//   //       if(!user) {
-//   //         res.json({ success: false, message: 'No User found'});
-//   //   } else {
-//       if(!req.files) {
-//         console.log('fail')
-//         res.json({ success: false, message: 'No file was provided'})
-//       } else {
-//         console.log('success')
-//         res.json(req.files.map(file => {
-//           let ext = path.extname(file.originalname);
-//             return {
-//         originalName: file.originalname,
-//         filename: file.filename
-//       }
-//     }));
-//       }
-//   //   }
-//   // }
-//   });
-// // });
-//
 
 
 

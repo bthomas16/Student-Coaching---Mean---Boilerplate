@@ -75,12 +75,10 @@ export class UserRegisterComponent implements OnInit {
     if (this.studentClick == true) {
       this.studentClick = false;
       event.target.classList.remove('active')
-      console.log("Student is:" + this.studentClick)
     } else {
       if (this.studentClick == false) {
       this.studentClick = true;
       event.target.classList.add('active')
-      console.log("Student is:" + this.studentClick)
     }
   }
 }
@@ -89,19 +87,16 @@ teacherClickHandler(event) {
   if (this.teacherClick == true) {
     this.teacherClick = false;
     event.target.classList.remove('active')
-    console.log("Teacher is:" + this.teacherClick)
   } else {
     if (this.teacherClick == false) {
     this.teacherClick = true;
     event.target.classList.add('active')
-    console.log("Teacher is:" + this.teacherClick)
   }
 }
 }
 
   registerSubmit() {
     this.dataDismissAttribute="modal"
-    console.log(this.dataDismissAttribute)
     setTimeout(() => {
       this.onRegisterSubmit();
     }, 1);
@@ -117,7 +112,6 @@ teacherClickHandler(event) {
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
     }
-    console.log('trying to submit:', user)
     this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';

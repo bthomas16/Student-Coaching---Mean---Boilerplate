@@ -99,39 +99,28 @@ checkEmail(email) {
             res.json())
         }
 
-        // uploadFile(file) {
-        //   this.createAuthenticationHeaders();
-        //   console.log(file);
-        //   return this.http.put(this.server + 'authentication/avatar-upload', file, this.options).map(res => res.json());
-        // }
-
         upload(fileToUpload) {
           this.createAuthenticationHeaders();
-          console.log(fileToUpload, 'services consoled it')
           return this.http.post(this.server + 'authentication/avatar-upload', fileToUpload, this.options);
         }
 
         onExperienceSubmit(experience) {
           this.createAuthenticationHeaders();
-          console.log(experience);
           return this.http.put(this.server + 'authentication/experience', experience, this.options).map(res => res.json());
         }
 
         onInfoSubmit(info) {
           this.createAuthenticationHeaders();
-          console.log(info);
           return this.http.put(this.server + 'authentication/info', info, this.options).map(res => res.json());
         }
 
         onVideoSubmit(video) {
           this.createAuthenticationHeaders();
-          console.log(video);
           return this.http.put(this.server + 'authentication/video', video, this.options).map(res => res.json());
         }
 
         Rate(rated) {
             this.createAuthenticationHeaders();
-            console.log(rated);
             return this.http.put(this.server + 'authentication/teacher-rating', rated, this.options).map(res =>
               res.json())
           }
@@ -183,12 +172,4 @@ checkEmail(email) {
              return this.http.get(this.server + 'authentication/avatar-retrieve', this.options).map(res =>
                res.json());
            }
-
-          //  startUpload(event) {
-          //    this.createAuthenticationHeaders();
-          //    console.log('service:', event);
-          //    return this.http.post(this.server + 'authentication/avatar-upload', event, this.options).map(res =>
-          //      res.json());
-          //  }
-
 }

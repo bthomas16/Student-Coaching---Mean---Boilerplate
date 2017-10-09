@@ -37,7 +37,6 @@ router.get('/get-all-teachers', (req, res) => {
   });
 
   router.post('/email-subscriber', (req, res) => {
-    console.log('hit me!', req.body.email)
     if(!req.body.email){
       res.json({success: false, message: 'You must provide an email'});
     } else {

@@ -88,7 +88,6 @@ export class TeacherProfileComponent implements OnInit {
 
   videoSubmit() {
     let videoLink = this.videoForm.get('videoLink').value.trim();
-    console.log('videoLink is:', videoLink);
     const video = {
       video: videoLink
     }
@@ -126,7 +125,6 @@ export class TeacherProfileComponent implements OnInit {
       experience4: this.experience4,
       experience5: this.experience5
     }
-    console.log('experience is:', experience)
     this.authService.onExperienceSubmit(experience).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';

@@ -54,7 +54,6 @@ export class FeaturedTeacherComponent implements OnInit {
   ngOnInit() {
     this.authService.getFeaturedTeacher()
     .subscribe(featured => {
-      console.log(featured.teacher)
       this.id = featured.teacher._id;
       this.fullname = featured.teacher.fullname.toUpperCase();
       this.handicap = featured.teacher.handicap;

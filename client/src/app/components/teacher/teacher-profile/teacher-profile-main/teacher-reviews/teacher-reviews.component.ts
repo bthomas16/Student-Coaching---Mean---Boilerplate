@@ -46,19 +46,14 @@ export class TeacherReviewsComponent implements OnInit {
     this.route.params.subscribe(params => {
     let viewTeacherID = params['id'];
       if(viewTeacherID) {
-      console.log('we have some params in the teacher info component!', this.route.params)
          this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
             this.teachersList = this.shufflePipe.transform(viewTeacher.teacher.ratings)
-            console.log('tlist:', this.teachersList)
-          //  if ratings array is not 0, do this operation
-
             });
           }
       if(!viewTeacherID) {
       this.authService.getProfile()
       .subscribe(profile => {
         this.teachersList = this.shufflePipe.transform(profile.user.ratings)
-        console.log('tlist:', this.teachersList)
       });
     }
   });

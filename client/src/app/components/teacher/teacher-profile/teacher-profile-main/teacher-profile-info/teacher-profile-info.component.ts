@@ -97,12 +97,9 @@ export class TeacherProfileInfoComponent implements OnInit {
       handicap: this.handicap,
       cost: this.cost
     }
-    console.log(this.files.length, 'before')
     if(this.files.length === 1 ) {
-      console.log(this.files.length, 'after')
       this.onStartUpload()
     }
-    console.log('experience is:', info);
     this.authService.onInfoSubmit(info).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -145,7 +142,6 @@ export class TeacherProfileInfoComponent implements OnInit {
         method: 'PUT',
         concurrency: 0
       };
-      console.log(event)
       this.uploadInput.emit(event)
       this.isFileReady = false;
     }

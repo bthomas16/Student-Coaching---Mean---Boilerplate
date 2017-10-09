@@ -37,38 +37,6 @@ export class UserProfileComponent implements OnInit {
 
 @ViewChild("fileInput") fileInput;
 
-// addFile(): void {
-// let fi = this.fileInput.nativeElement;
-// if (fi.files && fi.files[0]) {
-//     let fileToUpload = {
-//       file: fi.files[0],
-//     }
-//     console.log('component fileToUpload is:', fileToUpload)
-//     this.authService.upload(fileToUpload).subscribe(res => {
-//             console.log(res);
-//         });
-//     }
-// }
-
-
-// onChange(event) {
-//   this.selectedFile = event.target.files[0];
-// }
-//
-//   fileSubmit() {
-//     const file = this.selectedFile
-//     console.log('howdy', file)
-//     this.authService.onFileSubmit(file).subscribe(data => {
-//       if (!data.success) {
-//         this.messageClass = 'alert alert-danger';
-//         this.message = data.message;
-//       } else {
-//         this.messageClass = 'alert alert-success'
-//         this.message = data.message
-//       }
-//     });
-//   }
-
 onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') {
       } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
@@ -96,7 +64,6 @@ onStartUpload(): void {
       method: 'PUT',
       concurrency: 0
     };
-    console.log(event)
     this.uploadInput.emit(event)
   }
 

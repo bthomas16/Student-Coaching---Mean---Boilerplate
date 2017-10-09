@@ -138,7 +138,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   onStartUpload(): void {
     const event: UploadInput = {
         type: 'uploadAll',
-        url: "https://skill-site.herokuapp.com/authentication/avatar-upload/" + this.id,
+        url: "/authentication/avatar-upload/" + this.id,
         method: 'PUT',
         concurrency: 0
       };
@@ -165,7 +165,7 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.handicap =viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
            this.profPic = viewTeacher.teacher.profPic;
-           this.profPic = 'https://skill-site.herokuapp.com/authentication/avatar-retrieve/' + this.id;
+           this.profPic = '/authentication/avatar-retrieve/' + this.id;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -223,7 +223,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.handicap =profile.user.handicap;
         this.cost =profile.user.cost;
         this.profPic = profile.user.profPic;
-        this.profPic = 'https://skill-site.herokuapp.com/authentication/avatar-retrieve/' + this.id;
+        this.profPic = '/authentication/avatar-retrieve/' + this.id;
        //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length) {
           this.yetRated = true;

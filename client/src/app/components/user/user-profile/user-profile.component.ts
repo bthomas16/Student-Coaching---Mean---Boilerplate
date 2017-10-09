@@ -92,7 +92,7 @@ onUploadOutput(output: UploadOutput): void {
 onStartUpload(): void {
   const event: UploadInput = {
       type: 'uploadAll',
-      url: "https://localhost:8080/authentication/avatar-upload/" + this.id,
+      url: "/authentication/avatar-upload/" + this.id,
       method: 'PUT',
       concurrency: 0
     };
@@ -110,7 +110,7 @@ ngOnInit() {
     this.isStudent = profile.user.isStudent;
     this.isTeacher = profile.user.isTeacher;
     this.profPic = profile.user.profPicName;
-    this.profPic = 'http://localhost:8080/authentication/avatar-retrieve/' + this.id
+    this.profPic = '/authentication/avatar-retrieve/' + this.id
   });
   window.scrollTo(0, 0)
 }

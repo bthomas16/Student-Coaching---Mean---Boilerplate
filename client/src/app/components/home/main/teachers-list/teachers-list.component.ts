@@ -53,14 +53,9 @@ export class TeachersListComponent implements OnInit {
       if(this.teachersList == undefined) {
         return false
       }
-        if(this.teachersList.length !== null || undefined ) {
         for(const teacher of this.teachersList) {
             this.avgRatingNumber = teacher.avgRatingNumber || null
-            this.id = teacher._id;
-            this.profPic = teacher.profPicName;
-            this.profPic = '/authentication/avatar-retrieve/' + this.id;
           }
-       }
-    });
-  }
+      });
+    }
 }

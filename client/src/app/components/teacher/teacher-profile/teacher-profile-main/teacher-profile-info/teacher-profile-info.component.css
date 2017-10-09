@@ -20,11 +20,12 @@
 
 .imageDiv {
   width: 55%;
+  padding-top: .75em;
 }
 
 .imageDiv img.profPic {
   width: 20.5em;
-  max-height: 20.5em;
+  max-height: 18.5em;
   margin-left: 3.5em;
   box-shadow: 3px 2.5px 1.5px #5563F0;
 }
@@ -112,7 +113,7 @@ p.left {
 @media(max-width:1050px) {
   .image img.profPic {
     width: 16em;
-    max-height: 20.5em;
+    max-height: 17em;
   }
 
   .info p.left {
@@ -125,7 +126,7 @@ p.left {
 
   .image img.profPic {
     width: 14.5em;
-    max-height: 20.5em;
+    max-height: 16em;
   }
   .stats .info p.left {
     width: 100%;
@@ -146,7 +147,7 @@ p.left {
 @media(max-width:650px) {
   .image img.profPic {
     width: 14em;
-    max-height: 18.5em;
+    max-height: 14.5em;
     margin-left: 5.5em;
   }
   .name {
@@ -175,7 +176,7 @@ p.left {
 @media(max-width:450px) {
   .image img.profPic {
     width: 12.5em;
-    max-height: 15.5em;
+    max-height: 13em;
     margin-left: 4em;
   }
   .stats .info p.left{
@@ -196,7 +197,7 @@ p.left {
 @media(max-width:400px) {
   .image img.profPic {
     width: 10em;
-    max-height: 12.5em;
+    max-height: 11em;
     margin-left: 2em;
   }
   .info p.left {
@@ -226,7 +227,7 @@ p.left {
 
   .image img.profPic {
     width: 8em;
-    max-height: 20.5em;
+    max-height: 10em;
   }
   .info {
     width: 100%;

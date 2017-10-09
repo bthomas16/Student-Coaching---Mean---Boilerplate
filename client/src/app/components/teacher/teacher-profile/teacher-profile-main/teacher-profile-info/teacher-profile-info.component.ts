@@ -60,6 +60,9 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
+  server = '';
+  // server = 'http://localhost:8080';
+
 
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
@@ -165,7 +168,7 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.handicap =viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
            this.profPic = viewTeacher.teacher.profPic;
-           this.profPic = '/authentication/avatar-retrieve/' + this.id;
+           this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -223,7 +226,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.handicap =profile.user.handicap;
         this.cost =profile.user.cost;
         this.profPic = profile.user.profPic;
-        this.profPic = '/authentication/avatar-retrieve/' + this.id;
+        this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
        //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length) {
           this.yetRated = true;

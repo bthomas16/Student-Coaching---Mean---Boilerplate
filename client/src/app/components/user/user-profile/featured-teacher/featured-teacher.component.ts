@@ -43,8 +43,10 @@ export class FeaturedTeacherComponent implements OnInit {
   avgtaRating;
   numberOfRatings;
   avgTotalRating;
-
   teachersList;
+
+  server = '';
+  // server = 'http://localhost:8080';
 
   constructor(public authService: AuthService, private shufflepipe: ShufflePipe) {
    }
@@ -58,7 +60,7 @@ export class FeaturedTeacherComponent implements OnInit {
       this.handicap = featured.teacher.handicap;
       this.skills = featured.teacher.skills;
       this.route = this.route + featured.teacher._id;
-      this.profPic = '/authentication/avatar-retrieve/' + this.id
+      this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id
 
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings

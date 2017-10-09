@@ -40,9 +40,26 @@ export class TeachersListComponent implements OnInit {
   teacherRatingArray;
   ratingsArray: Array<any> = [];
   newArray;
+  server = '';
+  // server = 'http://localhost:8080';
 
   avgRatingNumber;
-  constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {}
+  constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {
+    this.apiService.getAllTeachers().subscribe(data => {
+      this.teachersList = data.teachers
+      // console.log(this.teachersList.length, 'length')
+      if(this.teachersList == undefined) {
+        return false
+      }
+        if(this.teachersList.length !== null || undefined ) {
+         //  Loop through teachers array to get each teacher
+        for(const teacher of this.teachersList) {
+          // this.teacherRatingArray = teacher.ratings;
+            this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+          }
+       }
+    });
+  }
 
   ngOnInit() {
     this.apiService.getAllTeachers().subscribe(data => {
@@ -59,10 +76,9 @@ export class TeachersListComponent implements OnInit {
             this.avgRatingNumber = teacher.avgRatingNumber || null
             this.id = teacher._id;
             this.profPic = teacher.profPicName;
-            this.profPic = '/authentication/avatar-retrieve/' + this.id; 
+            // this.profPic = '/authentication/avatar-retrieve/' + this.id;
           }
        }
-      return false;
     });
   }
 }

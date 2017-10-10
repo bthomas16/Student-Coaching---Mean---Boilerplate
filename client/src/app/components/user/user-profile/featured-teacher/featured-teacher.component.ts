@@ -45,7 +45,7 @@ export class FeaturedTeacherComponent implements OnInit {
   avgTotalRating;
   teachersList;
 
-  server = '';
+  server = 'https://skill-site.herokuapp.com';
   // server = 'http://localhost:8080';
 
   constructor(public authService: AuthService, private shufflepipe: ShufflePipe) {

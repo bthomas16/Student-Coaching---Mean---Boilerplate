@@ -1,12 +1,10 @@
 <div class="wrapper">
-  <app-navbar>Loading...</app-navbar>
+  <app-navbar></app-navbar>
 
   <div class="flex mid" (click)="changeMenu()" >
     <flash-messages></flash-messages>
-    <router-outlet ></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 
-  <app-footer class="footer" (click)="changeMenu()">
-    Loading...
-  </app-footer>
+  <app-footer class="footer" (click)="changeMenu()"></app-footer>
 </div>

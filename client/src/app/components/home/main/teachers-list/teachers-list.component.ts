@@ -40,7 +40,7 @@ export class TeachersListComponent implements OnInit {
   teacherRatingArray;
   ratingsArray: Array<any> = [];
   newArray;
-  server = '';
+  // server = '';
   // server = 'http://localhost:8080';
 
   avgRatingNumber;

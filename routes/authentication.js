@@ -117,8 +117,6 @@ router.post('/login', (req, res) => {
 });
 
 router.put('/avatar-upload/:id', upload.any(), (req, res) => {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
   User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});

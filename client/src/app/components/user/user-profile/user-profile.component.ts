@@ -26,8 +26,6 @@ export class UserProfileComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = ""
-
 
   constructor(public authService: AuthService) {
     this.files = []; // local uploading files array

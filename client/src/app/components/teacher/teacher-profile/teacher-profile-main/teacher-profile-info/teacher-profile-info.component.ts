@@ -132,6 +132,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
   });
 }
+}
 
 
   onUploadOutput(output: UploadOutput): void {

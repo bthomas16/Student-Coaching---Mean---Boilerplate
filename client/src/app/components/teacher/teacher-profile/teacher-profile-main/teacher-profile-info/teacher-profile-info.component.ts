@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, EventEmitter, ViewChild } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { AuthService } from '../../../../../services/auth.service';
   templateUrl: './teacher-profile-info.component.html',
   styleUrls: ['./teacher-profile-info.component.css']
 })
-export class TeacherProfileInfoComponent implements OnInit {
+export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked {
   kRating;
   pRating;
   taRating;
@@ -112,6 +112,26 @@ export class TeacherProfileInfoComponent implements OnInit {
       }
     })
   }
+
+  ngAfterContentChecked(){
+    if(this.viewTeacherID) {
+       this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
+         this.profPic = viewTeacher.teacher.profPic;
+         console.log('suppers1')
+         this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+        //  if ratings array is not 0, do this operation
+          });
+       return true;
+       }
+    if(!this.viewTeacherID) {
+    this.isParams = false;
+    this.authService.getProfile()
+    .subscribe(profile => {
+      this.profPic = profile.user.profPic;
+      console.log('suppers2')
+      this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+  });
+}
 
 
   onUploadOutput(output: UploadOutput): void {

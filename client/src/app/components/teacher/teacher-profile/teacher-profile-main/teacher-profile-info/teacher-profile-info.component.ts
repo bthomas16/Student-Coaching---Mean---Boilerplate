@@ -114,24 +114,29 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   }
 
   ngAfterContentChecked(){
-    if(this.viewTeacherID) {
-       this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
-         this.profPic = viewTeacher.teacher.profPic;
-         console.log('suppers1')
-         this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
-        //  if ratings array is not 0, do this operation
-          });
-       return true;
-       }
-    if(!this.viewTeacherID) {
-    this.isParams = false;
-    this.authService.getProfile()
-    .subscribe(profile => {
-      this.profPic = profile.user.profPic;
-      console.log('suppers2')
-      this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
-  });
+//     if(this.viewTeacherID) {
+//        this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
+//          this.profPic = viewTeacher.teacher.profPic;
+//          console.log('suppers1')
+//          this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+//         //  if ratings array is not 0, do this operation
+//           });
+//        return true;
+//        }
+//     if(!this.viewTeacherID) {
+//     this.isParams = false;
+//     this.authService.getProfile()
+//     .subscribe(profile => {
+//       this.profPic = profile.user.profPic;
+//       console.log('suppers2')
+//       this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+//   });
+// }
+this.getProfPic()
 }
+
+getProfPic(){
+  return this.profPic
 }
 
 

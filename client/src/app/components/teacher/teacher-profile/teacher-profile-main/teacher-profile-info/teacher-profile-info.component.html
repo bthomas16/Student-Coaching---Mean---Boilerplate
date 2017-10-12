@@ -27,7 +27,7 @@
 <div class="flex sb">
   <div class="flex half imageDiv">
     <div class="flex half image" *ngIf="!isEdit">
-      <img src="getProfPic()" alt="" class="profPic">
+      <img [src]="[profPic]" alt="" class="profPic">
     </div>
     <div class="flex" *ngIf="isEdit">
       <label class="btn btn-info btn-file fileBrowse">
@@ -86,7 +86,7 @@
           <li *ngIf="infoForm.controls.cost.errors?.required && infoForm.controls.cost.dirty">This field is required
           </li>
         </ul>
-        <button type="submit" [disabled]="!infoForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
+        <button type="submit"  *ngIf="isEdit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="isEdit = !isEdit" name="button">Cancel</button>
       </div>
     </form>

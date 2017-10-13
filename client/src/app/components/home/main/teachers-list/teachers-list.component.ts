@@ -55,5 +55,6 @@ export class TeachersListComponent implements OnInit {
             this.avgRatingNumber = teacher.avgRatingNumber || null
           }
       });
+      return true;
     }
 }

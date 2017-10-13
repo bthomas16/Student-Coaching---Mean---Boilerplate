@@ -204,6 +204,7 @@ export class TeacherProfileInfoComponent implements OnInit {
                    }
                  }
               }
+              return true;
             });
          }
        });

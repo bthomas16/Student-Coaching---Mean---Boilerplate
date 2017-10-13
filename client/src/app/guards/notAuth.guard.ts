@@ -13,7 +13,7 @@ isTeacher;
 
   canActivate() {
     if (this.authService.loggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
       return false;
     } else {
       return true;

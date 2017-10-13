@@ -19,7 +19,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [NotAuthGuard] },
   { path: 'register', component: UserRegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'login', component: UserLoginRedirectComponent, canActivate: [NotAuthGuard] },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},

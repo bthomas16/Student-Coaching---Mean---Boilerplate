@@ -33,6 +33,74 @@ app-user-login {
   width: 100%;
 }
 
+.register {
+  background-color: rgba(27, 172, 252,.9);
+  width: 80%;
+  color: white;
+  font-weight: bold;
+}
+
+.account {
+  color: rgba(0,0,0,.6);
+  font-size: 1.2em;
+}
+
+.account a{
+  cursor: pointer;
+  color: darkblue;
+  text-shadow: none;
+}
+
+.account a:hover{
+  color: rgba(85, 99, 240,1);
+  text-shadow: -.01px 0 black, 0 .01px black, .01px 0 black, 0 -0.01px black;
+  cursor: pointer;
+}
+
+:host /deep/ h3 {
+  color: blue;
+  font-size: 10em;
+}
+
+.modal-header {
+  border: none;
+}
+
+.registerText {
+  width: 50%;
+  justify-content: center;
+  padding-left: 1em;
+}
+
+.bigTitle {
+  font: 4.5em;
+  align-self: flex-start;
+  text-align: left;
+  margin-bottom: 1em;
+  width: 100%;
+  font-weight: bolder;
+}
+
+.littleText {
+  margin-top: 1em;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+
+.form {
+  width: 45%;
+}
+
+
+/*MODAL*/
+
+.modal-content {
+  background-color: #5563F0;
+  color: white;
+}
+
 
 @media(max-width:800px) {
   .wrap {

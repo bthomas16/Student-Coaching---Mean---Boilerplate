@@ -9,7 +9,7 @@ export class AuthService {
     // development server
   // server = "http://localhost:8080";
     // production server
-  server = "https://skill-site.herokuapp.com"
+  server = "";
   authToken;
   user;
   options;

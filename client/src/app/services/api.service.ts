@@ -12,7 +12,7 @@ export class ApiService {
   // development server
   // server = "http://localhost:8080";
   // production server
-  server = "https://skill-site.herokuapp.com";
+  server = "";
 
   constructor(
     public authService: AuthService,

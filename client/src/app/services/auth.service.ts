@@ -7,9 +7,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  // server = "http://localhost:8080/";
+  // server = "http://localhost:8080";
     // production server
-  server = ""
+  server = "https://skill-site.herokuapp.com"
   authToken;
   user;
   options;
@@ -33,11 +33,11 @@ export class AuthService {
   }
 
 Register(user) {
-  return this.http.post(this.server + 'authentication/register', user).map(res => res.json());
+  return this.http.post(this.server + '/authentication/register', user).map(res => res.json());
   }
 
 checkEmail(email) {
-  return this.http.get(this.server + 'authentication/register/check-email/' + email).map(res => res.json());
+  return this.http.get(this.server + '/authentication/register/check-email/' + email).map(res => res.json());
   }
 
   checkEmailSubscriber(emailSubscriber) {
@@ -45,7 +45,7 @@ checkEmail(email) {
     }
 
   Login(user) {
-    return this.http.post(this.server + 'authentication/login', user).map(res => res.json());
+    return this.http.post(this.server + '/authentication/login', user).map(res => res.json());
     }
 
   Logout(){
@@ -63,12 +63,12 @@ checkEmail(email) {
 
     getProfile() {
       this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/profile', this.options).map(res => res.json());
+      return this.http.get(this.server + '/authentication/profile', this.options).map(res => res.json());
     }
 
     teacherCheck() {
       this.createAuthenticationHeaders();
-      return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
+      return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
     }
 
     loggedIn() {
@@ -77,68 +77,68 @@ checkEmail(email) {
 
     updateStudent(user) {
         this.createAuthenticationHeaders();
-        return this.http.put(this.server + 'authentication/become-student', user, this.options).map(res =>
+        return this.http.put(this.server + '/authentication/become-student', user, this.options).map(res =>
           res.json())
       }
 
       updateTeacher(user) {
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/become-teacher', user, this.options).map(res =>
+          return this.http.put(this.server + '/authentication/become-teacher', user, this.options).map(res =>
             res.json())
         }
 
         onBioFormSubmit(bio) {
             this.createAuthenticationHeaders();
-            return this.http.put(this.server + 'authentication/updated-teacher-bio', bio, this.options).map(res =>
+            return this.http.put(this.server + '/authentication/updated-teacher-bio', bio, this.options).map(res =>
               res.json())
           }
 
       updateSchedule(schedule) {
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/update-schedule', schedule, this.options).map(res =>
+          return this.http.put(this.server + '/authentication/update-schedule', schedule, this.options).map(res =>
             res.json())
         }
 
         upload(fileToUpload) {
           this.createAuthenticationHeaders();
-          return this.http.post(this.server + 'authentication/avatar-upload', fileToUpload, this.options);
+          return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
         }
 
         onExperienceSubmit(experiences) {
           console.log(experiences, 'service side result')
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/experiences', experiences, this.options).map(res => res.json());
+          return this.http.put(this.server + '/authentication/experiences', experiences, this.options).map(res => res.json());
         }
 
         onInfoSubmit(info) {
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/info', info, this.options).map(res => res.json());
+          return this.http.put(this.server + '/authentication/info', info, this.options).map(res => res.json());
         }
 
         onVideoSubmit(video) {
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/video', video, this.options).map(res => res.json());
+          return this.http.put(this.server + '/authentication/video', video, this.options).map(res => res.json());
         }
 
         Rate(rated) {
             this.createAuthenticationHeaders();
-            return this.http.put(this.server + 'authentication/teacher-rating', rated, this.options).map(res =>
+            return this.http.put(this.server + '/authentication/teacher-rating', rated, this.options).map(res =>
               res.json())
           }
 
           onGetRating() {
             this.createAuthenticationHeaders();
-            return this.http.get(this.server + 'authentication/teacher-rating', this.options).map(res => res.json());
+            return this.http.get(this.server + '/authentication/teacher-rating', this.options).map(res => res.json());
           }
 
           studentCheck() {
             this.createAuthenticationHeaders();
-            return this.http.get(this.server + 'authentication/profile/is-student', this.options).map(res => res.json());
+            return this.http.get(this.server + '/authentication/profile/is-student', this.options).map(res => res.json());
           }
 
           getFeaturedTeacher() {
             this.createAuthenticationHeaders();
-            return this.http.get(this.server + 'authentication/get-featured-teacher', this.options).map(res => res.json());
+            return this.http.get(this.server + '/authentication/get-featured-teacher', this.options).map(res => res.json());
           }
 
 
@@ -164,13 +164,13 @@ checkEmail(email) {
 
            getTeacherView(id) {
              this.createAuthenticationHeaders();
-             return this.http.get(this.server + 'authentication/view-teacher-profile/' + id, this.options).map(res =>
+             return this.http.get(this.server + '/authentication/view-teacher-profile/' + id, this.options).map(res =>
                res.json());
            }
 
            onGetProfPic() {
              this.createAuthenticationHeaders();
-             return this.http.get(this.server + 'authentication/avatar-retrieve', this.options).map(res =>
+             return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
                res.json());
            }
 }

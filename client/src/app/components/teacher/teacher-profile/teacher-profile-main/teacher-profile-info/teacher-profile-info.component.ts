@@ -63,7 +63,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = '';
+  server = 'https://skill-site.herokuapp.com';
   // server = 'http://localhost:8080';
 
 

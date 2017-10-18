@@ -10,9 +10,9 @@ export class ApiService {
   options;
   authToken;
   // development server
-  // server = "http://localhost:8080/";
+  // server = "http://localhost:8080";
   // production server
-  server = "";
+  server = "https://skill-site.herokuapp.com";
 
   constructor(
     public authService: AuthService,
@@ -37,15 +37,15 @@ export class ApiService {
 
   getAllTeachers() {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.server + 'api/get-all-teachers', this.options).map(res => res.json());
+    return this.http.get(this.server + '/api/get-all-teachers', this.options).map(res => res.json());
   }
 
   Email(emailSubscriber) {
-    return this.http.post(this.server + 'api/email-subscriber', emailSubscriber).map(res => res.json());
+    return this.http.post(this.server + '/api/email-subscriber', emailSubscriber).map(res => res.json());
     }
 
     wantToLearn(learner) {
-      return this.http.post(this.server + 'api/want-to-learn', learner).map(res => res.json());
+      return this.http.post(this.server + '/api/want-to-learn', learner).map(res => res.json());
     }
 
     changeMenuFalse(showMenu) {

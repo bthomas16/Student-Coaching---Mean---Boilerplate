@@ -12,7 +12,7 @@ export class ApiService {
   // development server
   // server = "http://localhost:8080";
   // production server
-  server = "http://www.thinksavvy.co";
+  server = "";
 
   constructor(
     public authService: AuthService,

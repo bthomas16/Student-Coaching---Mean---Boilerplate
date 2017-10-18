@@ -63,7 +63,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = "http://www.thinksavvy.co";
+  server = "";
   // server = 'http://localhost:8080';
 
 
@@ -76,89 +76,33 @@ export class TeacherProfileInfoComponent implements OnInit {
     this.humanizeBytes = humanizeBytes;
   }
 
-
-  // createForm(){
-  //   this.infoForm = this.formBuilder.group({
-  //     county: [''],
-  //     yrsExperience: [''],
-  //     skill1: [''],
-  //     skill2: [''],
-  //     skill3: [''],
-  //     handicap: [''],
-  //     cost: ['']
-  //   });
-  // }
-
   getCounty(event) {
     this.county = event.target.value;
-    console.log(event.target.value);
   }
 
   getExperience(event) {
     this.yrsExperience = event.target.value;
-    console.log(event.target.value);
   }
 
   getSkill1(event) {
     this.skill1 = event.target.value;
-    console.log(event.target.value);
   }
 
   getSkill2(event) {
     this.skill2 = event.target.value;
-    console.log(event.target.value);
   }
 
   getSkill3(event) {
     this.skill3 = event.target.value;
-    console.log(event.target.value);
   }
 
   getHandicap(event) {
     this.handicap = event.target.value;
-    console.log(event.target.value);
   }
 
   getCost(event) {
     this.cost= event.target.value;
-    console.log(event.target.value);
   }
-
-  infoSubmit() {
-    // this.county = this.infoForm.get('county').value.trim(),
-    // this.yrsExperience = this.infoForm.get('yrsExperience').value,
-    // this.skill1 = this.infoForm.get('skill1').value.trim(),
-    // this.skill2 = this.infoForm.get('skill2').value.trim(),
-    // this.skill3 = this.infoForm.get('skill3').value.trim(),
-    // this.handicap = this.infoForm.get('handicap').value,
-    // this.cost = this.infoForm.get('cost').value
-    const info = {
-      county: this.county,
-      yrsExperience: this.yrsExperience,
-      skill1: this.skill1,
-      skill2: this.skill2,
-      skill3: this.skill3,
-      handicap: this.handicap,
-      cost: this.cost
-    }
-    console.log(info)
-    if(this.files.length === 1 ) {
-      this.onStartUpload()
-    }
-    this.authService.onInfoSubmit(info).subscribe(data => {
-      if (!data.success) {
-        this.messageClass = 'alert alert-danger';
-        this.message = data.message;
-        this.isEdit = true;
-      } else {
-        this.messageClass = 'alert alert-success';
-        this.message = data.message;
-        this.isEdit = false;
-      }
-    })
-
-  }
-
 
   onUploadOutput(output: UploadOutput): void {
     this.isFileReady = true;
@@ -180,6 +124,33 @@ export class TeacherProfileInfoComponent implements OnInit {
           this.dragOver = false;
         }
     }
+
+  infoSubmit() {
+    if(this.files.length === 1 ) {
+      this.onStartUpload();
+    }
+    const info = {
+      county: this.county,
+      yrsExperience: this.yrsExperience,
+      skill1: this.skill1,
+      skill2: this.skill2,
+      skill3: this.skill3,
+      handicap: this.handicap,
+      cost: this.cost
+    }
+    this.authService.onInfoSubmit(info).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.isEdit = true;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.isEdit = false;
+      }
+    })
+
+  }
 
   onStartUpload(): void {
     const event: UploadInput = {

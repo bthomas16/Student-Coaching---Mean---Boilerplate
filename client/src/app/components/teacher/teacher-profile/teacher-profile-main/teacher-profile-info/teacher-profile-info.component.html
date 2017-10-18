@@ -58,7 +58,7 @@
   </label>
   <h6 *ngIf="isFileReady" class="flex">File Ready!</h6>
     <button type="button" class="btn btn-primary" (click)="onStartUpload()" *ngIf="isFileReady">
-      Start Upload
+      Upload File Only
     </button>
   </div>
   <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">

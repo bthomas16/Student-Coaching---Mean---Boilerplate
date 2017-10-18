@@ -107,7 +107,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       cost: this.cost
     }
     console.log(info)
-    if(this.files.length !== 1 ) {
+    if(this.files.length === 1 ) {
       this.mustUpload = true;
       this.onStartUpload()
     }

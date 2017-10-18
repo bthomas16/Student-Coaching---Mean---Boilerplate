@@ -106,9 +106,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       handicap: this.handicap,
       cost: this.cost
     }
-    console.log(info)
     if(this.files.length === 1 ) {
-      this.mustUpload = true;
       this.onStartUpload()
     }
     this.authService.onInfoSubmit(info).subscribe(data => {
@@ -148,6 +146,7 @@ export class TeacherProfileInfoComponent implements OnInit {
     }
 
   onStartUpload(): void {
+    this.isFileReady = false;
     const event: UploadInput = {
         type: 'uploadAll',
         url: this.server + "/authentication/avatar-upload/" + this.id,
@@ -155,7 +154,6 @@ export class TeacherProfileInfoComponent implements OnInit {
         concurrency: 0
       };
       this.uploadInput.emit(event)
-      this.isFileReady = false;
     }
 
 

@@ -48,8 +48,8 @@ export class FeaturedTeacherComponent implements OnInit {
   promotion;
   promoExample = "There's no substitute for great coaching!"
 
-  // server = 'http://www.thinksavvy.co';
-  server = 'http://localhost:8080';
+  server = 'http://www.thinksavvy.co';
+  // server = 'http://localhost:8080';
 
   constructor(public authService: AuthService, private shufflepipe: ShufflePipe) {
    }

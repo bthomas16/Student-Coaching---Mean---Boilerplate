@@ -63,8 +63,8 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  // server = "http://www.thinksavvy.co";
-  server = 'http://localhost:8080';
+  server = "http://www.thinksavvy.co";
+  // server = 'http://localhost:8080';
 
 
 

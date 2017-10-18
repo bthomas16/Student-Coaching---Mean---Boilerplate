@@ -10,9 +10,9 @@ export class ApiService {
   options;
   authToken;
   // development server
-  server = "http://localhost:8080";
+  // server = "http://localhost:8080";
   // production server
-  // server = "http://www.thinksavvy.co";
+  server = "http://www.thinksavvy.co";
 
   constructor(
     public authService: AuthService,

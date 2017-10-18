@@ -20,7 +20,7 @@ mongoose.connect(config.uri, {useMongoClient: true}, (err) => {
 });
 
 app.use(cors({
-  origin:'http://localhost:4200'
+  origin:'http://localhost:4200' || 'http://www.thinksavvy.co'
 }));
 
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -57,9 +57,9 @@
       <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
   </label>
   <h6 *ngIf="isFileReady" class="flex">File Ready!</h6>
-    <button type="button" class="btn btn-primary" (click)="onStartUpload()" *ngIf="isFileReady">
+    <!-- <button type="button" class="btn btn-primary" (click)="onStartUpload()" *ngIf="isFileReady">
       Upload File Only
-    </button>
+    </button> -->
   </div>
   <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
     <div class="flex leftForm">

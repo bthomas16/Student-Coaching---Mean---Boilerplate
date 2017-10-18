@@ -45,7 +45,8 @@ export class FeaturedTeacherComponent implements OnInit {
   // numberOfRatings;
   // avgTotalRating;
   teachersList;
-  promoExample = "Free Blowjobs with First Lesson!"
+  promotion;
+  promoExample = "There's no substitute for great coaching!"
 
   server = '';
   // server = 'http://localhost:8080';

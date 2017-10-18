@@ -61,7 +61,7 @@
       Upload File Only
     </button> -->
   </div>
-  <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
+  <div class="flex">
     <div class="flex leftForm">
       <div class="flex city">
         <div class="flex" style="color:white;">
@@ -73,7 +73,7 @@
         <div class="flex" style="color:white;">
           <h4>County</h4>
         </div>
-        <select formControlName="county" value="{{county}}">
+        <select (change)="getCounty($event)" value="{{county}}">
           <option value="{{county}}" selected>{{county}}</option>
           <hr>
           <option value="North County">North County</option>
@@ -86,7 +86,7 @@
         <div class="flex" style="color:white;">
           <h4>Experience</h4>
         </div>
-        <select formControlName="yrsExperience" value="{{yrsExperience}}">
+        <select (change)="getExperience($event)" value="{{yrsExperience}}">
           <option value="{{yrsExperience}}" selected>{{yrsExperience}} years</option>
           <hr>
           <option value="1">1 year</option>
@@ -129,14 +129,14 @@
     </div>
     <div class="flex skillsWrapper">
       <h4>Top 3 Skills:</h4>
-      <input  type="text" value="{{skill1}}" name="skill1" placeholder="Short Game" class="form-control" formControlName="skill1">
-      <input  type="text" value="{{skill2}}" name="skill2" placeholder="Putting" class="form-control" formControlName="skill2">
-      <input  type="text" value="{{skill3}}" name="skill3" placeholder="Approach Game" class="form-control" formControlName="skill3">
+      <input  type="text" value="{{skill1}}" name="skill1" placeholder="Short Game" class="form-control" (change)="getSkill1($event)">
+      <input  type="text" value="{{skill2}}" name="skill2" placeholder="Putting" class="form-control" (change)="getSkill2($event)">
+      <input  type="text" value="{{skill3}}" name="skill3" placeholder="Approach Game" class="form-control" (change)="getSkill3($event)">
     </div>
     <div class="flex moreInfo">
       <div class="flex handicap">
         <h4>Handicap:</h4>
-        <select formControlName="handicap" value="{{handicap}}">
+        <select (change)="getHandicap($event)" value="{{handicap}}">
           <option value="{{handicap}}" selected>+{{handicap}}</option>
           <hr>
           <option value="1">+1</option>
@@ -178,13 +178,13 @@
       </div>
       <div class="flex rate">
         <h4>Hourly Wage:</h4>
-        <input  type="number" value="{{cost}}" name="cost" placeholder="65" class="form-control" formControlName="cost">
+        <input  type="number" value="{{cost}}" name="cost" placeholder="65" class="form-control" (change)="getCost($event)">
       </div>
     </div>
     <div class="flex butts">
       <button type="button" class="btn btn-warning"  (click)="isEdit = !isEdit" name="button">Cancel</button>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" (click)="infoSubmit()">Save</button>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
 </div>

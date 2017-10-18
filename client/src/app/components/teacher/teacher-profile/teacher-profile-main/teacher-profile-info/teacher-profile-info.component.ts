@@ -63,40 +63,75 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = "http://www.thinksavvy.co";
-  // server = 'http://localhost:8080';
+  // server = "http://www.thinksavvy.co";
+  server = 'http://localhost:8080';
 
 
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     this.county = '';
-    this.createForm();
+    // this.createForm();
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>() || null; // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
   }
 
 
-  createForm(){
-    this.infoForm = this.formBuilder.group({
-      county: [''],
-      yrsExperience: [''],
-      skill1: [''],
-      skill2: [''],
-      skill3: [''],
-      handicap: [''],
-      cost: ['']
-    });
+  // createForm(){
+  //   this.infoForm = this.formBuilder.group({
+  //     county: [''],
+  //     yrsExperience: [''],
+  //     skill1: [''],
+  //     skill2: [''],
+  //     skill3: [''],
+  //     handicap: [''],
+  //     cost: ['']
+  //   });
+  // }
+
+  getCounty(event) {
+    this.county = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getExperience(event) {
+    this.yrsExperience = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getSkill1(event) {
+    this.skill1 = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getSkill2(event) {
+    this.skill2 = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getSkill3(event) {
+    this.skill3 = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getHandicap(event) {
+    this.handicap = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getCost(event) {
+    this.cost= event.target.value;
+    console.log(event.target.value);
   }
 
   infoSubmit() {
-    this.county = this.infoForm.get('county').value.trim(),
-    this.yrsExperience = this.infoForm.get('yrsExperience').value,
-    this.skill1 = this.infoForm.get('skill1').value.trim(),
-    this.skill2 = this.infoForm.get('skill2').value.trim(),
-    this.skill3 = this.infoForm.get('skill3').value.trim(),
-    this.handicap = this.infoForm.get('handicap').value,
-    this.cost = this.infoForm.get('cost').value
+    // this.county = this.infoForm.get('county').value.trim(),
+    // this.yrsExperience = this.infoForm.get('yrsExperience').value,
+    // this.skill1 = this.infoForm.get('skill1').value.trim(),
+    // this.skill2 = this.infoForm.get('skill2').value.trim(),
+    // this.skill3 = this.infoForm.get('skill3').value.trim(),
+    // this.handicap = this.infoForm.get('handicap').value,
+    // this.cost = this.infoForm.get('cost').value
     const info = {
       county: this.county,
       yrsExperience: this.yrsExperience,
@@ -106,6 +141,7 @@ export class TeacherProfileInfoComponent implements OnInit {
       handicap: this.handicap,
       cost: this.cost
     }
+    console.log(info)
     if(this.files.length === 1 ) {
       this.onStartUpload()
     }

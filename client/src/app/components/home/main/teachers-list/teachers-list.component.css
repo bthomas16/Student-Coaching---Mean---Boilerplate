@@ -16,6 +16,7 @@ input {
 
 .mediaDiv {
   justify-content: space-between;
+  background-color: white;
 }
 
 .picDiv {
@@ -31,7 +32,7 @@ img.pic {
 
 .infoDiv {
   width: 50%;
-  /*padding-right: 10em;*/
+  padding-left: 2.5%;
   justify-content: flex-start;
 }
 .infoDiv p {
@@ -49,22 +50,30 @@ img.pic {
   justify-content: flex-start;
 }
 
-.fullname {
-  margin: 0;
-}
-
-.stars {
-  margin: 0;
-  margin-bottom: 2em;
-}
-
 .top {
   align-self: flex-start;
   align-items: flex-start;
   align-content: flex-start;
   top:0;
   margin-top:0;
+  padding: 0;
 }
+
+.fullname {
+  margin: 0;
+  margin-top: .25em;
+  color: black;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.stars {
+  margin: 0;
+  /*margin-top: -.45em;*/
+  margin-bottom: 2em;
+  align-self: flex-start;
+}
+
 
 .showMore a {
   color:#1BACFC;

@@ -4,10 +4,9 @@
   </div>
   <div class="flex teacher-wrapper">
     <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
-        <br>
         <div class="flex mediaDiv">
           <div class="flex picDiv">
-              <img [src]="['http://www.thinksavvy.co/authentication/avatar-retrieve/' + teacher._id]" class="pic">
+              <img [src]="['http://localhost:8080/authentication/avatar-retrieve/' + teacher._id]" class="pic">
           </div>
           <div class="flex infoDiv">
             <div class="flex top">
@@ -33,8 +32,8 @@
               </div>
             </div>
             <span class="flex left">
-              <p class="flex blk" id="location">San Diego, CA</p>
-              <p class="flex blk" id="skills">{{ teacher.skill1 }} ~ {{ teacher.skill2 }} ~ {{ teacher.skill3 }}</p>
+              <p class="flex blk" id="location">{{teacher.county}}</p>
+              <p class="flex blk" id="skills">{{ teacher.skill1 }} ~ {{ teacher.skill2 }}</p>
               <p class="flex blk" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr (All Inclusive)</p>
             </span>
           </div>

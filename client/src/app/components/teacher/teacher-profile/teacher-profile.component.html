@@ -62,57 +62,18 @@
     </div>
     <div class="flex half exp">
       <h3 class="flex">Professional Experience</h3>
-      <h6 *ngIf="experience1 == undefined" class="flex">Please Update Your Experiences </h6>
-      <form [formGroup]="experienceForm" (submit)="experienceSubmit()" *ngIf="isEdit">
-        <ul>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience1.errors && experienceForm.controls.experience1.dirty), 'has-success': !experienceForm.controls.experience1.errors}"><input type="text" value="{{ experience1 }}" name="experience1" placeholder="Golf Coach at Torrey Pines High School" class="form-control" formControlName="experience1">
-            <ul class="help-block">
-              <li *ngIf="experienceForm.controls.experience1.errors?.required && experienceForm.controls.experience1.dirty">This field is required
-              </li>
-            </ul>
-          </li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience2.errors && experienceForm.controls.experience2.dirty), 'has-success': !experienceForm.controls.experience2.errors}"><input type="text" value="{{ experience2 }}" name="experience2" placeholder="Winner of 2017 Golf Tournament" class="form-control" formControlName="experience2">
-            <ul class="help-block">
-              <li *ngIf="experienceForm.controls.experience2.errors?.required && experienceForm.controls.experience2.dirty">This field is required
-              </li>
-            </ul>
-          </li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience3.errors && experienceForm.controls.experience3.dirty), 'has-success': !experienceForm.controls.experience3.errors}"><input type="text" value="{{ experience3 }}" name="experience3" placeholder="Licensed Golf Instructor" class="form-control" formControlName="experience3">
-            <ul class="help-block">
-              <li *ngIf="experienceForm.controls.experience3.errors?.required && experienceForm.controls.experience3.dirty">This field is required
-              </li>
-            </ul>
-          </li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience4.errors && experienceForm.controls.experience4.dirty), 'has-success': !experienceForm.controls.experience4.errors}"><input type="text" value="{{ experience4 }}" name="experience4" placeholder="Runner up in Long-Drive Contest" class="form-control" formControlName="experience4">
-            <ul class="help-block">
-              <li *ngIf="experienceForm.controls.experience4.errors?.required && experienceForm.controls.experience4.dirty">This field is required
-              </li>
-            </ul>
-          </li>
-          <li [ngClass]="{'has-error': (experienceForm.controls.experience5.errors && experienceForm.controls.experience5.dirty), 'has-success': !experienceForm.controls.experience5.errors}"><input type="text" value="{{ experience5 }}" name="experience5" placeholder="CIF Champion in D1 High School Tournament" class="form-control" formControlName="experience5">
-            <ul class="help-block">
-              <li *ngIf="experienceForm.controls.experience5.errors?.required && experienceForm.controls.experience5.dirty">This field is required
-              </li>
-            </ul>
-          </li>
-            <button [disabled]="!experienceForm.valid" *ngIf="isEdit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="canEdit()" name="button">Cancel</button>
-        </ul>
-      </form>
-      <ul class="flex experiences" *ngIf="!isEdit">
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience1 }}</span></li>
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience2 }}</span></li>
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience3 }}</span></li>
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience4 }}</span></li>
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i><span>{{ experience5 }}</span></li>
+      <h6 *ngIf="experiences == undefined || null" class="flex">Please Update Your Experiences </h6>
+      <ul class="flex experiences" *ngFor="let experience of experiences">
+        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i>
+          <span>{{ experience }}</span>
+        </li>
       </ul>
-      <div class="flex">
-        <button type="button"*ngIf="!isEdit"  (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+      <div class="flex dynamicExperiences">
+        <h4 *ngIf="maxExperiences" style="color:red;">You already have 5 expereiences!</h4>
+        <input (keyup)="getNewExperience($event)" class="experienceInput" *ngIf="!maxExperiences" value="{{experienceValue}}" placeholder="Add New Experience...">
+        <button class="btn btn-primary experienceAddButton" (click)="addExperience()" *ngIf="!maxExperiences" [disabled]="[experienceValue] == ''">Add Experience</button>
+        <button class="btn btn-danger experienceButton" (click)="clearExperience()">Reset Experiences</button>
       </div>
-
     </div>
   </div>
-  <!-- <div class="flex ratings">
-    <app-teacher-ratings></app-teacher-ratings>
-  </div> -->
 </div>

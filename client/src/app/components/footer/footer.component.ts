@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, DoCheck {
   emailForm;
   message;
   messageClass;
@@ -16,6 +16,9 @@ export class FooterComponent implements OnInit {
   emailValid;
   emailMessage;
   show: boolean = false;
+  isLoggedIn:boolean = false;
+  isTeacher:boolean = false;
+  isStudent: boolean = false;
 
   constructor(private formBuilder: FormBuilder, public apiService: ApiService, public authService: AuthService) {
     this.createForm()
@@ -95,7 +98,19 @@ export class FooterComponent implements OnInit {
       });
     }
 
+    ngDoCheck() {
+      this.isLoggedIn = this.authService.loggedIn();
+    }
+
   ngOnInit() {
+    this.isLoggedIn = this.authService.loggedIn();
+    this.authService.getProfile().subscribe(data => {
+      if(!data.user) {
+        return false;
+      }
+      this.isTeacher = data.user.isTeacher;
+      this.isStudent = data.user.isStudent;
+    })
   }
 
 }

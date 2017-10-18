@@ -1,5 +1,5 @@
 <div class="flex wrapper">
-  <div class="flex half company">
+  <div class="flex third company">
     <h3 class="flex">
       <strong>Company</strong>
     </h3>
@@ -10,7 +10,35 @@
       <span routerLink="company-info">Contact Us</span>
     </a>
   </div>
-  <div class="flex half mailList">
+  <div class="flex third company" *ngIf="!isLoggedIn">
+    <h3 class="flex">
+      <strong>Signup</strong>
+    </h3>
+    <a class="flex link">
+      <span data-toggle="modal" data-target="#register">Become a Teacher</span>
+    </a>
+    <a class="flex link">
+      <span data-toggle="modal" data-target="#register">Become a Student</span>
+    </a>
+  </div>
+  <div class="flex third company" *ngIf="isLoggedIn">
+    <h3 class="flex">
+      <strong>Your Account</strong>
+    </h3>
+    <a class="flex link">
+      <span routerLink="profile/teacher" *ngIf="!isTeacher">Become a Teacher</span>
+    </a>
+    <a class="flex link">
+      <span routerLink="profile/teacher" *ngIf="isTeacher">Teacher Profile</span>
+    </a>
+    <a class="flex link">
+      <span routerLink="profile/student" *ngIf="!isStudent">Become a Student</span>
+    </a>
+    <a class="flex link">
+      <span routerLink="profile/student" *ngIf="isStudent">Student Profile</span>
+    </a>
+  </div>
+  <div class="flex third mailList">
     <h3 class="flex">
       <strong>Join Our Mailing List</strong>
     </h3>

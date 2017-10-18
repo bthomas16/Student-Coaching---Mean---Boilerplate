@@ -99,7 +99,7 @@ button {
 
 .bottom-sign-up {
   margin-top: 1.50em;
-  margin-bottom: 1.75em;
+  /*margin-bottom: 1.75em;*/
 }
 
 @media(max-width:750px) {

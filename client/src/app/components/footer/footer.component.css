@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.third {
+  padding: 1.5em;
+}
+
 li.nav-item a {
   font-size: 1.4em;
   font-weight: 500;
@@ -31,7 +35,7 @@ li.nav-item a {
 .link span {
   text-decoration: none;
   font-size: 1.25em;
-  color:#5563F0;
+  color:black;
 }
 
 .link span:hover {
@@ -68,6 +72,7 @@ li.nav-item a {
 .bottomFooter {
   border-top: .75px solid darkgrey;
   margin-top: 1.5em;
+  padding:.5em;
 }
 
 .input {

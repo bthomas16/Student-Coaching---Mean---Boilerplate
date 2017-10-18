@@ -1,41 +1,38 @@
 .wrapper {
-  width: 100vw;
   background-color: #5563F0;
-  padding: 2.5em;
+  padding: 4em;
   color: white;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
 }
 
 .left {
   justify-content: flex-start;
-  width: 45%;
+  width: 65%;
+  padding-left: 7.5%;
   /*margin-left: 5%;*/
 }
 
-.left h2 {
+.mainTitle {
   text-align: left;
   font-weight: bolder;
-  font-size: 1.75em;
-}
-
-.left p {
+  font-size: 4em;
   width: 75%;
+  line-height: 1.15;
+  margin-bottom: .5em;
+}
+
+.subTitle {
+  width: 80%;
   text-align: left;
+  font-size: 1.75em;
+  font-weight: 200;
+  margin-top: .5em;
 }
 
-.btn {
-  width: 50%;
-  color: white;
-  text-decoration: none;
-  border: .25px solid white;
-}
+/*RIGHT*/
 
-.signUp {
-  background-color: #1BACFC;
-}
-
-.signUp:hover {
-  background-color: rgba(27,172,252,.7);
+.right {
+  width: 25%;
 }
 
 @media(max-width:700px) {
@@ -43,17 +40,13 @@
     width: 64%;
   }
 
-  .left h2 {
+  .mainTitle {
     font-size: 1.4em;
 
   }
 
-  .left p {
+  .subTitle {
     width: 95%;
     font-size: 1em;
-  }
-
-  .btn {
-    width: auto;
   }
 }

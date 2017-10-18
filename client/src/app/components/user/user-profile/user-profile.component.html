@@ -3,8 +3,7 @@
 </div>
 
 <div class="flex searchTeacher">
-  <!-- <h3 class="flex">Improve Your Game Now!</h3> -->
-  <app-teachers-list>Loading...</app-teachers-list>
+  <app-teachers-list></app-teachers-list>
 </div>
 
 <div class="flex maximize">
@@ -12,15 +11,16 @@
       <img src="../../../../assets/golfing.jpg" class="golfing-img">
   </div>
   <div class="flex half right" *ngIf="!isTeacher">
-    <p>Do you have what it takes to become a teacher? </p>
+    <p class="mainText">Do you have what it takes to become a teacher? </p>
+    <p class="subText">Put your skills to the test and start earning now</p>
       <div class="flex">
         <a class="btn btn-primary" routerLink="../profile/teacher">Maximize Potential</a>
       </div>
   </div>
   <div class="flex half right" *ngIf="isTeacher">
-    <p>Make some magic happen</p>
+    <p class="mainText">Make some magic happen!</p>
       <div class="flex">
-        <a class="btn btn-primary" routerLink="../profile/teacher">Enter Teacher Dashboard</a>
+        <a class="btn btn-primary magicButton" routerLink="../profile/teacher">Enter Teacher Dashboard</a>
       </div>
   </div>
 </div>

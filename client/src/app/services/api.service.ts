@@ -44,6 +44,10 @@ export class ApiService {
     return this.http.post(this.server + 'api/email-subscriber', emailSubscriber).map(res => res.json());
     }
 
+    wantToLearn(learner) {
+      return this.http.post(this.server + 'api/want-to-learn', learner).map(res => res.json());
+    }
+
     changeMenuFalse(showMenu) {
         this.showMenu = false;
         return false

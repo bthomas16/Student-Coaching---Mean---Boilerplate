@@ -1,24 +1,37 @@
 .wrapper {
   justify-content: space-around;
-  width: 90em;
+  width: 100%;
   padding: 1em;
+  padding-bottom: 1.5em;
 }
 
 .pic {
-  width: 35em;
-  justify-content: flex-end;
+  width: 40%;
+  padding-left: 10%;
+
 }
 
 .pic img.featuredPic{
-  height: 20em;
-  width: 22em;
-  box-shadow: 3px 2.5px 1.5px grey;
+  height: 409px;
+  /*width: 635px;*/
+  max-width: 615px;
+}
+
+.featuredCoach {
+  color:#5563F0;
+  font-weight: 400;
+  font-size: 1.75em;
+  justify-content: flex-start;
+  text-align: left;
+  padding:0;
+  margin-left: -30%;
 }
 
 .right {
-  width: 32.5em;
+  width: 45%;
   justify-content: flex-start;
   text-align: left;
+  height: 365px;
 }
 
 .right * {
@@ -27,29 +40,42 @@
   line-height: 1.15;
 }
 
-.featuredCoach {
-  color:#5563F0;
-  font-weight: bold;
-  font-size: 1.75em;
+.top {
+  align-self: flex-start;
+  /*align-content: flex-start;*/
 }
 
-.fa-star {
-  font-size: 2em;
+.fullname {
+  font-weight: bold;
+  font-size:1.5em;
 }
+
+/*.fa-star {
+  font-size: 2em;
+}*/
 
 .closeTogether {
   margin-bottom: .5em;
+  margin-top: .5em;
 }
 
 .closeTogether p {
   line-height: .75;
   color: black;
-  font-size: .95em;
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 1.15em;
+  margin: .3em;
+  margin-left: 0;
+}
+
+.promotion *{
+  color: #5ADA6A;
+  margin-top: .25em;
 }
 
 .ratingContent {
-  margin: 1em;
+  /*margin: 1em;*/
+  margin-top: -22.5%;
   margin-left: 0;
 }
 
@@ -58,37 +84,40 @@
 }
 
 .ratingText {
+  width: 70%;
   font-weight: 700;
-  font-size: 1.5em;
-  margin-bottom: .65em;
-  display: inline;
+  font-size: 2em;
   flex-wrap: wrap;
-  /*line-height: 2;*/
-  margin-bottom: 0;
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: flex-start;
+  margin-bottom: 1.75%;
 }
 
 .ratingAuthor {
-  font-weight: 100;
+  font-weight: 300;
   margin-left: .25em;
+  font-size: 1.45em;
 }
 
 .contact {
-  width: 60%;
-  justify-content: center;
   text-align: center;
+  width: 60%;
 }
 
 .contactLink {
   text-decoration: none;
+  justify-content: flex-end;
+  padding-right: 12%;
 }
 
 .contact button {
   background-color: #1BACFC;
   border: none;
-  width: 100%;
+  width: 40%;
+  padding: 1.15em;
   text-align: center;
-  font-size: 1.25em;
-  box-shadow: 3px 2.5px 1.5px grey;
+  font-size: .95em;
 }
 
 

@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const emailSubscriber = require('../models/email-subscriber')
+const wantToLearn = require('../models/wantToLearn')
 const jwt = require('jsonwebtoken');
 const express = require('express');
 // const multer = require('multer');
@@ -21,7 +22,7 @@ const config = require('../config/db');
 
 router.get('/get-all-teachers', (req, res) => {
     // Search database for all blog posts
-    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, profPicName: {'$ne': null }},  (err, teachers) => {
+    User.find({isTeacher: 'true', experiences: {'$ne': null }, handicap: {'$ne': null }, county: {'$ne': null }, bio: {'$ne': null }, skill2: {'$ne': null }, profPicName: {'$ne': null }},  (err, teachers) => {
       // Check if error was found or not
       if (err) {
         res.json({ success: false, message: err }); // Return error message
@@ -79,6 +80,33 @@ router.get('/check-subscriber-email/:emailSubscriber', (req, res) => {
     })
   }
 })
+
+router.post('/want-to-learn', (req, res) => {
+  console.log('hit mate', req.body)
+  if(!req.body.email){
+    res.json({success: false, message: 'You must provide an email'});
+  } else {
+    if(!req.body.skillToLearn) {
+      res.json({ success: false, message: 'You must provide a Skill'})
+  } else {
+    let wantToLearns = new wantToLearn({
+      email: req.body.email.toLowerCase(),
+      skillToLearn: req.body.skillToLearn
+    });
+    console.log(wantToLearns, 'real')
+    wantToLearns.save((err) => {
+      if(err) {
+        if (err.errors) {
+          return res.json({success: false, message: 'Could not subscrite at this time. Please try again later. Error: ', err});
+      } else {
+      res.json({ success: true, message: 'Success!'});
+      }
+    }
+  });
+}
+}
+});
+
 
 
 

@@ -415,7 +415,7 @@ router.get('/get-featured-teacher', (req, res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-    User.find({isTeacher: 'true', experience3: {'$ne': null }, handicap: {'$ne': null }, location: {'$ne': null }, bio: {'$ne': null }, skills: {'$ne': null }, profPicName: {'$ne': null }}, (err, teachers) => {
+    User.find({isTeacher: 'true', experiences: {'$ne': null }, handicap: {'$ne': null }, county: {'$ne': null }, bio: {'$ne': null }, skill2: {'$ne': null }, profPicName: {'$ne': null }}, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
@@ -434,7 +434,7 @@ router.get('/get-featured-teacher', (req, res) => {
 
 
 
-router.put('/experience', (req,res) => {
+router.put('/experiences', (req,res) => {
   User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
     if (err) {
       res.json({ success: false, message: 'Not a valid user id'});
@@ -442,11 +442,7 @@ router.put('/experience', (req,res) => {
         if(!user) {
           res.json({ success: false, message: 'No User found'});
     } else {
-        user.experience1 = req.body.experience1,
-        user.experience2 = req.body.experience2,
-        user.experience3 = req.body.experience3,
-        user.experience4 = req.body.experience4,
-        user.experience5 = req.body.experience5
+        user.experiences = req.body
         user.save((err) => {
           if(err) {
             res.json({ succes: false, message: err})
@@ -467,9 +463,11 @@ router.put('/experience', (req,res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-          user.location = req.body.location,
+          user.county = req.body.county,
           user.yrsExperience = req.body.yrsExperience,
-          user.skills = req.body.skills,
+          user.skill1 = req.body.skill1,
+          user.skill2 = req.body.skill2,
+          user.skill3 = req.body.skill3,
           user.handicap = req.body.handicap,
           user.cost = req.body.cost
           user.save((err) => {

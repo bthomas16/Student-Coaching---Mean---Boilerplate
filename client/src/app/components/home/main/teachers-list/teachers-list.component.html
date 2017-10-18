@@ -1,21 +1,21 @@
-<div class="container">
-  <div class="flex">
+<div class="flex">
+  <div class="flex searchDiv">
     <input type="text" [(ngModel)]="filterText" placeholder="Search Teachers by Name" class="form-control">
   </div>
-  <div class="teacher-wrapper flex">
-    <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:6; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
+  <div class="flex teacher-wrapper">
+    <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
         <br>
         <div class="flex mediaDiv">
           <div class="flex picDiv">
               <img [src]="['/authentication/avatar-retrieve/' + teacher._id]" class="pic">
           </div>
           <div class="flex infoDiv">
-            <div class="flex">
-              <div class="flex half fullname">
+            <div class="flex top">
+              <div class="flex left fullname">
                 <p>{{teacher.fullname.toUpperCase()}}</p>
               </div>
-              <div class="flex half stars">
-                <div class="flex fullname" style="color: grey" *ngIf="!teacher.avgRatingNumber">
+              <div class="flex left stars">
+                <div class="flex left fullname" style="color: grey" *ngIf="!teacher.avgRatingNumber">
                   Not Yet Rated
                 </div>
                 <div class="rating" *ngIf="teacher.avgRatingNumber">
@@ -30,16 +30,20 @@
                   <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
                   <i class="fa fa-star fa-1x star" for="star1"></i>
                 </div>
-                <p class="numberRatings" *ngIf="teacher.avgRatingNumber">{{teacher.avgRatingArray.length}} Ratings</p>
               </div>
             </div>
             <span class="flex left">
-              <p class="flex" id="location"> {{ teacher.location }}</p>
-              <p class="flex" id="skills">{{ teacher.skills }}</p>
-              <p class="flex" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr</p>
+              <p class="flex blk" id="location">San Diego, CA</p>
+              <p class="flex blk" id="skills">{{ teacher.skill1 }} ~ {{ teacher.skill2 }} ~ {{ teacher.skill3 }}</p>
+              <p class="flex blk" id="cost">{{  teacher.cost | currency:'USD':true:'2.0-1' }}/hr (All Inclusive)</p>
             </span>
           </div>
         </div>
       </a>
+      <div class="flex showMore">
+        <a (click)="showMore()" *ngIf="!noMoreToLoad">Show More</a>
+        <a *ngIf="noMoreToLoad">No More to Load</a>
+        <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
+      </div>
   </div>
 </div>

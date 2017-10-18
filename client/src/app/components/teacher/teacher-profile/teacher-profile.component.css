@@ -113,6 +113,13 @@ textarea {
   margin: 0;
   width: 52%;
   padding: 2em;
+  height: 35em;
+}
+.exp h3.flex {
+  font-size: 2em;
+  font-weight: 500;
+  justify-content: flex-start;
+  padding-left: 3.35em;
 }
 
 .experiences {
@@ -120,6 +127,7 @@ textarea {
   text-align: left;
   margin-top: 2%;
 }
+
 
 .experiences li {
   list-style: none;
@@ -147,6 +155,24 @@ span {
 
 .becomeTeacher {
   height: 100vh;
+}
+
+.experienceInput {
+  color: black;
+  height: 2.425em;
+  width: 40%;
+}
+
+.btn {
+  border: none;
+}
+
+.experienceAddButton {
+  background-color: #5563F0;
+}
+
+.dynamicExperiences *{
+  margin: .5em;
 }
 
 

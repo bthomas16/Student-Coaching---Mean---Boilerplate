@@ -104,9 +104,10 @@ checkEmail(email) {
           return this.http.post(this.server + 'authentication/avatar-upload', fileToUpload, this.options);
         }
 
-        onExperienceSubmit(experience) {
+        onExperienceSubmit(experiences) {
+          console.log(experiences, 'service side result')
           this.createAuthenticationHeaders();
-          return this.http.put(this.server + 'authentication/experience', experience, this.options).map(res => res.json());
+          return this.http.put(this.server + 'authentication/experiences', experiences, this.options).map(res => res.json());
         }
 
         onInfoSubmit(info) {

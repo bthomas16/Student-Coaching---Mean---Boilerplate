@@ -1,5 +1,5 @@
 .maximize {
-  margin-top: 2em;
+  background-color: #5563F0;
 }
 
 .img {
@@ -17,15 +17,43 @@
 .right {
   width: 45%;
   margin: 2.5%;
+  padding-left: 2em;
 }
 
-.right p {
-  font-size: 250%;
+.right * {
+  justify-content: flex-start;
+  text-align: left;
+  width: 90%;
+}
+
+.mainText {
+  font-weight: 500;
+  color: white;
+  font-size: 3em;
+}
+
+.subText {
+  font-weight: 200;
+  color: white;
+  font-size: 1.35em;
+  margin-top: .85em;
+  margin-bottom: 2em;
 }
 
 .searchTeacher {
   background-color: #F2F2F2;
   width: 100%;
+}
+
+a.btn.btn-primary {
+  width: 45%;
+  text-align: center;
+  background-color: #1BACFC;
+}
+
+.magicButton {
+  margin-top: 2.5em;
+  border: none;
 }
 
 

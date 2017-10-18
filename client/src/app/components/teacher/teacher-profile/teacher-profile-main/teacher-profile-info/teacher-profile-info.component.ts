@@ -23,9 +23,11 @@ export class TeacherProfileInfoComponent implements OnInit {
   email;
   isStudent;
   isTeacher;
-  location;
+  county;
   yrsExperience;
-  skills;
+  skill1;
+  skill2;
+  skill3;
   handicap;
   cost;
   profPic;
@@ -46,6 +48,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   isChecked3: boolean = false;
   isChecked4: boolean = false;
   isChecked5: boolean = false;
+  mustUpload: boolean = false;
 
   avgKnowledgeRating: number;
   avgProfessionalismRating: number;
@@ -66,7 +69,7 @@ export class TeacherProfileInfoComponent implements OnInit {
 
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-    this.location = '';
+    this.county = '';
     this.createForm();
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>() || null; // input events, we use this to emit data to ngx-uploader
@@ -76,28 +79,36 @@ export class TeacherProfileInfoComponent implements OnInit {
 
   createForm(){
     this.infoForm = this.formBuilder.group({
-      location: ['', Validators.required],
-      yrsExperience: ['', Validators.required],
-      skills: ['', Validators.required],
-      handicap: ['', Validators.required],
-      cost: ['', Validators.required]
+      county: [''],
+      yrsExperience: [''],
+      skill1: [''],
+      skill2: [''],
+      skill3: [''],
+      handicap: [''],
+      cost: ['']
     });
   }
 
   infoSubmit() {
-    this.location = this.infoForm.get('location').value.trim(),
+    this.county = this.infoForm.get('county').value.trim(),
     this.yrsExperience = this.infoForm.get('yrsExperience').value,
-    this.skills = this.infoForm.get('skills').value.trim(),
+    this.skill1 = this.infoForm.get('skill1').value.trim(),
+    this.skill2 = this.infoForm.get('skill2').value.trim(),
+    this.skill3 = this.infoForm.get('skill3').value.trim(),
     this.handicap = this.infoForm.get('handicap').value,
     this.cost = this.infoForm.get('cost').value
     const info = {
-      location: this.location,
+      county: this.county,
       yrsExperience: this.yrsExperience,
-      skills: this.skills,
+      skill1: this.skill1,
+      skill2: this.skill2,
+      skill3: this.skill3,
       handicap: this.handicap,
       cost: this.cost
     }
-    if(this.files.length === 1 ) {
+    console.log(info)
+    if(this.files.length !== 1 ) {
+      this.mustUpload = true;
       this.onStartUpload()
     }
     this.authService.onInfoSubmit(info).subscribe(data => {
@@ -111,6 +122,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.isEdit = false;
       }
     })
+
   }
 
 
@@ -158,14 +170,14 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.email =viewTeacher.teacher.email;
            this.isStudent =viewTeacher.teacher.isStudent;
            this.isTeacher =viewTeacher.teacher.isTeacher;
-           this.location =viewTeacher.teacher.location;
+           this.county =viewTeacher.teacher.county;
            this.yrsExperience =viewTeacher.teacher.yrsExperience;
-           this.skills =viewTeacher.teacher.skills;
+           this.skill1 =viewTeacher.teacher.skill1;
+           this.skill2 =viewTeacher.teacher.skill2;
+           this.skill3 =viewTeacher.teacher.skill3;
            this.handicap =viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
-           this.profPic = viewTeacher.teacher.profPic;
            this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
-           console.log(this.profPic, 'ish;es')
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -217,12 +229,13 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;
         this.isTeacher =profile.user.isTeacher;
-        this.location =profile.user.location;
+        this.county =profile.user.county;
         this.yrsExperience =profile.user.yrsExperience;
-        this.skills =profile.user.skills;
+        this.skill1 = profile.user.skill1;
+        this.skill2 = profile.user.skill2;
+        this.skill3 = profile.user.skill3;
         this.handicap =profile.user.handicap;
         this.cost =profile.user.cost;
-        this.profPic = profile.user.profPic;
         this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
         console.log(this.profPic, 'ish;es')
        //  if ratings array is not 0, do this operation

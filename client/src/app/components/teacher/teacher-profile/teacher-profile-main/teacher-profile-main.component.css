@@ -1,9 +1,18 @@
 .wrapper {
-  background-color: #F2F2F2;
   width: 100%;
   justify-content: space-between;
-  padding: 0;
+  padding: 2em;
   margin: 0;
+}
+
+.info {
+  width: 58%;
+  padding-right: 1%;
+}
+
+.schedule {
+  background-color: #F2F2F2;
+  width: 42%;
 }
 
 @media (max-width: 1035px){

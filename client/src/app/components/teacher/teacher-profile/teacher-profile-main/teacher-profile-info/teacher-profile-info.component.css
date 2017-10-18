@@ -1,92 +1,184 @@
-.main-wrapper {
+.mainWrapper {
   width: 100%;
   background-color: #2B2A2A;
   color: white;
-  height: 32em;
-  padding: 1em;
-}
-
-.topDiv {
-  justify-content: center;
-  flex-wrap: nowrap;
-  padding-left: 2.5%;
-}
-
-.sb {
-  margin-top: -3em;
-  width: 100%;
-  justify-content: space-between;
 }
 
 .imageDiv {
-  width: 55%;
-  padding-top: .75em;
+  /*justify-content: flex-start;*/
+  padding-right: 1.5em;
+  width: 45%;
+  height:418px;
 }
 
 .imageDiv img.profPic {
-  width: 20.5em;
-  max-height: 18.5em;
-  margin-left: 3.5em;
-  box-shadow: 3px 2.5px 1.5px #5563F0;
+  width: auto;
+  max-width: 385px;
+  height: auto;
+  height: 418px;
+  /*justify-content: flex-start;*/
 }
 
-.stats {
-  width: 40%;
+.right {
+  width: 50%;
+  justify-content: flex-start;
+  padding-left: 3%;
+  height: 418px;
+}
+
+.right * {
+  justify-content: flex-start;
 }
 
 .name {
   font-size: 2.25em;
+  margin: 0;
+  margin-top: .25em;
 }
 
 .fa-star  {
-  font-size: 2.25em;
+  font-size: 1.75em;
+}
+
+.up {
+  margin-top: -1.25em;
 }
 
 .number {
-  font-size: 1.5em;
+  margin-left: .35em;
 }
 
-.right {
-  width:65%;
-  padding-left: 7%;
-  justify-content: flex-start;
-}
-
-.numberRatings {
-  text-align:left;
+.stats {
+  width: 100%;
+  font-size: 1.05em;
 }
 
 p.left {
-  text-align: left;
-}
-
-.info {
-  width: 100%;
-  margin-left: 1.25em;
-  margin-top: .75em;
-}
-
-.info .left {
-  line-height: 2;
-  font-size: 1.5em;
-  margin-bottom: .5em;
-  justify-content: flex-start;
-  width: 100%;
-
+  font-weight: 300;
 }
 
 .contact {
-  width: 80%;
   background-color: #1BACFC;
+  width: 46%;
+  margin: 2%;
+  border: none;
+  color: white;
+}
+
+.review {
+  background-color: #5563F0;
+  width: 46%;
+  margin: 2%;
+  border: none;
+  color: white;
 }
 
 .edit {
   width: 75%;
 }
 
+/*FORM*/
+
+.formWrapper {
+  height: 387px;
+  margin: 2%;
+}
+
+form {
+  width: 95%;
+}
+
+.city {
+  width: 40%;
+}
+
+.city *{
+  width: 90%;
+}
+.county {
+  width: 28%;
+  color: black;
+}
+
+.county * {
+  width: 90%;
+}
+
+select {
+  height: 2.5em;
+}
+
+.experience {
+  width: 28%;
+  color: black;
+}
+
+.experience * {
+  width: 90%;
+}
+
+.moreInfo {
+  margin-top: 1em;
+  justify-content: flex-start;
+}
+
+.handicap {
+  width: 50%;
+  color: black;
+}
+
+
+.handicap h4 {
+  width: 40%;
+  color: white;
+}
+
+.handicap select {
+  width: 25%;
+}
+
+.rate {
+  width: 40%;
+}
+
+.rate h4 {
+  width: 50%;
+  margin-right: 4%;
+}
+
+.rate input {
+  width: 45%;
+}
+
+.skillsWrapper {
+  margin-top: 1em;
+}
+
+.skillsWrapper h4 {
+  width: 20%;
+}
+
+.skillsWrapper input {
+  width: 22.5%;
+  margin: 1%;
+}
+
+.butts {
+  margin-top: 1em;
+}
+
+.butts button {
+  margin: 1em;
+  padding-left: 2em;
+  padding-right:2em;
+}
+
+
+
 .fileBrowse {
   width: auto;
-  padding: .5em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
   font-size: 1.25em;
   border: 2px solid white;
   position: absolute;

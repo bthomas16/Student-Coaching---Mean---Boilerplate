@@ -1,9 +1,32 @@
 .main-wrapper {
-  height: 32em;
+  height: 418px;
+  padding-bottom: 1.5em;
+}
+
+.wrapper h2 {
+  margin-bottom: .65em;
+  font-weight: 600;
+}
+
+.updateButton {
+  font-size: 1.25em;
+}
+
+.pushRight {
+  justify-content: flex-end;
+}
+
+.times {
+  width: 78.25%;
+}
+
+.times h5 {
+  width: 25%;
+  margin: 1.9%;
 }
 
 .butts {
-  width: 75%;
+  width: 70%;
   margin: 0;
 }
 
@@ -11,41 +34,19 @@
   margin: 1%;
   width: 30%;
   font-size: 110%;
-  padding: .5em;
+  height: 2.25em;
 }
 
 .text {
   width: 22%;
   align-self: center;
   align-items: center;
-  font-size: 1.2em;
-  background-color: lightgrey;
   padding-top: .8em;
+  font-weight: 300;
 }
 
-.update {
-  margin-top: 1%;
-  margin-bottom: 1%;
-  width: 80%;
-}
-
-.updateButton {
-  width: 48.5%;
-  margin-right: .5em;
-}
-
-.examples {
-  width: 35%;
-  pointer-events: none;
-  margin-left: 3%;
-}
-
-.examples button {
-  margin: .1em;
-  line-height: 0;
-  font-size: 1em;
-  margin-left: 0;
-  width: 100%;
+.text p {
+  font-size: 1.5em;
 }
 
 .btn-default {
@@ -63,9 +64,6 @@
 }
 
 @media (max-width: 10250px) {
-  .updateButton {
-    font-size: 1em
-  }
   .text {
     font-size: .75em;
   }
@@ -76,12 +74,6 @@
 }
 
 @media (max-width: 650px) {
-  .updateButton {
-    font-size: 1em
-  }
-  .examples button {
-    font-size: .8em;
-  }
 
   .main-wrapper {
     height: 28em;
@@ -104,23 +96,6 @@
     font-weight: 600;
   }
 
-.examples {
-  width: 40%;
-  margin-left: 0;
-}
-
-.examples button {
-  width: 100%;
-  font-size: .65em;
-}
-  .update {
-    /*padding: .05em;*/
-  }
-
-  .updateButton {
-    font-size: .95em;
-    width: 55%;
-  }
 
 
 }

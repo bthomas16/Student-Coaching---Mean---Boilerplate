@@ -33,6 +33,9 @@ export class TeachersListComponent implements OnInit {
   avgtaRating;
   numberOfRatings;
   avgTotalRating;
+  sliceNumber = 6;
+  canShowLess: boolean = false;
+  noMoreToLoad: boolean = false;
 
   teacher;
   teachersList;
@@ -44,10 +47,28 @@ export class TeachersListComponent implements OnInit {
   avgRatingNumber;
   constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {}
 
-  ngOnInit() {
+  showMore() {
+    this.canShowLess = true;
+    this.sliceNumber += 4;
+    this.teachersList.slice(0, this.sliceNumber)
+    if(this.sliceNumber >= this.teachersList.length) {
+      this.noMoreToLoad = true;
+    }
+    console.log(this.sliceNumber)
+  }
+
+  showLess() {
+    this.canShowLess = false;
+    this.noMoreToLoad = false;
+    this.sliceNumber = 6;
+    this.teachersList.slice(0, this.sliceNumber)
+    this
+  }
+
+  getTeachers() {
     this.apiService.getAllTeachers().subscribe(data => {
       data.teachers = this.shufflePipe.transform(data.teachers)
-      this.teachersList = data.teachers
+      this.teachersList = data.teachers;
       if(this.teachersList == undefined) {
         return false
       }
@@ -55,6 +76,9 @@ export class TeachersListComponent implements OnInit {
             this.avgRatingNumber = teacher.avgRatingNumber || null
           }
       });
-      return true;
-    }
+  }
+
+  ngOnInit() {
+    this.getTeachers();
+  }
 }

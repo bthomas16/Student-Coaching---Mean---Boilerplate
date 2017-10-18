@@ -1,6 +1,6 @@
 .wrapper {
   height: 100%;
-  background-image: url('../../../../../assets/golf.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url('../../../../../assets/golf.jpg');
   background-size: cover;
   background-position:bottom;
   width: 100%;
@@ -11,48 +11,49 @@
   text-align: center;
 }
 
-
 .mainText{
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: white;
   width: 62.5%;
+  padding-top: 3em;
+  margin-bottom: 0;
 }
 .mainTitle {
-  font-size: 3.5em;
+  font-size: 3.75em;
   font-weight: 800;
 }
 
-.info {
-  width: 68%;
-  margin-top: 2em;
-  font-size: 1.25em;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  font-weight: 400;
-  line-height: 2;
+.mainInfo {
+  width: 60%;
+  font-size: 1.75em;
+  margin-top: .35em;
+  font-weight: 100;
 }
 
 .buttons {
-  width: 35%;
-  padding: 1em;
-  border-radius: 5px;
-  background-color: rgba(255,255,255,.5)
+  margin-top: -4em;
 }
 
 .register {
   background-color: rgba(27, 172, 252,.9);
-  width: 80%;
+  width: 28%;
   color: white;
   font-weight: bold;
+  border: none;
+  padding: .75em;
+  /*font-size: 1.25em;*/
 }
 
 .account {
-  color: rgba(0,0,0,.6);
-  font-size: 1.2em;
+  color: lightgrey;
+  /*font-size: 1.2em;*/
+  margin: 0;
+  margin-top:.5em;
 }
 
 .account a{
   cursor: pointer;
-  color: darkblue;
+  color: dodgerblue;
+  font-weight: 500;
   text-shadow: none;
 }
 

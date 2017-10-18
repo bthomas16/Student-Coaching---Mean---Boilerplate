@@ -1,18 +1,26 @@
 <div class="flex wrapper">
+  <div class="flex hideMessageDiv" *ngIf="canShowMessage">
+    <div [ngClass]="messageClass">
+    {{message}}
+    </div>
+  </div>
     <div class="flex half left">
-        <h2 class="flex text mainTitle">Besides Golf, what are some skills you are interested in learning?</h2>
 
+
+
+        <p class="flex mainTitle">Besides Golf, what are some skills you are interested in learning?</p>
+        <p class="flex subText">
+          Answer for your chance to win a free lesson!</p>
 
       <div class="flex form">
-        <input type="text" name="" value="" placeholder="I would like to learn...">
-        <button class="btn btn-success submit">
-          Submit
-        </button>
+        <textarea name="name" class="textArea" placeholder="I would like to learn..." (keyup)="getTextArea($event)"></textarea>
+        <input type="text" name="" value="" placeholder="Emaill Address" class="emailInput" (keyup)="getEmail($event)">
+        <div class="flex buttonDiv">
+          <button class="btn btn-success submit" (click)="wantToLearnSubmit()" [disabled]="([email] == '') || ([skillToLearn] == '')">
+            Submit
+          </button>
+        </div>
       </div>
-
-      <p class="flex text subText">
-        <em>Answer for your chance to win a free lesson!</em>
-      </p>
     </div>
 
 

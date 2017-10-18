@@ -1,105 +1,190 @@
-<div class="flex main-wrapper">
+<div class="flex mainWrapper">
 
-  <!-- LEFT HALF -->
-  <div class="flex topDiv" *ngIf="!isEdit">
-      <p class="flex third name">{{ fullname }}</p>
-      <div class="flex right">
-        <div class="rating">
-          <input type="radio" [checked]="isChecked5"/>
-          <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
-          <input type="radio" [checked]="isChecked4"/>
-          <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
-          <input type="radio" [checked]="isChecked3"/>
-          <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
-          <input type="radio" [checked]="isChecked2"/>
-          <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
-          <input type="radio" [checked]="isChecked1"/>
-          <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
-          <p class="numberRatings"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
-        </div>
-      </div>
-  </div>
-
-
-
-
-
-<div class="flex sb">
-  <div class="flex half imageDiv">
-    <div class="flex half image" *ngIf="!isEdit">
+  <div class="flex half imageDiv" *ngIf="!isEdit">
+    <div class="flex half image">
       <img [src]="[profPic]" alt="" class="profPic">
     </div>
-    <div class="flex" *ngIf="isEdit">
-      <label class="btn btn-info btn-file fileBrowse">
-    Browse Files
-        <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
-    </label>
-    <h6 *ngIf="isFileReady" class="flex">File Ready!</h6>
-
-
-
-      <!-- <button type="button" class="btn btn-primary" (click)="onStartUpload()">
-        Start Upload
-      </button> -->
-    </div>
   </div>
+
+<div class="flex right" *ngIf="!isEdit">
+      <p class="flex name">{{ fullname }}</p>
+      <div class="rating up">
+        <input type="radio" [checked]="isChecked5"/>
+        <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+        <input type="radio" [checked]="isChecked4"/>
+        <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+        <input type="radio" [checked]="isChecked3"/>
+        <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+        <input type="radio" [checked]="isChecked2"/>
+        <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+        <input type="radio" [checked]="isChecked1"/>
+        <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+      </div>
+      <p class="flex up number"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
+
+
 
   <!-- RIGHT HALF -->
 
   <div class="flex half stats">
-    <div class="flex info" *ngIf="!isEdit && location !== undefined">
-      <p class="flex left"> {{ location }}</p>
-      <p class="flex left"> {{ yrsExperience }} &nbsp; Years Experience</p>
-      <p class="flex left"> {{ skills }}</p>
-      <p class="flex left">Handicap index: &nbsp; {{ handicap }}</p>
-      <p class="flex left"> ${{ cost }}/hr</p>
+    <div class="flex info" *ngIf="!isEdit && skill2 !== undefined">
+      <p class="flex left"><span style="font-weight:500;">Locations Served:</span>&nbsp; {{ county }}</p>
+      <p class="flex left"><span style="font-weight:500;">Years of Experience: </span> &nbsp; {{ yrsExperience }}</p>
+      <p class="flex left"><span style="font-weight:500;">Skills:</span> &nbsp; {{ skill1 }}, {{ skill2 }}, {{ skill3 }}</p>
+      <p class="flex left"><span style="font-weight:500;">Handicap:</span> &nbsp; {{ handicap }}</p>
+      <p class="flex left"> ${{ cost }}/hr &nbsp; (All Inclusive)</p>
     </div>
-
-    <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
-      <div [ngClass]="{'has-error': (infoForm.controls.location.errors && infoForm.controls.location.dirty), 'has-success': !infoForm.controls.location.errors}"><input *ngIf="isEdit" type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" formControlName="location">
-        <ul class="help-block">
-          <li *ngIf="infoForm.controls.location.errors?.required && infoForm.controls.location.dirty">This field is required
-          </li>
-        </ul>
-      </div>
-
-      <div [ngClass]="{'has-error': (infoForm.controls.yrsExperience.errors && infoForm.controls.yrsExperience.dirty), 'has-success': !infoForm.controls.yrsExperience.errors}"><input *ngIf="isEdit" type="number" [value]="" name="yrsExperience" placeholder="3 Years" class="form-control" formControlName="yrsExperience">
-        <ul class="help-block">
-          <li *ngIf="infoForm.controls.yrsExperience.errors?.required && infoForm.controls.yrsExperience.dirty">This field is required
-          </li>
-        </ul>
-      </div>
-      <div [ngClass]="{'has-error': (infoForm.controls.skills.errors && infoForm.controls.skills.dirty), 'has-success': !infoForm.controls.skills.errors}"><input *ngIf="isEdit" type="text" [value]="" name="skills" placeholder="Short game, Putting, Driving" class="form-control" formControlName="skills">
-        <ul class="help-block">
-          <li *ngIf="infoForm.controls.skills.errors?.required && infoForm.controls.skills.dirty">This field is required
-          </li>
-        </ul>
-      </div>
-      <div [ngClass]="{'has-error': (infoForm.controls.handicap.errors && infoForm.controls.handicap.dirty), 'has-success': !infoForm.controls.handicap.errors}"><input *ngIf="isEdit" type="number" [value]="" name="handicap" placeholder="12" class="form-control" formControlName="handicap">
-        <ul class="help-block">
-          <li *ngIf="infoForm.controls.handicap.errors?.required && infoForm.controls.handicap.dirty">This field is required
-          </li>
-        </ul>
-      </div>
-      <div [ngClass]="{'has-error': (infoForm.controls.cost.errors && infoForm.controls.cost.dirty), 'has-success': !infoForm.controls.cost.errors}"><input *ngIf="isEdit" type="number" [value]="" name="cost" placeholder="65" class="form-control" formControlName="cost">
-        <ul class="help-block">
-          <li *ngIf="infoForm.controls.cost.errors?.required && infoForm.controls.cost.dirty">This field is required
-          </li>
-        </ul>
-        <button type="submit"  *ngIf="isEdit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-warning" *ngIf="isEdit" (click)="isEdit = !isEdit" name="button">Cancel</button>
-      </div>
-    </form>
     <!-- <div class="flex butts">
     <button class="btn btn-success butt">Contact</button>
     <button class="btn btn-primary butt">Review</button>
   </div> -->
+  </div>
+  <div *ngIf="!isParams" class="flex editDiv">
+    <button type="button" *ngIf="!isEdit" (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+  </div>
+  <div *ngIf="isParams" class="flex contactDiv">
+    <a href="mailto:{{email}}" class="btn contact">Contact {{fullname}}</a>
+    <a class="btn review">Review {{fullname}}</a>
+  </div>
 </div>
 
+
+
+<div class="flex formWrapper" *ngIf="isEdit">
+  <div class="flex" >
+    <label class="btn btn-info btn-file fileBrowse" *ngIf="!isFileReady">
+  Browse Files
+      <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+  </label>
+  <h6 *ngIf="isFileReady" class="flex">File Ready!</h6>
+    <button type="button" class="btn btn-primary" (click)="onStartUpload()" *ngIf="isFileReady">
+      Start Upload
+    </button>
+  </div>
+  <form [formGroup]="infoForm" (submit)="infoSubmit()" class="flex">
+    <div class="flex leftForm">
+      <div class="flex city">
+        <div class="flex" style="color:white;">
+          <h4>City</h4>
+        </div>
+        <input  type="text" [value]="" name="location" placeholder="San Diego, CA" class="form-control" disabled>
+      </div>
+      <div class="flex county">
+        <div class="flex" style="color:white;">
+          <h4>County</h4>
+        </div>
+        <select formControlName="county" value="{{county}}">
+          <option value="{{county}}" selected>{{county}}</option>
+          <hr>
+          <option value="North County">North County</option>
+          <option value="South County">South County</option>
+          <option value="East County">East County</option>
+          <option value="Central County">Central County</option>
+        </select>
+      </div>
+      <div class="flex experience">
+        <div class="flex" style="color:white;">
+          <h4>Experience</h4>
+        </div>
+        <select formControlName="yrsExperience" value="{{yrsExperience}}">
+          <option value="{{yrsExperience}}" selected>{{yrsExperience}} years</option>
+          <hr>
+          <option value="1">1 year</option>
+          <option value="2">2 years</option>
+          <option value="3">2 years</option>
+          <option value="4">4 years</option>
+          <option value="5">5 years</option>
+          <option value="6">6 years</option>
+          <option value="7">7 years</option>
+          <option value="8">8 years</option>
+          <option value="9">9 years</option>
+          <option value="10">10 years</option>
+          <option value="11">11 years</option>
+          <option value="12">12 years</option>
+          <option value="13">13 years</option>
+          <option value="14">14 years</option>
+          <option value="15">15 years</option>
+          <option value="16">16 years</option>
+          <option value="17">17 years</option>
+          <option value="18">18 years</option>
+          <option value="19">19 years</option>
+          <option value="20">20 years</option>
+          <option value="21">21 years</option>
+          <option value="22">22 years</option>
+          <option value="23">23 years</option>
+          <option value="24">24 years</option>
+          <option value="25">25 years</option>
+          <option value="26">26 years</option>
+          <option value="27">27 years</option>
+          <option value="28">28 years</option>
+          <option value="29">29 years</option>
+          <option value="20">20 years</option>
+          <option value="31">31 years</option>
+          <option value="32">32 years</option>
+          <option value="33">33 years</option>
+          <option value="34">34 years</option>
+          <option value="35">35 years</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex skillsWrapper">
+      <h4>Top 3 Skills:</h4>
+      <input  type="text" value="{{skill1}}" name="skill1" placeholder="Short Game" class="form-control" formControlName="skill1">
+      <input  type="text" value="{{skill2}}" name="skill2" placeholder="Putting" class="form-control" formControlName="skill2">
+      <input  type="text" value="{{skill3}}" name="skill3" placeholder="Approach Game" class="form-control" formControlName="skill3">
+    </div>
+    <div class="flex moreInfo">
+      <div class="flex handicap">
+        <h4>Handicap:</h4>
+        <select formControlName="handicap" value="{{handicap}}">
+          <option value="{{handicap}}" selected>+{{handicap}}</option>
+          <hr>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+          <option value="3">+2</option>
+          <option value="4">+4</option>
+          <option value="5">+5</option>
+          <option value="6">+6</option>
+          <option value="7">+7</option>
+          <option value="8">+8</option>
+          <option value="9">+9</option>
+          <option value="10">+10</option>
+          <option value="11">+11</option>
+          <option value="12">+12</option>
+          <option value="13">+13</option>
+          <option value="14">+14</option>
+          <option value="15">+15</option>
+          <option value="16">+16</option>
+          <option value="17">+17</option>
+          <option value="18">+18</option>
+          <option value="19">+19</option>
+          <option value="20">+20</option>
+          <option value="21">+21</option>
+          <option value="22">+22</option>
+          <option value="23">+23</option>
+          <option value="24">+24</option>
+          <option value="25">+25</option>
+          <option value="26">+26</option>
+          <option value="27">+27</option>
+          <option value="28">+28</option>
+          <option value="29">+29</option>
+          <option value="20">+20</option>
+          <option value="31">+31</option>
+          <option value="32">+32</option>
+          <option value="33">+33</option>
+          <option value="34">+34</option>
+          <option value="35">+35</option>
+        </select>
+      </div>
+      <div class="flex rate">
+        <h4>Hourly Wage:</h4>
+        <input  type="number" value="{{cost}}" name="cost" placeholder="65" class="form-control" formControlName="cost">
+      </div>
+    </div>
+    <div class="flex butts">
+      <button type="button" class="btn btn-warning"  (click)="isEdit = !isEdit" name="button">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
 </div>
-<div *ngIf="!isParams" class="flex editDiv">
-  <button type="button" (click)="isEdit = !isEdit" class="btn btn-warning edit" *ngIf="!isEdit">Edit</button>
-</div>
-<div *ngIf="isParams" class="flex contactDiv">
-  <a href="mailto:{{email}}" class="btn btn-primary contact">CONTACT {{fullname}}</a>
 </div>

@@ -1,20 +1,17 @@
 <div class="flex wrapper">
-  <div class="row show-hide-message">
-    <div [ngClass]="messageClass">
-    {{message}}</div>
-  </div>
-
-
+  
   <div class="flex mainText">
+    <div class="row show-hide-message">
+      <div [ngClass]="messageClass">
+      {{message}}</div>
+    </div>
     <p class="flex mainTitle">Reinventing Learning</p>
-    <p class="flex info">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+    <p class="flex mainInfo">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
   </div>
-  <div class="flex">
-    <div class="buttons">
-      <button type="button" class="btn btn-default register" data-toggle="modal" data-target="#register">Sign Up</button>
+  <div class="flex buttons">
+      <button type="button" class="btn btn-default register" data-toggle="modal" data-target="#register">Sign Up for FREE</button>
       <p class="account">Already have an account? <a data-toggle="modal" data-target="#login" class="login">Login Here</a>
       </p>
-    </div>
   </div>
 
   <!-- [ <Re></Re>gister #1] -->

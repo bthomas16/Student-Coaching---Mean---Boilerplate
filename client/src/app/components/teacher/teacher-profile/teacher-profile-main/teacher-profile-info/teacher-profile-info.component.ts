@@ -63,7 +63,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
 
-  server = '';
+  server = "http://www.thinksavvy.co";
   // server = 'http://localhost:8080';
 
 
@@ -146,7 +146,6 @@ export class TeacherProfileInfoComponent implements OnInit {
     }
 
   onStartUpload(): void {
-    this.isFileReady = false;
     const event: UploadInput = {
         type: 'uploadAll',
         url: this.server + "/authentication/avatar-upload/" + this.id,
@@ -154,6 +153,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         concurrency: 0
       };
       this.uploadInput.emit(event)
+      this.isFileReady = false;
     }
 
 
@@ -233,9 +233,8 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.skill2 = profile.user.skill2;
         this.skill3 = profile.user.skill3;
         this.handicap =profile.user.handicap;
-        this.cost =profile.user.cost;
+        this.cost = profile.user.cost;
         this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
-        console.log(this.profPic, 'ish;es')
        //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length) {
           this.yetRated = true;

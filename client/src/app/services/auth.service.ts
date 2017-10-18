@@ -9,7 +9,7 @@ export class AuthService {
     // development server
   // server = "http://localhost:8080";
     // production server
-  server = "";
+  server = "http://www.thinksavvy.co";
   authToken;
   user;
   options;

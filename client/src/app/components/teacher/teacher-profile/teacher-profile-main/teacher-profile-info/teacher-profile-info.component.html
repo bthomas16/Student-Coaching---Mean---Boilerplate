@@ -52,7 +52,7 @@
 
 <div class="flex formWrapper" *ngIf="isEdit">
   <div class="flex" >
-    <label class="btn btn-info btn-file fileBrowse" *ngIf="!isFileReady">
+    <label class="btn btn-info btn-file fileBrowse">
   Browse Files
       <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
   </label>

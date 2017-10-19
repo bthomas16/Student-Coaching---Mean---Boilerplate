@@ -7,9 +7,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080";
     // production server
-  server = "";
+  // server = "";
   authToken;
   user;
   options;
@@ -99,10 +99,10 @@ checkEmail(email) {
             res.json())
         }
 
-        upload(fileToUpload) {
-          this.createAuthenticationHeaders();
-          return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
-        }
+        // upload(fileToUpload) {
+        //   this.createAuthenticationHeaders();
+        //   return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
+        // }
 
         onExperienceSubmit(experiences) {
           console.log(experiences, 'service side result')
@@ -168,9 +168,16 @@ checkEmail(email) {
                res.json());
            }
 
-           onGetProfPic() {
-             this.createAuthenticationHeaders();
-             return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
+          //  onGetProfPic() {
+          //    this.createAuthenticationHeaders();
+          //    return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
+          //      res.json());
+          //  }
+
+          uploadPhoto(file){
+            console.log('serviceFile', file)
+            this.createAuthenticationHeaders();
+             return this.http.post(this.server + '/authentication/upload-photo', file, this.options).map(res =>
                res.json());
-           }
+          }
 }

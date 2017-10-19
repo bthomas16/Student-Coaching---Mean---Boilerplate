@@ -1,22 +1,33 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const express = require('express');
-const multer = require('multer');
+// const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
 
-const storage = multer.diskStorage({
-    destination: (req, files, cb) => {
-      cb(null, './routes/uploads')
-    },
-    filename: (req, files, cb) => {
-      let ext = path.extname(files.originalname);
-      cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
-    }
-  });
+const fs = require('fs');
+const S3FS = require('s3fs');
+const s3fsImpl = new S3FS('savvyappphotos', {accessKeyId: 'AKIAJMJXPHH6WJEAER5A', secretAccessKey: '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'});
 
-const upload = multer({ storage: storage})
+s3fsImpl.create();
+
+const multiparty = require('connect-multiparty');
+const multipartyMiddleWare = multiparty();
+
+
+
+// const storage = multer.diskStorage({
+//     destination: (req, files, cb) => {
+//       cb(null, './routes/uploads')
+//     },
+//     filename: (req, files, cb) => {
+//       let ext = path.extname(files.originalname);
+//       cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
+//     }
+//   });
+//
+// const upload = multer({ storage: storage})
 
 
 router.post('/register', (req, res) => {
@@ -116,55 +127,55 @@ router.post('/login', (req, res) => {
   }
 });
 
-router.put('/avatar-upload/:id', upload.any(), (req, res) => {
-  User.findOne({ _id: req.params.id }).exec((err, user) => {
-    if (err) {
-      res.json({ success: false, message: 'Not a valid user id'});
-    } else {
-        if(!user) {
-          res.json({ success: false, message: 'No User found'});
-    } else {
-      if(!req.files) {
-        res.json({ success: false, message: 'No file was provided'})
-      } else {
-        user.profPicName = req.files[0].filename;
-        user.save((err) => {
-          if(err) {
-            res.json({ succes: false, message: err})
-          } else {
-            res.json(req.files.map(file => {
-                let ext = path.extname(file.originalname);
-                  // return {
-                return {
-              originalName: file.originalname,
-              filename: file.filename
-              }
-          }));
-        }
-      });
-        }
-        }
-      }
-    });
-  });
+// router.put('/avatar-upload/:id', upload.any(), (req, res) => {
+//   User.findOne({ _id: req.params.id }).exec((err, user) => {
+//     if (err) {
+//       res.json({ success: false, message: 'Not a valid user id'});
+//     } else {
+//         if(!user) {
+//           res.json({ success: false, message: 'No User found'});
+//     } else {
+//       if(!req.files) {
+//         res.json({ success: false, message: 'No file was provided'})
+//       } else {
+//         user.profPicName = req.files[0].filename;
+//         user.save((err) => {
+//           if(err) {
+//             res.json({ succes: false, message: err})
+//           } else {
+//             res.json(req.files.map(file => {
+//                 let ext = path.extname(file.originalname);
+//                   // return {
+//                 return {
+//               originalName: file.originalname,
+//               filename: file.filename
+//               }
+//           }));
+//         }
+//       });
+//         }
+//         }
+//       }
+//     });
+//   });
 
-  router.get('/avatar-retrieve/:id', (req, res) => {
-    User.findOne({ _id: req.params.id }).select('profPicName').exec((err, user) => {
-      if (err) {
-        res.json({ success: false, message: err});
-      } else {
-        if (!user) {
-          res.json({ success: false, message: 'User not found'});
-        } else {
-          if(user.profPicName === undefined) {
-            res.json({success: false, message: 'Add a Picture!' })
-          } else{
-            res.sendFile( __dirname + '/uploads/' + user.profPicName);
-          }
-        }
-      }
-    });
-    });
+  // router.get('/avatar-retrieve/:id', (req, res) => {
+  //   User.findOne({ _id: req.params.id }).select('profPicName').exec((err, user) => {
+  //     if (err) {
+  //       res.json({ success: false, message: err});
+  //     } else {
+  //       if (!user) {
+  //         res.json({ success: false, message: 'User not found'});
+  //       } else {
+  //         if(user.profPicName === undefined) {
+  //           res.json({success: false, message: 'Add a Picture!' })
+  //         } else{
+  //           res.sendFile( __dirname + '/uploads/' + user.profPicName);
+  //         }
+  //       }
+  //     }
+  //   });
+  //   });
 
 
 
@@ -530,27 +541,44 @@ router.put('/experiences', (req,res) => {
 
 // FILES UPLOADS
 
-router.post('/avatar-upload/:id', upload.any(), (req, res) => {
-  User.findOne({ _id: req.params.id }).exec((err, user) => {
-    if (err) {
-      res.json({ success: false, message: 'Not a valid user id'});
-    } else {
-        if(!user) {
-          res.json({ success: false, message: 'No User found'});
-    } else {
-      if(!req.files) {
-        res.json({ success: false, message: 'No file was provided'})
-      } else {
-        res.json(req.files.map(file => {
-          let ext = path.extname(file.originalname);
-            return {
-        originalName: file.originalname,
-        filename: file.filename
+// router.post('/avatar-upload/:id', upload.any(), (req, res) => {
+//   User.findOne({ _id: req.params.id }).exec((err, user) => {
+//     if (err) {
+//       res.json({ success: false, message: 'Not a valid user id'});
+//     } else {
+//         if(!user) {
+//           res.json({ success: false, message: 'No User found'});
+//     } else {
+//       if(!req.files) {
+//         res.json({ success: false, message: 'No file was provided'})
+//       } else {
+//         res.json(req.files.map(file => {
+//           let ext = path.extname(file.originalname);
+//             return {
+//         originalName: file.originalname,
+//         filename: file.filename
+//       }
+//     }));
+//       }
+//     }
+//   }
+//   });
+// });
+
+
+router.use(multipartyMiddleWare);
+
+router.post('/upload-photo', (req, res) => {
+  console.log('hit & here is the body', req.files)
+  let file = req.files.file;
+  let stream = fs.createReadStream(file.path);
+  return s3fsImpl.writeFile(file.originalFileName, stream).then(() => {
+    fs.unlink(file.path, (err)=> {
+      if(err) {
+        res.json({success: false, message: 'Failed Upload'});
       }
-    }));
-      }
-    }
-  }
+    })
+    res.json({success: true, message: 'File Uploaded!'});
   });
 });
 

@@ -12,9 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.135.0",
+    "aws-sdk": "^2.137.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "busboy": "^0.2.14",
+    "busboy-body-parser": "^0.3.0",
+    "connect-busboy": "0.0.2",
     "connect-multiparty": "^2.0.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",

@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
-// import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../../../../services/auth.service';
@@ -57,29 +56,46 @@ export class TeacherProfileInfoComponent implements OnInit {
   numberOfRatings: number;
   yetRated: boolean = false;
 
-  // formData: FormData;
-  // files: UploadFile[];
-  // uploadInput: EventEmitter<UploadInput>;
-  // humanizeBytes: Function;
-  // dragOver: boolean;
   selectedFile;
+  photoForm;
 
-  // server = "";
-  server = 'http://localhost:8080';
+awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
+
+  @ViewChild("fileInput") fileInput;
 
 
 
   constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     // this.createForm();
-    // this.files = []; // local uploading files array
-    // this.uploadInput = new EventEmitter<UploadInput>() || null; // input events, we use this to emit data to ngx-uploader
-    // this.humanizeBytes = humanizeBytes;
   }
 
+  // createForm(){
+  //   this.photoForm = this.formBuilder.group({
+  //   });
+  // }
+
   getFile(event) {
-   this.selectedFile = event.target.files[0];
-   console.log('getFile', this.selectedFile);
- }
+   const element2 = event.target.files[0];
+   console.log('file', element2)
+   this.authService.uploadPhoto(element2).subscribe(data => {
+     console.log(data, 'made it to that data')
+   })
+  }
+
+
+
+addFile(): void {
+let fi = this.fileInput.nativeElement;
+if (fi.files && fi.files[0]) {
+    let fileToUpload = fi.files[0];
+    this.authService
+        .uploadPhoto(fileToUpload)
+        .subscribe(res => {
+            console.log(res);
+        });
+    }
+}
+
 
   getCounty(event) {
     this.county = event.target.value;
@@ -131,17 +147,17 @@ export class TeacherProfileInfoComponent implements OnInit {
   //   }
 
   infoSubmit() {
-  if(this.selectedFile) {
-    let file = this.selectedFile;
-    console.log('submit', file)
-    this.authService.uploadPhoto(file).subscribe(data => {
-      if (!data.success) {
-         console.log('bawd')
-      } else {
-        console.log('gewd')
-      }
-    })
-  }
+  // if(this.selectedFile) {
+  //   let file = this.selectedFile;
+  //   console.log('submit', file)
+  //   this.authService.uploadPhoto(file).subscribe(data => {
+  //     if (!data.success) {
+  //        console.log('bawd')
+  //     } else {
+  //       console.log('gewd')
+  //     }
+  //   })
+  // }
     const info = {
       county: this.county,
       yrsExperience: this.yrsExperience,
@@ -193,9 +209,9 @@ export class TeacherProfileInfoComponent implements OnInit {
            this.skill1 =viewTeacher.teacher.skill1;
            this.skill2 =viewTeacher.teacher.skill2;
            this.skill3 =viewTeacher.teacher.skill3;
-           this.handicap =viewTeacher.teacher.handicap;
+           this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
-           this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+           this.profPic = this.awsBucket + viewTeacher.teacher.profPIc;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -254,7 +270,7 @@ export class TeacherProfileInfoComponent implements OnInit {
         this.skill3 = profile.user.skill3;
         this.handicap =profile.user.handicap;
         this.cost = profile.user.cost;
-        this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id;
+        this.profPic = this.awsBucket + profile.user.profPic;
        //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length) {
           this.yetRated = true;

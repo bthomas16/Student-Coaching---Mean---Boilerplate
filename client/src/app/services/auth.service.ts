@@ -7,12 +7,13 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  server = "http://localhost:8080";
+  // server = "http://localhost:8080";
     // production server
-  // server = "";
+  server = "";
   authToken;
   user;
   options;
+  optionsFile;
   studentLoggedIn;
 
   constructor(private http: Http) { }
@@ -22,6 +23,16 @@ export class AuthService {
     this.options = new RequestOptions({
       headers: new Headers({
         'Content-Type': 'application/json',
+        'authorization': this.authToken
+      })
+    });
+  }
+
+  createAuthenticationHeadersFile(){
+    this.loadToken();
+    this.optionsFile = new RequestOptions({
+      headers: new Headers({
+        // 'Content-Type': 'application/x-www-form-urlencoded',
         'authorization': this.authToken
       })
     });
@@ -174,10 +185,20 @@ checkEmail(email) {
           //      res.json());
           //  }
 
-          uploadPhoto(file){
-            console.log('serviceFile', file)
-            this.createAuthenticationHeaders();
-             return this.http.post(this.server + '/authentication/upload-photo', file, this.options).map(res =>
-               res.json());
-          }
+          // uploadPhoto(element2){
+          //   console.log('serviceFile', element2)
+          //   // this.createAuthenticationHeaders();
+          //
+          //   // let headers = {enctype: 'multipart/form-data'};
+          //    return this.http.post(this.server + '/authentication/upload', element2, ).map(res =>
+          //      res.json());
+          // }
+
+        uploadPhoto(fileToUpload: any) {
+          this.createAuthenticationHeadersFile();
+          let file = new FormData();
+          file.append("file", fileToUpload);
+          console.log(file, 'from da server')
+          return this.http.post(this.server + "/authentication/upload", file, this.optionsFile);
+        }
 }

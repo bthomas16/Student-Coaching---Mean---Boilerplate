@@ -7,6 +7,9 @@ const path = require('path');
 const authentication = require('./routes/authentication')
 const api = require('./routes/api')
 const bodyParser = require('body-parser');
+const Busboy = require('busboy');
+const busboy = require('connect-busboy');
+const busboyBodyParser = require('busboy-body-parser');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 
@@ -23,8 +26,9 @@ app.use(cors({
   origin:'http://localhost:4200' || 'http://www.thinksavvy.co'
 }));
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + './routes/uploads/'));
@@ -34,8 +38,6 @@ app.use('/authentication', authentication);
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
-
-
 
 app.listen(port, () => {
   console.log('Listening on port ' + port + ' in ' + process.env.NODE_ENV + ' mode');

@@ -101,7 +101,7 @@ var studentSchema = new Schema({
     cost: String,
     bio: String,
     video: String,
-    profPicName: String,
+    profPic: String,
     avatar: {type: String, required: false},
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },

@@ -13,6 +13,7 @@ export class AuthService {
   authToken;
   user;
   options;
+  optionsFile;
   studentLoggedIn;
 
   constructor(private http: Http) { }
@@ -22,6 +23,16 @@ export class AuthService {
     this.options = new RequestOptions({
       headers: new Headers({
         'Content-Type': 'application/json',
+        'authorization': this.authToken
+      })
+    });
+  }
+
+  createAuthenticationHeadersFile(){
+    this.loadToken();
+    this.optionsFile = new RequestOptions({
+      headers: new Headers({
+        // 'Content-Type': 'application/x-www-form-urlencoded',
         'authorization': this.authToken
       })
     });
@@ -99,10 +110,10 @@ checkEmail(email) {
             res.json())
         }
 
-        upload(fileToUpload) {
-          this.createAuthenticationHeaders();
-          return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
-        }
+        // upload(fileToUpload) {
+        //   this.createAuthenticationHeaders();
+        //   return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
+        // }
 
         onExperienceSubmit(experiences) {
           console.log(experiences, 'service side result')
@@ -168,9 +179,26 @@ checkEmail(email) {
                res.json());
            }
 
-           onGetProfPic() {
-             this.createAuthenticationHeaders();
-             return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
-               res.json());
-           }
+          //  onGetProfPic() {
+          //    this.createAuthenticationHeaders();
+          //    return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
+          //      res.json());
+          //  }
+
+          // uploadPhoto(element2){
+          //   console.log('serviceFile', element2)
+          //   // this.createAuthenticationHeaders();
+          //
+          //   // let headers = {enctype: 'multipart/form-data'};
+          //    return this.http.post(this.server + '/authentication/upload', element2, ).map(res =>
+          //      res.json());
+          // }
+
+        uploadPhoto(fileToUpload: any) {
+          this.createAuthenticationHeadersFile();
+          let file = new FormData();
+          file.append("file", fileToUpload);
+          console.log(file, 'from da server')
+          return this.http.post(this.server + "/authentication/upload", file, this.optionsFile);
+        }
 }

@@ -48,8 +48,8 @@ export class FeaturedTeacherComponent implements OnInit {
   promotion;
   promoExample = "There's no substitute for great coaching!"
 
-  server = "";
-  // server = 'http://localhost:8080';
+  // server = "";
+  awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
   constructor(public authService: AuthService, private shufflepipe: ShufflePipe) {
    }
@@ -64,8 +64,8 @@ export class FeaturedTeacherComponent implements OnInit {
       this.county = featured.teacher.county;
       this.avgRatingArray = featured.teacher.avgRatingNumber;
       this.route = this.route + featured.teacher._id;
-      this.profPic = this.server + '/authentication/avatar-retrieve/' + this.id
-
+      this.profPic = this.awsBucket + featured.teacher.profPic;
+      
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings
      //  if ratings array is not 0, do this operation

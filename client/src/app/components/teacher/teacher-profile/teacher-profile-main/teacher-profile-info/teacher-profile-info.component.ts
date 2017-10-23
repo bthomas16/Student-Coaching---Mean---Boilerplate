@@ -211,7 +211,7 @@ if (fi.files && fi.files[0]) {
            this.skill3 =viewTeacher.teacher.skill3;
            this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
-           this.profPic = this.awsBucket + viewTeacher.teacher.profPIc;
+           this.profPic = this.awsBucket + viewTeacher.teacher.profPic;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -268,10 +268,9 @@ if (fi.files && fi.files[0]) {
         this.skill1 = profile.user.skill1;
         this.skill2 = profile.user.skill2;
         this.skill3 = profile.user.skill3;
-        this.handicap =profile.user.handicap;
+        this.handicap = profile.user.handicap;
         this.cost = profile.user.cost;
         this.profPic = this.awsBucket + profile.user.profPic;
-       //  if ratings array is not 0, do this operation
         if(profile.user.ratings.length) {
           this.yetRated = true;
          //  Loop through ratings array

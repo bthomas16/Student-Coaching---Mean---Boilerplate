@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit, DoCheck {
+  canRate;
   emailForm;
   message;
   messageClass;
@@ -22,6 +23,11 @@ export class FooterComponent implements OnInit, DoCheck {
 
   constructor(private formBuilder: FormBuilder, public apiService: ApiService, public authService: AuthService) {
     this.createForm()
+  }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
   }
 
   createForm() {

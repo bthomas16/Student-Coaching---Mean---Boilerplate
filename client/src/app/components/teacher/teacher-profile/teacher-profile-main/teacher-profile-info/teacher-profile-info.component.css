@@ -59,10 +59,15 @@ p.left {
   font-weight: 300;
 }
 
+.contactDiv {
+  width: 90%;
+}
+
 .contact {
   background-color: #1BACFC;
   width: 46%;
   margin: 2%;
+  margin-left: .25em;
   border: none;
   color: white;
 }
@@ -139,16 +144,16 @@ select {
   width: 25%;
 }
 
-.rate {
+.cost {
   width: 40%;
 }
 
-.rate h4 {
+.cost h4 {
   width: 50%;
   margin-right: 4%;
 }
 
-.rate input {
+.cost input {
   width: 45%;
 }
 
@@ -184,6 +189,140 @@ select {
   font-size: 1.25em;
   border: 2px solid white;
   position: absolute;
+}
+
+
+/*Rating Modal*/
+
+.review-exp-wrapper {
+  margin-top: 1.25em;
+}
+
+.ratingButton {
+  margin: 1.25em;
+}
+
+.ratingDiv {
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+}
+
+.rate {
+  position: fixed;
+  top: 8.5em;
+  width: 95.75%;
+  z-index: 1000;
+  background-color: #5563F0;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.exp {
+  background-color: #2B2A2A;
+  color: white;
+  margin: 0;
+  width: 52%;
+  height: justify;
+  padding: 1em;
+}
+
+.experiences {
+  justify-content: flex-start;
+  text-align: left;
+  margin-top: 2%;
+}
+
+.experiences li {
+  list-style: none;
+  margin: .5em;
+  justify-content: flex-start;
+  font-size: 1.75em;
+}
+
+.fa-plus {
+  font-size: 1.6em;
+}
+
+.experiences li i {
+  font-family: 'FontAwesome';
+  color: #5563F0;
+  margin-right: 1.5em;
+  margin-left: 2.2em;
+  font-size: 1em;
+}
+
+.greyOut{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  background-color: rgba(255,255,255,.6);
+}
+
+
+
+
+.opaque {
+  opacity: 0;
+}
+
+.flex > .rating {
+  font-weight: 700;
+  margin-left: .2em;
+}
+
+.flex textarea {
+  width: 80%;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.third {
+  width: 30%;
+  margin: 1%;
+}
+
+#textarea {
+  border: none;
+  border-bottom: 2px solid black;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+   box-shadow: none;
+   width: 100%;
+}
+
+.butts button {
+  width: 20%;
+  font-weight: 700;
+  margin: 2%;
+}
+
+.teacherName {
+  justify-content: flex-start;
+  padding-left: 2em;
+  font-size: 2em;
+  font-weight: bold;
+  color:white;
+}
+
+.btn-success {
+  background-color:#1BACFC;
+}
+
+.closeButton {
+  justify-content: flex-end;
+  padding-right: 2em;
+  top: 1em;
+  position: absolute;
+}
+
+.closeButton i {
+  font-size: 1.5em;
+  color: white;
 }
 
 

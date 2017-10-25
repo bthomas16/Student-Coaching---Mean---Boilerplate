@@ -69,24 +69,28 @@ textarea {
 .notes {
   width: 100%;
   margin-top: 1em;
+  margin-bottom: 2em;
   background-color: #5563f0;
   color: white;
-  padding: 3em;
+  padding: 10em;
 }
 
 .notes-text {
   width: 85%;
   font-size: 1.4em;
-}
-
-.save button {
-  margin: .75em;
+  justify-content: flex-start;
 }
 
 .left-text {
-  width: 82.75%;
+  width: 85%;
   font-size: 1.4em;
   justify-content: flex-start;
+  margin-top: -5em;
+}
+
+
+.save button {
+  margin: .75em;
 }
 
 .right {

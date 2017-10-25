@@ -1,14 +1,14 @@
 <div class="flex mainWrapper">
 
-  <div class="flex half imageDiv" *ngIf="!isEdit">
+  <div class="flex half imageDiv" *ngIf="!isEdit" (click)="closeRating()">
     <div class="flex half image">
       <img [src]="[profPic]" alt="" class="profPic">
     </div>
   </div>
 
 <div class="flex right" *ngIf="!isEdit">
-      <p class="flex name">{{ fullname }}</p>
-      <div class="rating up">
+      <p class="flex name">{{ capFullname }}</p>
+      <div class="rating up" (click)="closeRating()">
         <input type="radio" [checked]="isChecked5"/>
         <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
         <input type="radio" [checked]="isChecked4"/>
@@ -20,14 +20,14 @@
         <input type="radio" [checked]="isChecked1"/>
         <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
       </div>
-      <p class="flex up number"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
+      <p class="flex up number" (click)="closeRating()"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
 
 
 
   <!-- RIGHT HALF -->
 
   <div class="flex half stats">
-    <div class="flex info" *ngIf="!isEdit && skill2 !== undefined">
+    <div class="flex info" *ngIf="!isEdit && skill2 !== undefined" (click)="closeRating()">
       <p class="flex left"><span style="font-weight:500;">Locations Served:</span>&nbsp; {{ county }}</p>
       <p class="flex left"><span style="font-weight:500;">Years of Experience: </span> &nbsp; {{ yrsExperience }}</p>
       <p class="flex left"><span style="font-weight:500;">Skills:</span> &nbsp; {{ skill1 }}, {{ skill2 }}, {{ skill3 }}</p>
@@ -43,8 +43,8 @@
     <button type="button" *ngIf="!isEdit" (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
   </div>
   <div *ngIf="isParams" class="flex contactDiv">
-    <a href="mailto:{{email}}" class="btn contact">Contact {{fullname}}</a>
-    <a class="btn review">Review {{fullname}}</a>
+    <a href="mailto:{{email}}" class="btn contact" (click)="closeRating()">Contact {{capFullname}}</a>
+    <a class="btn review" (click)="openRating()">Review {{capFullname}}</a>
   </div>
 </div>
 
@@ -172,7 +172,7 @@
           <option value="35">+35</option>
         </select>
       </div>
-      <div class="flex rate">
+      <div class="flex cost">
         <h4>Hourly Wage:</h4>
         <input  type="number" value="{{cost}}" name="cost" placeholder="65" class="form-control" (change)="getCost($event)">
       </div>
@@ -182,5 +182,12 @@
       <button type="button" class="btn btn-primary" (click)="infoSubmit()">Save</button>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="ratingDiv" *ngIf="canRate">
+  <div class="rate">
+    <app-teacher-ratings></app-teacher-ratings>
   </div>
 </div>

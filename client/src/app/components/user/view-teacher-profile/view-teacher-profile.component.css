@@ -1,27 +1,3 @@
-.review-exp-wrapper {
-  margin-top: 1.25em;
-}
-
-.ratingButton {
-  margin: 1.25em;
-}
-
-.ratingDiv {
-  width: 100%;
-  justify-content: center;
-}
-
-.rate {
-  position: fixed;
-  top: 8.5%;
-  width: 85%;
-  border: 2px solid black;
-  z-index: 1000;
-  background-color: #5563F0;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
 .exp {
   background-color: #2B2A2A;
   color: white;
@@ -31,17 +7,25 @@
   padding: 1em;
 }
 
+.exp h3.flex {
+  font-weight: 500;
+  justify-content: flex-start;
+  width: 72.5%;
+  font-size: 2em;
+}
+
 .experiences {
   justify-content: flex-start;
   text-align: left;
-  margin-top: 2%;
+  margin-top: 1.5%;
 }
 
 .experiences li {
   list-style: none;
   margin: .5em;
   justify-content: flex-start;
-  font-size: 1.75em;
+  font-size: 1.5em;
+  font-weight: 300;
 }
 
 .fa-plus {
@@ -55,6 +39,40 @@
   margin-left: 2.2em;
   font-size: 1em;
 }
+
+.greyOut{
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  background-color: rgba(255,255,255,.6);
+}
+
+.notes {
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  background-color: #5563f0;
+  color: white;
+  padding: 10em;
+}
+
+.notes-text {
+  width: 85%;
+  font-size: 1.4em;
+  justify-content: flex-start;
+}
+
+.left-text {
+  width: 85%;
+  font-size: 1.4em;
+  justify-content: flex-start;
+  margin-top: -5em;
+}
+
+
 
 @media(max-width:900px) {
   .half {

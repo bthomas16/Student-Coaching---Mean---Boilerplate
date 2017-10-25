@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
-import { FilterPipe } from '../../../../filter.pipe';
+import { FilterPipe } from '../../../../pipes/filter.pipe';
 
 
 @Component({
@@ -12,7 +12,6 @@ import { FilterPipe } from '../../../../filter.pipe';
   providers: [ShufflePipe]
 })
 export class FeaturedTeacherComponent implements OnInit {
-  filterText;
   featuredTeacherId;
   fullname;
   email;
@@ -65,7 +64,7 @@ export class FeaturedTeacherComponent implements OnInit {
       this.avgRatingArray = featured.teacher.avgRatingNumber;
       this.route = this.route + featured.teacher._id;
       this.profPic = this.awsBucket + featured.teacher.profPic;
-      
+
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teacher.ratings)
       this.teachersList = shuffledTeachersRatings
      //  if ratings array is not 0, do this operation

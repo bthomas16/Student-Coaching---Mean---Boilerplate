@@ -1,6 +1,43 @@
-.teacher-wrapper {
-  padding-top: 3em;
-  /*margin-top: 2em;*/
+/*SEARCH DIV*/
+
+.searchDiv {
+  width: 100vw;
+  justify-content: flex-start;
+  padding-left: 3em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+select {
+  display: none;
+}
+
+.select {
+  display: inline-block;
+  /*padding-left: 1em;*/
+  padding-right: 1em;
+  appearance: none;
+  background-color: #f2f2f2;
+  border: none;
+  opacity: 1;
+  font-weight: 300;
+  font-size: 1.15em;
+  color: #4F4F4F;
+}
+
+.select2 {
+  margin-left: 5em;
+}
+
+.select2Carret {
+  /*margin-left: -1.75em;*/
+}
+
+.select:focus {outline:0;}
+
+.fa-angle-down {
+  font-size: 1.5em;
+  color:  #1BACFC;
 }
 
 input {
@@ -20,18 +57,21 @@ input {
 }
 
 .picDiv {
-  max-width: 35%;
+  width: auto;
+  max-width: 30%;
   justify-content: flex-start;
   left: 0;
 }
 
 img.pic {
-  height: 158px;
-  max-width: 198px;
+  height: 175px;
+  width: auto;
+  max-width: 165px;
 }
 
 .infoDiv {
-  width: 50%;
+  width: auto;
+  max-width: 58.5%;
   padding-left: 2.5%;
   justify-content: flex-start;
 }
@@ -61,7 +101,7 @@ img.pic {
 
 .fullname {
   margin: 0;
-  margin-top: .25em;
+  margin-top: .5em;
   color: black;
   font-weight: 600;
   font-size: 1.25em;
@@ -72,6 +112,10 @@ img.pic {
   /*margin-top: -.45em;*/
   margin-bottom: 2em;
   align-self: flex-start;
+}
+
+.showMore {
+  margin: 1.5em;
 }
 
 
@@ -86,9 +130,22 @@ img.pic {
   cursor: pointer;
 }
 
+.showMore a.noMoreLoad {
+  text-decoration: none;
+  color: grey;
+}
+
+.showMore a.noMoreLoad:hover {
+  cursor: default;
+}
+
 .blk {
   color: black;
   font-weight: 500;
+}
+
+.fa-star {
+  font-size: 1.5em;
 }
 
 @media(max-width: 420px) {

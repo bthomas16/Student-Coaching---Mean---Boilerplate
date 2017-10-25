@@ -10,11 +10,17 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, AfterContentChecked {
+  canRate;
 
   // @Input('showMenu') showMenu;
   showMenu: boolean = false;
 
   constructor(public authService: AuthService, public apiService: ApiService, private router: Router, private flashMessagesService: FlashMessagesService) { }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
+  }
 
   onLogoutClick() {
     this.changeMenuFalse()

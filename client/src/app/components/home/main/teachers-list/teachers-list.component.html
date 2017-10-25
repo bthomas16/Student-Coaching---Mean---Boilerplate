@@ -1,9 +1,30 @@
 <div class="flex">
   <div class="flex searchDiv">
-    <input type="text" [(ngModel)]="filterText" placeholder="Search Teachers by Name" class="form-control">
+    <!-- <input type="text" [(ngModel)]="county" placeholder="Search Teachers by Name" class="form-control"> -->
+    <select [(ngModel)]="county" [value]="county" class="select select1">
+      <option selected>Select a County</option>
+      <hr>
+      <option value="North County">North County</option>
+      <option value="South County">South County</option>
+      <option value="East County">East County</option>
+    </select>
+    <i class="fa fa-angle-down" aria-hidden="true"></i>
+    <select [(ngModel)]="skill" [value]="skill" class="select select2">
+      <option selected>Select a Skill</option>
+      <hr>
+      <option value="Driving">Driving</option>
+      <option value="Chipping">Chipping</option>
+      <option value="East County">Approach Game</option>
+      <option value="Putting">Putting</option>
+      <option value="Mental Aptitude">Mental Aptitutude</option>
+      <option value="Approach Game">Approach Game</option>
+    </select>
+    <i class="fa fa-angle-down select2Carret" aria-hidden="true"></i>
   </div>
+</div>
+<div class="flex"s>
   <div class="flex teacher-wrapper">
-    <a class="flex teacher"  *ngFor="let teacher of teachersList  | filter: filterText | slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
+    <a class="flex teacher"  *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
         <div class="flex mediaDiv">
           <div class="flex picDiv">
               <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" class="pic">
@@ -19,15 +40,15 @@
                 </div>
                 <div class="rating" *ngIf="teacher.avgRatingNumber">
                   <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
-                  <i class="fa fa-star fa-1x star" for="star5"></i>
+                  <i class="fa fa-star star" for="star5"></i>
                   <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
-                  <i class="fa fa-star fa-1x star" for="star4"></i>
+                  <i class="fa fa-star star" for="star4"></i>
                   <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
-                  <i class="fa fa-star fa-1x star" for="star3"></i>
+                  <i class="fa fa-star star" for="star3"></i>
                   <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
-                  <i class="fa fa-star fa-1x star" for="star2"></i>
+                  <i class="fa fa-star star" for="star2"></i>
                   <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
-                  <i class="fa fa-star fa-1x star" for="star1"></i>
+                  <i class="fa fa-star star" for="star1"></i>
                 </div>
               </div>
             </div>
@@ -41,7 +62,7 @@
       </a>
       <div class="flex showMore">
         <a (click)="showMore()" *ngIf="!noMoreToLoad">Show More</a>
-        <a *ngIf="noMoreToLoad">No More to Load</a>
+        <a *ngIf="noMoreToLoad" class="noMoreLoad">No More to Load</a>
         <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
       </div>
   </div>

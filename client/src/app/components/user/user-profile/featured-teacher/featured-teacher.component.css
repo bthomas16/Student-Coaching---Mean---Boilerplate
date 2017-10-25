@@ -42,6 +42,7 @@
 
 .top {
   align-self: flex-start;
+  width: 52.5%;
   /*align-content: flex-start;*/
 }
 

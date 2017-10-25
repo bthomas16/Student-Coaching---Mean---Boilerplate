@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="flex main-wrapper">
+<div class="flex main-wrapper" (click)="closeRating()">
   <div class="flex wrapper" [ngClass]="{noClicks: isParams}">
     <h2 *ngIf="isParams">Availability</h2>
     <div class="flex update">

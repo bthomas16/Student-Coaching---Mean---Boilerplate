@@ -68,6 +68,15 @@ label {
   width: 100%;
 }
 
+.pointer {
+  cursor: default;
+}
+
+.pointer:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .glyphicon-refresh-animate {
     -animation: spin .7s infinite linear;
     -webkit-animation: spin2 .7s infinite linear;

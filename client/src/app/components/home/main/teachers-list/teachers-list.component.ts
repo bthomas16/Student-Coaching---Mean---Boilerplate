@@ -4,7 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { ApiService } from '../../../../services/api.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
-import { FilterPipe } from '../../../../filter.pipe';
+import { FilterPipe } from '../../../../pipes/filter.pipe';
 
 @Component({
   selector: 'app-teachers-list',
@@ -13,38 +13,16 @@ import { FilterPipe } from '../../../../filter.pipe';
   providers: [ShufflePipe]
 })
 export class TeachersListComponent implements OnInit {
-  filterText;
-  profPic;
-  id: number;
-
-  isChecked1: boolean = false;
-  isChecked2: boolean = false;
-  isChecked3: boolean = false;
-  isChecked4: boolean = false;
-  isChecked5: boolean = false;
-  yetRated: boolean = false;
-
-  tempkRatingsArray: Array<number> = [];
-  temppRatingsArray: Array<number> = [];
-  temptaRatingsArray: Array<number> = [];
-
-  avgkRating;
-  avgpRating;
-  avgtaRating;
-  numberOfRatings;
-  avgTotalRating;
+  county: string = "Select a County";
+  skill: string = "Select a Skill";
+  experience: number;
+  searchName: string;
   sliceNumber = 6;
   canShowLess: boolean = false;
   noMoreToLoad: boolean = false;
-
-  teacher;
   teachersList;
-  teachersArray;
-  teacherRatingArray;
-  ratingsArray: Array<any> = [];
-  newArray;
-
   avgRatingNumber;
+
   constructor(public apiService: ApiService, public shufflePipe: ShufflePipe) {}
 
   showMore() {
@@ -62,7 +40,6 @@ export class TeachersListComponent implements OnInit {
     this.noMoreToLoad = false;
     this.sliceNumber = 6;
     this.teachersList.slice(0, this.sliceNumber)
-    this
   }
 
   getTeachers() {

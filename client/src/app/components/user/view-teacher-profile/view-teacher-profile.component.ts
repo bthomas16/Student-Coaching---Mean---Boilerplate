@@ -20,6 +20,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   processing: boolean = false;
   show: boolean = true;
   edit: boolean = false;
+  bio;
   currentUrl;
   teacherID;
   teacherEmail;
@@ -28,12 +29,8 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   teacherPRatingsArray;
   teacherTARatingsArray;
   teacherAvgRatings;
-
-  experience1;
-  experience2;
-  experience3;
-  experience4;
-  experience5;
+  experiences: Array<string>;
+  capFullname;
 
   showRate: boolean = false;
 
@@ -75,13 +72,12 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
            } else {
                this.findTeacher = false;
                this.teacherID = viewTeacher.teacher.id;
+               this.bio = viewTeacher.teacher.bio;
                this.teacherEmail = viewTeacher.teacher.email;
                this.teacherFullname = viewTeacher.teacher.fullname;
-               this.experience1 = viewTeacher.teacher.experience1,
-               this.experience2 = viewTeacher.teacher.experience2,
-               this.experience3 = viewTeacher.teacher.experience3,
-               this.experience4 = viewTeacher.teacher.experience4,
-               this.experience5 = viewTeacher.teacher.experience5
+               this.experiences = viewTeacher.teacher.experiences
+               this.capFullname = this.teacherFullname.charAt(0).toUpperCase() + this.teacherFullname.slice(1);
+               console.log(this.capFullname)
                if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
                  return null
                }
@@ -98,11 +94,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
       this.userEmail = profile.user.email;
       this.userIsStudent = profile.user.isStudent;
       this.userIsTeacher = profile.user.isTeacher;
-      this.experience1 = profile.user.experience1;
-      this.experience2 = profile.user.experience2;
-      this.experience3 = profile.user.experience3;
-      this.experience4 = profile.user.experience4;
-      this.experience5 = profile.user.experience5;
+      this.experiences = profile.user.experiences;
     });
   });
     window.scrollTo(0, 0);

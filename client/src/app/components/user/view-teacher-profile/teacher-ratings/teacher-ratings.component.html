@@ -1,32 +1,32 @@
-<div class="flex">
+<div class="flex mainWrapper">
   <div class="row show-hide-message">
     <div [ngClass]="messageClass">
       {{message}}
     </div>
   </div>
   <div class="flex closeButton" >
-    <i class="fa fa-times" (click)="closeRating()"></i>
+    <i class="fa fa-times pointer" (click)="closeRating()"></i>
   </div>
   <div class="flex teacherName">Rating {{teacherFullname}}</div>
   <div class="flex third">
       <h3 class="flex r">Knowledge</h3>
       <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
       <h5 class="flex">
-        <em>Rating:</em> &nbsp; <span class="rating">{{ kRating | number : '1.1-1' }}/5</span>
+        Rating: &nbsp; <span class="rating">{{ kRating | number : '1.1-1' }}/5</span>
       </h5>
   </div>
   <div class="flex third">
       <h3 class="flex r">Professionalism</h3>
       <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
       <h5 class="flex">
-        <em>Rating:</em> &nbsp; <span class="rating">{{ pRating | number : '1.1-1' }}/5</span>
+        Rating: &nbsp; <span class="rating">{{ pRating | number : '1.1-1' }}/5</span>
       </h5>
   </div>
   <div class="flex third">
     <h3 class="flex r">Teaching Ability</h3>
     <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
     <h5 class="flex">
-      <em>Rating:</em> &nbsp; <span class="rating">{{ taRating | number : '1.1-1' }}/5</span>
+      Rating: &nbsp; <span class="rating">{{ taRating | number : '1.1-1' }}/5</span>
     </h5>
   </div>
   <div class="flex">

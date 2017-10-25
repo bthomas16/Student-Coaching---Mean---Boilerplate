@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../../../services/api.service';
 
 @Component({
   selector: 'app-teacher-profile-schedule',
@@ -34,10 +35,16 @@ export class TeacherProfileScheduleComponent implements OnInit {
   processing: boolean = false;
   show: boolean = false;
   isParams: boolean = false;
+  canRate;
 
   viewTeacherID;
 
-  constructor(public authService: AuthService, private route: ActivatedRoute) { }
+  constructor(public authService: AuthService, private route: ActivatedRoute, public apiService: ApiService) { }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
+  }
 
 
 onSchedule() {

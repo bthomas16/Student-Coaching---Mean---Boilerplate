@@ -19,10 +19,10 @@
 
 
 <div class="flex" *ngIf="isTeacher">
-  <app-teacher-profile-main>Loading...</app-teacher-profile-main>
+  <app-teacher-profile-main></app-teacher-profile-main>
   <div class="flex notes">
       <h3 class="flex left-text"> {{ fullname }}</h3>
-    <div *ngIf="!isBioEdit" class="flex">
+    <div *ngIf="!isBioEdit" class="flex bioWrapper">
       <p class="notes-text">{{bio}}</p>
     <div class="flex">
       <button class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Edit</button>
@@ -35,7 +35,6 @@
         <button type="submit" class="btn btn-success" [disabled]="!bioForm.controls.bio.value">Save</button>
       </div>
     </form>
-
   </div>
 
   <div class="flex vidWrap">

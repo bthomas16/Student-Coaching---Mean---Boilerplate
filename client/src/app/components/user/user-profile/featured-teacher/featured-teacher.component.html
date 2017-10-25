@@ -1,18 +1,18 @@
 <div class="flex wrapper">
   <div class="flex pic">
     <h4 class="flex featuredCoach">Featured Coach</h4>
-    <img [src]="[profPic]" alt="" class="featuredPic" routerLink="{{route}}">
+    <img [src]="[profPic]" alt="" class="featuredPic pointer" routerLink="{{route}}">
   </div>
-  <div class="flex right" routerLink="{{route}}">
+  <div class="flex right">
     <div class="flex top">
-      <p class="flex fullname">{{ fullname }}</p>
+      <p class="flex fullname pointer" routerLink="{{route}}">{{ fullname }}</p>
       <div class="flex closeTogether">
-        <p class="flex Handicap">Handicap Index of {{handicap}}</p>
-        <p class="flex location">San Diego, CA</p>
-        <p class="flex location">{{county}}</p>
-        <p class="flex promotion"><span>{{ promoExample }}</span></p>
+        <p class="flex handicap pointer" routerLink="{{route}}">Handicap Index of {{handicap}}</p>
+        <p class="flex location pointer" routerLink="{{route}}">San Diego, CA</p>
+        <p class="flex location pointer" routerLink="{{route}}">{{county}}</p>
+        <p class="flex promotion pointer" routerLink="{{route}}"><span>{{ promoExample }}</span></p>
       </div>
-    </div>
+     </div>
             <!-- <div class="flex">
               <div class="rating noMouse">
                 <input type="radio" [checked]="isChecked5"/>
@@ -29,15 +29,15 @@
             </div>
             <p class="flex number"><em>{{numberOfRatings}} Students</em></p> -->
             <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey; margin-top: -20%;">{{fullname}} has not yet been rated</h3>
-    <div class="flex ratingContent" *ngFor="let teacher of teachersList | slice:0:1; let i=index">
+    <div class="flex ratingContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
         <p class="flex ratingText">"{{teacher.text}}"</p>
         <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>
     </div>
 
   </div>
   <div class="flex contact">
-    <a routerLink="{{route}}" class="flex contactLink">
-      <button class="btn btn-primary">
+    <a class="flex contactLink">
+      <button class="btn btn-primary pointer" routerLink="{{route}}">
         CONTACT {{ fullname }}
       </button>
     </a>

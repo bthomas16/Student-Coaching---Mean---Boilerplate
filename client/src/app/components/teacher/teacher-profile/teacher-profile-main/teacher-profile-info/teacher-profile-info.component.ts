@@ -1,15 +1,16 @@
-import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, EventEmitter, ViewChild } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
 import { AuthService } from '../../../../../services/auth.service';
+import { ApiService } from '../../../../../services/api.service';
 
 @Component({
   selector: 'app-teacher-profile-info',
   templateUrl: './teacher-profile-info.component.html',
   styleUrls: ['./teacher-profile-info.component.css']
 })
-export class TeacherProfileInfoComponent implements OnInit {
+export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked  {
   kRating;
   pRating;
   taRating;
@@ -19,6 +20,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   messageClass;
   id;
   fullname;
+  capFullname;
   email;
   isStudent;
   isTeacher;
@@ -34,6 +36,7 @@ export class TeacherProfileInfoComponent implements OnInit {
   ratingsList;
   text;
 
+  canRate: boolean = false;
   isFileReady: boolean = false;
 
   tempkRatingsArray: Array<number> = [];
@@ -59,13 +62,14 @@ export class TeacherProfileInfoComponent implements OnInit {
   selectedFile;
   photoForm;
 
-awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
+
+  awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
   @ViewChild("fileInput") fileInput;
 
 
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
+  constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     // this.createForm();
   }
 
@@ -81,21 +85,6 @@ awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
      console.log(data, 'made it to that data')
    })
   }
-
-
-
-addFile(): void {
-let fi = this.fileInput.nativeElement;
-if (fi.files && fi.files[0]) {
-    let fileToUpload = fi.files[0];
-    this.authService
-        .uploadPhoto(fileToUpload)
-        .subscribe(res => {
-            console.log(res);
-        });
-    }
-}
-
 
   getCounty(event) {
     this.county = event.target.value;
@@ -125,39 +114,33 @@ if (fi.files && fi.files[0]) {
     this.cost= event.target.value;
   }
 
-  // onUploadOutput(output: UploadOutput): void {
-  //   this.isFileReady = true;
-  //     if (output.type === 'allAddedToQueue') {
-  //       } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') {
-  //         this.files.push(output.file);
-  //       } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-  //         // update current data in files array for uploading file
-  //         const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
-  //         this.files[index] = output.file;
-  //       } else if (output.type === 'removed') {
-  //         // remove file from array when removed
-  //         this.files = this.files.filter((file: UploadFile) => file !== output.file);
-  //       } else if (output.type === 'dragOver') {
-  //         this.dragOver = true;
-  //       } else if (output.type === 'dragOut') {
-  //         this.dragOver = false;
-  //       } else if (output.type === 'drop') {
-  //         this.dragOver = false;
-  //       }
-  //   }
+
+  closeRating(){
+    this.canRate = false;
+    this.apiService.closeRating(this.canRate)
+  }
+
+  openRating(){
+    this.canRate = true;
+    this.apiService.openRating(this.canRate)
+  }
+
+  ngAfterContentChecked(){
+    this.canRate =  this.apiService.getRatingStatus();
+  }
+
+
 
   infoSubmit() {
-  // if(this.selectedFile) {
-  //   let file = this.selectedFile;
-  //   console.log('submit', file)
-  //   this.authService.uploadPhoto(file).subscribe(data => {
-  //     if (!data.success) {
-  //        console.log('bawd')
-  //     } else {
-  //       console.log('gewd')
-  //     }
-  //   })
-  // }
+    let fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+        let fileToUpload = fi.files[0];
+        this.authService
+            .uploadPhoto(fileToUpload)
+            .subscribe(res => {
+                console.log(res);
+            });
+        }
     const info = {
       county: this.county,
       yrsExperience: this.yrsExperience,
@@ -200,7 +183,8 @@ if (fi.files && fi.files[0]) {
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
            this.id = viewTeacher.teacher._id;
-           this.fullname = viewTeacher.teacher.fullname.toUpperCase();
+           this.fullname = viewTeacher.teacher.fullname;
+           this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
            this.email =viewTeacher.teacher.email;
            this.isStudent =viewTeacher.teacher.isStudent;
            this.isTeacher =viewTeacher.teacher.isTeacher;
@@ -260,6 +244,7 @@ if (fi.files && fi.files[0]) {
       .subscribe(profile => {
         this.id = profile.user._id;
         this.fullname = profile.user.fullname.toUpperCase();
+        this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;
         this.isTeacher =profile.user.isTeacher;

@@ -1,3 +1,4 @@
+
 .opaque {
   opacity: 0;
 }
@@ -16,6 +17,15 @@
 .third {
   width: 30%;
   margin: 1%;
+}
+
+h5.flex {
+  font-size: 1.5em;
+}
+
+.r {
+  font-weight: 500;
+  font-size: 2em
 }
 
 #textarea {
@@ -59,6 +69,7 @@
   color: white;
 }
 
+
 @media(max-width:720px) {
   .teacherName {
     padding-left: 1em;
@@ -83,12 +94,6 @@
     font-weight: 700;
     margin: 2%;
   }
-
-
-  .r {
-    font-size: 1.65em;
-    font-weight: bold;
-  }
 }
 
 @media(max-width:650px) {
@@ -99,22 +104,3 @@
     padding: 0;
   }
 }
-
-@media(max-width:421px) {
-  .r {
-    font-size: 1.45em;
-    margin: .05em;
-  }
-}
-
-/*@media(max-width:420px) {
-  .ratingModal {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-  }
-
-  .h3.flex {
-    font-size: 1em;
-  }
-}*/

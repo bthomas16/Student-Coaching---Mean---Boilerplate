@@ -31,10 +31,12 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   teacherAvgRatings;
   experiences: Array<string>;
   capFullname;
+  profVideo = '';
 
   showRate: boolean = false;
-
   findTeacher: boolean = true;
+
+  awsBucket: string = 'https://s3.amazonaws.com/savvyappphotos/';
 
   constructor(public authService: AuthService, public apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -74,6 +76,9 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                this.teacherID = viewTeacher.teacher.id;
                this.bio = viewTeacher.teacher.bio;
                this.teacherEmail = viewTeacher.teacher.email;
+               if(viewTeacher.teacher.profVideo) {
+                 this.profVideo = (this.awsBucket + viewTeacher.teacher.profVideo);
+               }
                this.teacherFullname = viewTeacher.teacher.fullname;
                this.experiences = viewTeacher.teacher.experiences
                this.capFullname = this.teacherFullname.charAt(0).toUpperCase() + this.teacherFullname.slice(1);

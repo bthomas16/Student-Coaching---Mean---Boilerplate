@@ -12,17 +12,18 @@
     <select [(ngModel)]="skill" [value]="skill" class="select select2">
       <option selected>Select a Skill</option>
       <hr>
-      <option value="Driving">Driving</option>
-      <option value="Chipping">Chipping</option>
-      <option value="East County">Approach Game</option>
-      <option value="Putting">Putting</option>
-      <option value="Mental Aptitude">Mental Aptitutude</option>
+      <option value="Driving" selected="selected">Driving</option>
       <option value="Approach Game">Approach Game</option>
+      <option value="Short Game / Chipping">Short Game / Chipping</option>
+      <option value="Putting">Putting</option>
+      <option value="Mental Focus">Mental Focus</option>
+      <option value="Sand Game">Sand Game</option>
+      <option value="Ball Contact">Ball Contact</option>
     </select>
     <i class="fa fa-angle-down select2Carret" aria-hidden="true"></i>
   </div>
 </div>
-<div class="flex"s>
+<div class="flex mainWrapper">
   <div class="flex teacher-wrapper">
     <a class="flex teacher"  *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
         <div class="flex mediaDiv">

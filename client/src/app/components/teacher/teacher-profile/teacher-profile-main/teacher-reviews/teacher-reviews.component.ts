@@ -18,28 +18,41 @@ export class TeacherReviewsComponent implements OnInit {
     userFullname;
     teacherEmail;
     teacherFullname;
-
-    isChecked1: boolean = false;
-    isChecked2: boolean = false;
-    isChecked3: boolean = false;
-    isChecked4: boolean = false;
-    isChecked5: boolean = false;
     yetRated: boolean = false;
-
-    tempkRatingsArray: Array<number> = [];
-    temppRatingsArray: Array<number> = [];
-    temptaRatingsArray: Array<number> = [];
-
-    avgkRating;
-    avgpRating;
-    avgtaRating;
     numberOfRatings;
     avgTotalRating;
-
+    sliceNumber: number = 3;
+    canReadMore: boolean = false;
     teachersList;
+    teachersListLength;
+    readSliceNumber;
+    originalTeachersListLength;
+    canShowMore: boolean = true;
 
 
     constructor(public authService: AuthService, private route: ActivatedRoute, private shufflePipe: ShufflePipe) { }
+
+    addSlice3(){
+      console.log('hi', this.originalTeachersListLength, this.sliceNumber)
+      this.sliceNumber += 3;
+      if(this.sliceNumber > this.originalTeachersListLength) {
+        this.sliceNumber = this.teachersListLength;
+        this.canShowMore = false;
+      }
+    }
+
+  subtractSlice3(){
+      this.sliceNumber -= 3;
+      this.canShowMore = true;
+      if(this.sliceNumber <= 3 ) {
+        this.sliceNumber = 3;
+      }
+    }
+
+  resetSlice(){
+      this.canShowMore = true;
+        this.sliceNumber = 3;
+      }
 
 
   ngOnInit() {
@@ -47,13 +60,19 @@ export class TeacherReviewsComponent implements OnInit {
     let viewTeacherID = params['id'];
       if(viewTeacherID) {
          this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
-            this.teachersList = this.shufflePipe.transform(viewTeacher.teacher.ratings)
+            this.originalTeachersListLength = viewTeacher.teacher.ratings.length;
+            this.teachersList = this.shufflePipe.transform(viewTeacher.teacher.ratings);
+            this.teachersList.slice(0, 3);
+            this.teachersListLength = this.teachersList.length;
             });
           }
       if(!viewTeacherID) {
       this.authService.getProfile()
       .subscribe(profile => {
+        this.originalTeachersListLength = profile.user.ratings.length;
         this.teachersList = this.shufflePipe.transform(profile.user.ratings)
+        this.teachersList.slice(0, this.sliceNumber)
+        this.teachersListLength = this.teachersList.length;
       });
     }
   });

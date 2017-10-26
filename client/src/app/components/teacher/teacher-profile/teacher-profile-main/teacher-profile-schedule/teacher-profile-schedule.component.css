@@ -37,6 +37,8 @@
   height: 2.25em;
 }
 
+.butts button:focus {outline:0;}
+
 .text {
   width: 22%;
   align-self: center;
@@ -54,9 +56,27 @@
   color: darkgrey;
 }
 
-.active {
+
+.btn-default:hover {
   background-color: #5563F0;
-  color: white;
+  opacity: .65;
+}
+
+.btn-default.active {
+  background-color: #5563F0;
+}
+
+.btn-default:focus {
+background-color: auto;
+}
+
+/*.btn-default.active:focus {
+background-color: #686767;
+}*/
+
+.btn-default.active:hover {
+  background-color: #5563F0;
+  opacity: .8;
 }
 
 .noClicks {

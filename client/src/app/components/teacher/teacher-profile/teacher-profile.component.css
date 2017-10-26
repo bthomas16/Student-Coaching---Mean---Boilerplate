@@ -27,15 +27,31 @@ textarea {
   color: white;
 }
 
-.vidDiv input {
-  width: 60%;
-  height: 2.25em;
+input[type="file"] {
+    display: none;
 }
 
-.vidDiv button{
-  width: 20%;
-  margin-left: 2.5%;
-  height: 2.35em;
+.custom-file-upload {
+    background-color: white;
+    display: inline-block;
+    padding: .5em;
+    color: black;
+    cursor: pointer;
+    width: 40%;
+    font-weight: 500;
+    margin: .5em;
+}
+
+.vidDivSubmit {
+  padding-top: 1em;
+}
+
+.vidSubmitDiv .btn {
+  padding: 1em;
+  font-weight: 500;
+  background-color: #1BACFC;
+  color: white;
+  width: 40%;
 }
 
 .vidText {
@@ -111,14 +127,23 @@ textarea {
   padding: 2em;
 }
 
+.reviewsTitle {
+  justify-content: flex-start;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+  font-weight: 500;
+  font-size: 1.75em;
+}
+
 .exp {
   background-color: #2B2A2A;
   color: white;
   margin: 0;
   width: 52%;
   padding: 2em;
-  height: 35em;
+  height: 37em;
 }
+
 .exp h3.flex {
   font-size: 2em;
   font-weight: 500;
@@ -177,6 +202,13 @@ span {
 
 .dynamicExperiences *{
   margin: .5em;
+}
+
+.editBio {
+  width: 30%;
+  font-size: 1.15em;
+  font-weight: 500;
+  margin-top: 2em;
 }
 
 

@@ -26,9 +26,9 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   isTeacher;
   county;
   yrsExperience;
-  skill1;
-  skill2;
-  skill3;
+  skill1 = "Driving";
+  skill2 = "Approach Game";
+  skill3 = "Putting";
   handicap;
   cost;
   profPic;
@@ -59,6 +59,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   numberOfRatings: number;
   yetRated: boolean = false;
 
+  fileChangeName;
   selectedFile;
   photoForm;
 
@@ -69,21 +70,11 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
 
 
 
-  constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-    // this.createForm();
-  }
-
-  // createForm(){
-  //   this.photoForm = this.formBuilder.group({
-  //   });
-  // }
+  constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
   getFile(event) {
-   const element2 = event.target.files[0];
-   console.log('file', element2)
-   this.authService.uploadPhoto(element2).subscribe(data => {
-     console.log(data, 'made it to that data')
-   })
+   const fileToName = event.target.files[0];
+   this.fileChangeName = fileToName.name;
   }
 
   getCounty(event) {
@@ -129,8 +120,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     this.canRate =  this.apiService.getRatingStatus();
   }
 
-
-
   infoSubmit() {
     let fi = this.fileInput.nativeElement;
     if (fi.files && fi.files[0]) {
@@ -138,31 +127,30 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         this.authService
             .uploadPhoto(fileToUpload)
             .subscribe(res => {
-                console.log(res);
-            });
+              console.log(res)
+           });
         }
-    const info = {
-      county: this.county,
-      yrsExperience: this.yrsExperience,
-      skill1: this.skill1,
-      skill2: this.skill2,
-      skill3: this.skill3,
-      handicap: this.handicap,
-      cost: this.cost
-    }
-    this.authService.onInfoSubmit(info).subscribe(data => {
-      if (!data.success) {
-        this.messageClass = 'alert alert-danger';
-        this.message = data.message;
-        this.isEdit = true;
-      } else {
-        this.messageClass = 'alert alert-success';
-        this.message = data.message;
-        this.isEdit = false;
+        const info = {
+        county: this.county,
+        yrsExperience: this.yrsExperience,
+        skill1: this.skill1,
+        skill2: this.skill2,
+        skill3: this.skill3,
+        handicap: this.handicap,
+        cost: this.cost
       }
-    })
-
-  }
+      this.authService.onInfoSubmit(info).subscribe(data => {
+        if (!data.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = data.message;
+          this.isEdit = true;
+        } else {
+          this.messageClass = 'alert alert-success';
+          this.message = data.message;
+          this.isEdit = false;
+        }
+      });
+    }
 
   // onStartUpload(): void {
   //   const event: UploadInput = {
@@ -190,9 +178,9 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
            this.isTeacher =viewTeacher.teacher.isTeacher;
            this.county =viewTeacher.teacher.county;
            this.yrsExperience =viewTeacher.teacher.yrsExperience;
-           this.skill1 =viewTeacher.teacher.skill1;
-           this.skill2 =viewTeacher.teacher.skill2;
-           this.skill3 =viewTeacher.teacher.skill3;
+           this.skill1 = viewTeacher.teacher.skill1;
+           this.skill2 = viewTeacher.teacher.skill2;
+           this.skill3 = viewTeacher.teacher.skill3;
            this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
            this.profPic = this.awsBucket + viewTeacher.teacher.profPic;

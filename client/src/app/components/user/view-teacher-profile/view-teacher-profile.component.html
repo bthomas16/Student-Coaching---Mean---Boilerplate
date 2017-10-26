@@ -17,9 +17,15 @@
         </div>
       </div>
     </div>
+    <div class="flex videoDiv" *ngIf="profVideo">
+      <video controls>
+        <source [src]="[profVideo]" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
     <div class="flex reviewsContainer">
       <div class="flex half reviews">
-        <h4 class="flex reviewsText">REVIEWS</h4>
+        <h3 class="flex reviewsTitle">Reviews</h3>
         <app-teacher-reviews></app-teacher-reviews>
       </div>
       <div class="flex half exp">

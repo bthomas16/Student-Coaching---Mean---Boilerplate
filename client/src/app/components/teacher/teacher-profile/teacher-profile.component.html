@@ -25,7 +25,7 @@
     <div *ngIf="!isBioEdit" class="flex bioWrapper">
       <p class="notes-text">{{bio}}</p>
     <div class="flex">
-      <button class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Edit</button>
+      <button class="btn btn-warning editBio" (click)="isBioEdit = !isBioEdit">Edit</button>
     </div>
   </div>
     <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
@@ -39,13 +39,24 @@
 
   <div class="flex vidWrap">
     <div class="flex vidDiv">
+      <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
+        <div [ngClass]="messageClass" style=" font-size:1.25em; font-weight: 500;">
+          {{vidSubmitMessage}}</div>
+        </div>
       <div class="flex">
         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
       </div>
-      <form [formGroup]="videoForm" (submit)="videoSubmit()" class="flex">
-        <input type="text" placeholder="https://www.youtube.com/watch?v=4OWyMRFSBrM" value="{{ videoUrl }}" name="videoLink" formControlName="videoLink">
-        <button class="btn btn-success">Submit</button>
-      </form>
+        <div class="flex">
+          <p class="flex" style="color:darkgrey;"><em>.mov or .mp4</em></p>
+          <label for="fileInput" class="custom-file-upload">
+            <h4>Upload a Video!</h4>
+          </label>
+          <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
+          <input #fileInput id="fileInput" type="file" size="20" (change)=getVidFile($event)/>
+        </div>
+        <div class="flex vidSubmitDiv" *ngIf="canSubmitVideo">
+          <button class="btn btn-success" (click)="videoSubmit()" [disabled]="!videoFileName">Submit</button>
+        </div>
       <div class="flex vidText">
         <p>
           Upload a video introducing yourself to students, or showing off your skills. <span>(Optional)</span>
@@ -56,7 +67,7 @@
 
   <div class="flex reviewsContainer">
     <div class="flex half reviews">
-      <h2 class="flex">REVIEWS</h2>
+      <h3 class="flex reviewsTitle">Reviews</h3>
       <app-teacher-reviews></app-teacher-reviews>
     </div>
     <div class="flex half exp">

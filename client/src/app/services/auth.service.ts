@@ -7,9 +7,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080";
     // production server
-  server = "";
+  // server = "";
   authToken;
   user;
   options;
@@ -110,11 +110,6 @@ checkEmail(email) {
             res.json())
         }
 
-        // upload(fileToUpload) {
-        //   this.createAuthenticationHeaders();
-        //   return this.http.post(this.server + '/authentication/avatar-upload', fileToUpload, this.options);
-        // }
-
         onExperienceSubmit(experiences) {
           console.log(experiences, 'service side result')
           this.createAuthenticationHeaders();
@@ -179,26 +174,21 @@ checkEmail(email) {
                res.json());
            }
 
-          //  onGetProfPic() {
-          //    this.createAuthenticationHeaders();
-          //    return this.http.get(this.server + '/authentication/avatar-retrieve', this.options).map(res =>
-          //      res.json());
-          //  }
-
-          // uploadPhoto(element2){
-          //   console.log('serviceFile', element2)
-          //   // this.createAuthenticationHeaders();
-          //
-          //   // let headers = {enctype: 'multipart/form-data'};
-          //    return this.http.post(this.server + '/authentication/upload', element2, ).map(res =>
-          //      res.json());
-          // }
-
         uploadPhoto(fileToUpload: any) {
           this.createAuthenticationHeadersFile();
           let file = new FormData();
           file.append("file", fileToUpload);
           console.log(file, 'from da server')
-          return this.http.post(this.server + "/authentication/upload", file, this.optionsFile);
+          return this.http.post(this.server + "/authentication/upload-photo", file, this.optionsFile).map(res =>
+            res.json());
+        }
+
+        uploadVideo(fileToUpload: any) {
+          this.createAuthenticationHeadersFile();
+          let file = new FormData();
+          file.append("file", fileToUpload);
+          console.log(file, 'from da server')
+          return this.http.post(this.server + "/authentication/upload-video", file, this.optionsFile).map(res =>
+            res.json());
         }
 }

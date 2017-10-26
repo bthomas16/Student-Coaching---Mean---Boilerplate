@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,8 +10,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./teacher-profile.component.css']
 })
 export class TeacherProfileComponent implements OnInit {
+  @ViewChild("fileInput") fileInput;
+
   email;
   message;
+  vidSubmitMessage
   messageClass;
   userID;
   fullname;
@@ -24,26 +27,20 @@ export class TeacherProfileComponent implements OnInit {
   currentUrl;
   teacherID;
   isEdit: boolean = false;
-  videoForm;
-  videoUrl;
+  videoFileName;
+  profVideo;
   bioForm;
   bio;
   isBioEdit: boolean = false;
   maxExperiences: boolean = false;
   experienceValue;
   experiences;
+  canSubmitVideo: boolean = false;
+  showVidSubmitMessage: boolean = false;
 
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
-    this.createVideoForm();
     this.createBioForm();
-  }
-
-
-  createVideoForm(){
-    this.videoForm = this.formBuilder.group({
-      videoLink: ['']
-    });
   }
 
   createBioForm() {
@@ -72,26 +69,40 @@ export class TeacherProfileComponent implements OnInit {
       }
     });
   }
+  getVidFile(event) {
+    console.log('soupers')
+    this.videoFileName = event.target.files[0];
+    this.videoFileName = this.videoFileName.name;
+    if(this.videoFileName) {
+      this.canSubmitVideo = true;
+    }
+  }
 
   videoSubmit() {
-    let videoLink = this.videoForm.get('videoLink').value.trim();
-    const video = {
-      video: videoLink
-    }
-    this.authService.onVideoSubmit(video).subscribe(data => {
-      if (!data.success) {
-        this.messageClass = 'alert alert-danger';
-        this.message = data.message;
-      } else {
-        this.show = true;
-        this.messageClass = 'alert alert-success';
-        this.message = data.message;
-        setTimeout(() => {
-          this.show = false
-        }, 1200);
+    this.showVidSubmitMessage = true;
+    let fi = this.fileInput.nativeElement;
+    console.log(this.videoFileName ,'soupers2');
+    if (fi.files && fi.files[0]) {
+        let fileToUpload = fi.files[0];
+        this.authService.uploadVideo(fileToUpload).subscribe(data => {
+          if (!data.success) {
+            this.messageClass = 'alert alert-danger';
+            this.vidSubmitMessage = data.message;
+            setTimeout(() => {
+              this.showVidSubmitMessage = false;
+            }, 1800);
+            console.log(this.showVidSubmitMessage, 'ughh');
+          } else {
+            this.messageClass = 'alert alert-success'
+            this.vidSubmitMessage = data.message;
+            setTimeout(() => {
+              this.showVidSubmitMessage = false;
+            }, 1800);
+            console.log(this.showVidSubmitMessage, 'ughhhhhh');
+          }
+        })
       }
-    });
-  }
+    }
 
   becomeTeacherRegister() {
     this.isTeacher = true;
@@ -166,7 +177,7 @@ export class TeacherProfileComponent implements OnInit {
       if(this.experiences.length == 5) {
         this.maxExperiences = true;
       }
-      this.videoUrl = profile.user.video;
+      this.profVideo = profile.user.profVideo;
       this.bio = profile.user.bio;
     });
     window.scrollTo(0, 0);

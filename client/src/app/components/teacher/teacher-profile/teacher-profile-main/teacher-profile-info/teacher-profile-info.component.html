@@ -51,11 +51,12 @@
 
 
 <div class="flex formWrapper" *ngIf="isEdit">
-  <div class="flex" >
-    <input #fileInput type="file"/>
-    <button (click)="addFile()">Add</button>
-    <!-- <input type="file" (change)="getFile($event)"> -->
-
+  <div class="flex fileInputDiv">
+    <label for="fileInput" class="custom-file-upload">
+      <h4>Upload a Photo</h4>
+    </label>
+    <p class="flex" style="color: white"><em>{{fileChangeName}}</em></p>
+    <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
   </div>
   <div class="flex">
     <div class="flex leftForm">
@@ -125,9 +126,33 @@
     </div>
     <div class="flex skillsWrapper">
       <h4>Top 3 Skills:</h4>
-      <input  type="text" value="{{skill1}}" name="skill1" placeholder="Short Game" class="form-control" (change)="getSkill1($event)">
-      <input  type="text" value="{{skill2}}" name="skill2" placeholder="Putting" class="form-control" (change)="getSkill2($event)">
-      <input  type="text" value="{{skill3}}" name="skill3" placeholder="Approach Game" class="form-control" (change)="getSkill3($event)">
+      <select value="{{skill1}}" (change)="getSkill1($event)">
+        <option value="Driving" selected="selected">Driving</option>
+        <option value="Approach Game">Approach Game</option>
+        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Putting">Putting</option>
+        <option value="Mental Focus">Mental Focus</option>
+        <option value="Sand Game">Sand Game</option>
+        <option value="Ball Contact">Ball Contact</option>
+      </select>
+      <select value="{{skill2}}" (change)="getSkill2($event)">
+        <option value="Driving">Driving</option>
+        <option value="Approach Game" selected="selected">Approach Game</option>
+        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Putting">Putting</option>
+        <option value="Mental Focus">Mental Focus</option>
+        <option value="Sand Game">Sand Game</option>
+        <option value="Ball Contact">Ball Contact</option>
+      </select>
+      <select value="{{skill3}}" (change)="getSkill3($event)">
+        <option value="Driving">Driving</option>
+        <option value="Approach Game">Approach Game</option>
+        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Putting" selected="selected">Putting</option>
+        <option value="Mental Focus">Mental Focus</option>
+        <option value="Sand Game">Sand Game</option>
+        <option value="Ball Contact">Ball Contact</option>
+      </select>
     </div>
     <div class="flex moreInfo">
       <div class="flex handicap">
@@ -174,7 +199,14 @@
       </div>
       <div class="flex cost">
         <h4>Hourly Wage:</h4>
-        <input  type="number" value="{{cost}}" name="cost" placeholder="65" class="form-control" (change)="getCost($event)">
+        <select value="{{cost}}" (change)="getCost($event)">
+          <option value="25">$25/hr</option>
+          <option value="50">$50/hr</option>
+          <option value="75" selected="selected">$75/hr</option>
+          <option value="100" selected="selected">$100/hr</option>
+          <option value="125+">$125/hr</option>
+          <option value="150+">$150+/hr</option>
+        </select>
       </div>
     </div>
     <div class="flex butts">

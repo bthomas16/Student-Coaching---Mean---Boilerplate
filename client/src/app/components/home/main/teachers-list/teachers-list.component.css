@@ -251,3 +251,7 @@ img.pic {
 :host-context(.homeTeachersList) .searchDiv {
   display: none;
 }
+
+:host-context(.homeTeachersList) .mainWrapper {
+  padding-top: 2em;
+}

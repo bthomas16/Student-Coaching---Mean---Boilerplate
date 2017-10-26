@@ -1,24 +1,53 @@
-<div class="flex mainWrapper">
-<div class="flex wrapper" *ngFor="let rating of teachersList | slice:0:3">
-  <div class="flex third">
-    <p class="flex">{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) }}</p>
-  </div>
-  <div class="flex right">
-    <div class="circleRating">
-      <span class="ratingNumber">{{rating.kRatings}}/5</span>
-      <p class="flex ratingType">Knowledge</p>
+<div class="flex mainWrapper" *ngIf="teachersList !== null || 0">
+  <div class="flex wrapper" *ngFor="let rating of teachersList | slice:0:[sliceNumber]; let i = index;" >
+    <div class="flex top">
+      <p class="author">{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) }}</p>
+      <div class="rating starsDiv">
+        <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 4.5"/>
+        <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+        <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 3.5"/>
+        <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+        <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 2.5"/>
+        <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+        <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 1.5"/>
+        <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+        <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 0.5"/>
+        <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+      </div>
     </div>
-    <div class="circleRating">
-      <span class="ratingNumber">{{rating.pRatings}}/5</span>
-      <p class="flex ratingType">Professionalism</p>
+    <div class="flex reviewTextDiv">
+      <p class="reviewText">"{{rating.text | shorten:80}}"</p>
     </div>
-    <div class="circleRating">
-      <span class="ratingNumber">{{rating.taRatings}}/5</span>
-      <p class="flex ratingType">Teaching Ability</p>
+    <div class="flex readMoreRating">
+      <a class="readMore" *ngIf="!canReadMore" [ngClass]="{disabled: !rating.text.charAt(80)}">Read More</a>
+      <a class="readMore" *ngIf="canReadMore">Read Less</a>
     </div>
-  </div>
-  <div class="flex bottom">
-    <h5 class="flex">{{rating.text}}</h5>
   </div>
 </div>
+<div class="flex showMoreRatings">
+  <a class="showMore" (click)="addSlice3()" *ngIf="canShowMore">Show More</a>
+  <a class="showMore" (click)="subtractSlice3()" *ngIf="[sliceNumber] > 3">Show Less</a>
+  <a class="showMore" (click)="resetSlice()"  *ngIf="[sliceNumber] >= teachersListLength">Reset</a>
 </div>
+
+
+<!-- <div class="flex third">
+  <p class="flex">{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) }}</p>
+</div>
+<div class="flex right">
+  <div class="circleRating">
+    <span class="ratingNumber">{{rating.kRatings}}/5</span>
+    <p class="flex ratingType">Knowledge</p>
+  </div>
+  <div class="circleRating">
+    <span class="ratingNumber">{{rating.pRatings}}/5</span>
+    <p class="flex ratingType">Professionalism</p>
+  </div>
+  <div class="circleRating">
+    <span class="ratingNumber">{{rating.taRatings}}/5</span>
+    <p class="flex ratingType">Teaching Ability</p>
+  </div>
+</div>
+<div class="flex bottom">
+  <h5 class="flex">{{rating.text}}</h5>
+</div> -->

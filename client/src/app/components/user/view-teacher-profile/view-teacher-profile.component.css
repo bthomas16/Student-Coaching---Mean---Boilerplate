@@ -1,9 +1,19 @@
+.videoDiv {
+  margin-bottom: 2.25em;
+}
+
+.videoDiv video {
+  min-width: 45%;
+  width: auto;
+  max-width: 82.5%;
+}
+
 .exp {
   background-color: #2B2A2A;
   color: white;
   margin: 0;
   width: 52%;
-  height: justify;
+  height: 32em;
   padding: 1em;
 }
 
@@ -56,7 +66,8 @@
   margin-bottom: 2em;
   background-color: #5563f0;
   color: white;
-  padding: 10em;
+  padding: 7em;
+  padding-bottom: 5.5em;
 }
 
 .notes-text {
@@ -70,6 +81,19 @@
   font-size: 1.4em;
   justify-content: flex-start;
   margin-top: -5em;
+}
+
+.reviews {
+  background-color: #F7F4F4;
+  height: 32em;
+}
+
+.reviewsTitle {
+  justify-content: flex-start;
+  padding-left: 2.5em;
+  /*margin-bottom: 1em;*/
+  font-weight: 500;
+  font-size: 1.75em;
 }
 
 

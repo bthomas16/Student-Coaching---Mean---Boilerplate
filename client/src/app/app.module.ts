@@ -50,11 +50,11 @@ import { TeacherSkillsComponent } from './components/teacher/teacher-profile/tea
 // import { Ng2UploaderModule } from 'ng2-uploader';
 import { NgUploaderModule } from 'ngx-uploader';
 import { FeaturedTeacherComponent } from './components/user/user-profile/featured-teacher/featured-teacher.component';
-import {TruncatePipe} from './pipes/truncate.pipe';
 import { UserLoginRedirectComponent } from './components/user/user-login/user-login-redirect/user-login-redirect.component';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
 import { ContactComponent } from './components/company-info/contact/contact.component';
 import { AboutComponent } from './components/company-info/about/about.component';
+import { ShortenPipe } from './pipes/shorten.pipe';
 
 
 
@@ -89,11 +89,11 @@ import { AboutComponent } from './components/company-info/about/about.component'
     ViewTeacherProfileComponent,
     TeacherSkillsComponent,
     FeaturedTeacherComponent,
-    TruncatePipe,
     UserLoginRedirectComponent,
     CompanyInfoComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

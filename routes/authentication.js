@@ -108,60 +108,6 @@ router.post('/login', (req, res) => {
   }
 });
 
-// router.put('/avatar-upload/:id', upload.any(), (req, res) => {
-//   User.findOne({ _id: req.params.id }).exec((err, user) => {
-//     if (err) {
-//       res.json({ success: false, message: 'Not a valid user id'});
-//     } else {
-//         if(!user) {
-//           res.json({ success: false, message: 'No User found'});
-//     } else {
-//       if(!req.files) {
-//         res.json({ success: false, message: 'No file was provided'})
-//       } else {
-//         user.profPicName = req.files[0].filename;
-//         user.save((err) => {
-//           if(err) {
-//             res.json({ succes: false, message: err})
-//           } else {
-//             res.json(req.files.map(file => {
-//                 let ext = path.extname(file.originalname);
-//                   // return {
-//                 return {
-//               originalName: file.originalname,
-//               filename: file.filename
-//               }
-//           }));
-//         }
-//       });
-//         }
-//         }
-//       }
-//     });
-//   });
-
-  // router.get('/avatar-retrieve/:id', (req, res) => {
-  //   User.findOne({ _id: req.params.id }).select('profPicName').exec((err, user) => {
-  //     if (err) {
-  //       res.json({ success: false, message: err});
-  //     } else {
-  //       if (!user) {
-  //         res.json({ success: false, message: 'User not found'});
-  //       } else {
-  //         if(user.profPicName === undefined) {
-  //           res.json({success: false, message: 'Add a Picture!' })
-  //         } else{
-  //           res.sendFile( __dirname + '/uploads/' + user.profPicName);
-  //         }
-  //       }
-  //     }
-  //   });
-  //   });
-
-
-
-
-
 // Any routes below this middleware will require authentication / headers
 router.use((req, res, next)=> {
   const token = req.headers['authorization']
@@ -474,27 +420,6 @@ router.put('/experiences', (req,res) => {
       });
     });
 
-    router.put('/video', (req,res) => {
-      User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
-        if (err) {
-          res.json({ success: false, message: 'Not a valid user id'});
-        } else {
-            if(!user) {
-              res.json({ success: false, message: 'No User found'});
-        } else {
-            user.video = req.body.video,
-            user.save((err) => {
-              if(err) {
-                res.json({ succes: false, message: err})
-              } else {
-                  res.json({ success: true, message: 'Video Saved'})
-                }
-              });
-            }
-          }
-        });
-      });
-
       router.put('/updated-teacher-bio', (req,res) => {
         User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
           if (err) {
@@ -558,7 +483,7 @@ router.put('/experiences', (req,res) => {
           });
         }
 
-        router.post('/upload', function (req, res, next) {
+        router.post('/upload-photo', function (req, res, next) {
             console.log('hit with the files', req.files, req.body)
             User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
               if (err) {
@@ -567,20 +492,13 @@ router.put('/experiences', (req,res) => {
                   if(!user) {
                     res.json({ success: false, message: 'No User found'});
               } else {
-
-            // This grabs the additional parameters so in this case passing in
-            // "element1" with a value.
-            // const element1 = req.body.element1;
-
-            var busboy = new Busboy({ headers: req.headers });
+              var busboy = new Busboy({ headers: req.headers });
 
             // The file upload has completed
             busboy.on('finish', function() {
               console.log('Upload finished');
 
-              // Your files are stored in req.files. In this case,
-              // you only have one and it's req.files.element2:
-              // This returns:
+        //  req.files.file:
               // {
               //    file: {
               //      data: ...contents of the file...,
@@ -592,24 +510,76 @@ router.put('/experiences', (req,res) => {
               //    }
               // }
 
-              // Grabs your file object from the request.
               const file = req.files.file;
               console.log(file);
-              // Begins the upload to the AWS S3
               uploadToS3(file);
-            });
-            req.pipe(busboy);
             user.profPic = req.files.file.name
             user.save((err) => {
               if(err) {
                 res.json({ succes: false, message: err})
               } else {
                   res.json({ success: true, message: 'File Uploaded'})
-                }
+                  }
+                });
               });
+              req.pipe(busboy);
             }
           }
         });
+      });
+
+      router.post('/upload-video', function (req, res, next) {
+          console.log('hit with the files', req.files, req.body)
+          User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+            if (err) {
+              res.json({ success: false, message: 'Not a valid user id'});
+            } else {
+                if(!user) {
+                  res.json({ success: false, message: 'No User found'});
+            } else {
+
+          // This grabs the additional parameters so in this case passing in
+          // "element1" with a value.
+          // const element1 = req.body.element1;
+
+          var busboy = new Busboy({ headers: req.headers });
+
+          // The file upload has completed
+          busboy.on('finish', function() {
+            console.log('Upload finished');
+
+            // Your files are stored in req.files. In this case,
+            // you only have one and it's req.files.element2:
+            // This returns:
+            // {
+            //    file: {
+            //      data: ...contents of the file...,
+            //      name: 'Example.jpg',
+            //      encoding: '7bit',
+            //      mimetype: 'image/png',
+            //      truncated: false,
+            //      size: 959480
+            //    }
+            // }
+
+            // Grabs your file object from the request.
+            const file = req.files.file;
+            console.log(file);
+            // Begins the upload to the AWS S3
+            uploadToS3(file);
+          });
+          req.pipe(busboy);
+          user.profVideo = req.files.file.name
+          user.save((err) => {
+            if(err) {
+              res.json({ succes: false, message: err})
+            } else {
+                res.json({ success: true, message: 'File Uploaded'})
+              }
+            });
+          }
+        }
+      });
       });
 
 

@@ -6,6 +6,14 @@
   width: 100%;
 }
 
+.messageStuff {
+  width: 100%;
+}
+
+.messageStuff .row {
+  width: 45%;
+}
+
 .half {
   width: 48%;
   text-align: center;

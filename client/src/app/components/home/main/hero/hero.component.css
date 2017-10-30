@@ -21,17 +21,18 @@
 
 .mainText{
   color: white;
-  width: 62.5%;
-  padding-top: 3em;
+  width: 100%;
   margin-bottom: 0;
 }
+
 .mainTitle {
   font-size: 3.75em;
   font-weight: 800;
+  margin-left: .5em;
 }
 
 .mainInfo {
-  width: 60%;
+  width: 22.5em;
   font-size: 1.75em;
   margin-top: .35em;
   font-weight: 100;
@@ -71,10 +72,7 @@
   cursor: pointer;
 }
 
-:host /deep/ h3 {
-  color: blue;
-  font-size: 10em;
-}
+
 
 .modal-header {
   border: none;
@@ -121,20 +119,13 @@
     background-position: right;
       background-size: cover;
       height: 100%;
-      background-image: url('../../../../../assets/golf1.jpg');
+      background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url('../../../../../assets/golf1.jpg');
       background-size: cover;
       width: 100%;
   }
-  .mainText{
-    width: 90%;
-  }
+
   .mainTitle {
     font-size: 3.5em;
-  }
-
-  .info {
-    margin-top: 1em;
-    width: 85%;
   }
 
   .buttons {
@@ -143,30 +134,71 @@
   }
 }
 
-@media(max-width: 525px) {
-  .mainTitle {
-    font-size: 2em;
-  }
+@media(max-width: 575px) {
   .mainText {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .mainTitle {
+    font-size: 3.25em;
     width: 100%;
   }
 
-  .info {
+  .mainInfo {
     width: 90%;
-    font-size: 1em;
-    margin-top: 2.5em;
-    line-height: 1.5;
+    font-size: 1.5em;
+    margin-top: 1em;
   }
+
+  .register {
+    width: 15em;
+  }
+
+  .buttons {
+    margin-top: -8em;
+  }
+
   .account a {
-    width: 100%;
+    width: auto;
     display: inline-block;
   }
 }
 
-@media(max-height:475px) {
-  .info {
-    font-size: 1em;
+
+@media(max-width:475px) {
+
+  .mainTitle {
+    font-size: 2.5em;
+    width: 100%;
   }
+
+  .mainInfo {
+    width: 90%;
+    font-size: 1.25em;
+    margin-top: 2em;
+  }
+}
+
+@media(max-width:375px) {
+
+  .mainTitle {
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .mainInfo {
+    width: 90%;
+    font-size: 1em;
+    margin-top: 2em;
+  }
+}
+
+
+
+
+@media(max-height:475px) {
 
   .account {
     font-size: .95em;
@@ -178,8 +210,10 @@
   }
 }
 
-@media(max-height:375px) {
-  .info {
-    display: none;
-}
+
+
+
+:host /deep/ h3 {
+  color: blue;
+  font-size: 10em;
 }

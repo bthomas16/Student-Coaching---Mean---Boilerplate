@@ -7,9 +7,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080";
     // production server
-  server = "";
+  // server = "";
   authToken;
   user;
   options;
@@ -191,4 +191,11 @@ checkEmail(email) {
           return this.http.post(this.server + "/authentication/upload-video", file, this.optionsFile).map(res =>
             res.json());
         }
-}
+
+        onlineStatus(status) {
+          this.createAuthenticationHeaders();
+          return this.http.put(this.server + '/authentication/online-status', status, this.options).map(res =>
+            res.json())
+        }
+
+    }

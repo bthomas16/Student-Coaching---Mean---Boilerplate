@@ -62,6 +62,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   fileChangeName;
   selectedFile;
   photoForm;
+  profPicName;
 
 
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
@@ -183,7 +184,12 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
            this.skill3 = viewTeacher.teacher.skill3;
            this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
-           this.profPic = this.awsBucket + viewTeacher.teacher.profPic;
+           this.profPicName = viewTeacher.teacher.profPic;
+           if(this.profPicName === undefined) {
+             this.profPicName = 'blankProf.png'
+           }
+           console.log(this.profPicName)
+           this.profPic = this.awsBucket + this.profPicName;
           //  if ratings array is not 0, do this operation
            if(viewTeacher.teacher.ratings.length ) {
              this.yetRated = true;
@@ -243,7 +249,12 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         this.skill3 = profile.user.skill3;
         this.handicap = profile.user.handicap;
         this.cost = profile.user.cost;
-        this.profPic = this.awsBucket + profile.user.profPic;
+        this.profPicName = profile.user.profPic;
+        if(this.profPicName === undefined) {
+          this.profPicName = 'blankProf.png'
+        }
+        console.log(this.profPicName)
+        this.profPic = this.awsBucket + this.profPicName;
         if(profile.user.ratings.length) {
           this.yetRated = true;
          //  Loop through ratings array

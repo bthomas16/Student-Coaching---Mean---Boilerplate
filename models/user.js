@@ -98,6 +98,7 @@ var studentSchema = new Schema({
     bio: String,
     profPic: String,
     profVideo: String,
+    onlineStatus: { type: String, default: 'OFFLINE'},
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },
     monE: {type: Boolean, required: false },

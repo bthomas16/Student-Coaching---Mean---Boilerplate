@@ -18,7 +18,7 @@
 
 
 
-<div class="flex" *ngIf="isTeacher">
+<div class="flex" *ngIf="isTeacher" (click)="closeStatusModal()">
   <app-teacher-profile-main></app-teacher-profile-main>
   <div class="flex notes">
       <h3 class="flex left-text"> {{ fullname }}</h3>
@@ -51,10 +51,10 @@
           <label for="fileInput" class="custom-file-upload">
             <h4>Upload a Video!</h4>
           </label>
-          <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
           <input #fileInput id="fileInput" type="file" size="20" (change)=getVidFile($event)/>
         </div>
         <div class="flex vidSubmitDiv" *ngIf="canSubmitVideo">
+          <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
           <button class="btn btn-success" (click)="videoSubmit()" [disabled]="!videoFileName">Submit</button>
         </div>
       <div class="flex vidText">
@@ -83,6 +83,53 @@
         <input (keyup)="getNewExperience($event)" class="experienceInput" *ngIf="!maxExperiences" value="{{experienceValue}}" placeholder="Add New Experience...">
         <button class="btn btn-primary experienceAddButton" (click)="addExperience()" *ngIf="!maxExperiences" [disabled]="[experienceValue] == ''">Add Experience</button>
         <button class="btn btn-danger experienceButton" (click)="clearExperience()">Reset Experiences</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="flex statusModal" [ngClass]="{fadeOut: cookies}">
+  <div class="flex">
+    <div class="flex xClose">
+      <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeStatusModal()"></i>
+    </div>
+    <div class="teacherStatusModal">
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+        {{message}}</div>
+      </div>
+      <div class="flex">
+        <h3 *ngIf="!checkCookies()">Welcome to your Teacher Profile, {{ fullname }}!</h3>
+        <h3 *ngIf="checkCookies()">Welcome back, {{ fullname }}!</h3>
+      </div>
+      <div class="flex statusListDiv">
+        <h4 *ngIf="!canChangeStatus">To become an active teacher please update your profile:</h4>
+        <h4 *ngIf="canChangeStatus">You are currently {{ onlineStatus }}</h4>
+        <ul class="flex statusList">
+          <li class="status" *ngIf="profPicName === undefined">
+            Please add a picture to your profile page.
+          </li>
+          <li class="status" *ngIf="skill1 || !skill2">
+            Please upate your skills section.
+          </li>
+          <li class="status" *ngIf="!bio">
+            Please update your bio section.
+          </li>
+          <li class="status" *ngIf="!experiences[1]">
+            Please add 2 or more experiences to your profile.
+          </li>
+          <!-- <li class="status" *ngIf="!skill2">
+            Please update your availability section.
+          </li> -->
+        </ul>
+        <div class="flex activateButtons" *ngIf="canChangeStatus">
+          <button class="btn btn-danger" (click)="goOffline()">Go Offline</button>
+          <button class="btn btn-info" (click)="goOnline()">Go Online</button>
+        </div>
       </div>
     </div>
   </div>

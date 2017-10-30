@@ -7,41 +7,17 @@
     <a data-toggle="modal" data-target="#login">Login</a>
     <a data-toggle="modal" data-target="#register">Sign Up</a>
   </div>
-
   <a class="browse" routerLink="profile" (click)="changeMenuFalse()">Browse Coaches</a>
-
   <a (click)="changeMenuTrue()"><i class="fa fa-user fa-2x" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
-
-  <!-- </button> -->
 </div>
-
-
-
 <div class="flex menu" *ngIf="showMenu" (click)="changeMenuFalse()">
       <a class="flex menu-item" routerLink="company-info">About Us</a>
       <a class="flex menu-item" routerLink="company-info">Contact Us</a>
   <span class="line"></span>
       <a data-toggle="modal" data-target="#register" class="flex menu-item" *ngIf="!authService.loggedIn()">Sign Up</a>
       <a data-toggle="modal" data-target="#login" class="flex menu-item" *ngIf="!authService.loggedIn()">Login</a>
-      <a routerLink="profile/student" class="flex menu-item" *ngIf="authService.loggedIn()">Student</a>
-        <a routerLink="profile/teacher" class="flex menu-item" *ngIf="authService.loggedIn()">Teacher</a>
+      <a routerLink="profile/student" class="flex menu-item" *ngIf="authService.loggedIn()">Student Profile</a>
+        <a routerLink="profile/teacher" class="flex menu-item" *ngIf="authService.loggedIn()">Teacher Profile</a>
     <span class="line" *ngIf="authService.loggedIn()"></span>
         <a routerLink="/" (click)="onLogoutClick()" class="flex menu-item" *ngIf="authService.loggedIn()">Logout</a>
-    </div>
-
-
-
-
-  <!-- <ul class="dropdown-menu" >
-    <li><a>About Us</a></li>
-    <li><a (click)="showMenu = !showMenu">Contact Us</a></li>
-    <li role="separator" class="divider"></li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#register" (click)="showMenu = !showMenu">Sign Up</a></li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="login" *ngIf="!authService.loggedIn()"><a data-toggle="modal" data-target="#login" (click)="showMenu = !showMenu">Login</a></li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/student/profile" (click)="showMenu = !showMenu">Student</a></li>
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="sign-up" *ngIf="authService.loggedIn()"><a routerLink="/teacher/profile" (click)="showMenu = !showMenu">Teacher</a></li>
-    <li role="separator" class="divider" *ngIf="authService.loggedIn()"></li>
-    <li routerLinkActive="active" *ngIf="authService.loggedIn()"><a href="/" (click)="onLogoutClick()" (click)="showMenu = !showMenu">Logout</a>
-    </li>
-  </ul> -->
-<!-- </div> -->
+  </div>

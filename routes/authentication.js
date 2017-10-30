@@ -441,6 +441,28 @@ router.put('/experiences', (req,res) => {
           });
         });
 
+        router.put('/online-status', (req,res) => {
+          User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+            if (err) {
+              res.json({ success: false, message: 'Not a valid user id'});
+            } else {
+                if(!user) {
+                  res.json({ success: false, message: 'No User found'});
+            } else {
+                user.onlineStatus = req.body.status,
+                user.save((err) => {
+                  if(err) {
+                    res.json({ succes: false, message: err})
+                  } else {
+                      res.json({ success: true, message: 'You are now ' + req.body.status})
+                    }
+                  });
+                }
+              }
+            });
+          });
+
+
 
 
         // FILE UPLOADS
@@ -453,8 +475,8 @@ router.put('/experiences', (req,res) => {
         const busboyBodyParser = require('busboy-body-parser');
 
         const BUCKET_NAME = 'savvyappphotos';
-        const IAM_USER_KEY = 'AKIAIXDOEWVTMFF3O2WA';
-        const IAM_USER_SECRET = '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';
+        const IAM_USER_KEY = 'AKIAIUNQ2IP6UJK7GATQ';
+        const IAM_USER_SECRET = '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';
 
 
         router.use(busboy());
@@ -493,7 +515,6 @@ router.put('/experiences', (req,res) => {
                     res.json({ success: false, message: 'No User found'});
               } else {
               var busboy = new Busboy({ headers: req.headers });
-
             // The file upload has completed
             busboy.on('finish', function() {
               console.log('Upload finished');
@@ -511,18 +532,18 @@ router.put('/experiences', (req,res) => {
               // }
 
               const file = req.files.file;
-              console.log(file);
+              console.log(file, 'log me here dude');
               uploadToS3(file);
-            user.profPic = req.files.file.name
-            user.save((err) => {
-              if(err) {
-                res.json({ succes: false, message: err})
-              } else {
-                  res.json({ success: true, message: 'File Uploaded'})
-                  }
-                });
               });
               req.pipe(busboy);
+              user.profPic = req.files.file.name
+              user.save((err) => {
+                if(err) {
+                  res.json({ succes: false, message: err})
+                } else {
+                  res.json({ success: true, message: 'File Uploaded'})
+                }
+              });
             }
           }
         });

@@ -1,16 +1,33 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-teacher-profile',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
   templateUrl: './teacher-profile.component.html',
   styleUrls: ['./teacher-profile.component.css']
 })
 export class TeacherProfileComponent implements OnInit {
   @ViewChild("fileInput") fileInput;
+
+  cookieValue = 'UNKNOWN';
+  cookies: boolean = false;
 
   email;
   message;
@@ -20,6 +37,8 @@ export class TeacherProfileComponent implements OnInit {
   fullname;
   isStudent;
   isTeacher: boolean = true;
+  skill1;
+  skill2;
   profPic;
   processing: boolean = false;
   show: boolean = false;
@@ -37,9 +56,14 @@ export class TeacherProfileComponent implements OnInit {
   experiences;
   canSubmitVideo: boolean = false;
   showVidSubmitMessage: boolean = false;
+  canChangeStatus: boolean = false;
+  onlineStatus: string = 'OFFLINE';
+  profPicName;
+
+  awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private cookieService: CookieService) {
     this.createBioForm();
   }
 
@@ -91,14 +115,14 @@ export class TeacherProfileComponent implements OnInit {
             setTimeout(() => {
               this.showVidSubmitMessage = false;
             }, 1800);
-            console.log(this.showVidSubmitMessage, 'ughh');
           } else {
-            this.messageClass = 'alert alert-success'
+            this.messageClass = 'alert alert-success';
+            this.canSubmitVideo = false;
             this.vidSubmitMessage = data.message;
             setTimeout(() => {
               this.showVidSubmitMessage = false;
+              this.canSubmitVideo = false;
             }, 1800);
-            console.log(this.showVidSubmitMessage, 'ughhhhhh');
           }
         })
       }
@@ -165,20 +189,88 @@ export class TeacherProfileComponent implements OnInit {
     this.maxExperiences = false;
   }
 
+  goOffline() {
+    let status = {
+      status: 'OFFLINE'
+    }
+    this.authService.onlineStatus(status).subscribe(data => {
+      if(!data.success) {
+        console.log('fail');
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }
+      this.messageClass = 'alert alert-danger';
+      this.message = data.message;
+      this.onlineStatus = 'OFFLINE';
+      setTimeout(() => {
+        this.closeStatusModal()
+      }, 800);
+    });
+  }
+
+  goOnline() {
+    let status = {
+      status: 'ONLINE'
+    }
+    this.authService.onlineStatus(status).subscribe(data => {
+      if(!data.success) {
+        console.log('fail');
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }
+      this.messageClass = 'alert alert-success';
+      this.message = data.message;
+      this.onlineStatus = 'ONLINE';
+      setTimeout(() => {
+        this.closeStatusModal()
+      }, 800);
+    });
+  }
+
+  checkCookies() {
+      this.cookieValue = this.cookieService.get('Status');
+      if(this.cookieValue == "Here, have some status based cookies!") {
+        return true
+      }
+      setTimeout(() => {
+        this.cookieService.set( 'Status', 'Here, have some status based cookies!' );
+        return false
+      },120000)
+  }
+
+  closeStatusModal() {
+    this.cookies = true;
+    this.cookieService.set( 'Status', 'Here, have some status based cookies!' );
+    this.checkCookies();
+  }
+
   ngOnInit() {
+    this.checkCookies();
     this.authService.getProfile()
     .subscribe(profile => {
       this.userID = profile.user.id;
       this.fullname = profile.user.fullname.toUpperCase();
       this.email = profile.user.email;
+      // this.profPicName = profile.user.profPic;
+      // if(profile.user.profPic == undefined) {
+      //   this.profPicName = 'blankProf.png'
+      // }
+      // console.log(this.profPicName)
+      this.profPic = this.awsBucket + profile.user.profPic;
       this.isTeacher = profile.user.isTeacher;
       this.isStudent = profile.user.isStudent;
+      this.skill1 = profile.user.skill1;
+      this.skill2 = profile.user.skill2;
       this.experiences = profile.user.experiences;
+      this.onlineStatus = profile.user.onlineStatus;
       if(this.experiences.length == 5) {
         this.maxExperiences = true;
       }
       this.profVideo = profile.user.profVideo;
       this.bio = profile.user.bio;
+      if((profile.user.profPic !== undefined) && (this.skill1 && this.skill2 !== '') && (this.bio !== '') && this.experiences[2]) {
+        this.canChangeStatus = true;
+      }
     });
     window.scrollTo(0, 0);
   }

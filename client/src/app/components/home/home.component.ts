@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   cookieValue = 'UNKNOWN';
-  cookies = false;
+  cookies: boolean = false;
   emailForm;
   message;
   messageClass;

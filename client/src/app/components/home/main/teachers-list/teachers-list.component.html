@@ -1,28 +1,31 @@
-<div class="flex">
+
   <div class="flex searchDiv">
     <!-- <input type="text" [(ngModel)]="county" placeholder="Search Teachers by Name" class="form-control"> -->
-    <select [(ngModel)]="county" [value]="county" class="select select1">
-      <option selected>Select a County</option>
-      <hr>
-      <option value="North County">North County</option>
-      <option value="South County">South County</option>
-      <option value="East County">East County</option>
-    </select>
-    <i class="fa fa-angle-down" aria-hidden="true"></i>
-    <select [(ngModel)]="skill" [value]="skill" class="select select2">
-      <option selected>Select a Skill</option>
-      <hr>
-      <option value="Driving" selected="selected">Driving</option>
-      <option value="Approach Game">Approach Game</option>
-      <option value="Short Game / Chipping">Short Game / Chipping</option>
-      <option value="Putting">Putting</option>
-      <option value="Mental Focus">Mental Focus</option>
-      <option value="Sand Game">Sand Game</option>
-      <option value="Ball Contact">Ball Contact</option>
-    </select>
-    <i class="fa fa-angle-down select2Carret" aria-hidden="true"></i>
+    <div class="flex half">
+      <select [(ngModel)]="county" [value]="county" class="flex select select1">
+        <option selected>Select a County</option>
+        <hr>
+        <option value="North County">North County</option>
+        <option value="South County">South County</option>
+        <option value="East County">East County</option>
+      </select>
+      <!-- <i class="fa fa-angle-down" aria-hidden="true"></i> -->
+    </div>
+    <div class="flex half">
+      <select [(ngModel)]="skill" [value]="skill" class="flex select select2">
+        <option selected>Select a Skill</option>
+        <hr>
+        <option value="Driving" selected="selected">Driving</option>
+        <option value="Approach Game">Approach Game</option>
+        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Putting">Putting</option>
+        <option value="Mental Focus">Mental Focus</option>
+        <option value="Sand Game">Sand Game</option>
+        <option value="Ball Contact">Ball Contact</option>
+      </select>
+      <!-- <i class="fa fa-angle-down select2Carret" aria-hidden="true"></i> -->
+    </div>
   </div>
-</div>
 <div class="flex mainWrapper">
   <div class="flex teacher-wrapper">
     <a class="flex teacher"  *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">

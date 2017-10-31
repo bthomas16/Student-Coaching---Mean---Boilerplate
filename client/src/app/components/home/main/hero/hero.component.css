@@ -3,7 +3,7 @@
   background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url('../../../../../assets/golf.jpg');
   background-size: cover;
   background-position:bottom;
-  width: 100%;
+  width: 100vw;
 }
 
 .messageStuff {
@@ -166,6 +166,15 @@
   }
 }
 
+@media(max-width:500px) {
+  .registerText {
+    width: 97.5%;
+  }
+  .form {
+    width: 100%;
+  }
+}
+
 
 @media(max-width:475px) {
 
@@ -185,13 +194,37 @@
 
   .mainTitle {
     font-size: 2em;
+    margin-left: .75em;
     width: 100%;
   }
 
   .mainInfo {
     width: 90%;
-    font-size: 1em;
+    font-size: 1.25em;
     margin-top: 2em;
+  }
+}
+
+@media(max-width:325px) {
+
+  .mainTitle {
+    font-size: 2em;
+    margin-left: .85em;
+    width: 100%;
+  }
+
+  .mainInfo {
+    width: 90%;
+    font-size: 1.15em;
+    margin-top: .75em;
+  }
+
+  .buttons {
+    margin-top: -4em;
+  }
+
+  .bigTitle {
+    font-size: 1.75em;
   }
 }
 

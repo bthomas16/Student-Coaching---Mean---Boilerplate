@@ -79,8 +79,8 @@ li.nav-item a {
   width: 50%;
 }
 
-@media(max-width:575px) {
-  .half {
+@media(max-width:725px) {
+  .third {
     width: 100%;
     padding: 0;
     margin: 0;
@@ -125,11 +125,13 @@ li.nav-item a {
     justify-content: flex-start;
     border-bottom: 1px solid darkgrey;
     padding-bottom: .75em;
+
   }
 
   .company .flex {
     justify-content: flex-start;
-    padding-left: 35%;
+
+    padding-left: 30%;
     text-align: center;
   }
 }

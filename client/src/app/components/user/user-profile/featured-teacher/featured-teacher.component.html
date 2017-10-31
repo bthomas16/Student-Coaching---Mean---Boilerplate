@@ -7,39 +7,34 @@
     <div class="flex top">
       <p class="flex fullname pointer" routerLink="{{route}}">{{ fullname }}</p>
       <div class="flex closeTogether">
-        <p class="flex handicap pointer" routerLink="{{route}}">Handicap Index of {{handicap}}</p>
+        <p class="flex handicap normalHC pointer" routerLink="{{route}}">Handicap Index of {{handicap}}</p>
+        <p class="flex handicap mobileHC pointer" routerLink="{{route}}">Handicap of {{handicap}}</p>
         <p class="flex location pointer" routerLink="{{route}}">San Diego, CA</p>
         <p class="flex location pointer" routerLink="{{route}}">{{county}}</p>
         <p class="flex promotion pointer" routerLink="{{route}}"><span>{{ promoExample }}</span></p>
       </div>
-     </div>
-            <!-- <div class="flex">
-              <div class="rating noMouse">
-                <input type="radio" [checked]="isChecked5"/>
-                <i class="fa fa-star star" for="star5" title="Awesome - 5 stars"></i>
-                <input type="radio" [checked]="isChecked4"/>
-                <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars"></i>
-                <input type="radio" [checked]="isChecked3"/>
-                <i class="fa fa-star star" for="star3" title="Meh - 3 stars"></i>
-                <input type="radio" [checked]="isChecked2"/>
-                <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars"></i>
-                <input type="radio" [checked]="isChecked1"/>
-                <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star"></i>
-              </div>
-            </div>
-            <p class="flex number"><em>{{numberOfRatings}} Students</em></p> -->
-            <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey; margin-top: -20%;">{{fullname}} has not yet been rated</h3>
-    <div class="flex ratingContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
+   </div>
+    <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey; margin-top: -20%;">{{fullname}} has not yet been rated</h3>
+    <div class="flex ratingContent normalContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
         <p class="flex ratingText">"{{teacher.text | shorten:125 }}"</p>
         <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>
     </div>
-
   </div>
-  <div class="flex contact">
-    <a class="flex contactLink">
+  <div class="flex contact normalContent">
       <button class="btn btn-primary pointer" routerLink="{{route}}">
         CONTACT {{ fullname }}
       </button>
-    </a>
+  </div>
+</div>
+
+<div class="flex mobileContent">
+  <div class="flex ratingContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
+      <p class="flex ratingText">"{{teacher.text | shorten:125 }}"</p>
+      <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>
+  </div>
+  <div class="flex contact">
+      <button class="btn btn-primary pointer" routerLink="{{route}}">
+        CONTACT {{ fullname }}
+      </button>
   </div>
 </div>

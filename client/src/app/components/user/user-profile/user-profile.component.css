@@ -45,20 +45,34 @@
   width: 100%;
 }
 
-a.btn.btn-primary {
-  width: 45%;
-  text-align: center;
-  background-color: #1BACFC;
-}
-
 .magicButton {
+  display: flex;
+  justify-content: center;
   margin-top: 2.5em;
   border: none;
+  width: auto;
+  background-color: #1BACFC;
+  padding: 1em;
 }
 
 
 @media(max-width: 650px) {
   .half {
     width: 100%;
+  }
+
+  .right {
+    padding: 2em;
+    width: 100%;
+  }
+
+  .right * {
+    justify-content: flex-start;
+    width: 90%;
+  }
+
+  .mainText {
+    text-align: left;
+    font-size: 2em;
   }
 }

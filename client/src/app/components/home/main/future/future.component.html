@@ -1,17 +1,15 @@
 <div class="flex wrapper">
+
   <div class="flex hideMessageDiv" *ngIf="canShowMessage">
     <div [ngClass]="messageClass">
     {{message}}
     </div>
   </div>
-    <div class="flex half left">
 
-
-
-        <p class="flex mainTitle">Besides Golf, what are some skills you are interested in learning?</p>
-        <p class="flex subText">
-          Answer for your chance to win a free lesson!</p>
-
+  <div class="flex half left">
+    <p class="flex mainTitle">Besides Golf, what are some skills you are interested in learning?</p>
+    <p class="flex subText">
+      Answer for your chance to win a free lesson!</p>
       <div class="flex form">
         <textarea name="name" class="textArea" placeholder="I would like to learn..." (keyup)="getTextArea($event)"></textarea>
         <input type="text" name="" value="" placeholder="Emaill Address" class="emailInput" (keyup)="getEmail($event)">
@@ -23,14 +21,12 @@
       </div>
     </div>
 
-
-
-
     <div class="flex half right">
       <div class="flex">
-        <div class="flex i"><i class="fa fa-quote-right"></i></div>
+        <div class="flex i">
+          <i class="fa fa-quote-right"></i>
+        </div>
         <p class="quote">Using Coaches from savvy I have improved every aspect of my golf game.</p>
-
         <p class="author">John Lewis</p>
         <p class="author-location">Torrey Pines Golf Club</p>
       </div>

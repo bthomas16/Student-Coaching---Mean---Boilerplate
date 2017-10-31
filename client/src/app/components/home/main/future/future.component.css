@@ -41,14 +41,14 @@
 
 
 .form {
-  width: 72.5%;
+  width: 30.25em;
   justify-content: flex-start;
   margin-top: 1em;
   margin-bottom:1em;
 }
 
 .textArea {
-  width: 85%;
+  width: 100%;
   height: 8em;
   padding: .5em;
   color: black;
@@ -58,7 +58,7 @@
   margin-top: 1em;
   text-align: left;
   padding: .5em;
-  width: 85%;
+  width: 100%;
   color: black;
 }
 
@@ -66,6 +66,7 @@
   justify-content: flex-start;
   margin-top: 2em;
 }
+
 .submit {
   width: 45%;
   font-size: .95em;
@@ -84,6 +85,8 @@
   color: white;
   width: 51%;
   height: 32em;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .right div.flex {
@@ -95,7 +98,7 @@
   font-size: 2.2em;
   margin: auto;
   margin-top: 1em;
-  width: 75%;
+  width: 100%;
   justify-content: flex-start;
   text-align: left;
 }
@@ -103,7 +106,7 @@
 .author {
   font-weight: 900;
   font-size: 1.4em;
-  width: 75%;
+  width: 100%;
   text-align: left;
   margin: auto;
   margin-top: 2.5em;
@@ -111,7 +114,7 @@
 
 .author-location {
   font-weight: 200;
-  width: 75%;
+  width: 100%;
   font-size: 1.25em;
   text-align: left;
   margin: auto;
@@ -124,29 +127,43 @@
 .i {
   margin-bottom: 1.5%;
   justify-content: flex-start;
-  width: 75%;
+  width: 100%;
 }
 
 
 /*MEDIA*/
 
-
-@media(max-width: 700px) {
-  input {
-    width: 100%;
-  }
-  .submit {
-    width: 100%;
-    font-size: 1em;
-    margin-top: .5em;
+@media(max-width: 950px) {
+  .left {
+    padding-left: 1em;
   }
 
-  .subText {
-    font-size: .75em;
+  .mainTitle {
+    font-size: 1.5em;
+  }
+
+  .form {
+    width: 22.5em;
+  }
+
+}
+
+
+@media(max-width: 745px) {
+  .left {
+    padding-left: 1em;
+  }
+
+  .mainTitle {
+    font-size: 1.5em;
+  }
+
+  .form {
+    width: 20em;
   }
 
   .fa-quote-right {
-    font-size: 1.8em;
+    font-size: 2.25em;
   }
 
   .right * {
@@ -162,8 +179,8 @@
 
   .quote {
     margin-top: 1em;
-    font-size: 1.45em;
-    line-height: 1.5;
+    font-size: 2em;
+    line-height: 1.25;
     width: 100%;
     justify-content: center;
     text-align: left;
@@ -172,7 +189,7 @@
 
   .author {
     font-weight: 700;
-    font-size: 1em;
+    font-size: 1.25em;
     /*width: 100%;*/
     text-align: left;
     margin: auto;
@@ -186,7 +203,31 @@
 
 }
 
-@media(max-width:445px) {
+@media(max-width: 700px) {
+  .form {
+    width: 17em;
+  }
+}
+
+@media(max-width: 600px) {
+.form {
+width: 14.5em;
+}
+}
+
+@media(max-width: 500px) {
+  .wrapper {
+    height: 100%;
+  }
+
+  .mainTitle {
+    font-size: 1.75em;
+  }
+
+  .form {
+  width: 90%
+  }
+
   .half {
     width: 95%;
   }
@@ -194,19 +235,20 @@
   .left {
     width: 100%;
     justify-content: center;
+    padding: 0;
+    padding-top: 2em;
+    /*margin-top: 2em;*/
+    margin-bottom: 2em;
   }
 
   .left * {
-    width: 100%;
-    text-align: center;
+    width: 90%;
   }
-
   .right {
     width: 100%;
   }
 
   .right p {
-    /*font-size: 1.5em;*/
     width: 100%;
     justify-content: center;
     text-align: left;
@@ -215,9 +257,31 @@
   .quote {
     margin: 0;
     line-height: 1.25;
+    margin-top: 1em;
+    margin-bottom: .75em;
+  }
+
+  .author {
+    margin-top: 2em;
   }
 
   .i {
     width: 100%;
+  }
+}
+
+@media(max-width: 425px) {
+  .mainTitle {
+    font-size: 1.35em;
+  }
+
+  .right {
+    height: 100%;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+  }
+
+  .quote {
+    font-size: 1.65em;
   }
 }

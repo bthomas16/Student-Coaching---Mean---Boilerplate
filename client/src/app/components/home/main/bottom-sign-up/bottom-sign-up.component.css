@@ -88,20 +88,22 @@
   .wrapper {
     width: 100%;
     padding: 1.5em;
+    margin: 0;
   }
+
   .left {
     width: 100%;
     padding: 0;
   }
 
   .mainTitle {
-    font-size: 1.4em;
+    font-size: 1.65em;
 
   }
 
   .subTitle {
     width: 95%;
-    font-size: 1em;
+    font-size: 1.3em;
   }
 
   .registerForm {
@@ -116,5 +118,9 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
+  }
+
+  .register {
+    width: 15em;
   }
 }

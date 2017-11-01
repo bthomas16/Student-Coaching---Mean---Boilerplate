@@ -134,7 +134,7 @@
 
 @media(max-width: 375px) {
   .wrapper {
-    width: 320px;
+    width: 300px;
     padding: .5em;
   }
 
@@ -175,7 +175,7 @@
 
 @media(max-width: 325px) {
   .wrapper {
-    width: 280px;
+    width: 250px;
   }
 
   .top {

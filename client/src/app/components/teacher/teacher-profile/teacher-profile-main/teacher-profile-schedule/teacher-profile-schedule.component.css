@@ -130,5 +130,11 @@ background-color: #686767;
   .wrapper h2  {
     font-size: 1.6em;
   }
+}
+
+@media (max-width: 325px) {
+  .text p {
+    font-size: .85em;
+  }
 
 }

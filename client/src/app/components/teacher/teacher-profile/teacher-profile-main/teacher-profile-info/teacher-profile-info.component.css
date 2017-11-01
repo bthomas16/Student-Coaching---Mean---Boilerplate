@@ -693,21 +693,21 @@ select {
   .mainWrapper {
     background-color: white;
   }
+  .imageDiv {
+    /*height:225px;*/
+    width: 100%;
+    margin-bottom: 1em
+  }
   .imageDiv img.profPic {
-    min-width: 282.5px;
+    min-width: 225.5px;
     width: auto;
     /*max-width: 250px;*/
     ;
     height: auto;
-    max-height:355px;
+    max-height:315px;
     /*height: 225px;*/
   }
 
-  .imageDiv {
-    height:225px;
-    width: 100%;
-    margin-bottom: 1em
-  }
 
   .right {
     /*height: 120px;*/

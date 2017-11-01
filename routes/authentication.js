@@ -109,6 +109,13 @@ router.post('/login', (req, res) => {
 });
 
 // Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+// Any routes below this middleware will require authentication / headers
+
 router.use((req, res, next)=> {
   const token = req.headers['authorization']
   if (!token) {
@@ -116,7 +123,7 @@ router.use((req, res, next)=> {
   } else {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        res.json({ success: false, message: 'Token Invalid:' + err});
+        res.json({ success: false, message: 'Your session has expired - Please Logout and Login again.'});
       } else {
         req.decoded = decoded;
         next();
@@ -474,23 +481,20 @@ router.put('/experiences', (req,res) => {
         const busboy = require('connect-busboy');
         const busboyBodyParser = require('busboy-body-parser');
 
-        const BUCKET_NAME = 'savvyappphotos';
-        const IAM_USER_KEY = 'AKIAIUNQ2IP6UJK7GATQ';
-        const IAM_USER_SECRET = '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';
-
+        const awsBucket = require('../config/aws')
 
         router.use(busboy());
         router.use(busboyBodyParser());
 
         function uploadToS3(file) {
           let s3bucket = new AWS.S3({
-            accessKeyId: IAM_USER_KEY,
-            secretAccessKey: IAM_USER_SECRET,
-            Bucket: BUCKET_NAME
+            accessKeyId: awsBucket.IAM_USER_KEY,
+            secretAccessKey: awsBucket.IAM_USER_SECRET,
+            Bucket: awsBucket.BUCKET_NAME
           });
           s3bucket.createBucket(function () {
               var params = {
-                Bucket: BUCKET_NAME,
+                Bucket: awsBucket.BUCKET_NAME,
                 Key: file.name,
                 Body: file.data
               };

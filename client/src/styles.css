@@ -105,8 +105,15 @@ label {
     z-index: 9999;
 }
 
-.flash-message
-{
+.offline {
+  color: red;
+}
+
+.online {
+  color: #1BACFC;
+}
+
+.flash-message {
     z-index: 10000;
     position: relative;
     width: 100vw;

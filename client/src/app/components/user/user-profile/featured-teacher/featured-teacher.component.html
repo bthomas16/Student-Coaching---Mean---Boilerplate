@@ -14,7 +14,7 @@
         <p class="flex promotion pointer" routerLink="{{route}}"><span>{{ promoExample }}</span></p>
       </div>
    </div>
-    <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey; margin-top: -20%;">{{fullname}} has not yet been rated</h3>
+    <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey;">{{fullname}} has not yet been rated</h3>
     <div class="flex ratingContent normalContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
         <p class="flex ratingText">"{{teacher.text | shorten:125 }}"</p>
         <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>

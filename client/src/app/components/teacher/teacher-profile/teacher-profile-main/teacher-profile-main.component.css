@@ -15,7 +15,7 @@
   width: 42%;
 }
 
-@media (max-width: 1035px){
+/*@media (max-width: 1035px){
   .info {
     width: 50%;
   }
@@ -23,15 +23,23 @@
   .schedule {
     width: 45%;
   }
-}
+}*/
 
-  @media(max-width: 740px){
+  @media(max-width: 1050px){
+
+    .wrapper {
+      padding: 1.25em;
+    }
     .half {
       width: 100%;
     }
 
+    .info {
+      padding: 0;
+    }
+
     .schedule {
-      margin-top: 0;
+      margin-top: 1em;
       width: 100%;
     }
 }

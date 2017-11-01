@@ -13,13 +13,13 @@
   <div class="flex half right" *ngIf="!isTeacher">
     <p class="mainText">Do you have what it takes to become a teacher? </p>
     <p class="subText">Put your skills to the test and start earning now</p>
-      <div class="flex">
-        <a class="btn btn-primary" routerLink="../profile/teacher">Maximize Potential</a>
+      <div class="flex buttDiv">
+        <a class="btn btn-primary magicButton" routerLink="../profile/teacher">Maximize Potential</a>
       </div>
   </div>
   <div class="flex half right" *ngIf="isTeacher">
     <p class="mainText">Make some magic happen!</p>
-      <div class="flex">
+      <div class="flex buttDiv">
         <a class="btn btn-primary magicButton" routerLink="../profile/teacher">Enter Teacher Dashboard</a>
       </div>
   </div>

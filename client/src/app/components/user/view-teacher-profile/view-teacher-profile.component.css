@@ -1,5 +1,6 @@
 .videoDiv {
   margin-bottom: 2.25em;
+  margin-top: 1.5em;
 }
 
 .videoDiv video {
@@ -62,12 +63,14 @@
 
 .notes {
   width: 100%;
-  margin-top: 1em;
-  margin-bottom: 2em;
+  padding: 1em;
   background-color: #5563f0;
   color: white;
-  padding: 7em;
-  padding-bottom: 5.5em;
+  justify-content: flex-start;
+  min-height: 15em;
+  height: auto;
+  max-height: 27.5em;
+  overflow: scroll;
 }
 
 .notes-text {
@@ -77,10 +80,11 @@
 }
 
 .left-text {
-  width: 85%;
+  width: 100%;
   font-size: 1.4em;
   justify-content: flex-start;
-  margin-top: -5em;
+  margin-left: 1.425em;
+  margin-bottom: 1em;
 }
 
 .reviews {
@@ -123,3 +127,60 @@
     font-size: .85em;
   }
 }
+
+  @media(max-width:500px) {
+    .notes {
+      padding-left: 0;
+      padding-right: 0;
+      margin: 0;
+      margin-top: 1em;
+    }
+
+    .notes-text {
+      margin: 0;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  @media(max-width:375px) {
+    .exp h3.flex {
+      text-align: left;
+      justify-content: flex-start;
+      padding-left: 2em;
+      font-size: 1.25em;
+    }
+
+    .experiences li {
+      font-size: 1.25em;
+    }
+
+    .experiences li i {
+      font-family: 'FontAwesome';
+      color: #5563F0;
+      margin-right: 2em;
+      margin-top: .25em;
+      font-size: .85em;
+    }
+  }
+
+  @media(max-width:325px) {
+    .exp h3.flex {
+      text-align: left;
+      justify-content: flex-start;
+      padding-left: 1.95em;
+      font-size: 1.15em;
+      width: 100%;
+    }
+    .notes {
+      padding-left: 0;
+      padding-right: 0;
+      margin: 0;
+    }
+
+    .notes-text {
+      margin-left: .5em;
+      margin-bottom: 1.5em;
+      text-align: left;
+    }
+
+  }

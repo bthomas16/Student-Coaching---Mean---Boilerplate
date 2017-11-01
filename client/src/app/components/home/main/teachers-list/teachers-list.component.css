@@ -3,9 +3,18 @@
 .searchDiv {
   width: 100vw;
   justify-content: flex-start;
-  padding-left: 3em;
   margin-top: 2em;
   margin-bottom: 1em;
+}
+
+.searchHalf {
+  width: 60%;
+  justify-content: flex-start;
+  padding-left: 5%;
+}
+
+.selectDiv {
+  width: 25%;
 }
 
 select {
@@ -22,10 +31,6 @@ select {
   font-weight: 300;
   font-size: 1.15em;
   color: #4F4F4F;
-}
-
-.select2 {
-  margin-left: 5em;
 }
 
 .select:focus {outline:0;}
@@ -167,39 +172,33 @@ img.pic {
   img.pic {
     height: 165px;
     width: auto;
-    max-width: 165px;
+    max-width: 160px;
   }
 
   .infoDiv {
     width: auto;
-    max-width: 52.5%;
-    padding-left: 2.5%;
+    max-width: 55%;
+    padding-left: 3%;
     justify-content: flex-start;
   }
 
-  .searchDiv {
-    width: 100vw;
+  .searchHalf {
+    width: 100%;
     justify-content: flex-start;
     padding: 0;
     padding-left: .5em;
-    margin-top: 2em;
-    margin-bottom: 1em;
+    margin-top: .5em;
+    margin-bottom: .5em;
   }
 
-  .searchDiv .half .select {
-    justify-content: flex-start;
-  }
-
-  .select {
-    width: 100%;
-    margin: 5%;
+  .selectDiv {
+    width: 42%;
+    margin: 2%;
     padding: 0;
     justify-content: flex-start;
   }
 
-  .select2 {
-    margin: 0;
-  }
+
 
 }
 
@@ -224,7 +223,7 @@ img.pic {
   }
 
   img.pic {
-    height: 165px;
+    height: 160px;
     width: auto;
     max-width: 145px;
   }

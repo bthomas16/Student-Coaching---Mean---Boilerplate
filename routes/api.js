@@ -3,26 +3,13 @@ const emailSubscriber = require('../models/email-subscriber')
 const wantToLearn = require('../models/wantToLearn')
 const jwt = require('jsonwebtoken');
 const express = require('express');
-// const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 const config = require('../config/db');
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, './routes/uploads')
-//     },
-//     filename: (req, file, cb) => {
-//       let ext = path.extname(file.originalname);
-//       cb(null, `${Math.random().toString(36).substring(7)}${ext}`);
-//     }
-//   });
-//
-// const upload = multer({ storage: storage})
 
 router.get('/get-all-teachers', (req, res) => {
-    // Search database for all blog posts
-    User.find({isTeacher: 'true', experiences: {'$ne': null }, handicap: {'$ne': null }, county: {'$ne': null }, bio: {'$ne': null }, skill1: {'$ne': null }, profPic: {'$ne': null }},  (err, teachers) => {
+    User.find({isTeacher: 'true', experiences: {'$ne': null }, handicap: {'$ne': null }, county: {'$ne': null }, bio: {'$ne': null }, skill1: {'$ne': null }, profPic: {'$ne': null }, onlineStatus: {'$ne': 'ONLINE' }},  (err, teachers) => {
       // Check if error was found or not
       if (err) {
         res.json({ success: false, message: err }); // Return error message
@@ -34,7 +21,7 @@ router.get('/get-all-teachers', (req, res) => {
           res.json({ success: true, teachers: teachers }); // Return success and teachers array
         }
       }
-    })
+    });
   });
 
   router.post('/email-subscriber', (req, res) => {

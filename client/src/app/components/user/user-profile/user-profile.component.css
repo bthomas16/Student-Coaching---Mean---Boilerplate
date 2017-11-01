@@ -20,9 +20,20 @@
   padding-left: 2em;
 }
 
-.right * {
+.right .mainText  {
   justify-content: flex-start;
   text-align: left;
+  width: 90%;
+}
+.right .subText  {
+  justify-content: flex-start;
+  text-align: left;
+  width: 90%;
+}
+
+.buttDiv {
+  justify-content: flex-start;
+  text-align: center;
   width: 90%;
 }
 
@@ -46,11 +57,9 @@
 }
 
 .magicButton {
-  display: flex;
-  justify-content: center;
   margin-top: 2.5em;
   border: none;
-  width: auto;
+  width: 60%;
   background-color: #1BACFC;
   padding: 1em;
 }
@@ -64,15 +73,19 @@
   .right {
     padding: 2em;
     width: 100%;
-  }
-
-  .right * {
-    justify-content: flex-start;
-    width: 90%;
+    justify-content: center;
   }
 
   .mainText {
     text-align: left;
     font-size: 2em;
+  }
+
+  .magicButton {
+    margin-top: 1em;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
   }
 }

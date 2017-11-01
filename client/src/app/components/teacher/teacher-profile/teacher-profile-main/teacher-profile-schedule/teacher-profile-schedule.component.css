@@ -108,14 +108,27 @@ background-color: #686767;
 }
 
 @media (max-width: 465px) {
-  .text {
-    font-size: .8em;
+  .text p {
+    font-size: 1em;
   }
   .butts button {
     font-size: .8em;
     font-weight: 600;
   }
 
+  .times h5 {
+    font-size: .95em;
+  }
 
+  .updateButton {
+    font-size: .85em;
+    padding: .75em;
+    margin: 0;
+    margin-bottom: .5em;
+  }
+
+  .wrapper h2  {
+    font-size: 1.6em;
+  }
 
 }

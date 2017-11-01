@@ -213,7 +213,7 @@ span {
 
 
 
-
+/*STATUS MODAL  - STATUS MODAL - STATUS MODAL - STATUS MODAL - STATUS MODAL - STATUS MODAL */
 
 
 .statusModal {
@@ -224,9 +224,8 @@ span {
   margin-left: 22.25%;
   z-index: 100;
   color: white;
-  border-radius: 5px;
   background-color: rgba(	85, 99, 240,1);
-  /*width: auto;*/
+  width: auto;
   max-width: 55%;
   height: justify;
   padding: 2em;
@@ -239,6 +238,7 @@ span {
 
 .statusList {
   margin-top: 1em;
+  width: 100%;
 }
 
 .status {
@@ -342,6 +342,7 @@ visibility: hidden;
   .vidDiv {
     width: 90%;
     margin-top: 1em;
+    margin-bottom: 1em;
   }
 
   .vidDiv input {
@@ -355,6 +356,113 @@ visibility: hidden;
   .vidText p {
     font-size: 1em;
   }
+
+  .left-text {
+    width: 100%;
+    font-size: 1.4em;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-bottom: .5em;
+  }
+
+  .notes {
+    width: 100%;
+    height: auto;
+    max-height: 25em;
+    overflow: scroll;
+    margin-bottom: .5em;
+    padding: 1.25em;
+  }
+
+  .bioWrapper {
+    width: 100%;
+    margin-top: .5em;
+    padding: 1em;
+  }
+
+  .editBio {
+    width: 80%;
+  }
+
+  .custom-file-upload {
+      background-color: white;
+      display: inline-block;
+      padding: 0;
+      color: black;
+      cursor: pointer;
+      min-width: 80%;
+      font-weight: 00;
+      margin: .5em;
+  }
+
+  .fa-cloud-upload {
+    font-size: 8.5em;
+  }
+
+  .exp h3.flex {
+    padding: 0;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .experiences {
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .reviewsTitle {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .dynamicExperiences  input {
+    width: 100%;
+    height: 3.5em;
+    padding-top: 0;
+  }
+
+.dynamicExperiences  button {
+  width: 100%;
+}
+
+
+
+/*STATUS MODAL MOBILE*/
+
+.statusModal {
+  position: fixed;
+  display: block;
+  top: 0;
+  margin-top: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  z-index: 100;
+  color: white;
+  background-color: rgba(	85, 99, 240,1);
+  width: 90%;
+  max-width: 90%;
+  height: auto;
+  padding: 2em;
+}
+
+.statusListDiv h4 {
+  font-weight: 300;
+}
+
+ul.statusList {
+  width: 100%;
+}
+
+
+li.status {
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  list-style: disc;
+}
+
+
+
 }
 
 @media(max-width: 300px) {

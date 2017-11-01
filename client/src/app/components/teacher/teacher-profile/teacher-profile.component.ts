@@ -58,7 +58,10 @@ export class TeacherProfileComponent implements OnInit {
   showVidSubmitMessage: boolean = false;
   canChangeStatus: boolean = false;
   onlineStatus: string = 'OFFLINE';
+  isOnline: boolean = false;
   profPicName;
+  capFullname;
+
 
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
@@ -202,6 +205,7 @@ export class TeacherProfileComponent implements OnInit {
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
       this.onlineStatus = 'OFFLINE';
+      this.isOnline = false;
       setTimeout(() => {
         this.closeStatusModal()
       }, 800);
@@ -221,6 +225,7 @@ export class TeacherProfileComponent implements OnInit {
       this.messageClass = 'alert alert-success';
       this.message = data.message;
       this.onlineStatus = 'ONLINE';
+      this.isOnline = true;
       setTimeout(() => {
         this.closeStatusModal()
       }, 800);
@@ -245,33 +250,38 @@ export class TeacherProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkCookies();
+
     this.authService.getProfile()
     .subscribe(profile => {
       this.userID = profile.user.id;
-      this.fullname = profile.user.fullname.toUpperCase();
+      this.fullname = profile.user.fullname;
+      this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
       this.email = profile.user.email;
-      // this.profPicName = profile.user.profPic;
-      // if(profile.user.profPic == undefined) {
-      //   this.profPicName = 'blankProf.png'
-      // }
-      // console.log(this.profPicName)
-      this.profPic = this.awsBucket + profile.user.profPic;
+      this.profPicName = profile.user.profPic;
+      if(this.profPicName == undefined) {
+        this.profPicName = 'blankProf.png'
+      }
+      console.log(this.profPicName)
+      this.profPic = this.awsBucket + this.profPicName;
       this.isTeacher = profile.user.isTeacher;
       this.isStudent = profile.user.isStudent;
       this.skill1 = profile.user.skill1;
       this.skill2 = profile.user.skill2;
       this.experiences = profile.user.experiences;
       this.onlineStatus = profile.user.onlineStatus;
+      if(this.onlineStatus === 'ONLINE') {
+        this.isOnline = true;
+      }
       if(this.experiences.length == 5) {
         this.maxExperiences = true;
       }
       this.profVideo = profile.user.profVideo;
       this.bio = profile.user.bio;
-      if((profile.user.profPic !== undefined) && (this.skill1 && this.skill2 !== '') && (this.bio !== '') && this.experiences[2]) {
+      if((this.profPicName !== 'blankProf.png') && (this.skill1 && this.skill2 !== '') && (this.bio !== '') && this.experiences.length !== 0 || null) {
         this.canChangeStatus = true;
       }
     });
+    this.checkCookies();
     window.scrollTo(0, 0);
   }
 }

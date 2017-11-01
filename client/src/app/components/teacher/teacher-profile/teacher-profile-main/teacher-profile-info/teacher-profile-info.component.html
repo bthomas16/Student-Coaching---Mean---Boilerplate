@@ -7,7 +7,7 @@
   </div>
 
 <div class="flex right" *ngIf="!isEdit">
-      <p class="flex name">{{ capFullname }}</p>
+      <p class="flex name">{{ capFullname | shorten:11 }}</p>
       <div class="rating up" (click)="closeRating()">
         <input type="radio" [checked]="isChecked5"/>
         <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
@@ -28,11 +28,11 @@
 
   <div class="flex half stats">
     <div class="flex info" *ngIf="!isEdit && skill2 !== undefined" (click)="closeRating()">
-      <p class="flex left"><span style="font-weight:500;">Locations Served:</span>&nbsp; {{ county }}</p>
-      <p class="flex left"><span style="font-weight:500;">Years of Experience: </span> &nbsp; {{ yrsExperience }}</p>
-      <p class="flex left"><span style="font-weight:500;">Skills:</span> &nbsp; {{ skill1 }}, {{ skill2 }}, {{ skill3 }}</p>
+      <p class="flex left"><span style="font-weight:500;">Location:</span>&nbsp; {{ county }}</p>
+      <p class="flex left"><span style="font-weight:500;">Experience: </span> &nbsp; {{ yrsExperience }} Years</p>
+      <p class="flex left skills"><span style="font-weight:500;">Skills: </span>{{ skill1 }}, {{ skill2 }}, {{ skill3 }}</p>
       <p class="flex left"><span style="font-weight:500;">Handicap:</span> &nbsp; {{ handicap }}</p>
-      <p class="flex left"> ${{ cost }}/hr &nbsp; (All Inclusive)</p>
+      <p class="flex left"> <span style="font-weight:500;">${{ cost }}/hr</span> &nbsp; (All Inclusive)</p>
     </div>
     <!-- <div class="flex butts">
     <button class="btn btn-success butt">Contact</button>
@@ -43,8 +43,12 @@
     <button type="button" *ngIf="!isEdit" (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
   </div>
   <div *ngIf="isParams" class="flex contactDiv">
-    <a href="mailto:{{email}}" class="btn contact" (click)="closeRating()">Contact {{capFullname}}</a>
-    <a class="btn review" (click)="openRating()">Review {{capFullname}}</a>
+    <a href="mailto:{{email}}" class="btn contact normalButt" (click)="closeRating()">Contact {{capFullname}}</a>
+    <a class="btn review normalButt" (click)="openRating()">Review {{capFullname}}</a>
+    <div class="flex">
+      <a href="mailto:{{email}}" class="btn contact mobileButt" (click)="closeRating()">Contact</a>
+      <a class="btn review mobileButt" (click)="openRating()">Review</a>
+    </div>
   </div>
 </div>
 

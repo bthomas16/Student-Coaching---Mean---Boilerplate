@@ -97,12 +97,14 @@ getText(event) {
     this.route.params.subscribe(params => {
     let viewTeacherID = params['id'];
        this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
-         this.teacherFullname = viewTeacher.teacher.fullname.toUpperCase();
+         this.teacherFullname = viewTeacher.teacher.fullname;
+         this.teacherFullname = this.teacherFullname.charAt(0).toUpperCase() + this.teacherFullname.slice(1) 
          this.beingRatedId = viewTeacher.teacher._id
          });
      });
     this.authService.getProfile().subscribe(profile => {
       this.fullname = profile.user.fullname;
+
       this.email = profile.user.email;
     });
   }

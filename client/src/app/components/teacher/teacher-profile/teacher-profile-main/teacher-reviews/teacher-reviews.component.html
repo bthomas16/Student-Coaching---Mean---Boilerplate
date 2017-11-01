@@ -1,7 +1,7 @@
 <div class="flex mainWrapper" *ngIf="teachersList !== null || 0">
   <div class="flex wrapper" *ngFor="let rating of teachersList | slice:0:[sliceNumber]; let i = index;" >
     <div class="flex top">
-      <p class="author">{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) }}</p>
+      <p class="author">{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) | shorten:8 }}</p>
       <div class="rating starsDiv">
         <input type="radio" [checked]="((rating.kRatings + rating.pRatings + rating.taRatings)/3) >= 4.5"/>
         <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
@@ -18,7 +18,7 @@
     <div class="flex reviewTextDiv">
       <p class="reviewText">"{{rating.text | shorten:80}}"</p>
     </div>
-    <div class="flex readMoreRating">
+    <div class="flex readMoreRatings">
       <a class="readMore" *ngIf="!canReadMore" [ngClass]="{disabled: !rating.text.charAt(80)}">Read More</a>
       <a class="readMore" *ngIf="canReadMore">Read Less</a>
     </div>

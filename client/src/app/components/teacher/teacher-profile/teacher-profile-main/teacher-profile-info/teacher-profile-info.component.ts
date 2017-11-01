@@ -237,7 +237,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.authService.getProfile()
       .subscribe(profile => {
         this.id = profile.user._id;
-        this.fullname = profile.user.fullname.toUpperCase();
+        this.fullname = profile.user.fullname;
         this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;

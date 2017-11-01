@@ -7,27 +7,27 @@
   <div class="flex closeButton" >
     <i class="fa fa-times pointer" (click)="closeRating()"></i>
   </div>
-  <div class="flex teacherName">Rating {{teacherFullname}}</div>
+  <div class="flex teacherName">Rating {{ teacherFullname }}</div>
   <div class="flex third">
-      <h3 class="flex r">Knowledge</h3>
+      <p class="flex r k">Knowledge</p>
       <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
-      <h5 class="flex">
+      <p class="flex rNumber">
         Rating: &nbsp; <span class="rating">{{ kRating | number : '1.1-1' }}/5</span>
-      </h5>
+      </p>
   </div>
   <div class="flex third">
-      <h3 class="flex r">Professionalism</h3>
+      <p class="flex r">Professionalism</p>
       <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
-      <h5 class="flex">
+      <p class="flex rNumber">
         Rating: &nbsp; <span class="rating">{{ pRating | number : '1.1-1' }}/5</span>
-      </h5>
+      </p>
   </div>
   <div class="flex third">
-    <h3 class="flex r">Teaching Ability</h3>
+    <p class="flex r">Teaching Ability</p>
     <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
-    <h5 class="flex">
+    <p class="flex rNumber">
       Rating: &nbsp; <span class="rating">{{ taRating | number : '1.1-1' }}/5</span>
-    </h5>
+    </p>
   </div>
   <div class="flex">
     <textarea class="form-control" (keyup)="getText($event)" placeholder="Describe your experience here"></textarea>

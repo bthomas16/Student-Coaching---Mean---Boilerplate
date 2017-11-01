@@ -8,7 +8,7 @@
 .pic {
   width: 50%;
   justify-content: flex-end;
-  padding-right: 1%;
+  padding-right: 5%;
 }
 
 .pic img.featuredPic{
@@ -24,7 +24,7 @@
   font-size: 1.75em;
   text-align: left;
   padding:0;
-  margin-left: 7.5%;
+  margin-left: 14.5%;
   justify-content: flex-start;
 }
 
@@ -33,7 +33,7 @@
   justify-content: flex-start;
   text-align: left;
   padding-top: 1em;
-  padding-left: .5em;
+  padding-left: 4%;
   height: 365px;
 }
 
@@ -109,7 +109,7 @@
   width: 80%;
   margin: 1em;
   justify-content: flex-end;
-  padding-right: 11em;
+  padding-right: 5.5%;
 }
 
 .contact button {
@@ -303,11 +303,12 @@
     }
 
     .contact button {
-      width: auto;
+      min-width: 80%;
       padding-left: 2em;
       padding-right: 2em;
-      font-size: .85em;
+      font-size: .95em;
       margin-top: .5em;
+      font-weight: 500;
     }
   }
 
@@ -338,9 +339,6 @@
     .right {
       width: justify;
       }
-    }
-
-    @media(max-width:325px) {
       .normalHC {
         display: none;
       }
@@ -348,8 +346,9 @@
       .mobileHC {
         display: flex;
       }
+    }
 
-
+    @media(max-width:325px) {
       .fullname {
         font-size: 1.1em;
       }

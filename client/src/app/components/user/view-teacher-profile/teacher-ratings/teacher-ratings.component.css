@@ -1,6 +1,5 @@
-
-.opaque {
-  opacity: 0;
+.mainWrapper {
+  line-height: 0;
 }
 
 .flex > .rating {
@@ -25,7 +24,16 @@ h5.flex {
 
 .r {
   font-weight: 500;
-  font-size: 2em
+  font-size: 3em;
+  margin: .75em;
+}
+
+.rNumber {
+  margin: .5em;
+}
+
+.k {
+  margin-top: 2em;
 }
 
 #textarea {
@@ -85,7 +93,7 @@ h5.flex {
     margin: .5em;
   }
 
-  h5.flex {
+  .rNumber {
     font-size: 1em;
   }
 
@@ -100,7 +108,35 @@ h5.flex {
   .teacherName {
     justify-content: center;
     font-size: 1.25em;
-    margin-left: 1.5em;
     padding: 0;
   }
+}
+
+  @media(max-width:450px) {
+  .teacherName {
+  justify-content: center;
+  margin-top: 1em;
+  margin-left: .65em;
+  font-size: 1.75em;
+  width: 100%;
+  }
+
+  .third .r{
+    font-size: 1.5em;
+  }
+
+  .third {
+    padding: 0;
+  }
+
+  .flex textarea {
+    margin: 1.5em;
+  }
+}
+
+  @media(max-width:375px) {
+
+}
+
+  @media(max-width:325px) {
 }

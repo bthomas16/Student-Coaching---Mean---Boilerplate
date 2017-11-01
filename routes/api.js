@@ -9,7 +9,7 @@ const config = require('../config/db');
 
 
 router.get('/get-all-teachers', (req, res) => {
-    User.find({isTeacher: 'true', experiences: {'$ne': null }, handicap: {'$ne': null }, county: {'$ne': null }, bio: {'$ne': null }, skill1: {'$ne': null }, profPic: {'$ne': null }, onlineStatus: {'$ne': 'ONLINE' }},  (err, teachers) => {
+    User.find({onlineStatus: {'$ne': 'ONLINE' }},  (err, teachers) => {
       // Check if error was found or not
       if (err) {
         res.json({ success: false, message: err }); // Return error message

@@ -1,6 +1,6 @@
 const BUCKET_NAME = 'savvyappphotos';
-const IAM_USER_KEY = 'AKIAIUNQ2IP6UJK7GATQ';
-const IAM_USER_SECRET = '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';
+const IAM_USER_KEY = 'AKIAJCPDDFH7TPHH6X6A';
+const IAM_USER_SECRET = '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';
 
 module.exports = {
   BUCKET_NAME: BUCKET_NAME,

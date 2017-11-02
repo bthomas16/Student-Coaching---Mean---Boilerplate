@@ -172,7 +172,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
            this.id = viewTeacher.teacher._id;
-           this.fullname = viewTeacher.teacher.fullname;
+           this.fullname = viewTeacher.teacher.fullname.toUpperCase();
            this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
            this.email =viewTeacher.teacher.email;
            this.isStudent =viewTeacher.teacher.isStudent;
@@ -185,7 +185,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
            this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
            this.profPicName = viewTeacher.teacher.profPic;
-           if(this.profPicName === undefined) {
+           if(this.profPicName == undefined || null) {
              this.profPicName = 'blankProf.png'
            }
            console.log(this.profPicName)
@@ -237,7 +237,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.authService.getProfile()
       .subscribe(profile => {
         this.id = profile.user._id;
-        this.fullname = profile.user.fullname;
+        this.fullname = profile.user.fullname.toUpperCase();
         this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;

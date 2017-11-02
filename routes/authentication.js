@@ -360,7 +360,7 @@ router.get('/get-featured-teacher', (req, res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-    User.find({onlineStatus: {'$ne': 'ONLINE' }}, (err, teachers) => {
+    User.find({onlineStatus: 'ONLINE' }, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {

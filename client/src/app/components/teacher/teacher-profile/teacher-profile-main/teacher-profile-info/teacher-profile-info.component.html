@@ -7,7 +7,7 @@
   </div>
 
 <div class="flex right" *ngIf="!isEdit">
-      <p class="flex name">{{ capFullname | shorten:11 }}</p>
+      <p class="flex name">{{ fullname }}</p>
       <div class="rating up" (click)="closeRating()">
         <input type="radio" [checked]="isChecked5"/>
         <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>

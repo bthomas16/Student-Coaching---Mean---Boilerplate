@@ -202,9 +202,17 @@ img.pic {
 
 }
 
-@media(max-width: 335px) {
+@media(max-width: 375px) {
+  img.pic {
+    height: 190.5px;
+    width: auto;
+    max-width: 155px;
+  }
+}
+
+@media(max-width: 325px) {
   .teacher {
-    width: 300px;
+    width: 295px;
     box-shadow: 2.5px 2.5px 3.5px lightgrey;
     margin: .75em;
     text-decoration: none;
@@ -223,15 +231,15 @@ img.pic {
   }
 
   img.pic {
-    height: 160px;
+    height: 180.5px;
     width: auto;
-    max-width: 145px;
+    max-width: 142.5px;
   }
 
   .infoDiv {
     width: auto;
     max-width: 52.5%;
-    padding-left: 2.5%;
+    padding-left: 3%;
     justify-content: flex-start;
   }
 
@@ -240,6 +248,7 @@ img.pic {
   }
 
 }
+
 
 /*STARS*/
 

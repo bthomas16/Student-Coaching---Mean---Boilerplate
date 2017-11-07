@@ -7,8 +7,9 @@
     </div>
   </div>
 </div>
+
   <div class="flex">
-  <form [formGroup]="form">
+  <form [formGroup]="form" class="FormGroup">
     <div class="form-group">
       <label for="email">Email Addres</label>
       <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty), 'has-success': form.controls.email.valid && form.controls.email.dirty}">

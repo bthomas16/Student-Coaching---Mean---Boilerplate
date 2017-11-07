@@ -31,7 +31,7 @@ ul.help-block li {
   list-style-position: inside;
 }
 
-label {
+/*label {
   color: lightgrey;
   display: none;
 }
@@ -45,7 +45,7 @@ label {
   color: lightgrey;
   margin-top: 2%;
   width: 100%;
-}
+}*/
 
 .em{
   color: dodgerblue;

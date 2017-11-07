@@ -34,7 +34,7 @@
 .mainInfo {
   width: 22.5em;
   font-size: 1.75em;
-  margin-top: .35em;
+  margin-top: 1.25em;
   font-weight: 100;
 }
 
@@ -52,67 +52,66 @@
   /*font-size: 1.25em;*/
 }
 
-.account {
-  color: lightgrey;
-  /*font-size: 1.2em;*/
-  margin: 0;
-  margin-top:.5em;
-}
-
-.account a{
-  cursor: pointer;
-  color: dodgerblue;
-  font-weight: 500;
-  text-shadow: none;
-}
-
-.account a:hover{
-  color: rgba(85, 99, 240,1);
-  text-shadow: -.01px 0 black, 0 .01px black, .01px 0 black, 0 -0.01px black;
-  cursor: pointer;
-}
 
 
 
-.modal-header {
-  border: none;
-}
+/*REGISTER MODAL*/
 
-.registerText {
-  width: 50%;
-  justify-content: center;
-  padding-left: 1em;
-}
-
-.bigTitle {
-  font: 4.5em;
-  align-self: flex-start;
-  text-align: left;
-  margin-bottom: 1em;
-  width: 100%;
-  font-weight: bolder;
-}
-
-.littleText {
-  margin-top: 1em;
-  line-height: 1.5;
-  text-align: left;
-  width: 100%;
-}
-
-
-.form {
-  width: 45%;
-}
-
-
-/*MODAL*/
-
-.modal-content {
+.modalWrapper {
+  position: fixed;
+  width: 65%;
   background-color: #5563F0;
+  padding: 1.5em;
+  opacity: 1;
+  z-index: 1000;
+}
+
+.modalWrapper h4 {
   color: white;
 }
 
+.xClose {
+  position: absolute;
+  right: 6em;
+  top: 1.5em;
+  justify-content: flex-end;
+  color: white;
+}
+
+.modalContent {
+  margin-top: 1em;
+  color: white;
+  width: 100%;
+  padding: 0;
+}
+
+.title {
+  font-size: 2.75em;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.subText {
+  font-size: 1.25em;
+  text-align: left;
+}
+
+.flex app-user-login {
+  width: 100%;
+}
+
+.switchAccount {
+  margin-top: .5em;
+  color: white;
+  font-weight: 500;
+  color: lightgrey;
+}
+
+.switchAccount em {
+  color: #1BACFC;
+  margin-left: .25em;
+}
 @media(max-width: 780px) {
 
   .wrapper {
@@ -164,6 +163,33 @@
     width: auto;
     display: inline-block;
   }
+
+  .modalWrapper {
+    width: 80%;
+    margin-top: 20%;
+  }
+
+  .modalText {
+    width: 95%;
+    margin-bottom: 1.5em;
+  }
+
+  .form {
+    width: 95%;
+  }
+
+  .title {
+    font-size: 1.75em;
+    margin-bottom: .5em;
+  }
+
+  .subText {
+    font-size: 1.25em;
+  }
+
+  .xClose {
+    right: 3em;
+  }
 }
 
 @media(max-width:500px) {
@@ -173,6 +199,11 @@
   .form {
     width: 100%;
   }
+
+  .modalWrapper {
+    width: 85%;
+  }
+
 }
 
 
@@ -188,6 +219,10 @@
     font-size: 1.25em;
     margin-top: 2em;
   }
+
+  .xClose {
+    top: 1.75em;
+  }
 }
 
 @media(max-width:375px) {
@@ -202,6 +237,18 @@
     width: 90%;
     font-size: 1.25em;
     margin-top: 2em;
+  }
+
+  .modalWrapper {
+    width: 95%;
+  }
+
+  .caps {
+    margin-right: 1.25em;
+  }
+
+  .xClose {
+    top: 1.75em;
   }
 }
 
@@ -225,6 +272,28 @@
 
   .bigTitle {
     font-size: 1.75em;
+  }
+
+  .xClose {
+    top: .75em;
+    right: 2em;
+  }
+
+  .modalWrapper {
+    margin-top: 22%;
+    padding-top: .5em;
+  }
+
+  .modalText {
+    margin: 0;
+  }
+
+  .title {
+    font-size: 1.35em;
+  }
+
+  .subText {
+    font-size: 1em;
   }
 }
 

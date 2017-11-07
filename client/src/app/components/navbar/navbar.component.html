@@ -1,21 +1,19 @@
 <div class="flex bar" (click)="closeRating()">
-  <div class="flex logo" (click)="changeMenuFalse()">
-    <a routerLink="home" *ngIf="!authService.loggedIn()">savvy</a>
-    <a routerLink="profile" *ngIf="authService.loggedIn()">savvy</a>
+  <div class="flex logo" (click)="changeMenuFalse() && hideModal()">
+    <a routerLink="home" *ngIf="!authService.loggedIn()" (click)="hideModal()">savvy</a>
+    <a routerLink="profile" *ngIf="authService.loggedIn()" (click)="hideModal()">savvy</a>
   </div>
   <div class="flex options" *ngIf="!authService.loggedIn()">
-    <a data-toggle="modal" data-target="#login">Login</a>
-    <a data-toggle="modal" data-target="#register">Sign Up</a>
+    <a (click)="loginModal()">Login</a>
+    <a (click)="registerModal()">Sign Up</a>
   </div>
   <a class="browse" routerLink="profile" (click)="changeMenuFalse()">Browse Coaches</a>
   <a (click)="changeMenuTrue()"><i class="fa fa-user fa-2x" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
 </div>
-<div class="flex menu" *ngIf="showMenu" (click)="changeMenuFalse()">
+<div class="flex menu" *ngIf="showMenu" (click)="changeMenuFalse() && hideModal()">
       <a class="flex menu-item" routerLink="company-info">About Us</a>
       <a class="flex menu-item" routerLink="company-info">Contact Us</a>
   <span class="line"></span>
-      <a data-toggle="modal" data-target="#register" class="flex menu-item" *ngIf="!authService.loggedIn()">Sign Up</a>
-      <a data-toggle="modal" data-target="#login" class="flex menu-item" *ngIf="!authService.loggedIn()">Login</a>
       <a routerLink="profile/student" class="flex menu-item" *ngIf="authService.loggedIn()">Student Profile</a>
         <a routerLink="profile/teacher" class="flex menu-item" *ngIf="authService.loggedIn()">Teacher Profile</a>
     <span class="line" *ngIf="authService.loggedIn()"></span>

@@ -73,7 +73,7 @@
   padding: .85em;
   background-color: #1BACFC;
   border: none;
-
+  z-index: 0;
 }
 
 

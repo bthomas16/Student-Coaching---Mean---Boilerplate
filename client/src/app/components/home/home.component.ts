@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, trigger, transition, style, animate } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterContentChecked {
   cookieValue = 'UNKNOWN';
   cookies: boolean = false;
   emailForm;
@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
+  canShowRegisterModal;
+  canShowLoginModal;
 
   constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, public apiService: ApiService, private router: Router) {
     this.createForm()
@@ -127,9 +129,27 @@ export class HomeComponent implements OnInit {
     this.checkCookies();
   }
 
+  hideModal() {
+    let value = false;
+    if(this.canShowLoginModal = true) {
+      this.apiService.loginModal(value)
+    }
+    if(this.canShowRegisterModal = true) {
+      this.apiService.registerModal(value)
+    }
+    // return true;
+  }
+
+  ngAfterContentChecked() {
+    this.canShowLoginModal = this.apiService.getLoginModalStatus();
+    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
+  }
+
 
   ngOnInit(): void {
     this.checkCookies();
+    this.canShowLoginModal = this.apiService.getLoginModalStatus();
+    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
     window.scrollTo(0, 0);
   }
 }

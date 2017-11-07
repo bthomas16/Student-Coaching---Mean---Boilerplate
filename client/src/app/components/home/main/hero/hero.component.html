@@ -5,69 +5,70 @@
       <div [ngClass]="messageClass">
       {{message}}</div>
     </div>
-    <p class="flex mainTitle">Reinventing Learning</p>
-    <p class="flex mainInfo">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+
+    <p class="flex mainTitle" (click)="hideRegisterModal()">Reinventing Learning</p>
+    <p class="flex mainInfo" (click)="hideRegisterModal()">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
   </div>
   <div class="flex buttons">
-      <button type="button" class="btn btn-default register" data-toggle="modal" data-target="#register">Sign Up for FREE</button>
-      <p class="account">Already have an account? <a data-toggle="modal" data-target="#login" class="login">Login Here</a>
+      <button type="button" class="btn btn-default register" (click)="showRegisterModal()">Sign Up for FREE</button>
+      <p class="flex switchAccount">Already have an account? <em (click)="showLoginModal()" class="pointer">Login Here</em>
       </p>
   </div>
 
-  <!-- [ <Re></Re>gister #1] -->
-  <div class="modal fade" id="register" tabindex="-1">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title caps"><strong>User Register</strong></h4>
-      </div>
-      <div class="flex">
-        <div class="flex half registerText">
-            <h2 class="flex bigTitle">Start improving your golf skills now</h2>
-            <p class="flex littleText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
-        </div>
-        <div class="flex half form">
-          <div class="modal-body">
-            <div class="form-group">
-              <app-user-register></app-user-register>
+      <!-- NEW MODAL 1 -->
+
+      <div class="flex modalWrapper" *ngIf="canShowRegisterModal">
+        <div class="flex">
+          <h4 class="caps"><strong>SAVVY Register</strong></h4>
+          <div class="flex xClose">
+            <i class="fa fa-times fa-2x pointer" aria-hidden="true" (click)="hideRegisterModal()"></i>
+          </div>
+          <div class="modalContent">
+            <div class="row show-hide-message">
+              <div [ngClass]="messageClass">
+              {{message}}</div>
+            </div>
+            <div class="flex">
+              <div class="flex half modalText">
+                  <p class="flex title">Start improving your golf skills now</p>
+                  <p class="flex subText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+              </div>
+              <div class="flex half form">
+                  <div class="form-group">
+                    <app-user-register></app-user-register>
+                    <div class=" flex">
+                      <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer">Login Here</em></p>
+                    </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
 
-
-       <div class="modal-footer flex">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login" data-dismiss="modal">Already have an account? <em>Login Here</em></button>
-        </div>
-     </div>
-    </div>
-  </div>
-
   <!-- [ Modal #2 ] -->
-  <div class="modal fade" id="login" tabindex="-1">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title caps"><strong>User Login</strong></h4>
-        <div class="row show-hide-message">
-          <div [ngClass]="messageClass">
+
+
+  <!-- NEW MODAL 2 -->
+
+  <div class="flex modalWrapper" *ngIf="canShowLoginModal">
+    <div class="flex">
+      <h4 class="flex caps"><strong>SAVVY Login</strong></h4>
+      <div class="flex xClose">
+        <i class="fa fa-times fa-2x pointer" aria-hidden="true" (click)="hideLoginModal()"></i>
+      </div>
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
           {{message}}</div>
         </div>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
+      <div class="modalContent">
+        <div class="flex">
           <app-user-login></app-user-login>
+          <div class=" flex">
+            <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer">Register</em></p>
+          </div>
         </div>
-      </div>
-       <div class="modal-footer flex">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register" data-dismiss="modal">Don't have an account? <em>Register Here</em></button>
-        </div>
-       </div>
       </div>
     </div>
   </div>

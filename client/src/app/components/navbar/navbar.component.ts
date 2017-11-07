@@ -14,6 +14,8 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
 
   // @Input('showMenu') showMenu;
   showMenu: boolean = false;
+  canShowRegisterModal;
+  canShowLoginModal;
 
   constructor(public authService: AuthService, public apiService: ApiService, private router: Router, private flashMessagesService: FlashMessagesService) { }
 
@@ -44,14 +46,39 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
     this.apiService.changeMenuFalse(this.showMenu);
   }
 
-  // canShowMenu() {
-  //   if(this.showMenu === false) {
-  //     return this.showMenu = true
-  //   } else
-  //   return this.showMenu = false;
-  // }
+  registerModal() {
+    if(this.canShowLoginModal = true) {
+      let valueFalse = false;
+      this.apiService.loginModal(valueFalse)
+    }
+    let value = true;
+    this.apiService.registerModal(value);
+  }
+
+  loginModal() {
+    if(this.canShowRegisterModal = true) {
+      let valueFalse = false;
+      this.apiService.registerModal(valueFalse)
+    }
+    let value = true;
+    this.apiService.loginModal(value);
+  }
+
+  hideModal() {
+    if(this.canShowLoginModal === true) {
+      let value = false;
+      this.apiService.loginModal(value);
+    }
+    if(this.canShowRegisterModal === true) {
+      let value = false;
+      this.apiService.registerModal(value);
+    }
+
+  }
 
   ngOnInit() {
+    this.canShowLoginModal = this.apiService.getLoginModalStatus();
+    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
   }
 
 }

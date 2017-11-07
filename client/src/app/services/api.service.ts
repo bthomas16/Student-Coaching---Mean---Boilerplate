@@ -9,6 +9,8 @@ export class ApiService {
   canRate: boolean = false;
   options;
   authToken;
+  canShowRegisterModal;
+  canShowLoginModal;
   // development server
   // server = "http://localhost:8080";
   // production server
@@ -74,5 +76,31 @@ export class ApiService {
 
     getRatingStatus() {
       return this.canRate;
+    }
+
+    registerModal(value) {
+      if(value === true) {
+        this.canShowRegisterModal = true;
+        return true;
+      }
+      this.canShowRegisterModal = false;
+      return false;
+    }
+
+    getRegisterModalStatus() {
+      return this.canShowRegisterModal;
+    }
+
+    loginModal(value) {
+      if(value === true) {
+        this.canShowLoginModal = true;
+        return true;
+      }
+      this.canShowLoginModal = false;
+      return false;
+    }
+
+    getLoginModalStatus() {
+      return this.canShowLoginModal;
     }
   }

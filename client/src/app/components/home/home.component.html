@@ -19,7 +19,6 @@
           <li *ngIf="emailMessage"> {{emailMessage}} </li>
         </ul>
         <div class="form-group input">
-          <label for="email">Email Addres</label>
           <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
             <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
           </div>
@@ -34,9 +33,9 @@
 <div class="flex wrapper" (click)="closeInitialModal()">
   <div class="flex">
     <app-hero class="hero"></app-hero>
-    <app-options class="options"></app-options>
-    <app-future class="future"></app-future>
-    <app-teachers-list class="teachers-list homeTeachersList"></app-teachers-list>
-    <app-bottom-sign-up class="bottom-sign-up"></app-bottom-sign-up>
+    <app-options class="options" (click)="hideModal()"></app-options>
+    <app-future class="future" (click)="hideModal()"></app-future>
+    <app-teachers-list class="teachers-list homeTeachersList" (click)="hideModal()"></app-teachers-list>
+    <app-bottom-sign-up class="bottom-sign-up" (click)="hideModal()"></app-bottom-sign-up>
   </div>
-  </div>
+</div>

@@ -2,8 +2,13 @@ form {
   width: 90%;
 }
 
+input {
+  border-radius: 0;
+}
+
 .submit {
   background-color: #1BACFC;
+  border-radius: 0;
 }
 
 @media(max-width:600px) {

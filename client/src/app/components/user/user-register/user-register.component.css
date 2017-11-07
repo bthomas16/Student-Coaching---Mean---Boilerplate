@@ -23,6 +23,10 @@ h1 {
   margin-bottom: 1em;
 }
 
+input {
+  border-radius: 0;
+}
+
 .buttons {
   margin-bottom: 1em;
 }
@@ -32,6 +36,7 @@ h1 {
   background-color: white;
   color: #5563F0;
   margin-bottom: 1em;
+  border-radius: 0;
 }
 
 
@@ -51,6 +56,7 @@ h1 {
 
 .submit {
   background-color: #1BACFC;
+  border-radius: 0;
 }
 
 .explainText {
@@ -103,5 +109,15 @@ h1 {
 
   .role {
     margin-bottom: 1em;
+  }
+}
+
+@media(max-width: 325px){
+  form {
+    width: 100%;
+  }
+  .butt {
+    width: 50%;
+    margin: 0;
   }
 }

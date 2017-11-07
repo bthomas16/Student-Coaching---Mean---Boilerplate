@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <button [disabled]="!form.valid || processing || !emailValid || (!studentClick && !teacherClick)" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="registerSubmit()">Submit</button>
+  <button [disabled]="!form.valid || processing || !emailValid || (!studentClick && !teacherClick)" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="onRegisterSubmit()">Submit</button>
   <!-- <p class="account">Already have an account? <a routerLink="/login"><em class="em">Login Here</em></a></p> -->
 </form>
 </div>

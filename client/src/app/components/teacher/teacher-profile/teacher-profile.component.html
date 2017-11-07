@@ -127,8 +127,10 @@
           </li> -->
         </ul>
         <div class="flex activateButtons" *ngIf="canChangeStatus">
-          <button class="btn btn-danger" (click)="goOffline()">Go Offline</button>
-          <button class="btn btn-info" (click)="goOnline()">Go Online</button>
+          <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus === 'ONLINE'">Go Offline</button>
+          <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus === 'OFFLINE'">Stay Offline</button>
+          <button class="btn btn-info" (click)="goOnline()" *ngIf="onlineStatus === 'OFFLINE'">Go Online</button>
+          <button class="btn btn-info" (click)="goOnline()" *ngIf="onlineStatus === 'ONLINE'">Stay Online</button>
         </div>
       </div>
     </div>

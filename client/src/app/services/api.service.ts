@@ -12,9 +12,9 @@ export class ApiService {
   canShowRegisterModal;
   canShowLoginModal;
   // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080";
   // production server
-  server = "";
+  // server = "";
 
   constructor(
     public authService: AuthService,

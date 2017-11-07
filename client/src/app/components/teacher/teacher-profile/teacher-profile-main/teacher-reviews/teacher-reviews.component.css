@@ -104,7 +104,7 @@
 
 @media(max-width:900px) {
   .wrapper {
-    width: 815px;
+    width: 775px;
   }
 }
 
@@ -122,19 +122,24 @@
 
 @media(max-width: 600px) {
   .wrapper {
-    width: 555px;
+    width: 525px;
+  }
+}
+@media(max-width: 500px) {
+  .wrapper {
+    width: 445px;
   }
 }
 
 @media(max-width:425px) {
   .wrapper {
-    width: 375px;
+    width: 355px;
   }
 }
 
 @media(max-width: 375px) {
   .wrapper {
-    width: 300px;
+    width: 270px;
     padding: .5em;
   }
 

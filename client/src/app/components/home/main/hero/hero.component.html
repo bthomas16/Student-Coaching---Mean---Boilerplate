@@ -24,10 +24,6 @@
             <i class="fa fa-times fa-2x pointer" aria-hidden="true" (click)="hideRegisterModal()"></i>
           </div>
           <div class="modalContent">
-            <div class="row show-hide-message">
-              <div [ngClass]="messageClass">
-              {{message}}</div>
-            </div>
             <div class="flex">
               <div class="flex half modalText">
                   <p class="flex title">Start improving your golf skills now</p>
@@ -59,16 +55,13 @@
         <i class="fa fa-times fa-2x pointer" aria-hidden="true" (click)="hideLoginModal()"></i>
       </div>
       <div class="row show-hide-message">
-        <div [ngClass]="messageClass">
-          {{message}}</div>
-        </div>
-      <div class="modalContent">
-        <div class="flex">
-          <app-user-login></app-user-login>
-          <div class=" flex">
-            <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer">Register</em></p>
+        <div class="modalContent">
+          <div class="flex">
+            <app-user-login></app-user-login>
+            <div class=" flex">
+              <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer">Register</em></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>

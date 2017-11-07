@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
 import { AuthGuard } from '../../../guards/auth.guard';
+
 
 @Component({
   selector: 'app-user-login',
@@ -11,7 +12,6 @@ import { AuthGuard } from '../../../guards/auth.guard';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
 message;
 messageClass;
 processing = false;
@@ -19,7 +19,7 @@ form;
 previousUrl;
 dataDismissAttribute = '';
 
-  constructor (private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private authGuard: AuthGuard) {
+  constructor (private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private authGuard: AuthGuard, private apiService: ApiService) {
     this.createForm();
 }
 
@@ -40,13 +40,13 @@ enableForm(){
   this.form.controls['password'].enable();
 }
 
-loginSubmit() {
-  this.dataDismissAttribute="modal"
-  console.log(this.dataDismissAttribute)
-  setTimeout(() => {
-    this.onLoginSubmit();
-  }, 1);
-}
+// loginSubmit() {
+//   this.dataDismissAttribute="modal"
+//   console.log(this.dataDismissAttribute)
+//   setTimeout(() => {
+//     this.onLoginSubmit();
+//   }, 1);
+// }
 
 onLoginSubmit() {
   this.processing = true;
@@ -66,6 +66,8 @@ onLoginSubmit() {
       this.message = data.message;
       this.authService.storeData(data.token, data.user);
       setTimeout(() => {
+        let value = false;
+        this.apiService.registerModal(value);
         if (this.previousUrl) {
           this.router.navigate([this.previousUrl])
         } else {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 
 
@@ -23,7 +24,7 @@ export class UserRegisterComponent implements OnInit {
   teacherRole = '';
   dataDismissAttribute = '';
 
-  constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private apiService: ApiService) {
     this.createForm()
   }
 
@@ -95,12 +96,12 @@ teacherClickHandler(event) {
 }
 }
 
-  registerSubmit() {
-    this.dataDismissAttribute="modal"
-    setTimeout(() => {
-      this.onRegisterSubmit();
-    }, 1);
-  }
+  // registerSubmit() {
+  //   this.dataDismissAttribute="modal"
+  //   setTimeout(() => {
+  //     this.onRegisterSubmit();
+  //   }, 1);
+  // }
 
   onRegisterSubmit() {
     this.processing = true;
@@ -123,8 +124,10 @@ teacherClickHandler(event) {
       this.message = data.message;
       this.authService.storeData(data.token, data.user);
       setTimeout(() => {
-        this.router.navigate(['/profile'])
-      }, 1200)
+        let value = false;
+        this.apiService.registerModal(value);
+        this.router.navigate(['/profile']);
+      }, 1200);
     }
   });
   }

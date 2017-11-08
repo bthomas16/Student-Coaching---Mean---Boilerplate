@@ -16,11 +16,11 @@
       </div>
     </div>
     <div class="flex reviewTextDiv">
-      <p class="reviewText">"{{rating.text | shorten:80}}"</p>
+      <p class="reviewText">"{{rating.text | shorten:shortenNumber}}"</p>
     </div>
     <div class="flex readMoreRatings">
-      <a class="readMore" *ngIf="!canReadMore" [ngClass]="{disabled: !rating.text.charAt(80)}">Read More</a>
-      <a class="readMore" *ngIf="canReadMore">Read Less</a>
+      <a class="readMore" *ngIf="canReadMore" [ngClass]="{disabled: !rating.text.charAt(80)}" (click)="shortenNumber = rating.text.length && (canReadMore = !canReadMore)">Read More</a>
+      <a class="readMore" *ngIf="!canReadMore" (click)="shortenNumber = 80 && (canReadMore = !canReadMore)">Read Less</a>
     </div>
   </div>
 </div>

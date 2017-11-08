@@ -58,6 +58,7 @@ li.nav-item a {
 }
 
 .submit {
+  width: auto;
   width: 100%;
   font-size: 1.5em;
   padding: .325em;
@@ -75,8 +76,12 @@ li.nav-item a {
   padding:.5em;
 }
 
+.inputDiv {
+  width: 65%;
+}
+
 .input {
-  width: 50%;
+  height: 2.5em;
 }
 
 @media(max-width:725px) {
@@ -86,7 +91,7 @@ li.nav-item a {
     margin: 0;
   }
 
-  .input {
+  .inputDiv {
     width: 40%;
   }
 
@@ -109,10 +114,14 @@ li.nav-item a {
     padding-left: 40%;
     text-align: center;
   }
+
+  .submit {
+    width: 100%;
+  }
 }
 
 @media(max-width:425px) {
-  .input {
+  .inputDiv {
     width: 45%;
   }
 

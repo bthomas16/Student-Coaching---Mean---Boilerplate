@@ -66,6 +66,10 @@
   z-index: 1000;
 }
 
+.loginWrapper {
+  width: 35%;
+}
+
 .modalWrapper h4 {
   color: white;
 }

@@ -51,15 +51,15 @@
           <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.touched">Must be a valid email</li>
           <li *ngIf="emailMessage"> {{emailMessage}} </li>
         </ul> -->
-        <div class="input">
+        <div class="inputDiv">
           <div *ngIf="show">
             <div [ngClass]="messageClass">
             {{message}}
             </div>
           </div>
-          <label for="email">Email Addres</label>
+          <!-- <label for="email">Email Addres</label> -->
           <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
-            <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
+            <input type="text" class="form-control input" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
           </div>
         </div>
         <div class="button">

@@ -281,7 +281,7 @@ router.put('/teacher-rating', (req, res) => {
             res.json({ success: false, message: 'No User will be Rated'});
           } else {
               if(req.decoded.userId === req.body.beingRatedId) {
-                res.json({ success: false, message: "You can't rate yourself :("})
+                res.json({ success: false, message: "You can't rate yourself"})
               } else {
               userBeingRated.ratings.push({
                 kRatings: req.body.kRatings,

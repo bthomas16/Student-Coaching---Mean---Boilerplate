@@ -28,6 +28,7 @@ export class TeacherReviewsComponent implements OnInit {
     readSliceNumber;
     originalTeachersListLength;
     canShowMore: boolean = true;
+    shortenNumber: number = 80;
 
 
     constructor(public authService: AuthService, private route: ActivatedRoute, private shufflePipe: ShufflePipe) { }

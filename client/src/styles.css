@@ -126,3 +126,16 @@ flash-message {
     font-size: 1em;
     font-weight: 400;
 }
+
+.btn {
+  border-radius: 0;
+  border: none;
+}
+
+input {
+  border-radius: 0;
+}
+
+.form-control {
+  border-radius: 0;
+}

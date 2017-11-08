@@ -44,13 +44,14 @@
 
 .reviewTextDiv {
   justify-content: flex-start;
+  overflow: scroll;
 }
 
 .reviewText {
-  margin-left: -1.75em;
-  margin-top: .5em;
+  margin-left: -1.25em;
   font-size: 1.25em;
   font-weight: 300;
+  padding: .5em;
 }
 
 .readMoreRatings {

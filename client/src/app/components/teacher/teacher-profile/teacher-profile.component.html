@@ -1,7 +1,12 @@
+<div class="loadingDiv" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
 <div class="row show-hide-message" *ngIf="show">
   <div [ngClass]="messageClass">
   {{message}}</div>
 </div>
+
 
 <div class="flex becomeTeacher" *ngIf="!isTeacher">
   <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
@@ -18,7 +23,7 @@
 
 
 
-<div class="flex" *ngIf="isTeacher" (click)="closeStatusModal()">
+<div class="flex" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
   <app-teacher-profile-main></app-teacher-profile-main>
   <div class="flex notes">
       <h3 class="flex left-text">About {{ capFullname }}</h3>
@@ -89,9 +94,7 @@
 </div>
 
 
-
-
-
+<span *ngIf="!isLoading && !isOnline">
 <div class="flex statusModal" [ngClass]="{fadeOut: cookies}">
   <div class="flex">
     <div class="flex xClose">
@@ -136,3 +139,4 @@
     </div>
   </div>
 </div>
+</span>

@@ -39,7 +39,7 @@ export class FilterPipe implements PipeTransform {
         console.log('here');
         return value;
       }
-        if((item[propNameCounty] === county) || (item[propNameSkill1] === skill || item[propNameSkill2] === skill || item[propNameSkill3] === skill)) {
+        if((item[propNameCounty] === county || county === 'Select a County') && (item[propNameSkill1] === skill || item[propNameSkill2] === skill || item[propNameSkill3] === skill || skill === 'Select a Skill')) {
           console.log(skill, 'skeel')
           resultArray.push(item)
         }

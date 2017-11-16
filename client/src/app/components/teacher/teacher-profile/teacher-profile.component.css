@@ -214,22 +214,20 @@ span {
 
 .statusModal {
   position: fixed;
-  display: block;
-  top: 0;
-  margin-top: 10%;
-  margin-left: 22.25%;
-  z-index: 100;
+  top: 25%;
+  left: 23%;
+  right: 23%;
+  z-index: 1000;
   color: white;
   background-color: rgba(	85, 99, 240,1);
   width: auto;
-  max-width: 55%;
   height: justify;
   padding: 2em;
 }
 
 .statusModal h3 {
   font-weight: 500;
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 
 .statusList {
@@ -256,12 +254,6 @@ span {
 
 .xClose:hover {
   cursor: pointer;
-}
-
-.activateButtons button {
-  margin: 1em;
-  padding: .5em;
-  font-weight: 500;
 }
 
 .fadeOut {
@@ -303,6 +295,14 @@ visibility: hidden;
     width: 35em;
     height: 4.5em;
   }
+
+  .statusModal {
+    top: 10%;
+    z-index: 100;
+    left: 10.5%;
+    right: 10.5%;
+    padding: 2em;
+  }
 }
 
 @media(max-width: 650px) {
@@ -333,6 +333,8 @@ visibility: hidden;
     align-self: flex-start;
     margin-left: 0;
   }
+
+
 }
 
 @media(max-width: 500px) {
@@ -435,18 +437,10 @@ visibility: hidden;
 /*STATUS MODAL MOBILE*/
 
 .statusModal {
-  position: fixed;
-  display: block;
-  top: 0;
-  margin-top: 25%;
-  margin-left: 5%;
-  margin-right: 5%;
+  top: 10%;
   z-index: 100;
-  color: white;
-  background-color: rgba(	85, 99, 240,1);
-  width: 90%;
-  max-width: 90%;
-  height: auto;
+  left: 4.5%;
+  right: 4.5%;
   padding: 2em;
 }
 

@@ -62,6 +62,8 @@ export class TeacherProfileComponent implements OnInit {
   profPicName;
   capFullname;
 
+  isLoading: boolean = true;
+
 
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
@@ -282,6 +284,9 @@ export class TeacherProfileComponent implements OnInit {
       }
     });
     this.checkCookies();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
     window.scrollTo(0, 0);
   }
 }

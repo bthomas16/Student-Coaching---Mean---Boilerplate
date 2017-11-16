@@ -14,35 +14,79 @@
 }
 
 .selectDiv {
-  width: 25%;
+  width: auto;
 }
 
 select {
-  display: none;
-}
 
-.select {
+  /* styling */
+  background-color: transparent;
   display: inline-block;
-  padding-right: 1em;
-  appearance: none;
-  background-color: #f2f2f2;
+  line-height: 1.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
+  font-size: 1.25em;
+  margin: .5em;
+  border: .5px lightgrey solid;
   border: none;
-  opacity: 1;
-  font-weight: 300;
-  font-size: 1.15em;
-  color: #4F4F4F;
+
+  /* reset */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .select:focus {outline:0;}
 
-.fa-angle-down {
-  font-size: 1.5em;
-  color:  #1BACFC;
-}
 
 input {
   margin: 2%;
 }
+
+
+
+
+select.minimal {
+  color: #5563F0;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #5563F0 50%),
+    linear-gradient(135deg, #5563F0 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+  background-image:
+    linear-gradient(45deg, #5563F0 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, #5563F0 50%);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  /*border-color: green;*/
+  border: none;
+  outline: 0;
+}
+
+
+
+
+
+
+
 
 .teacher {
   width: 417px;

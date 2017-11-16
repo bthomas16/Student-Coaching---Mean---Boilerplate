@@ -36,6 +36,8 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   canShowRegisterModal;
   canShowLoginModal;
 
+  isLoading: boolean = true;
+
   constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, public apiService: ApiService, private router: Router) {
     this.createForm()
   }
@@ -147,9 +149,12 @@ export class HomeComponent implements OnInit, AfterContentChecked {
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.checkCookies();
     this.canShowLoginModal = this.apiService.getLoginModalStatus();
     this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 600);
   }
 }

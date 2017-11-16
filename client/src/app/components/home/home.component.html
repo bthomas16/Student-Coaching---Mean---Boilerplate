@@ -1,3 +1,7 @@
+<div class="loadingDiv" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
 <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}">
   <div class="flex">
     <div class="flex xClose">

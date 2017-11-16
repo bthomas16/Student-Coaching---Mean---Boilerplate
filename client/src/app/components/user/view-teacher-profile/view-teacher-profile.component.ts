@@ -36,6 +36,8 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   showRate: boolean = false;
   findTeacher: boolean = true;
 
+  isLoading: boolean = true;
+
   awsBucket: string = 'https://s3.amazonaws.com/savvyappphotos/';
 
   constructor(public authService: AuthService, public apiService: ApiService, private route: ActivatedRoute) {}
@@ -90,7 +92,10 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                this.teacherPRatingsArray = viewTeacher.teacher.ratings.pRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.pRatingsArray.length;
                this.teacherTARatingsArray = viewTeacher.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.taRa
              }
-         })
+         });
+         setTimeout(() => {
+           this.isLoading = false;
+         }, 1000);
          return true;
        }
     this.authService.getProfile().subscribe(profile => {
@@ -100,6 +105,9 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
       this.userIsStudent = profile.user.isStudent;
       this.userIsTeacher = profile.user.isTeacher;
       this.experiences = profile.user.experiences;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 600);
     });
   });
     window.scrollTo(0, 0);

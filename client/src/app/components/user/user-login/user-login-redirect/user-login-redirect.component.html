@@ -1,4 +1,8 @@
-<div class="flex imgBackground">
+<div class="loadingDiv" *ngIf="isLoading">
+  <img src="../../../../assets/purpleLoader.gif" alt="">
+</div>
+
+<div class="flex imgBackground" *ngIf="!isLoading">
   <div class="flex wrap">
     <h4 class="flex">User Login</h4>
     <app-user-login></app-user-login>

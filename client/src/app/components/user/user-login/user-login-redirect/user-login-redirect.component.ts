@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginRedirectComponent implements OnInit {
   showModal: boolean = true;
+  isLoading: boolean = true;
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class UserLoginRedirectComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 600);
   }
 
 }

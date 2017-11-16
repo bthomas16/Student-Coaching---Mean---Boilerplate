@@ -1,3 +1,8 @@
+<div class="loadingDiv" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
+<span *ngIf="!isLoading">
 <div class="flex featured">
   <app-featured-teacher></app-featured-teacher>
 </div>
@@ -24,6 +29,7 @@
       </div>
   </div>
 </div>
+</span>
 
 
 <!-- <div class="flex choose">

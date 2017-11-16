@@ -1,3 +1,7 @@
+<div class="loadingDiv" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
 <div class="greyOut" *ngIf='canRate'></div>
 
 <div class="row show-hide-message" *ngIf="show">
@@ -5,7 +9,7 @@
   {{message}}</div>
 </div>
 
-<span *ngIf="!findTeacher">
+<span *ngIf="!findTeacher && !isLoading">
   <div class="flex wrapper">
     <div class="flex">
       <app-teacher-profile-main></app-teacher-profile-main>

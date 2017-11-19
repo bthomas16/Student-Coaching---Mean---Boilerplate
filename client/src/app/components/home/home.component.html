@@ -2,10 +2,11 @@
   <div class="loader"></div>
 </div>
 
-<div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}">
+<!-- <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}"> -->
+<div class="flex modall" [@modalFade]="state">
   <div class="flex">
     <div class="flex xClose">
-      <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeInitialModal()"></i>
+      <i class="fa fa-times fa-2x" aria-hidden="true" (click)="animate()"></i>
     </div>
     <div class="flex text">
       <p class="flex modalTitle"><strong>savvy</strong></p>
@@ -34,12 +35,13 @@
     </form>
 </div>
 
-<div class="flex wrapper" (click)="closeInitialModal()">
+<div class="flex wrapper">
+<!-- <div class="flex wrapper" (click)="animate()"> -->
   <div class="flex">
     <app-hero class="hero"></app-hero>
-    <app-options class="options" (click)="hideModal()"></app-options>
-    <app-future class="future" (click)="hideModal()"></app-future>
-    <app-teachers-list class="teachers-list homeTeachersList" (click)="hideModal()"></app-teachers-list>
-    <app-bottom-sign-up class="bottom-sign-up" (click)="hideModal()"></app-bottom-sign-up>
+    <app-options class="options"></app-options>
+    <app-future class="future"></app-future>
+    <app-teachers-list class="teachers-list homeTeachersList"></app-teachers-list>
+    <app-bottom-sign-up class="bottom-sign-up"></app-bottom-sign-up>
   </div>
 </div>

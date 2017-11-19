@@ -57,17 +57,26 @@
 
 /*REGISTER MODAL*/
 
+
 .modalWrapper {
   position: fixed;
   width: 65%;
   background-color: #5563F0;
   padding: 1.5em;
-  opacity: 1;
   z-index: 1000;
 }
 
+.registerWrapper {
+  margin-top: 2em;
+  padding: 1.5em;
+  padding-top: .5em;
+}
+
 .loginWrapper {
-  width: 35%;
+  width: 40%;
+  padding: 1.5em;
+  padding-top: .5em;
+  z-index: 900;
 }
 
 .modalWrapper h4 {
@@ -77,7 +86,7 @@
 .xClose {
   position: absolute;
   right: 6em;
-  top: 1.5em;
+  top: .95em;
   justify-content: flex-end;
   color: white;
 }
@@ -116,6 +125,12 @@
   color: #1BACFC;
   margin-left: .25em;
 }
+
+.caps {
+  margin-bottom: 1.5em;
+}
+
+
 @media(max-width: 780px) {
 
   .wrapper {
@@ -133,6 +148,10 @@
 
   .buttons {
     padding-bottom: 0;
+    width: 75%;
+  }
+
+  .loginWrapper {
     width: 75%;
   }
 }
@@ -194,6 +213,10 @@
   .xClose {
     right: 3em;
   }
+
+  .loginWrapper {
+    width: 80%;
+  }
 }
 
 @media(max-width:500px) {
@@ -227,6 +250,10 @@
   .xClose {
     top: 1.75em;
   }
+
+  .loginWrapper {
+    width: 90%;
+  }
 }
 
 @media(max-width:375px) {
@@ -245,10 +272,6 @@
 
   .modalWrapper {
     width: 95%;
-  }
-
-  .caps {
-    margin-right: 1.25em;
   }
 
   .xClose {

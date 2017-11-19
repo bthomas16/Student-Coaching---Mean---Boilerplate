@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, trigger, state, transition, style, animate} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
@@ -14,8 +14,8 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
 
   // @Input('showMenu') showMenu;
   showMenu: boolean = false;
-  canShowRegisterModal;
-  canShowLoginModal;
+  registerState;
+  loginState;
 
   constructor(public authService: AuthService, public apiService: ApiService, private router: Router, private flashMessagesService: FlashMessagesService) { }
 
@@ -46,39 +46,61 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
     this.apiService.changeMenuFalse(this.showMenu);
   }
 
-  registerModal() {
-    if(this.canShowLoginModal = true) {
-      let valueFalse = false;
-      this.apiService.loginModal(valueFalse)
-    }
-    let value = true;
-    this.apiService.registerModal(value);
-  }
+  // registerModal() {
+  //   if(this.loginState === 'registerFadein') {
+  //     let value = 'normal';
+  //     this.apiService.loginModal(value)
+  //     return true;
+  //   }
+  //   let value = 'registerFadein';
+  //   this.apiService.registerModal(value);
+  // }
 
   loginModal() {
-    if(this.canShowRegisterModal = true) {
-      let valueFalse = false;
-      this.apiService.registerModal(valueFalse)
+    this.registerState = 'normal'
+    let rvalue = this.registerState;
+    this.apiService.registerModal(rvalue);
+    if(this.loginState === 'normal') {
+      this.loginState = 'loginFadein'
+      let value = this.loginState;
+      this.apiService.loginModal(value)
+      console.log(value, 'is the loginModal status')
+      // return true;
     }
-    let value = true;
+    this.loginState = 'normal';
+    // this.loginState = 'normal';
+    // // this.registerState = 'normal';
+    // let value = this.loginState;
+    // let rvalue = this.registerState;
+    // this.apiService.loginModal(value);
+    // this.apiService.registerModal(rvalue)
+    // return true;
+  }
+
+  registerModal() {
+    this.loginState = 'normal';
+    let value = this.loginState;
     this.apiService.loginModal(value);
+    console.log(value, 'is the loginModal status')
+    if(this.registerState === 'normal') {
+      this.registerState = 'registerFadein'
+      let rvalue = this.registerState;
+      this.apiService.registerModal(rvalue)
+      // return true;
+    }
+    this.registerState = 'normal';
+    // this.registerState = 'normal';
+    // let value = this.loginState;
+    // let rvalue = this.registerState;
+    // this.apiService.loginModal(value);
+    // this.apiService.registerModal(rvalue)
+    // return true;
   }
 
-  hideModal() {
-    if(this.canShowLoginModal === true) {
-      let value = false;
-      this.apiService.loginModal(value);
-    }
-    if(this.canShowRegisterModal === true) {
-      let value = false;
-      this.apiService.registerModal(value);
-    }
-
-  }
 
   ngOnInit() {
-    this.canShowLoginModal = this.apiService.getLoginModalStatus();
-    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
+    this.loginState = this.apiService.getLoginModalStatus();
+    this.registerState = this.apiService.getRegisterModalStatus();
   }
 
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
@@ -97,6 +98,7 @@ import { ShortenPipe } from './pipes/shorten.pipe';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

@@ -1,7 +1,7 @@
 <div class="flex bar" (click)="closeRating()">
-  <div class="flex logo" (click)="changeMenuFalse() && hideModal()">
-    <a routerLink="home" *ngIf="!authService.loggedIn()" (click)="hideModal()">savvy</a>
-    <a routerLink="profile" *ngIf="authService.loggedIn()" (click)="hideModal()">savvy</a>
+  <div class="flex logo">
+    <a routerLink="home" *ngIf="!authService.loggedIn()">savvy</a>
+    <a routerLink="profile" *ngIf="authService.loggedIn()">savvy</a>
   </div>
   <div class="flex options" *ngIf="!authService.loggedIn()">
     <a (click)="loginModal()">Login</a>

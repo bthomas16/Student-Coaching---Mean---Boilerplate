@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked, trigger, transition, style, animate } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, trigger, state, transition, style, animate} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
@@ -7,23 +7,22 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  animations: [
-    trigger(
-      'enterAnimation', [
-        transition(':enter', [
-          style({transform: 'translateX(100%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
-        ]),
-        transition(':leave', [
-          style({transform: 'translateX(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
-        ])
-      ]
-    )
-  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('modalFade', [
+      state('normal', style({display: 'none', transition: 'all .5s ease-in-out',
+      opacity: 0
+      })),
+      state('fadein', style({display: 'block', transition: 'all .5s ease-in-out',
+      opacity: 1
+      })),
+      transition('normal <=> fadein', animate(500))
+      ])
+    ]
+  }
+)
+
 export class HomeComponent implements OnInit, AfterContentChecked {
   cookieValue = 'UNKNOWN';
   cookies: boolean = false;
@@ -37,6 +36,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   canShowLoginModal;
 
   isLoading: boolean = true;
+  state = 'normal';
 
   constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, public apiService: ApiService, private router: Router) {
     this.createForm()
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   }
 
   emailSubmit() {
-    this.closeInitialModal();
+    this.animate()
     this.onEmailSubmit();
   }
 
@@ -117,44 +117,33 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   checkCookies() {
       this.cookieValue = this.cookieService.get('Skillz');
       if(this.cookieValue == "Here, have some cookies!") {
+        this.state = "normal";
         return true
       }
-      setTimeout(() => {
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
+        this.state = "fadein";
         return false
-      },120000)
   }
 
-  closeInitialModal() {
-    this.cookies = true;
+  animate() {
+    console.log('sop')
+    this.state == "normal" ? this.state = 'fadein' : this.state = 'normal'
     this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
-    this.checkCookies();
   }
 
-  hideModal() {
-    let value = false;
-    if(this.canShowLoginModal = true) {
-      this.apiService.loginModal(value)
-    }
-    if(this.canShowRegisterModal = true) {
-      this.apiService.registerModal(value)
-    }
-    // return true;
-  }
 
   ngAfterContentChecked() {
-    this.canShowLoginModal = this.apiService.getLoginModalStatus();
-    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
   }
 
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.checkCookies();
-    this.canShowLoginModal = this.apiService.getLoginModalStatus();
-    this.canShowRegisterModal = this.apiService.getRegisterModalStatus();
+    // this.checkCookies();
     setTimeout(() => {
       this.isLoading = false;
     }, 600);
+    setTimeout(() => {
+      this.checkCookies()
+    }, 2500);
   }
 }

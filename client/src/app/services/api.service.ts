@@ -9,17 +9,20 @@ export class ApiService {
   canRate: boolean = false;
   options;
   authToken;
-  canShowRegisterModal;
-  canShowLoginModal;
+  registerState = 'normal';
+  loginState = 'normal';
   // development server
-  server = "http://localhost:8080";
+  // server = "http://localhost:8080";
   // production server
-  // server = "";
+  server = "";
 
   constructor(
     public authService: AuthService,
     private http: Http
-  ) { }
+  ) {
+    this.registerState =  'normal';
+    this.loginState = 'normal';
+  }
 
   // Function to create headers, add token, to be used in HTTP requests
   createAuthenticationHeaders() {
@@ -79,28 +82,30 @@ export class ApiService {
     }
 
     registerModal(value) {
-      if(value === true) {
-        this.canShowRegisterModal = true;
-        return true;
+      if(value === 'registerFadein') {
+        this.registerState = 'registerFadein';
+        return this.registerState;
       }
-      this.canShowRegisterModal = false;
-      return false;
+      this.registerState = 'normal';
+      this.loginState = 'normal'
+      return this.registerState
     }
 
     getRegisterModalStatus() {
-      return this.canShowRegisterModal;
+      return this.registerState;
     }
 
     loginModal(value) {
-      if(value === true) {
-        this.canShowLoginModal = true;
-        return true;
+      if(value === 'loginFadein') {
+        this.loginState = 'loginFadein';
+        return this.loginState;
       }
-      this.canShowLoginModal = false;
-      return false;
+      this.registerState = 'normal';
+      this.loginState = 'normal';
+      return this.loginState;
     }
 
     getLoginModalStatus() {
-      return this.canShowLoginModal;
+      return this.loginState;
     }
   }

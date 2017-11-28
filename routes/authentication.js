@@ -23,7 +23,7 @@ router.post('/register', (req, res) => {
       } else {
         let user = new User({
           email: req.body.email.toLowerCase(),
-          fullname: req.body.fullname.toLowerCase(),
+          fullname: req.body.fullname,
           password: req.body.password,
           isStudent: req.body.isStudent,
           isTeacher: req.body.isTeacher
@@ -360,15 +360,16 @@ router.get('/get-featured-teacher', (req, res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-    User.find({onlineStatus: 'ONLINE' }, (err, teachers) => {
+    User.find({onlineStatus: 'ONLINE', ratings: {'$ne': null || 0 || undefined }  }, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
         if (teachers.length === 0) {
           res.json({ success: false, message: 'No teachers found' });
         } else {
-          const featuredTeacher = Math.floor((Math.random() * (teachers.length)));
-          res.json({ success: true, teacher: teachers[featuredTeacher] });
+          // const featuredTeacherStart = Math.floor((Math.random() * (teachers.length)));
+          console.log(teachers)
+          res.json({ success: true, teachers: teachers });
         }
       }
     });

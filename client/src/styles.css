@@ -97,6 +97,14 @@ ul.help-block li {
   cursor: default;
 }
 
+.navPointer {
+  cursor: default;
+}
+
+.navPointer:hover {
+  color: #AFB5F6;
+}
+
 .pointer:hover {
   cursor: pointer;
   text-decoration: none;
@@ -150,6 +158,15 @@ flash-message {
     height: auto;
     font-size: 1em;
     font-weight: 400;
+}
+
+.leftText {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.border {
+  border: 2px solid black;
 }
 
 .btn {

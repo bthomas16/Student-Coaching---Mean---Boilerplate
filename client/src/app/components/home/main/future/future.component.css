@@ -52,9 +52,11 @@
   height: 8em;
   padding: .5em;
   color: black;
+  border: none;
 }
 
 .emailInput {
+  border: none;
   margin-top: 1em;
   text-align: left;
   padding: .5em;
@@ -95,12 +97,15 @@
 
 
 .quote {
+  align-self: flex-start;
   font-size: 2.2em;
+  font-weight: 500;
   margin: auto;
   margin-top: 1em;
-  width: 100%;
+  width: 75%;
   justify-content: flex-start;
   text-align: left;
+  margin-left: 0;
 }
 
 .author {

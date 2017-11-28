@@ -32,9 +32,10 @@ input {
 }
 
 .butt {
-  width: 50%;
+  width: 48%;
   background-color: white;
   color: #5563F0;
+  margin: 1%;
   margin-bottom: 1em;
   border-radius: 0;
 }

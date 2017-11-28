@@ -252,12 +252,10 @@ export class TeacherProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.authService.getProfile()
     .subscribe(profile => {
       this.userID = profile.user.id;
       this.fullname = profile.user.fullname;
-      this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
       this.email = profile.user.email;
       this.profPicName = profile.user.profPic;
       if(this.profPicName == undefined) {

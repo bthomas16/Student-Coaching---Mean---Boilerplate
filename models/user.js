@@ -73,7 +73,7 @@ const passwordValidators = [{
 
 var studentSchema = new Schema({
     email: {type: String, required: true, unique: true, lowercase: true, validate: emailValidators},
-    fullname: {type: String, required: true, lowercase: true},
+    fullname: {type: String, required: true},
     password: {type: String, required: true, validate: passwordValidators},
     isStudent: {type: Boolean, required: false },
     isTeacher: {type: Boolean, required: false},

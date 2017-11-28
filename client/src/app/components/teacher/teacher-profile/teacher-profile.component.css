@@ -159,10 +159,6 @@ input[type="file"] {
   justify-content: flex-start;
 }
 
-.fa-plus {
-  font-size: 1.6em;
-}
-
 .experiences li i {
   font-family: 'FontAwesome';
   color: #5563F0;
@@ -222,7 +218,8 @@ span {
   background-color: rgba(	85, 99, 240,1);
   width: auto;
   height: justify;
-  padding: 2em;
+  padding: 4em;
+  padding-top: 1em;
 }
 
 .statusModal h3 {
@@ -231,18 +228,28 @@ span {
 }
 
 .statusList {
-  margin-top: 1em;
+  margin: 0;
+  padding: 0;
   width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  margin-top: .5em;
 }
 
 .status {
-  color: rgb(145,0,0);
-  font-weight: 500;
-  width: 100%;
-  margin: .25em;
+  color: #5ADA6A;
+  font-weight: 400;
   text-align: left;
-  margin-left: 4.75em;
-  font-size: 1.25em;
+  font-size: .85em;
+  width: 100%;
+}
+
+.fa-plus {
+  font-size: .75em;
+}
+
+.ploos {
+  font-size: 1.6em;
 }
 
 .xClose {

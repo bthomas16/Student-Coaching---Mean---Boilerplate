@@ -1,40 +1,47 @@
-<div class="flex wrapper">
-  <div class="flex pic">
-    <h4 class="flex featuredCoach">Featured Coach</h4>
-    <img [src]="[profPic]" alt="" class="featuredPic pointer" routerLink="{{route}}">
-  </div>
-  <div class="flex right">
-    <div class="flex top">
-      <p class="flex fullname pointer" routerLink="{{route}}">{{ fullname }}</p>
-      <div class="flex closeTogether">
-        <p class="flex handicap normalHC pointer" routerLink="{{route}}">Handicap Index of {{handicap}}</p>
-        <p class="flex handicap mobileHC pointer" routerLink="{{route}}">Handicap of {{handicap}}</p>
-        <p class="flex location pointer" routerLink="{{route}}">San Diego, CA</p>
-        <p class="flex location pointer" routerLink="{{route}}">{{county}}</p>
-        <p class="flex promotion pointer" routerLink="{{route}}"><span>{{ promoExample }}</span></p>
+
+
+<div class="container">
+  <div class="row" *ngFor="let teacher of teachersList | slice:grabValue:indexValue; let i = index">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="leftText">Featured Coach</h3>
+          <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="img-responsive pull-left pointer" routerLink="{{route}}">
+        </div>
       </div>
-   </div>
-    <h3 class="flex" *ngIf="avgRatingArray === undefined || null" style="color: darkgrey;">{{fullname}} has not yet been rated</h3>
-    <div class="flex ratingContent normalContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
-        <p class="flex ratingText">"{{teacher.text | shorten:125 }}"</p>
-        <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>
+    </div>
+    <div class="col-md-6 col-md-offset-1 teacherInfoCol">
+      <p class="name leftText">{{ teacher.fullname }}</p>
+      <p class="handicap leftText">Hanicap Index of: {{ teacher.handicap }}</p>
+      <p class="location leftText">County Served: {{ teacher.county }}</p>
+      <p class="cost leftText">${{ teacher.cost }}/HR</p>
+      <P class="quote leftText" *ngIf="teacher.ratings[0]">"{{ teacher.ratings[randomRatingIndex].text | shorten:160 }}"</P>
+      <p class="author leftText" *ngIf="teacher.ratings[0]">{{ teacher.ratings[randomRatingIndex].author }}</p>
+      <h4 class="noRate leftText" *ngIf="!teacher.ratings[0]">{{teacher.fullname}} has not been rated</h4>
     </div>
   </div>
-  <div class="flex contact normalContent">
-      <button class="btn btn-primary pointer" routerLink="{{route}}">
-        CONTACT {{ fullname }}
-      </button>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-3">
+      <nav aria-label="Page navigation" style="margin-top:.75em">
+        <ul class="pagination">
+          <li><a (click)="meep(0)" [ngClass]="'active': (value===0)">1</a></li>
+          <li><a (click)="meep(1)">2</a></li>
+          <li><a (click)="meep(2)">3</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-4" *ngFor="let teacher of teachersList | slice:grabValue:indexValue; let i = index">
+      <button class="btn btn-default contact" [routerLink]="['../view-teacher-profile/', teacher._id]">Contact {{ teacher.fullname }}</button>
+    </div>
   </div>
 </div>
 
-<div class="flex mobileContent">
-  <div class="flex ratingContent pointer" *ngFor="let teacher of teachersList | slice:0:1; let i=index" routerLink="{{route}}">
-      <p class="flex ratingText">"{{teacher.text | shorten:125 }}"</p>
-      <p class="flex ratingAuthor">{{teacher.author.toUpperCase()}}</p>
+
+<div class="flex sideArrows">
+  <div class="flex half leftArrow">
+    <i class="fa fa-chevron-left fa-3x" aria-hidden="true" (click)="down1()"></i>
   </div>
-  <div class="flex contact">
-      <button class="btn btn-primary pointer" routerLink="{{route}}">
-        CONTACT {{ fullname }}
-      </button>
+  <div class="flex half rightArrow">
+    <i class="fa fa-chevron-right fa-3x" aria-hidden="true" (click)="up1()"></i>
   </div>
 </div>

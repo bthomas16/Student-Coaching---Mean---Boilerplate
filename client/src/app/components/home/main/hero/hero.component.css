@@ -121,7 +121,7 @@
   color: lightgrey;
 }
 
-.switchAccount em {
+.switchAccount span {
   color: #1BACFC;
   margin-left: .25em;
 }

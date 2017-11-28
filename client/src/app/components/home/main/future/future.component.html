@@ -12,7 +12,7 @@
       Answer for your chance to win a free lesson!</p>
       <div class="flex form">
         <textarea name="name" class="textArea" placeholder="I would like to learn..." (keyup)="getTextArea($event)"></textarea>
-        <input type="text" name="" value="" placeholder="Emaill Address" class="emailInput" (keyup)="getEmail($event)">
+        <input type="text" name="" value="" placeholder="Email Address" class="emailInput" (keyup)="getEmail($event)">
         <div class="flex buttonDiv">
           <button class="btn btn-success submit" (click)="wantToLearnSubmit()" [disabled]="([email] == '') || ([skillToLearn] == '')">
             Submit

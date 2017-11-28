@@ -20,17 +20,16 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   messageClass;
   id;
   fullname;
-  capFullname;
   email;
   isStudent;
   isTeacher;
-  county;
-  yrsExperience;
-  skill1 = "Driving";
-  skill2 = "Approach Game";
-  skill3 = "Putting";
-  handicap;
-  cost;
+  county = '';
+  yrsExperience  = '';
+  skill1 = '';
+  skill2 = '';
+  skill3 = '';
+  handicap = '';
+  cost = '';
   profPic;
   viewTeacherID;
   ratingsList;
@@ -172,8 +171,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.isParams = true;
          this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
            this.id = viewTeacher.teacher._id;
-           this.fullname = viewTeacher.teacher.fullname.toUpperCase();
-           this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
+           this.fullname = viewTeacher.teacher.fullname;
            this.email =viewTeacher.teacher.email;
            this.isStudent =viewTeacher.teacher.isStudent;
            this.isTeacher =viewTeacher.teacher.isTeacher;
@@ -237,8 +235,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       this.authService.getProfile()
       .subscribe(profile => {
         this.id = profile.user._id;
-        this.fullname = profile.user.fullname.toUpperCase();
-        this.capFullname = this.fullname.charAt(0).toUpperCase() + this.fullname.slice(1);
+        this.fullname = profile.user.fullname;
         this.email =profile.user.email;
         this.isStudent =profile.user.isStudent;
         this.isTeacher =profile.user.isTeacher;

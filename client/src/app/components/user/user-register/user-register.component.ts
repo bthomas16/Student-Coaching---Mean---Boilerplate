@@ -106,13 +106,17 @@ teacherClickHandler(event) {
   onRegisterSubmit() {
     this.processing = true;
     this.disableForm();
+    let fullname = this.form.get('fullname').value.trim();
+    fullname.toLowerCase();
+    fullname = fullname.charAt(0).toUpperCase() + fullname.slice(1);
     const user = {
-    fullname: this.form.get('fullname').value.trim(),
+    fullname: fullname,
     email: this.form.get('email').value.toLowerCase().trim(),
     password: this.form.get('password').value.trim(),
     isStudent: this.studentClick,
     isTeacher: this.teacherClick
     }
+    console.log(fullname, 'fn')
     this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';

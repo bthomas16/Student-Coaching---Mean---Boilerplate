@@ -2,6 +2,10 @@
   background-color: #5563F0;
 }
 
+.tl {
+  background-color: #f2f2f2;
+}
+
 .img {
   width: 50%;
   justify-content: flex-start;

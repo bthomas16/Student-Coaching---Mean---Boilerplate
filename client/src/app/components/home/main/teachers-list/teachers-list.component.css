@@ -1,25 +1,7 @@
-/*SEARCH DIV*/
-
-.searchDiv {
-  width: 100vw;
-  justify-content: flex-start;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-.searchHalf {
-  width: 60%;
-  justify-content: flex-start;
-  padding-left: 5%;
-}
-
-.selectDiv {
-  width: auto;
-}
+/*Search Functionality Style*/
 
 select {
 
-  /* styling */
   background-color: transparent;
   display: inline-block;
   line-height: 1.5em;
@@ -29,7 +11,6 @@ select {
   border: .5px lightgrey solid;
   border: none;
 
-  /* reset */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -43,9 +24,6 @@ select {
 input {
   margin: 2%;
 }
-
-
-
 
 select.minimal {
   color: #5563F0;
@@ -76,10 +54,104 @@ select.minimal:focus {
     5px 5px,
     1px 1.5em;
   background-repeat: no-repeat;
-  /*border-color: green;*/
   border: none;
   outline: 0;
 }
+
+
+/*Teacher Cards*/
+
+.teacherRow {
+  padding-top:2em;
+  padding-bottom: 4em;
+}
+
+.teacherCard {
+  /*border: 2px solid red;  */
+  box-shadow: 0 0 5px lightgrey;
+  background-color: white;
+  padding: 0;
+  /*margin: .5em;*/
+}
+
+.teacherCard img {
+  height: 140px;
+
+}
+
+.teacherName {
+  font-size: 1.05em;
+  font-weight: 500;
+  /*margin-top: .25em;*/
+}
+
+.rating {
+  margin-top: -.5em;
+  margin-bottom: .5em;
+}
+
+.notRated {
+  margin-top: -.25em;
+  margin-bottom: .45em;
+}
+
+.location {
+  margin-left: -1em;
+}
+
+.showMore {
+  margin-left: -1.5em;
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+
+.showMore a {
+  color:#1BACFC;
+  font-size: 1.15em;
+  margin: 1.5em;
+  margin-bottom: 1em;
+}
+
+.showMore a:hover {
+  cursor: pointer;
+}
+
+.showMore a.noMoreLoad {
+  text-decoration: none;
+  color: grey;
+}
+
+.showMore a.noMoreLoad:hover {
+  cursor: default;
+}
+
+.noPad {
+  padding: 0;
+}
+
+/*SEARCH DIV*/
+
+/*.searchDiv {
+  width: 100vw;
+  justify-content: flex-start;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.searchHalf {
+  width: 60%;
+  justify-content: flex-start;
+  padding-left: 5%;
+}
+
+.selectDiv {
+  width: auto;
+}
+
+
+
+
 
 
 
@@ -153,7 +225,6 @@ img.pic {
 
 .stars {
   margin: 0;
-  /*margin-top: -.45em;*/
   margin-bottom: 2em;
   align-self: flex-start;
 }
@@ -291,7 +362,7 @@ img.pic {
     font-size: .9em;
   }
 
-}
+}*/
 
 
 /*STARS*/
@@ -299,12 +370,11 @@ img.pic {
 .rating {
   border: none;
   float: left;
-
 }
 
 .rating > input  { display: none; }
 .rating > i:before {
-  display: inline-block;
+  display:  block;
   font-family: FontAwesome;
   cursor: pointer;
 }
@@ -329,4 +399,5 @@ img.pic {
 
 :host-context(.homeTeachersList) .mainWrapper {
   padding-top: 2em;
+  background-color: #f2f2f2;
 }

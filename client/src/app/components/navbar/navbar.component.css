@@ -19,7 +19,7 @@
 
 .logo a:hover {
   cursor: pointer;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: 500;
 }
 
 .options {
@@ -33,7 +33,7 @@
   display: inline-block;
   margin-left: .5em;
   margin-right: .5em;
-  font-size: 1.4em;
+  font-size: 18px;
   color: white;
   text-decoration: none;
   padding-left: 1em;
@@ -42,7 +42,7 @@
 
 .options a:hover {
   cursor: pointer;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: 500;
 }
 
 .fa-user {
@@ -52,7 +52,9 @@
 
 .menu {
   right: 0;
-  width: 15%;
+  padding: 1.5em;
+  padding-right: 2em;
+  width: 18%;
   position: absolute;
   background-color: rgb(85,99,240);
   z-index: 10000;
@@ -65,12 +67,11 @@
   line-height: 2;
   margin-left: .5em;
   text-decoration: none;
+  font-weight: 300;
 }
 
 .menu-item:hover {
-  background-color: #5563F0;
-  font-size: 1.3em;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -91,11 +92,16 @@
 
 .browse:hover {
   cursor: pointer;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: 500;
 }
 
 i:hover {
   cursor: pointer;
+  font-weight: 500;
+}
+
+.initialOption {
+  /*font-size: 18px;*/
 }
 
 @media(max-width: 1200px ) {

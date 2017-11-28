@@ -46,6 +46,7 @@ export class TeachersListComponent implements OnInit {
     this.apiService.getAllTeachers().subscribe(data => {
       data.teachers = this.shufflePipe.transform(data.teachers)
       this.teachersList = data.teachers;
+      console.log(this.teachersList)
       if(this.teachersList == undefined) {
         return false
       }

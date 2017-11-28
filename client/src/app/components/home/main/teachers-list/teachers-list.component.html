@@ -1,4 +1,4 @@
-
+<!--
   <div class="flex searchDiv">
     <div class="flex searchHalf">
       <div class="flex selectDiv ">
@@ -24,11 +24,76 @@
       </select>
     </div>
   </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 leftText">
+      <select [(ngModel)]="county" [value]="county" class="minimal">
+        <option selected>Select a County</option>
+        <hr>
+        <option value="North County">North County</option>
+        <option value="South County">South County</option>
+        <option value="East County">East County</option>
+      </select>
+    </div>
+    <div class="col-md-3 leftText">
+      <select [(ngModel)]="skill" [value]="skill" class="minimal">
+        <option selected>Select a Skill</option>
+        <hr>
+        <option value="Driving" selected="selected">Driving</option>
+        <option value="Approach Game">Approach Game</option>
+        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Putting">Putting</option>
+        <option value="Mental Focus">Mental Focus</option>
+        <option value="Sand Game">Sand Game</option>
+        <option value="Ball Contact">Ball Contact</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row teacherRow">
+        <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]" class="col-md-4 teacherCard pointer">
+          <div class="row">
+            <div class="div">
+              <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="col-md-5 img-responsive">
+              <p class="leftText teacherName">{{teacher.fullname}}</p>
+              <h6 class="leftText notRated " style="color: grey" *ngIf="!teacher.avgRatingNumber">Not Yet Rated</h6>
+              <div class="rating" *ngIf="teacher.avgRatingNumber">
+                <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
+                <i class="fa fa-star star" for="star5"></i>
+                <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
+                <i class="fa fa-star star" for="star4"></i>
+                <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
+                <i class="fa fa-star star" for="star3"></i>
+                <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
+                <i class="fa fa-star star" for="star2"></i>
+                <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
+                <i class="fa fa-star star" for="star1"></i>
+              </div>
+              <p class="col-md-7 leftText location"><strong>Location: </strong> {{teacher.county}}</p>
+              <p class="col-md-7 noPad leftText "><strong>Best For: </strong> {{teacher.skill1}}</p>
+              <p class="col-md-7 noPad leftText "><strong>$100/hr (All Inclusive)</strong></p>
+
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 showMore">
+          <a (click)="showMore()" *ngIf="!noMoreToLoad">Show More</a>
+          <a *ngIf="noMoreToLoad" class="noMoreLoad">No More to Load</a>
+          <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
+        </div>
+      </div>
 </div>
 
 
 
-<div class="flex mainWrapper">
+
+<!-- <div class="flex mainWrapper">
   <div class="flex teacher-wrapper">
     <a class="flex teacher"  *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index" [routerLink]="['../view-teacher-profile/', teacher._id]">
         <div class="flex mediaDiv">
@@ -72,4 +137,4 @@
         <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
       </div>
   </div>
-</div>
+</div> -->

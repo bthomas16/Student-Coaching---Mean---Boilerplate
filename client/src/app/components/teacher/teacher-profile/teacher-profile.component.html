@@ -15,18 +15,13 @@
   </div>
   <hr>
 </div>
-<!--
-
-<div class="flex" *ngIf="isTeacher">
-  <h2>Welcome to your Teacher Profile, {{ fullname }}!</h2>
-</div> -->
 
 
 
 <div class="flex" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
   <app-teacher-profile-main></app-teacher-profile-main>
   <div class="flex notes">
-      <h3 class="flex left-text">About {{ capFullname }}</h3>
+      <h3 class="flex left-text">About {{ fullname }}</h3>
     <div *ngIf="!isBioEdit" class="flex bioWrapper">
       <p class="notes-text">{{bio}}</p>
     <div class="flex">
@@ -79,7 +74,7 @@
       <h3 class="flex">Professional Experience:</h3>
       <h6 *ngIf="experiences == undefined || null" class="flex">Please Update Your Experiences </h6>
       <ul class="flex experiences" *ngFor="let experience of experiences">
-        <li class="flex"><i class="fa fa-plus" aria-hidden="true"></i>
+        <li class="flex"><i class="fa fa-plus ploos" aria-hidden="true"></i>
           <span>{{ experience }}</span>
         </li>
       </ul>
@@ -105,25 +100,28 @@
         <div [ngClass]="messageClass">
         {{message}}</div>
       </div>
-      <div class="flex">
-        <h3 *ngIf="!checkCookies()">Welcome to your Teacher Profile, {{ fullname }}!</h3>
-        <h3 *ngIf="checkCookies()">Welcome back, {{ capFullname }}!</h3>
+      <div class="flex leftText">
+        <h2 style="font-size:2em;">Welcome to your Teacher Profile, {{ fullname }}!</h2>
       </div>
-      <div class="flex statusListDiv">
-        <h4 *ngIf="!canChangeStatus">To become an active teacher please update your profile:</h4>
+      <div class="flex statusListDiv leftText">
+        <h4 *ngIf="!canChangeStatus" style='font-weight:300; margin-top: 1em;'>To activate your profile, please update the following:</h4>
         <h4 *ngIf="canChangeStatus">You are currently <span [ngClass]="isOnline ? 'online' : 'offline'">{{ onlineStatus }}</span></h4>
-        <ul class="flex statusList">
+        <ul class="flex statusList leftText">
           <li class="status" *ngIf="profPicName === 'blankProf.png'">
-            Please add a picture to your profile page.
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            &nbsp; Please add a picture to your profile page.
           </li>
           <li class="status" *ngIf="!skill1 || !skill2">
-            Please upate your skills section.
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            &nbsp; Please upate your skills section.
           </li>
           <li class="status" *ngIf="!bio">
-            Please update your bio section.
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            &nbsp; Please update your bio section.
           </li>
           <li class="status" *ngIf="!experiences">
-            Please add 2 or more experiences to your profile.
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            &nbsp; Please add 2 or more experiences to your profile.
           </li>
           <!-- <li class="status" *ngIf="!skill2">
             Please update your availability section.

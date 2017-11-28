@@ -1,74 +1,35 @@
-<div class="flex wrapper" (click)="closeRating()">
-  <div class="flex third company">
-    <h3 class="flex">
-      <strong>Company</strong>
-    </h3>
-    <a class="flex link">
-      <span routerLink="company-info">About Us</span>
-    </a>
-    <a class="flex link">
-      <span routerLink="company-info">Contact Us</span>
-    </a>
-  </div>
-  <div class="flex third company" *ngIf="!isLoggedIn">
-    <h3 class="flex">
-      <strong>Signup</strong>
-    </h3>
-    <a class="flex link">
-      <span data-toggle="modal" data-target="#register">Become a Teacher</span>
-    </a>
-    <a class="flex link">
-      <span data-toggle="modal" data-target="#register">Become a Student</span>
-    </a>
-  </div>
-  <div class="flex third company" *ngIf="isLoggedIn">
-    <h3 class="flex">
-      <strong>Your Account</strong>
-    </h3>
-    <a class="flex link">
-      <span routerLink="profile/teacher" *ngIf="!isTeacher">Become a Teacher</span>
-    </a>
-    <a class="flex link">
-      <span routerLink="profile/teacher" *ngIf="isTeacher">Teacher Profile</span>
-    </a>
-    <a class="flex link">
-      <span routerLink="profile/student" *ngIf="!isStudent">Become a Student</span>
-    </a>
-    <a class="flex link">
-      <span routerLink="profile/student" *ngIf="isStudent">Student Profile</span>
-    </a>
-  </div>
-  <div class="flex third mailList">
-    <h3 class="flex">
-      <strong>Join Our Mailing List</strong>
-    </h3>
-    <form [formGroup]="emailForm" class="flex">
-      <div class="flex form">
-        <!-- <ul class="help-block flex">
-          <li *ngIf="emailForm.controls.email.errors?.required && emailForm.controls.email.touched">This field is required</li>
-          <li *ngIf="emailForm.controls.email.errors?.minlength && emailForm.controls.email.touched">Email must contain a minimum of 5 characters</li>
-          <li *ngIf="emailForm.controls.email.errors?.maxlength && emailForm.controls.email.touched">Email must contain fewer than 30 characters</li>
-          <li *ngIf="emailForm.controls.email.errors?.validateEmail && emailForm.controls.email.touched">Must be a valid email</li>
-          <li *ngIf="emailMessage"> {{emailMessage}} </li>
-        </ul> -->
-        <div class="inputDiv">
-          <div *ngIf="show">
-            <div [ngClass]="messageClass">
-            {{message}}
-            </div>
-          </div>
-          <!-- <label for="email">Email Addres</label> -->
-          <div [ngClass]="{'has-error': (emailForm.controls.email.errors && emailForm.controls.email.dirty) || (!emailValid && emailForm.controls.email.touched), 'has-success': !emailForm.controls.email.errors && emailValid }">
-            <input type="text" class="form-control input" name="email" autocomplete="off" placeholder="Email Address" formControlName="email" (blur)="checkEmail()">
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 leftText">
+      <h3>Company</h3>
+        <p class="pointer">About Us</p>
+        <p class="pointer">Contact Us</p>
+    </div>
+    <div class="col-md-3 leftText">
+      <h3>Sign Up</h3>
+      <p class="pointer" routerLink="profile/teacher" *ngIf="!isTeacher">Become a Teacher</p>
+      <p class="pointer" routerLink="profile/teacher" *ngIf="isTeacher">Become a Teacher</p>
+      <p class="pointer" routerLink="profile/student" *ngIf="!isTeacher">Become a Student</p>
+      <p class="pointer" routerLink="profile/student" *ngIf="isTeacher">Become a Student</p>
+    </div>
+    <div class="col-md-5 col-md-offset-1 leftText">
+      <h3>Join Our Mailing List</h3>
+      <div class="row">
+        <div class="col-md-9 noMarg">
+          <input class="input" type="text" placeholder="Email">
         </div>
-        <div class="button">
-          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
+        <div class="col-md-3 noMarg">
+          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Sign Up</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-  <div class="flex bottomFooter">
-    <h5><strong>&copy; savvy 2017</strong></h5>
+  <div class="row">
+    <div class="col-md-12 seperator"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-5" style="margin-top:1.5em; margin-bottom:0;">
+      <strong>&copy; Savvy 2017</strong>
+    </div>
   </div>
 </div>

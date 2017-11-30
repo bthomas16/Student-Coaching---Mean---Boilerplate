@@ -1,4 +1,33 @@
-<div class="flex mainWrapper">
+<div class="container ratingsContainer">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="row show-hide-message">
+        <div [ngClass]="messageClass">
+          {{message}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <app-knowledge (knowledgeRated)="onKnowledgeRated($event)"></app-knowledge>
+        </div>
+        <div class="col-md-4">
+          <app-professionalism (professionalismRated)="onProfessionalismRated($event)"></app-professionalism>
+        </div>
+        <div class="col-md-4">
+          <app-teaching-ability (teachingAbilityRated)="onTeachingAbilityRated($event)"></app-teaching-ability>
+        </div>
+        <div class="col-md-8 col-md-offset-2 rateText">
+          <textarea class="form-control" (keyup)="getText($event)" placeholder="Describe your experience here"></textarea>
+        </div>
+        <div class="col-md-6 col-md-offset-4">
+          <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA || text == null">Rate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="flex mainWrapper">
   <div class="row show-hide-message">
     <div [ngClass]="messageClass">
       {{message}}
@@ -35,4 +64,4 @@
   <div class="flex butts">
     <button class="btn btn-success" (click)="rate()" [disabled]="processing || !ratedK || !ratedP || !ratedTA || text == null">Rate</button>
   </div>
-</div>
+</div> -->

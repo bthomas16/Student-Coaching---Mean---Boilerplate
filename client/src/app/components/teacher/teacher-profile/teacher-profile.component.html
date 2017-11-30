@@ -18,16 +18,20 @@
 
 
 
-<div class="flex" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
   <app-teacher-profile-main></app-teacher-profile-main>
-  <div class="flex notes">
-      <h3 class="flex left-text">About {{ fullname }}</h3>
-    <div *ngIf="!isBioEdit" class="flex bioWrapper">
-      <p class="notes-text">{{bio}}</p>
-    <div class="flex">
-      <button class="btn btn-warning editBio" (click)="isBioEdit = !isBioEdit">Edit</button>
+
+  !-- bio row -->
+
+
+<div class="container bioRow"  *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+  <div class="row leftText bioRow">
+    <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+      <p class="about">About scvs{{ fullname }}</p>
     </div>
-  </div>
+    <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+      <p class="bioText">{{bio}}</p>
+    </div>
+    <button class="btn btn-warning editBio" (click)="isBioEdit = !isBioEdit">Edit</button>
     <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
       <textarea name="bio" formControlName="bio" placeholder="Write your Bio here ~ approx 200 characters" value="{{ bio }}"></textarea>
       <div class="flex save">
@@ -36,57 +40,94 @@
       </div>
     </form>
   </div>
+</div>
 
-  <div class="flex vidWrap">
-    <div class="flex vidDiv">
-      <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
-        <div [ngClass]="messageClass" style=" font-size:1.25em; font-weight: 500;">
-          {{vidSubmitMessage}}</div>
-        </div>
-      <div class="flex">
-        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-      </div>
-        <div class="flex">
-          <p class="flex" style="color:darkgrey;"><em>.mov or .mp4</em></p>
+
+<!-- .video row -->
+
+<div class="container vidContainer" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+  <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
+    <div [ngClass]="messageClass" style=" font-size:1.25em; font-weight: 500;">
+      {{vidSubmitMessage}}</div>
+    </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1 vidBlock">
+      <div class="row cloudImg">
+        <div class="col-xs-12">
+          <i class="col-xs-12 fa fa-cloud-upload" aria-hidden="true"></i>
+          <!-- <button class="btn btn-info col-xs-4 col-xs-offset-4 uploadButt">Upload Video</button> -->
           <label for="fileInput" class="custom-file-upload">
-            <h4>Upload a Video!</h4>
+            <h4>Upload Video</h4>
           </label>
-          <input #fileInput id="fileInput" type="file" size="20" (change)=getVidFile($event)/>
+          <input #fileInput id="fileInput" type="file" (change)=getVidFile($event)/>
+          <div class="flex vidSubmitDiv" *ngIf="canSubmitVideo">
+            <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
+            <button class="btn btn-success" (click)="videoSubmit()" [disabled]="!videoFileName">Submit</button>
+          </div>
+          <p class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1 uploadText">
+            Upload a video introducing yourself to students, or showing off your skills. <span>(Optional)</span>
+          </p>
         </div>
-        <div class="flex vidSubmitDiv" *ngIf="canSubmitVideo">
-          <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
-          <button class="btn btn-success" (click)="videoSubmit()" [disabled]="!videoFileName">Submit</button>
-        </div>
-      <div class="flex vidText">
-        <p>
-          Upload a video introducing yourself to students, or showing off your skills. <span>(Optional)</span>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex reviewsContainer">
-    <div class="flex half reviews">
-      <h3 class="flex reviewsTitle">Reviews</h3>
-      <app-teacher-reviews></app-teacher-reviews>
-    </div>
-    <div class="flex half exp">
-      <h3 class="flex">Professional Experience:</h3>
-      <h6 *ngIf="experiences == undefined || null" class="flex">Please Update Your Experiences </h6>
-      <ul class="flex experiences" *ngFor="let experience of experiences">
-        <li class="flex"><i class="fa fa-plus ploos" aria-hidden="true"></i>
-          <span>{{ experience }}</span>
-        </li>
-      </ul>
-      <div class="flex dynamicExperiences">
-        <h4 *ngIf="maxExperiences" style="color:red;">You already have 5 expereiences!</h4>
-        <input (keyup)="getNewExperience($event)" class="experienceInput" *ngIf="!maxExperiences" value="{{experienceValue}}" placeholder="Add New Experience...">
-        <button class="btn btn-primary experienceAddButton" (click)="addExperience()" *ngIf="!maxExperiences" [disabled]="[experienceValue] == ''">Add Experience</button>
-        <button class="btn btn-danger experienceButton" (click)="clearExperience()">Reset Experiences</button>
       </div>
     </div>
   </div>
 </div>
+
+<div class="container reviewsContainer" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+  <div class="row">
+    <div class="col-md-6 reviews">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 leftText">
+          <h3>Reviews</h3>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+          <app-teacher-reviews></app-teacher-reviews>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 proExperience">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 leftText">
+          <h3 >Professional Experience:</h3>
+          <h6 *ngIf="experiences == undefined || null">Please Update Your Experiences </h6>
+        </div>
+        <div class="">
+          <ul class="col-md-10 col-md-offset-1 experiences" *ngFor="let experience of experiences">
+            <li class="flex">
+              <i class="fa fa-plus ploos" aria-hidden="true"></i>
+              <span>{{ experience }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="flex half exp">
+
+  <ul class="flex experiences" *ngFor="let experience of experiences">
+    <li class="flex"><i class="fa fa-plus ploos" aria-hidden="true"></i>
+      <span>{{ experience }}</span>
+    </li>
+  </ul>
+  <div class="flex dynamicExperiences">
+    <h4 *ngIf="maxExperiences" style="color:red;">You already have 5 expereiences!</h4>
+    <input (keyup)="getNewExperience($event)" class="experienceInput" *ngIf="!maxExperiences" value="{{experienceValue}}" placeholder="Add New Experience...">
+    <button class="btn btn-primary experienceAddButton" (click)="addExperience()" *ngIf="!maxExperiences" [disabled]="[experienceValue] == ''">Add Experience</button>
+    <button class="btn btn-danger experienceButton" (click)="clearExperience()">Reset Experiences</button>
+  </div>
+</div> -->
+
+  <!-- <div class="flex reviewsContainer"> -->
+    <!-- <div class="flex half reviews">
+      <h3 class="flex reviewsTitle">Reviews</h3>
+
+    </div> -->
+
+  <!-- </div> -->
+<!-- </div> -->
 
 
 <span *ngIf="!isLoading && !isOnline">

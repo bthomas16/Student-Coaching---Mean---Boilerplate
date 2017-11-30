@@ -62,27 +62,28 @@ select.minimal:focus {
 /*Teacher Cards*/
 
 .teacherRow {
-  padding-top:2em;
-  padding-bottom: 4em;
+  /*padding-top:2em;*/
+  padding-bottom: 2em;
 }
 
-.teacherCard {
-  /*border: 2px solid red;  */
-  box-shadow: 0 0 5px lightgrey;
+.realCard {
+  box-shadow: 0 0 15px lightgrey;
   background-color: white;
-  padding: 0;
-  /*margin: .5em;*/
+  width: 100%;
+  height: 140px;
+  margin-top: 1em;
 }
 
-.teacherCard img {
+.realCard img {
   height: 140px;
-
+  margin-left: -1.25em;
+  margin-bottom: -1em;
 }
 
 .teacherName {
   font-size: 1.05em;
   font-weight: 500;
-  /*margin-top: .25em;*/
+  line-height: 2;
 }
 
 .rating {
@@ -102,7 +103,8 @@ select.minimal:focus {
 .showMore {
   margin-left: -1.5em;
   padding: 0;
-  margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 

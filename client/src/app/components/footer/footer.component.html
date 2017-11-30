@@ -1,26 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 leftText">
+    <div class="col-md-3 col-md-offset-0 col-xs-5 col-xs-offset-1 leftText">
       <h3>Company</h3>
         <p class="pointer">About Us</p>
         <p class="pointer">Contact Us</p>
     </div>
-    <div class="col-md-3 leftText">
+    <div class="col-md-3 col-md-offset-0 col-xs-5 col-xs-offset-1 leftText">
       <h3>Sign Up</h3>
       <p class="pointer" routerLink="profile/teacher" *ngIf="!isTeacher">Become a Teacher</p>
       <p class="pointer" routerLink="profile/teacher" *ngIf="isTeacher">Become a Teacher</p>
       <p class="pointer" routerLink="profile/student" *ngIf="!isTeacher">Become a Student</p>
       <p class="pointer" routerLink="profile/student" *ngIf="isTeacher">Become a Student</p>
     </div>
-    <div class="col-md-5 col-md-offset-1 leftText">
-      <h3>Join Our Mailing List</h3>
+    <div class="col-md-5  col-md-offset-1 col-xs-11 col-xs-offset-1 leftText">
+      <h3 class="leftText">Join Our Mailing List</h3>
       <div class="row">
-        <div class="col-md-9 noMarg">
-          <input class="input" type="text" placeholder="Email">
+        <div class="col-xs-12 noMarg">
+          <div class="row signRow">
+            <input class="col-xs-7" type="text" placeholder="Email">
+            <button [disabled]="!emailForm.valid || processing" class="btn btn-success col-xs-4" (click)="emailSubmit()">Sign Up</button>
+
+          </div>
         </div>
-        <div class="col-md-3 noMarg">
-          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Sign Up</button>
-        </div>
+        <!-- <div class="col-md-3 noMarg">
+        </div> -->
       </div>
     </div>
   </div>

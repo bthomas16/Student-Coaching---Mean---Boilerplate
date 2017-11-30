@@ -1,45 +1,4 @@
-.wrapper {
-  width: 100%;
-  justify-content: space-between;
-  padding: 2em;
-  margin: 0;
-}
-
-.info {
-  width: 58%;
-  padding-right: 1%;
-}
-
-.schedule {
-  background-color: #F2F2F2;
-  width: 42%;
-}
-
-/*@media (max-width: 1035px){
-  .info {
-    width: 50%;
-  }
-
-  .schedule {
-    width: 45%;
-  }
-}*/
-
-  @media(max-width: 1050px){
-
-    .wrapper {
-      padding: 1.25em;
-    }
-    .half {
-      width: 100%;
-    }
-
-    .info {
-      padding: 0;
-    }
-
-    .schedule {
-      margin-top: 1em;
-      width: 100%;
-    }
+.row {
+  padding-top: 2em;
+  margin-bottom: 2em;
 }

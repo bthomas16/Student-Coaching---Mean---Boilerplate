@@ -1,4 +1,10 @@
-.mainWrapper {
+.ratingsContainer {
+  z-index: 1000;
+  background-color: green;
+}
+
+
+/*.mainWrapper {
   line-height: 0;
 }
 
@@ -139,4 +145,4 @@ h5.flex {
 }
 
   @media(max-width:325px) {
-}
+}*/

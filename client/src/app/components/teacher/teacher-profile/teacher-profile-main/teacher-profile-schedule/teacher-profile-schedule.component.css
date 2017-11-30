@@ -1,6 +1,8 @@
 .main-wrapper {
-  height: 418px;
-  padding-bottom: 1.5em;
+  height: 375px;
+  padding: 2em;
+  padding-bottom:3em;
+  background-color: #F2F2F2;
 }
 
 .wrapper h2 {
@@ -69,10 +71,6 @@
 .btn-default:focus {
 background-color: auto;
 }
-
-/*.btn-default.active:focus {
-background-color: #686767;
-}*/
 
 .btn-default.active:hover {
   background-color: #5563F0;

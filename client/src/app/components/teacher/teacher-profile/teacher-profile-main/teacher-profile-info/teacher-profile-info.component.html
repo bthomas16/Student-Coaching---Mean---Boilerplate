@@ -1,12 +1,76 @@
-<div class="flex mainWrapper">
 
+<div class="row" >
+  <div class="col-md-6 col-xs-6" (click)="closeRating()">
+    <img [src]="[profPic]" alt="" class="col-md-12 img-responsive pull-left pic">
+  </div>
+  <div class="col-md-6 col-xs-6 leftText">
+      <div class="col-md-12">
+        <h2>{{fullname}}</h2>
+      </div>
+      <div class="col-xs-12 ratingDiv" (click)="closeRating()">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="rating up" (click)="closeRating()">
+              <input type="radio" [checked]="isChecked5"/>
+              <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+              <input type="radio" [checked]="isChecked4"/>
+              <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+              <input type="radio" [checked]="isChecked3"/>
+              <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+              <input type="radio" [checked]="isChecked2"/>
+              <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+              <input type="radio" [checked]="isChecked1"/>
+              <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+            </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1" class="numberRatings">
+            {{numberOfRatings || 0}} Students
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <p>Locations Served:<span> {{county}}</span></p>
+      </div>
+      <div class="col-xs-12">
+        <p>Experience:<span> {{yrsExperience}} years</span></p>
+      </div>
+      <div class="col-xs-12">
+        <p>Handicap:<span> {{handicap}} years</span></p>
+      </div>
+      <div class="col-xs-12">
+        <p>Skills:<span>  {{skill1}} </span> ~ <span> {{skill2}}</span></p>
+      </div>
+      <div class="col-xs-12">
+        <p>Price:<span> ${{cost}}/hr (All Inclusive)</span></p>
+      </div>
+      <div class="row btnRow">
+        <div class="col-md-5" (click)="closeRating()">
+          <div class="btn btn-info">Contact </div>
+        </div>
+        <div class="col-md-5">
+          <div class="btn btn-warning review" (click)="openRating()">Review </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--
+<div class="flex mainWrapper">
   <div class="flex half imageDiv" *ngIf="!isEdit" (click)="closeRating()">
     <div class="flex half image">
       <img [src]="[profPic]" alt="" class="profPic">
     </div>
   </div>
-
-<div class="flex right" *ngIf="!isEdit">
+  <div class="flex right" *ngIf="!isEdit">
+    <div class="topRightEdit">
+      <img src="../../../../assets/editLogo.png" alt="" width="25px" (click)="isEdit = !isEdit">
+    </div>
       <p class="flex name">{{ fullname }}</p>
       <div class="rating up" (click)="closeRating()">
         <input type="radio" [checked]="isChecked5"/>
@@ -23,10 +87,8 @@
       <p class="flex up number" (click)="closeRating()"> {{ numberOfRatings || 0 }} &nbsp; Students</p>
 
 
-
-  <!-- RIGHT HALF -->
-
   <div class="flex half stats">
+
     <div class="flex info" *ngIf="!isEdit" (click)="closeRating()">
       <p class="flex left"><span style="font-weight:500;">Location:</span>&nbsp; {{ county }}</p>
       <p class="flex left"><span style="font-weight:500;">Experience: </span> &nbsp; {{ yrsExperience }} </p>
@@ -34,13 +96,9 @@
       <p class="flex left"><span style="font-weight:500;">Handicap:</span> &nbsp; {{ handicap }}</p>
       <p class="flex left"> <span style="font-weight:500;">${{ cost }}/hr</span> &nbsp; (All Inclusive)</p>
     </div>
-    <!-- <div class="flex butts">
-    <button class="btn btn-success butt">Contact</button>
-    <button class="btn btn-primary butt">Review</button>
-  </div> -->
   </div>
   <div *ngIf="!isParams" class="flex editDiv">
-    <button type="button" *ngIf="!isEdit" (click)="isEdit = !isEdit" class="btn btn-warning edit">Edit</button>
+    <button type="button" *ngIf="!isEdit" (click)="isEdit = !isEdit" class="btn btn-info edit">View Profile</button>
   </div>
   <div *ngIf="isParams" class="flex contactDiv">
     <a href="mailto:{{email}}" class="btn contact normalButt" (click)="closeRating()">Contact {{capFullname}}</a>
@@ -133,7 +191,7 @@
       <select value="{{skill1}}" (change)="getSkill1($event)">
         <option value="Driving" selected="selected">Driving</option>
         <option value="Approach Game">Approach Game</option>
-        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Short Game">Short Game</option>
         <option value="Putting">Putting</option>
         <option value="Mental Focus">Mental Focus</option>
         <option value="Sand Game">Sand Game</option>
@@ -142,7 +200,7 @@
       <select value="{{skill2}}" (change)="getSkill2($event)">
         <option value="Driving">Driving</option>
         <option value="Approach Game" selected="selected">Approach Game</option>
-        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Short Game">Short Game</option>
         <option value="Putting">Putting</option>
         <option value="Mental Focus">Mental Focus</option>
         <option value="Sand Game">Sand Game</option>
@@ -151,7 +209,7 @@
       <select value="{{skill3}}" (change)="getSkill3($event)">
         <option value="Driving">Driving</option>
         <option value="Approach Game">Approach Game</option>
-        <option value="Short Game / Chipping">Short Game / Chipping</option>
+        <option value="Short Game">Short Game</option>
         <option value="Putting" selected="selected">Putting</option>
         <option value="Mental Focus">Mental Focus</option>
         <option value="Sand Game">Sand Game</option>
@@ -220,6 +278,7 @@
     </div>
   </div>
 </div>
+-->
 
 
 <div class="ratingDiv" *ngIf="canRate">

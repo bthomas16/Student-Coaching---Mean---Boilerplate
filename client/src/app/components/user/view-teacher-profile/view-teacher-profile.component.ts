@@ -30,7 +30,6 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   teacherTARatingsArray;
   teacherAvgRatings;
   experiences: Array<string>;
-  capFullname;
   profVideo = '';
 
   showRate: boolean = false;
@@ -83,8 +82,6 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                }
                this.teacherFullname = viewTeacher.teacher.fullname;
                this.experiences = viewTeacher.teacher.experiences
-               this.capFullname = this.teacherFullname.charAt(0).toUpperCase() + this.teacherFullname.slice(1);
-               console.log(this.capFullname)
                if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
                  return null
                }

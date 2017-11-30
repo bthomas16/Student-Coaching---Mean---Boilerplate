@@ -42,7 +42,7 @@ export class FeaturedTeacherComponent implements OnInit {
   constructor(public authService: AuthService, private shufflepipe: ShufflePipe) {
    }
 
-   meep(value) {
+   paginate(value) {
      this.grabValue = value;
      this.indexValue = this.grabValue + 1;
      console.log(this.grabValue)

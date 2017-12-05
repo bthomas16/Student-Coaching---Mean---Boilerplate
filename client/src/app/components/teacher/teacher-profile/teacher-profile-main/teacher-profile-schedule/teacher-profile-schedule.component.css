@@ -39,6 +39,9 @@
   height: 2.25em;
 }
 
+.active {
+}
+
 .butts button:focus {outline:0;}
 
 .text {
@@ -80,6 +83,24 @@ background-color: auto;
 .noClicks {
   pointer-events: none;
 }
+
+.editLogo  {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  color: black;
+  z-index: 1000;
+  font-size: 1.75em;
+}
+
+.cancelEdit {
+  right: 10%;
+}
+
+.successEdit {
+  color:#1BACFC;
+}
+
 
 @media (max-width: 10250px) {
   .text {

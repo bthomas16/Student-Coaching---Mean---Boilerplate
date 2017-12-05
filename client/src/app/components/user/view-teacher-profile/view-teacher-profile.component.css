@@ -4,7 +4,7 @@
   padding: 4em;
   padding-top: 2.5em;
   padding-bottom: 3em;
-
+  margin-bottom: 2em;
   color: white;
 }
 
@@ -21,7 +21,7 @@
 
 
 .videoDiv {
-  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .vid {
@@ -40,25 +40,40 @@
   background-color: rgba(255,255,255,.6);
 }
 
+
+.proExperience {
+  background-color: #2B2A2A;
+  color: white;
+  min-height: 450px;
+  height: auto;
+  max-height: 600px;
+}
+
 .reviewsContainer {
   background-color: #F7F4F4;
   width: 100%;
-  height: 450px;
+  min-height: 450px;
   margin-top: 3em;
+  border: 2px solid red;
+}
+
+.teacherReviewDiv {
+  height: 350px;
+  overflow: scroll;
+  margin-bottom: .75em;
 }
 
 
 .experiences {
   margin-top: 2em;
-  font-size: 1.4em;
 }
 
 .experiences li {
   list-style: none;
   justify-content: flex-start;
-  margin: 0;
-  margin-left: -2.75em;
-
+  margin: 2em;
+  margin-left: -1.5em;
+  font-size: 1.35em;
 }
 
 .experiences li i {
@@ -71,98 +86,27 @@
 .proExperience {
   background-color: #2B2A2A;
   color: white;
-  height: 450px;
+  min-height: 450px;
 }
+
+.buttsDiv {
+  margin-left: 2em;
+}
+
 
 .fa-plus {
   font-size: 1.2em;
 }
 
-
-
-
-
-
-
-@media(max-width:900px) {
-  .half {
-    width: 100%;
-    padding: 1em;
-  }
+.showMore {
+  color: #1BACFC;
+  font-size: 1.25em;
+  font-weight: 500;
+  margin: 1em;
+  margin-right: 0;
 }
 
-@media(max-width: 650px) {
-
-  .exp {
-    justify-content: flex-start;
-    width: 100%;
-  }
-
-  .experiences {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .experiences li i {
-    align-self: flex-start;
-    margin-left: 0;
-    font-size: .85em;
-  }
+a.pointer {
+  margin-left: 5em;
+  line-height: 3;
 }
-
-  @media(max-width:500px) {
-    .notes {
-      padding-left: 0;
-      padding-right: 0;
-      margin: 0;
-      margin-top: 1em;
-    }
-
-    .notes-text {
-      margin: 0;
-      margin-bottom: 1.5em;
-    }
-  }
-
-  @media(max-width:375px) {
-    .exp h3.flex {
-      text-align: left;
-      justify-content: flex-start;
-      padding-left: 2em;
-      font-size: 1.25em;
-    }
-
-    .experiences li {
-      font-size: 1.25em;
-    }
-
-    .experiences li i {
-      font-family: 'FontAwesome';
-      color: #5563F0;
-      margin-right: 2em;
-      margin-top: .25em;
-      font-size: .85em;
-    }
-  }
-
-  @media(max-width:325px) {
-    .exp h3.flex {
-      text-align: left;
-      justify-content: flex-start;
-      padding-left: 1.95em;
-      font-size: 1.15em;
-      width: 100%;
-    }
-    .notes {
-      padding-left: 0;
-      padding-right: 0;
-      margin: 0;
-    }
-
-    .notes-text {
-      margin-left: .5em;
-      margin-bottom: 1.5em;
-      text-align: left;
-    }
-
-  }

@@ -6,7 +6,7 @@
   padding: 4em;
   padding-top: 2.5em;
   padding-bottom: 3em;
-
+  min-height: 20em;
   color: white;
 }
 
@@ -20,7 +20,6 @@
   font-size: 1.35em;
   font-weight: 500;
 }
-
 
 
 /*Vid Div*/
@@ -58,10 +57,23 @@ font-size: 1.25em;
 .reviewsContainer {
   background-color: #F7F4F4;
   width: 100%;
-  height: 450px;
+  min-height: 200px;
   margin-top: 3em;
 }
 
+.teacherReviewDiv {
+  height: 350px;
+  overflow: scroll;
+}
+
+
+.showMore {
+  color: #1BACFC;
+  font-size: 1.25em;
+  font-weight: 500;
+  margin: 1em;
+  margin-right: 0;
+}
 
 .experiences {
   margin-top: 2em;
@@ -70,8 +82,8 @@ font-size: 1.25em;
 .experiences li {
   list-style: none;
   justify-content: flex-start;
-  margin: 0;
-  margin-left: -3.5em;
+  margin: 2em;
+  margin-left: -1.75em;
 }
 
 .experiences li i {
@@ -84,10 +96,12 @@ font-size: 1.25em;
 .proExperience {
   background-color: #2B2A2A;
   color: white;
-  height: 450px;
+  min-height: 450px;
 }
 
-
+.buttsDiv {
+  margin-left: 2em;
+}
 
 
 
@@ -165,25 +179,77 @@ span {
   height: 100vh;
 }
 
+
+
+
 .experienceInput {
-  color: black;
+  color: white;
   height: 2.425em;
-  width: 40%;
+  /*width: 40%;*/
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-left: 4em;
 }
 
 .btn {
   border: none;
+  margin: 1em;
 }
 
 .experienceAddButton {
   background-color: #5563F0;
 }
 
-.dynamicExperiences *{
-  margin: .5em;
+.bioInput {
+  margin-top: 1em;
+  font-size: 1.35em;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border: .5px 0 .5px .5px solid white;
+  color: white;
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  left: 0;
+  resize: none;
+  text-align: left;
+}
+
+textarea::placeholder {
+  color: lightgrey;
 }
 
 
+/*.successEditBio {
+  color: white;
+}
+
+.cancelEditBio {
+  color: red;
+}*/
+
+.proExpEditLogo {
+  top: 1em;
+  right: 2em;
+}
+
+.successproExpEdit {
+color: green;
+top: 1em;
+right: 2em;
+}
+.cancelproExpEdit {
+color: red;
+top: 1em;
+right: 4em;
+}
+
+.bioInput:focus {
+  outline: none;
+}
 
 
 
@@ -328,7 +394,7 @@ visibility: hidden;
   }
 
 
-  .dynamicExperiences  input {
+  /*.dynamicExperiences  input {
     width: 100%;
     height: 3.5em;
     padding-top: 0;
@@ -336,7 +402,7 @@ visibility: hidden;
 
 .dynamicExperiences  button {
   width: 100%;
-}
+}*/
 
 
 

@@ -5,11 +5,14 @@
 </div>
 
 <div class="flex main-wrapper" (click)="closeRating()">
+
   <div class="flex wrapper" [ngClass]="{noClicks: isParams}">
-    <h2 *ngIf="isParams">Availability</h2>
-    <div class="flex update">
-      <button class="btn btn-success updateButton"  (click)='onSchedule()' [disabled]="processing" *ngIf="!isParams">Update Availability</button>
-    </div>
+    <h2>Availability</h2>
+    <span *ngIf="!isParams">
+      <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = true" *ngIf="!isEdit"></i>
+      <i class="fa fa-check editLogo successEdit pointer" aria-hidden="true" (click)='onSchedule()' *ngIf="isEdit"></i>
+      <i class="fa fa-times editLogo cancelEdit pointer" aria-hidden="true" (click)="cancelEdit()" *ngIf="isEdit"></i>
+    </span>
     <div class="flex pushRight">
       <div class="flex times">
         <h5>Morning</h5>
@@ -21,7 +24,7 @@
       <div class="flex text">
         <p>Monday</p>
       </div>
-      <div class="flex butts">
+      <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
         <button class="btn btn-default" [disabled]="processing" (click)="monM = !monM" [ngClass]="{'active': monM}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="monA = !monA" [ngClass]="{'active': monA}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="monE = !monE" [ngClass]="{'active': monE}"></button>
@@ -31,7 +34,7 @@
       <div class="flex text">
         <p>Tuesday</p>
       </div>
-      <div class="flex butts">
+      <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
       <button class="btn btn-default" [disabled]="processing" (click)="tueM = !tueM" [ngClass]="{'active': tueM}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="tueA = !tueA" [ngClass]="{'active': tueA}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="tueE = !tueE" [ngClass]="{'active': tueE}"></button>
@@ -42,7 +45,7 @@
       <div class="flex text">
         <p>Wednesday</p>
       </div>
-      <div class="flex butts">
+      <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
       <button class="btn btn-default" [disabled]="processing" (click)="wedM = !wedM" [ngClass]="{'active': wedM}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="wedA = !wedA" [ngClass]="{'active': wedA}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="wedE = !wedE" [ngClass]="{'active': wedE}"></button>
@@ -53,7 +56,7 @@
       <div class="flex text">
         <p>Thursday</p>
       </div>
-    <div class="flex butts">
+    <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
       <button class="btn btn-default" [disabled]="processing" (click)="thuM = !thuM" [ngClass]="{'active': thuM}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="thuA = !thuA" [ngClass]="{'active': thuA}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="thuE = !thuE" [ngClass]="{'active': thuE}"></button>
@@ -64,7 +67,7 @@
       <div class="flex text">
         <p>Friday</p>
       </div>
-      <div class="flex butts">
+      <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
       <button class="btn btn-default" [disabled]="processing" (click)="friM = !friM" [ngClass]="{'active': friM}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="friA = !friA" [ngClass]="{'active': friA}"></button>
       <button class="btn btn-default" [disabled]="processing" (click)="friE = !friE" [ngClass]="{'active': friE}"></button>
@@ -75,7 +78,7 @@
       <div class="flex text">
         <p>Saturday</p>
       </div>
-        <div class="flex butts">
+        <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
         <button class="btn btn-default" [disabled]="processing" (click)="satM = !satM" [ngClass]="{'active': satM}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="satA = !satA" [ngClass]="{'active': satA}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="satE = !satE" [ngClass]="{'active': satE}"></button>
@@ -86,7 +89,7 @@
       <div class="flex text">
         <p>Sunday</p>
       </div>
-      <div class="flex butts">
+      <div class="flex butts" [ngClass]="{noClicks: !isEdit}">
         <button class="btn btn-default" [disabled]="processing" (click)="sunM = !sunM" [ngClass]="{'active': sunM}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="sunA = !sunA" [ngClass]="{'active': sunA}"></button>
         <button class="btn btn-default" [disabled]="processing" (click)="sunE = !sunE" [ngClass]="{'active': sunE}"></button>

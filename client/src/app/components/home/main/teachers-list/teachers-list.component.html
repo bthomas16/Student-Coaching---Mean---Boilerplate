@@ -51,39 +51,50 @@
       </select>
     </div>
   </div>
+</div>
+<div class="container teacherList">
   <div class="row teacherRow">
-        <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-md-4 col-sm-6 teacherCard">
-          <!-- <div class="row"> -->
-            <div class="realCard pointer" [routerLink]="['../view-teacher-profile/', teacher._id]">
-              <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="col-xs-5 img-responsive pull-left">
-                <p class="leftText teacherName">{{teacher.fullname}}</p>
-                <h6 class="leftText notRated " style="color: grey" *ngIf="!teacher.avgRatingNumber">Not Yet Rated</h6>
-                <div class="rating" *ngIf="teacher.avgRatingNumber">
-                  <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
-                  <i class="fa fa-star star" for="star5"></i>
-                  <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
-                  <i class="fa fa-star star" for="star4"></i>
-                  <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
-                  <i class="fa fa-star star" for="star3"></i>
-                  <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
-                  <i class="fa fa-star star" for="star2"></i>
-                  <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
-                  <i class="fa fa-star star" for="star1"></i>
-                </div>
-                <p class="col-xs-7 leftText location"><strong>Location: </strong> {{teacher.county}}</p>
-                <p class="col-xs-7 noPad leftText "><strong>Best For: </strong> {{teacher.skill1}}</p>
-                <p class="col-xs-7 noPad leftText "><strong>$100/hr (All Inclusive)</strong></p>
+    <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-md-4 col-sm-6 teacherCard">
+      <!-- <div class="row"> -->
+      <div class="realCard pointer" [routerLink]="['../view-teacher-profile/', teacher._id]">
+        <div class="row">
+          <div class="col-xs-5">
+            <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="col-xs-12 img-responsive pull-left">
           </div>
-        <!-- </div> -->
+          <div class="col-xs-7 teacherInfo">
+            <p class="leftText teacherName">{{teacher.fullname}}</p>
+            <h6 class="leftText notRated " style="color: grey" *ngIf="!teacher.avgRatingNumber">Not Yet Rated</h6>
+            <div class="rating" *ngIf="teacher.avgRatingNumber">
+              <input type="radio" [checked]="teacher.avgRatingNumber >=4.5"/>
+              <i class="fa fa-star star" for="star5"></i>
+              <input type="radio" [checked]="teacher.avgRatingNumber >=3.5"/>
+              <i class="fa fa-star star" for="star4"></i>
+              <input type="radio" [checked]="teacher.avgRatingNumber >=2.5"/>
+              <i class="fa fa-star star" for="star3"></i>
+              <input type="radio" [checked]="teacher.avgRatingNumber >=1.5"/>
+              <i class="fa fa-star star" for="star2"></i>
+              <input type="radio" [checked]="teacher.avgRatingNumber >=0.5"/>
+              <i class="fa fa-star star" for="star1"></i>
+            </div>
+
+            <p class="col-xs-12 leftText location po"><strong>Location: </strong> {{teacher.county }}</p>
+            <p class="col-xs-12 noPad leftText po"><strong>Best For: </strong> {{teacher.skill1 }}</p>
+            <p class="col-xs-12 noPad leftText po"><strong>Price:</strong> $100/hr</p>
+          </div>
+        </div>
       </div>
       <!-- </div> -->
-      <!-- <div class="row"> -->
-        <div class="col-md-12 showMore">
-          <a (click)="showMore()" *ngIf="!noMoreToLoad">Show More</a>
-          <a *ngIf="noMoreToLoad" class="noMoreLoad">No More to Load</a>
-          <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
-        </div>
-      <!-- </div> -->
+    </div>
+    <!-- </div> -->
+    <!-- <div class="row"> -->
+    <!-- </div> -->
+  </div>
+  <div class="col-xs-12 showMore">
+    <a (click)="showMore()" *ngIf="!noMoreToLoad">Show More</a>
+    <a *ngIf="noMoreToLoad" class="noMoreLoad">No More to Load</a>
+    <a (click)="showLess()" *ngIf="canShowLess">Show Less</a>
+  </div>
+
 </div>
 
 

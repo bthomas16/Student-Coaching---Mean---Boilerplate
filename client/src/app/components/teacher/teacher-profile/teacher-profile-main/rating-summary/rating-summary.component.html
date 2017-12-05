@@ -1,0 +1,79 @@
+<div class="container ratingSummaryDiv noPointer">
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-xs-12">
+        <label class="col-xs-12" for="">Professionalism</label>
+        <div  class="col-xs-12 rating" (click)="closeRating()">
+          <input type="radio" [checked]="pRating >= 5"/>
+          <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+          <input type="radio" [checked]="pRating >= 4"/>
+          <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+          <input type="radio" [checked]="pRating >= 3"/>
+          <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+          <input type="radio" [checked]="pRating >= 2"/>
+          <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+          <input type="radio" [checked]="pRating >= 1"/>
+          <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+        </div>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        <h2>{{ pRating || 0}}/5 </h2>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        {{numberOfRatings || 0}} Students
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-xs-12">
+        <label class="col-xs-12" for="">Knowledge</label>
+        <div class="col-xs-12 rating" (click)="closeRating()">
+          <input type="radio" [checked]="kRating >= 5"/>
+          <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+          <input type="radio" [checked]="kRating >= 4"/>
+          <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+          <input type="radio" [checked]="kRating >= 3"/>
+          <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+          <input type="radio" [checked]="kRating >= 2"/>
+          <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+          <input type="radio" [checked]="kRating >= 1"/>
+          <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+        </div>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        <h2>{{ kRating || 0}}/5 </h2>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        {{numberOfRatings || 0}} Students
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-xs-12">
+        <label class="col-xs-12" for="">Teaching Ability</label>
+        <div  class="col-xs-12 rating" (click)="closeRating()">
+          <input type="radio" [checked]="taRating >= 5"/>
+          <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
+          <input type="radio" [checked]="taRating >= 4"/>
+          <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
+          <input type="radio" [checked]="taRating >= 3"/>
+          <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
+          <input type="radio" [checked]="taRating >= 2"/>
+          <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
+          <input type="radio" [checked]="taRating >= 1"/>
+          <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+        </div>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        <h2>{{ taRating || 0}}/5 </h2>
+      </div>
+      <div class="col-md-10 col-md-offset-1" class="numberRatings">
+        {{numberOfRatings || 0}} Students
+      </div>
+    </div>
+  </div>
+</div>
+</div>

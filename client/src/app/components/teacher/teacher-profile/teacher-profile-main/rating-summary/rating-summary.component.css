@@ -1,0 +1,43 @@
+label {
+  font-size: 1.75em;
+}
+
+.star {
+  font-size: 2em;
+  margin: .5em;
+}
+
+.numberOfRatings {
+  font-size: 1.25em;
+}
+
+.ratingSummaryDiv {
+  padding: 5em;
+}
+
+.rating {
+  border: none;
+  float: left;
+  margin-left: -4.25em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.rating > input  { display: none; }
+.rating > i:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  cursor: pointer;
+}
+
+.rating > i {
+  color: #ddd;
+  float: right;
+  margin: .1em;
+}
+
+.rating > input:checked ~ i {
+  color: #00FF99;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: green;
+}

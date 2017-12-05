@@ -84,8 +84,12 @@ var studentSchema = new Schema({
       text: String,
       author: String
     }],
+    avgKRatingArray: [Number],
+    avgPRatingArray: [Number],
+    avgTARatingArray: [Number],
     avgRatingArray: [Number],
     avgRatingNumber: Number,
+    avgRatingLength: Number,
     experiences: [String],
     location: String,
     county: String,

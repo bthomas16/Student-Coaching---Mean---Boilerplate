@@ -7,8 +7,17 @@ body {
   letter-spacing: .05em;
 }
 
+*:focus {
+  outline: none;
+}
+
 .makeFull {
   width: 90%;
+}
+
+.disabled {
+  color: grey;
+  pointer-events: disabled;
 }
 
 .loadingDiv {
@@ -34,7 +43,13 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+.white {
+  color: white;
+}
 
+.fa-times {
+  color: white;
+}
 
 .flex {
   width: 100%;
@@ -98,6 +113,10 @@ ul.help-block li {
   width: 100%;
 }
 
+.noPointer {
+  pointer-events: none;
+}
+
 .pointer {
   cursor: default;
 }
@@ -115,13 +134,22 @@ ul.help-block li {
   text-decoration: none;
 }
 
-.topRightEdit {
-  position: relative;
-  z-index: 10000;
-  top: 0;
-  right:0;
-  justify-content: flex-end;
-  background-color: white;
+.editLogo  {
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  color: white;
+  z-index: 1000;
+  font-size: 1.75em;
+}
+
+.successEdit {
+  color: #1BACFC;
+}
+
+.cancelEdit {
+  right: 5%;
+  color: #F7F4F4;
 }
 
 .glyphicon-refresh-animate {

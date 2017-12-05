@@ -29,8 +29,12 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   teacherPRatingsArray;
   teacherTARatingsArray;
   teacherAvgRatings;
+  ratingsListLength;
   experiences: Array<string>;
   profVideo = '';
+  sliceNumber = 3;
+  canShowMore: boolean = true;
+  changedShow: boolean = false;
 
   showRate: boolean = false;
   findTeacher: boolean = true;
@@ -60,6 +64,31 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
     this.apiService.openRating(this.canRate)
   }
 
+  addSlice3(){
+    console.log('hi', this.ratingsListLength, this.sliceNumber)
+    this.sliceNumber += 3;
+    if(this.sliceNumber > this.ratingsListLength) {
+      this.sliceNumber = this.ratingsListLength;
+      this.canShowMore = false;
+    }
+    this.changedShow = true;
+  }
+
+  subtractSlice3(){
+      this.sliceNumber -= 3;
+      this.canShowMore = true;
+      if(this.sliceNumber <= 3 ) {
+        this.sliceNumber = 3;
+        this.changedShow = false;
+      }
+    }
+
+  resetSlice(){
+      this.canShowMore = true;
+      this.changedShow = false;
+      this.sliceNumber = 3;
+    }
+
   ngAfterContentChecked(){
     this.canRate =  this.apiService.getRatingStatus();
   }
@@ -80,6 +109,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                if(viewTeacher.teacher.profVideo) {
                  this.profVideo = (this.awsBucket + viewTeacher.teacher.profVideo);
                }
+               this.ratingsListLength = viewTeacher.teacher.ratings.length;
                this.teacherFullname = viewTeacher.teacher.fullname;
                this.experiences = viewTeacher.teacher.experiences
                if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
@@ -97,7 +127,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
        }
     this.authService.getProfile().subscribe(profile => {
       this.userID = profile.user.id
-      this.userFullname = profile.user.fullname.toUpperCase();
+      this.userFullname = profile.user.fullname;
       this.userEmail = profile.user.email;
       this.userIsStudent = profile.user.isStudent;
       this.userIsTeacher = profile.user.isTeacher;

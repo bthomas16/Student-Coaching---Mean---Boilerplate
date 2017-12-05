@@ -27,7 +27,6 @@ export class FeaturedTeacherComponent implements OnInit {
   profPic;
   allTeacher;
   bio: String = '';
-  route: String = '../view-teacher-profile/'
   avgRatingArray;
   teachersList;
   ratingsList;
@@ -45,7 +44,8 @@ export class FeaturedTeacherComponent implements OnInit {
    paginate(value) {
      this.grabValue = value;
      this.indexValue = this.grabValue + 1;
-     console.log(this.grabValue)
+       let ratingList = this.teachersList[this.grabValue].ratings.length;
+       this.randomRatingIndex = Math.floor((Math.random() * (ratingList - 1)))
    }
 
    up1() {
@@ -55,7 +55,8 @@ export class FeaturedTeacherComponent implements OnInit {
        this.grabValue = 0;
        this.indexValue = 1;
      }
-     console.log(this.grabValue, this.indexValue)
+     let ratingList = this.teachersList[this.grabValue].ratings.length;
+     this.randomRatingIndex = Math.floor((Math.random() * (ratingList - 1)))
    }
 
    down1() {
@@ -65,7 +66,8 @@ export class FeaturedTeacherComponent implements OnInit {
        this.grabValue = 2;
        this.indexValue = 3;
      }
-     console.log(this.grabValue)
+     let ratingList = this.teachersList[this.grabValue].ratings.length;
+     this.randomRatingIndex = Math.floor((Math.random() * (ratingList - 1)))
    }
 
   ngOnInit() {
@@ -74,9 +76,8 @@ export class FeaturedTeacherComponent implements OnInit {
       let shuffledTeachersRatings = this.shufflepipe.transform(featured.teachers)
       this.teachersList = shuffledTeachersRatings.slice(0,3);
       if(this.teachersList[this.grabValue].ratings[0]) {
-        let ratingsLength = this.teachersList[this.indexValue].ratings.length
-        this.randomRatingIndex = Math.floor((Math.random() * (ratingsLength - 1)) + 1)
-        console.log(this.randomRatingIndex, 'ri')
+        let ratingsLength = this.teachersList[this.grabValue].ratings.length;
+        this.randomRatingIndex = Math.floor((Math.random() * (ratingsLength - 1)))
       }
        });
   }

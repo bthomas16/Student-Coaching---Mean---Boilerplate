@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service'
 import { ActivatedRoute } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -11,6 +11,9 @@ import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
   providers: [ShufflePipe]
 })
 export class TeacherReviewsComponent implements OnInit {
+    @Input()sliceNumber;
+    @Input()canShowMore;
+
     message;
     messageClass;
     userID;
@@ -21,13 +24,11 @@ export class TeacherReviewsComponent implements OnInit {
     yetRated: boolean = false;
     numberOfRatings;
     avgTotalRating;
-    sliceNumber: number = 3;
     canReadMore: boolean = false;
     teachersList;
     teachersListLength;
     readSliceNumber;
     originalTeachersListLength;
-    canShowMore: boolean = true;
     shortenNumber: number = 80;
 
 

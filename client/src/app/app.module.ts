@@ -56,6 +56,7 @@ import { CompanyInfoComponent } from './components/company-info/company-info.com
 import { ContactComponent } from './components/company-info/contact/contact.component';
 import { AboutComponent } from './components/company-info/about/about.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { RatingSummaryComponent } from './components/teacher/teacher-profile/teacher-profile-main/rating-summary/rating-summary.component';
 
 
 
@@ -94,7 +95,8 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     CompanyInfoComponent,
     ContactComponent,
     AboutComponent,
-    ShortenPipe
+    ShortenPipe,
+    RatingSummaryComponent
   ],
   imports: [
     BrowserModule,

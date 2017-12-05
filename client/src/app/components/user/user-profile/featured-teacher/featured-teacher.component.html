@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-xs-12">
           <h3 class="leftText">Featured Coach</h3>
-          <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="img-responsive pull-left pointer" routerLink="{{route}}">
+          <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="img-responsive pull-left pointer" [routerLink]="['../view-teacher-profile/', teacher._id]">
         </div>
       </div>
     </div>

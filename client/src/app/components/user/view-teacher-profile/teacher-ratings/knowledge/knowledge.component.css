@@ -62,7 +62,7 @@ span {
   }
 }
 
-@media(max-width:421px) {
+@media(max-width: 500px) {
   .fa-star {
     font-size: 2em;
   }

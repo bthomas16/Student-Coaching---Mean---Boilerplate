@@ -2,11 +2,6 @@
   <div class="loader"></div>
 </div>
 
-<div class="row show-hide-message" *ngIf="show">
-  <div [ngClass]="messageClass">
-  {{message}}</div>
-</div>
-
 
 <div class="flex becomeTeacher" *ngIf="!isTeacher">
   <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
@@ -18,32 +13,32 @@
 
 
 
-  <app-teacher-profile-main></app-teacher-profile-main>
+  <app-teacher-profile-main *ngIf="!isLoading"></app-teacher-profile-main>
 
-  !-- bio row -->
+  <!-- bio row -->
 
 
 <div class="container bioRow"  *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+  <div class="row show-hide-message" *ngIf="show">
+    <div [ngClass]="messageClass">
+    {{message}}</div>
+  </div>
   <div class="row leftText bioRow">
     <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-      <p class="about">About scvs{{ fullname }}</p>
+      <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
+      <i class="fa fa-check editLogo successEdit successEditBio pointer" aria-hidden="true" (click)="bioValueSubmit()" *ngIf="isEdit"></i>
+      <i class="fa fa-times editLogo cancelEdit cancelEditBio pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
+      <p class="about">About {{ fullname }}</p>
     </div>
     <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-      <p class="bioText">{{bio}}</p>
+      <p *ngIf="!isEdit" class="bioText">{{bio}}</p>
+      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{ bio }}" (change)="getBioValue($event.target.value)"></textarea>
     </div>
-    <button class="btn btn-warning editBio" (click)="isBioEdit = !isBioEdit">Edit</button>
-    <form [formGroup]='bioForm' (submit)="bioFormSubmit()" *ngIf=isBioEdit>
-      <textarea name="bio" formControlName="bio" placeholder="Write your Bio here ~ approx 200 characters" value="{{ bio }}"></textarea>
-      <div class="flex save">
-        <button type="button" class="btn btn-warning" (click)="isBioEdit = !isBioEdit">Cancel</button>
-        <button type="submit" class="btn btn-success" [disabled]="!bioForm.controls.bio.value">Save</button>
-      </div>
-    </form>
   </div>
 </div>
 
 
-<!-- .video row -->
+<!-- video row -->
 
 <div class="container vidContainer" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
   <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
@@ -55,7 +50,6 @@
       <div class="row cloudImg">
         <div class="col-xs-12">
           <i class="col-xs-12 fa fa-cloud-upload" aria-hidden="true"></i>
-          <!-- <button class="btn btn-info col-xs-4 col-xs-offset-4 uploadButt">Upload Video</button> -->
           <label for="fileInput" class="custom-file-upload">
             <h4>Upload Video</h4>
           </label>
@@ -80,54 +74,51 @@
         <div class="col-md-10 col-md-offset-1 leftText">
           <h3>Reviews</h3>
         </div>
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1 teacherReviewDiv">
           <app-teacher-reviews></app-teacher-reviews>
         </div>
+        <a class="showMore" (click)="subtractSlice3()" *ngIf="[sliceNumber] > 3">Show Less</a>
+        <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= teachersListLength) || changedShow">Reset</a>
+        <a class="showMore" (click)="addSlice3()" *ngIf="[sliceNumber] < ratingsListLength" >Show More</a>
       </div>
     </div>
     <div class="col-md-6 proExperience">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1 leftText">
-          <h3 >Professional Experience:</h3>
-          <h6 *ngIf="experiences == undefined || null">Please Update Your Experiences </h6>
+        <div class="col-md-12 leftText" style="padding-left:1em;">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1" >
+              <h3>Professional Experience:</h3>
+            </div>
+          </div>
+          <h6 *ngIf="experiences == undefined || null">Update Experiences </h6>
         </div>
-        <div class="">
-          <ul class="col-md-10 col-md-offset-1 experiences" *ngFor="let experience of experiences">
-            <li class="flex">
+        <i class="fa fa-pencil-square-o editLogo proExpEditLogo pointer" aria-hidden="true" (click)="isEditExp = !isEditExp" *ngIf="!isEditExp"></i>
+        <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp"></i>
+        <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer" aria-hidden="true" (click)="cancelExp()" *ngIf="isEditExp"></i>
+        <div class="col-xs-11 experiences">
+          <ul  *ngFor="let experience of experiences">
+            <li class="leftText makeFull">
               <i class="fa fa-plus ploos" aria-hidden="true"></i>
               <span>{{ experience }}</span>
             </li>
           </ul>
+          <div class="row dynamicExperiences" *ngIf="isEditExp">
+            <!-- <h4 *ngIf="experiences.length == 5" style="color:red;" class="col-md-6 col-md-offset-3">You already have 5 expereiences!</h4> -->
+            <input (keyup)="getNewExperience($event)" class="experienceInput col-xs-8 " *ngIf="experiences.length !== 5" value="{{experienceValue}}" placeholder="Add New Experience...">
+            <div class="col-xs-11 buttsDiv">
+              <button class="btn btn-success col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="experiences.length !== 5">Add</button>
+              <button class="btn btn-success col-xs-3" (click)="addExperience()"  disabled *ngIf="experiences.length == 5">5 Max</button>
+              <button class="btn btn-warning col-xs-3" (click)="deleteExperience()" [disabled]="experiences.length == 0">Delete</button>
+              <button class="btn btn-danger experienceButton col-xs-3" (click)="resetExperience()" [disabled]="experiences.length == 3">Reset</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- <div class="flex half exp">
-
-  <ul class="flex experiences" *ngFor="let experience of experiences">
-    <li class="flex"><i class="fa fa-plus ploos" aria-hidden="true"></i>
-      <span>{{ experience }}</span>
-    </li>
-  </ul>
-  <div class="flex dynamicExperiences">
-    <h4 *ngIf="maxExperiences" style="color:red;">You already have 5 expereiences!</h4>
-    <input (keyup)="getNewExperience($event)" class="experienceInput" *ngIf="!maxExperiences" value="{{experienceValue}}" placeholder="Add New Experience...">
-    <button class="btn btn-primary experienceAddButton" (click)="addExperience()" *ngIf="!maxExperiences" [disabled]="[experienceValue] == ''">Add Experience</button>
-    <button class="btn btn-danger experienceButton" (click)="clearExperience()">Reset Experiences</button>
-  </div>
-</div> -->
-
-  <!-- <div class="flex reviewsContainer"> -->
-    <!-- <div class="flex half reviews">
-      <h3 class="flex reviewsTitle">Reviews</h3>
-
-    </div> -->
-
-  <!-- </div> -->
-<!-- </div> -->
+<app-rating-summary></app-rating-summary>
 
 
 <span *ngIf="!isLoading && !isOnline">
@@ -164,9 +155,6 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
             &nbsp; Please add 2 or more experiences to your profile.
           </li>
-          <!-- <li class="status" *ngIf="!skill2">
-            Please update your availability section.
-          </li> -->
         </ul>
         <div class="flex activateButtons" *ngIf="canChangeStatus">
           <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus === 'ONLINE'">Go Offline</button>

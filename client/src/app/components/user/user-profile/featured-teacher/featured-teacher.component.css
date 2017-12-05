@@ -7,6 +7,14 @@
   font-weight: 500;
 }
 
+.img-responsive {
+  display: block;
+  min-width:308px;
+  height:418px;
+  width: auto;
+  /*height: auto;*/
+}
+
 .handicap {
   margin-top: .5em;
   margin-bottom: -.5em;

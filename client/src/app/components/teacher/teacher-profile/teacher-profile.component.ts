@@ -46,10 +46,9 @@ export class TeacherProfileComponent implements OnInit {
   currentUrl;
   teacherID;
   isEdit: boolean = false;
+  isEditExp: boolean = false;
   videoFileName;
   profVideo;
-  bioForm;
-  bio;
   isBioEdit: boolean = false;
   maxExperiences: boolean = false;
   experienceValue;
@@ -60,28 +59,27 @@ export class TeacherProfileComponent implements OnInit {
   onlineStatus: string = 'OFFLINE';
   isOnline: boolean = false;
   profPicName;
-  capFullname;
+  bioValue;
+  bio;
 
   isLoading: boolean = true;
+
+  originalArray;
 
 
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private cookieService: CookieService) {
-    this.createBioForm();
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private cookieService: CookieService) {
   }
 
-  createBioForm() {
-    this.bioForm = this.formBuilder.group({
-      bio: ['']
-    });
+  getBioValue(value) {
+      this.bioValue = value;
   }
 
-  bioFormSubmit() {
-    this.bio = this.bioForm.get('bio').value;
+  bioValueSubmit() {
     const bio = {
-      bio: this.bio
+      bio: this.bioValue
     }
     this.authService.onBioFormSubmit(bio).subscribe(data => {
       if(!data.success) {
@@ -89,9 +87,10 @@ export class TeacherProfileComponent implements OnInit {
         this.message = data.message;
       } else {
         this.show = true;
-        this.isBioEdit = false;
+        this.isEdit = false;
         this.messageClass = 'alert alert-success';
         this.message = data.message;
+        this.getBio();
         setTimeout(() => {
           this.show = false
         }, 1200);
@@ -169,29 +168,46 @@ export class TeacherProfileComponent implements OnInit {
     if(this.experiences.length >= 5) {
       this.maxExperiences = true;
     }
-    this.experienceSubmit();
+    // this.experienceSubmit();
     this.experienceValue = '';
   }
 
   experienceSubmit() {
-    let experiences = this.experiences;
-    console.log(experiences, 'data being submitted');
-    this.authService.onExperienceSubmit(experiences).subscribe(data => {
+    this.isEditExp = !this.isEditExp;
+    this.authService.onExperienceSubmit(this.experiences).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
-        this.isEdit = true;
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
-          this.isEdit = false;
       }
     })
   }
+  deleteExperience() {
+    const trying = this.originalArray;
+    console.log(trying)
 
-  clearExperience() {
+    this.experiences.pop()
+    // this.experiences = deletedItemArray;
+    console.log(this.experiences)
+  }
+
+  resetExperience() {
     this.experiences = [];
     this.maxExperiences = false;
+  }
+
+  cancelExp() {
+    this.isEditExp = !this.isEditExp;
+    this.authService.getProfile()
+    .subscribe(profile => {
+      this.bio = profile.user.bio;
+    });
+    this.authService.getProfile()
+    .subscribe(profile => {
+      this.experiences = profile.user.experiences
+    });
   }
 
   goOffline() {
@@ -251,6 +267,13 @@ export class TeacherProfileComponent implements OnInit {
     this.checkCookies();
   }
 
+  getBio() {
+    this.authService.getProfile()
+    .subscribe(profile => {
+      this.bio = profile.user.bio;
+    });
+  }
+
   ngOnInit() {
     this.authService.getProfile()
     .subscribe(profile => {
@@ -268,6 +291,7 @@ export class TeacherProfileComponent implements OnInit {
       this.skill1 = profile.user.skill1;
       this.skill2 = profile.user.skill2;
       this.experiences = profile.user.experiences;
+      this.originalArray = this.experiences;
       this.onlineStatus = profile.user.onlineStatus;
       if(this.onlineStatus === 'ONLINE') {
         this.isOnline = true;

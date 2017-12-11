@@ -1,7 +1,7 @@
 <div class="flex bar" (click)="closeRating()">
   <div class="flex logo">
-    <a class="navPointer" routerLink="home" *ngIf="!authService.loggedIn()">savvy</a>
-    <a class="navPointer" routerLink="profile" *ngIf="authService.loggedIn()">savvy</a>
+    <a class="navPointer mainLogo" routerLink="home" *ngIf="!authService.loggedIn()">savvy</a>
+    <a class="navPointer mainLogo" routerLink="profile" *ngIf="authService.loggedIn()">savvy</a>
   </div>
   <div class="flex options" *ngIf="!authService.loggedIn()">
     <a class="navPointer initialOption" (click)="loginModal()">Sign In</a>
@@ -12,11 +12,11 @@
 </div>
 
 <div class="flex menu" *ngIf="showMenu" (click)="changeMenuFalse() && hideModal()">
-      <a class="flex menu-item navPointer" routerLink="company-info">About Us</a>
-      <a class="flex menu-item navPointer" routerLink="company-info">Contact Us</a>
+      <a class="flex menu-item navPointer" routerLink="company-info" (click)="showMenu = !showMenu">About Us</a>
+      <a class="flex menu-item navPointer" routerLink="company-info" (click)="showMenu = !showMenu">Contact Us</a>
   <!-- <span class="line"></span> -->
-      <a routerLink="profile/student" class="flex menu-item navPointer" *ngIf="authService.loggedIn()">Student Profile</a>
-      <a routerLink="profile/teacher" class="flex menu-item navPointer" *ngIf="authService.loggedIn()">Teacher Profile</a>
+      <a routerLink="profile/student" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Student Profile</a>
+      <a routerLink="profile/teacher" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Teacher Profile</a>
     <!-- <span class="line" *ngIf="authService.loggedIn()"></span> -->
       <a routerLink="/" (click)="onLogoutClick()" class="flex menu-item navPointer" *ngIf="authService.loggedIn()">Logout</a>
   </div>

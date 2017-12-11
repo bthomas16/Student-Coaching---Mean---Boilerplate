@@ -3,7 +3,7 @@
 </div>
 
 
-<div class="flex becomeTeacher" *ngIf="!isTeacher">
+<div class="flex becomeTeacher" *ngIf="!isTeacher && !isLoading">
   <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
   <div class="flex">
     <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
@@ -11,9 +11,12 @@
   <hr>
 </div>
 
+<!-- <span > -->
+  <div [ngClass]="modalState == 'fadeIn' ? 'greyOut ': 'none'" *ngIf="isTeacher && !isLoading">
+  </div>
+<!-- </span> -->
 
-
-  <app-teacher-profile-main *ngIf="!isLoading"></app-teacher-profile-main>
+  <app-teacher-profile-main *ngIf="!isLoading && isTeacher" [fullname]="fullname"></app-teacher-profile-main>
 
   <!-- bio row -->
 
@@ -118,11 +121,11 @@
   </div>
 </div>
 
-<app-rating-summary></app-rating-summary>
+<app-rating-summary *ngIf="!isLoading && isTeacher"></app-rating-summary>
 
 
-<span *ngIf="!isLoading && !isOnline">
-<div class="flex statusModal" [ngClass]="{fadeOut: cookies}">
+<span *ngIf="(!isLoading && !isOnline) && isTeacher">
+<div class="flex statusModal" [@modalStatusFade]="modalState">
   <div class="flex">
     <div class="flex xClose">
       <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeStatusModal()"></i>
@@ -137,7 +140,7 @@
       </div>
       <div class="flex statusListDiv leftText">
         <h4 *ngIf="!canChangeStatus" style='font-weight:300; margin-top: 1em;'>To activate your profile, please update the following:</h4>
-        <h4 *ngIf="canChangeStatus">You are currently <span [ngClass]="isOnline ? 'online' : 'offline'">{{ onlineStatus }}</span></h4>
+        <h4 *ngIf="canChangeStatus">You are currently <span [ngClass]="onlineStatus ? 'online' : 'offline'">{{ onlineStatus }}</span></h4>
         <ul class="flex statusList leftText">
           <li class="status" *ngIf="profPicName === 'blankProf.png'">
             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -157,10 +160,10 @@
           </li>
         </ul>
         <div class="flex activateButtons" *ngIf="canChangeStatus">
-          <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus === 'ONLINE'">Go Offline</button>
-          <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus === 'OFFLINE'">Stay Offline</button>
-          <button class="btn btn-info" (click)="goOnline()" *ngIf="onlineStatus === 'OFFLINE'">Go Online</button>
-          <button class="btn btn-info" (click)="goOnline()" *ngIf="onlineStatus === 'ONLINE'">Stay Online</button>
+          <button class="btn btn-danger" (click)="goOffline()" *ngIf="onlineStatus">Go Offline</button>
+          <button class="btn btn-danger" (click)="goOffline()" *ngIf="!onlineStatus">Stay Offline</button>
+          <button class="btn btn-info" (click)="goOnline()" *ngIf="!onlineStatus">Go Online</button>
+          <button class="btn btn-info" (click)="goOnline()" *ngIf="onlineStatus">Stay Online</button>
         </div>
       </div>
     </div>

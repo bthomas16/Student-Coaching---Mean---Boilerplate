@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
   }
 
   onLogoutClick() {
+    this.showMenu = !this.showMenu;
     this.changeMenuFalse()
     this.authService.Logout();
     this.flashMessagesService.grayOut(true);
@@ -46,16 +47,6 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
     this.apiService.changeMenuFalse(this.showMenu);
   }
 
-  // registerModal() {
-  //   if(this.loginState === 'registerFadein') {
-  //     let value = 'normal';
-  //     this.apiService.loginModal(value)
-  //     return true;
-  //   }
-  //   let value = 'registerFadein';
-  //   this.apiService.registerModal(value);
-  // }
-
   loginModal() {
     this.registerState = 'normal'
     let rvalue = this.registerState;
@@ -65,16 +56,8 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
       let value = this.loginState;
       this.apiService.loginModal(value)
       console.log(value, 'is the loginModal status')
-      // return true;
     }
     this.loginState = 'normal';
-    // this.loginState = 'normal';
-    // // this.registerState = 'normal';
-    // let value = this.loginState;
-    // let rvalue = this.registerState;
-    // this.apiService.loginModal(value);
-    // this.apiService.registerModal(rvalue)
-    // return true;
   }
 
   registerModal() {
@@ -86,15 +69,8 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
       this.registerState = 'registerFadein'
       let rvalue = this.registerState;
       this.apiService.registerModal(rvalue)
-      // return true;
     }
     this.registerState = 'normal';
-    // this.registerState = 'normal';
-    // let value = this.loginState;
-    // let rvalue = this.registerState;
-    // this.apiService.loginModal(value);
-    // this.apiService.registerModal(rvalue)
-    // return true;
   }
 
 

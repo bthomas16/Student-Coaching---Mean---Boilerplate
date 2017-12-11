@@ -20,6 +20,8 @@ export class FooterComponent implements OnInit, DoCheck {
   isLoggedIn:boolean = false;
   isTeacher:boolean = false;
   isStudent: boolean = false;
+  registerState;
+  loginState;
 
   constructor(private formBuilder: FormBuilder, public apiService: ApiService, public authService: AuthService) {
     this.createForm()
@@ -104,9 +106,37 @@ export class FooterComponent implements OnInit, DoCheck {
       });
     }
 
-    ngDoCheck() {
-      this.isLoggedIn = this.authService.loggedIn();
+    loginModal() {
+      this.loginState = !this.loginState;
+      this.registerState = 'normal'
+      let rvalue = this.registerState;
+      this.apiService.registerModal(rvalue);
+      if(this.loginState === 'normal') {
+        this.loginState = 'loginFadein'
+        let value = this.loginState;
+        this.apiService.loginModal(value)
+        console.log(value, 'is the loginModal status')
+      }
+      this.loginState = 'normal';
     }
+
+    registerModal() {
+      this.registerState = !this.registerState;
+      this.loginState = 'normal';
+      let value = this.loginState;
+      this.apiService.loginModal(value);
+      console.log(value, 'is the loginModal status')
+      if(this.registerState === 'normal') {
+        this.registerState = 'registerFadein'
+        let rvalue = this.registerState;
+        this.apiService.registerModal(rvalue)
+      }
+      this.registerState = 'normal';
+    }
+
+  ngDoCheck() {
+    this.isLoggedIn = this.authService.loggedIn();
+  }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.loggedIn();

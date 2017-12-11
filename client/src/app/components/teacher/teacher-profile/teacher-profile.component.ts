@@ -1,33 +1,32 @@
-import { Component, OnInit, ViewChild, trigger, transition, style, animate } from '@angular/core';
+import { Component, OnInit, ViewChild, trigger, state, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-teacher-profile',
-  animations: [
-    trigger(
-      'enterAnimation', [
-        transition(':enter', [
-          style({transform: 'translateX(100%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
-        ]),
-        transition(':leave', [
-          style({transform: 'translateX(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
-        ])
-      ]
-    )
-  ],
   templateUrl: './teacher-profile.component.html',
-  styleUrls: ['./teacher-profile.component.css']
+  styleUrls: ['./teacher-profile.component.css'],
+  animations: [
+    trigger('modalStatusFade', [
+      state('none', style({visibility: 'hidden', opacity: 0})),
+      state('fadeOut', style({transition: 'all .5s ease-in-out',
+      opacity: 0
+      })),
+      state('fadeIn', style({display: 'block', transition: 'all .5s ease-in-out',
+      opacity: 1
+      })),
+      transition('fadeOut <=> *', animate(350)),
+    ])
+  ]
 })
 export class TeacherProfileComponent implements OnInit {
   @ViewChild("fileInput") fileInput;
 
-  cookieValue = 'UNKNOWN';
-  cookies: boolean = false;
+  modalState = 'none';
+
 
   email;
   message;
@@ -35,7 +34,7 @@ export class TeacherProfileComponent implements OnInit {
   messageClass;
   userID;
   fullname;
-  isStudent;
+  isStudent: boolean = false;;
   isTeacher: boolean = true;
   skill1;
   skill2;
@@ -56,8 +55,9 @@ export class TeacherProfileComponent implements OnInit {
   canSubmitVideo: boolean = false;
   showVidSubmitMessage: boolean = false;
   canChangeStatus: boolean = false;
-  onlineStatus: string = 'OFFLINE';
-  isOnline: boolean = false;
+  onlineStatus: boolean = false;
+
+  // isOnline: boolean = false;
   profPicName;
   bioValue;
   bio;
@@ -98,7 +98,6 @@ export class TeacherProfileComponent implements OnInit {
     });
   }
   getVidFile(event) {
-    console.log('soupers')
     this.videoFileName = event.target.files[0];
     this.videoFileName = this.videoFileName.name;
     if(this.videoFileName) {
@@ -109,7 +108,6 @@ export class TeacherProfileComponent implements OnInit {
   videoSubmit() {
     this.showVidSubmitMessage = true;
     let fi = this.fileInput.nativeElement;
-    console.log(this.videoFileName ,'soupers2');
     if (fi.files && fi.files[0]) {
         let fileToUpload = fi.files[0];
         this.authService.uploadVideo(fileToUpload).subscribe(data => {
@@ -186,11 +184,7 @@ export class TeacherProfileComponent implements OnInit {
   }
   deleteExperience() {
     const trying = this.originalArray;
-    console.log(trying)
-
     this.experiences.pop()
-    // this.experiences = deletedItemArray;
-    console.log(this.experiences)
   }
 
   resetExperience() {
@@ -202,28 +196,19 @@ export class TeacherProfileComponent implements OnInit {
     this.isEditExp = !this.isEditExp;
     this.authService.getProfile()
     .subscribe(profile => {
-      this.bio = profile.user.bio;
-    });
-    this.authService.getProfile()
-    .subscribe(profile => {
       this.experiences = profile.user.experiences
     });
   }
 
   goOffline() {
-    let status = {
-      status: 'OFFLINE'
-    }
-    this.authService.onlineStatus(status).subscribe(data => {
+    this.onlineStatus = false;
+    this.authService.onlineStatus(this.onlineStatus).subscribe(data => {
       if(!data.success) {
-        console.log('fail');
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
       }
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
-      this.onlineStatus = 'OFFLINE';
-      this.isOnline = false;
       setTimeout(() => {
         this.closeStatusModal()
       }, 800);
@@ -231,40 +216,33 @@ export class TeacherProfileComponent implements OnInit {
   }
 
   goOnline() {
-    let status = {
-      status: 'ONLINE'
-    }
+    this.onlineStatus = true;
     this.authService.onlineStatus(status).subscribe(data => {
       if(!data.success) {
-        console.log('fail');
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
       }
       this.messageClass = 'alert alert-success';
       this.message = data.message;
-      this.onlineStatus = 'ONLINE';
-      this.isOnline = true;
       setTimeout(() => {
         this.closeStatusModal()
       }, 800);
     });
   }
 
-  checkCookies() {
-      this.cookieValue = this.cookieService.get('Status');
-      if(this.cookieValue == "Here, have some status based cookies!") {
-        return true
-      }
-      setTimeout(() => {
-        this.cookieService.set( 'Status', 'Here, have some status based cookies!' );
-        return false
-      },120000)
-  }
-
+  // checkCookies() {
+  //     this.cookieValue = this.cookieService.get('Status');
+  //     if(this.cookieValue == "Here, have some status based cookies!") {
+  //       return true
+  //     }
+  //     setTimeout(() => {
+  //       this.cookieService.set( 'Status', 'Here, have some status based cookies!' );
+  //       return false
+  //     },120000)
+  // }
+  //
   closeStatusModal() {
-    this.cookies = true;
-    this.cookieService.set( 'Status', 'Here, have some status based cookies!' );
-    this.checkCookies();
+    this.modalState = 'fadeOut';
   }
 
   getBio() {
@@ -284,7 +262,6 @@ export class TeacherProfileComponent implements OnInit {
       if(this.profPicName == undefined) {
         this.profPicName = 'blankProf.png'
       }
-      console.log(this.profPicName)
       this.profPic = this.awsBucket + this.profPicName;
       this.isTeacher = profile.user.isTeacher;
       this.isStudent = profile.user.isStudent;
@@ -293,9 +270,7 @@ export class TeacherProfileComponent implements OnInit {
       this.experiences = profile.user.experiences;
       this.originalArray = this.experiences;
       this.onlineStatus = profile.user.onlineStatus;
-      if(this.onlineStatus === 'ONLINE') {
-        this.isOnline = true;
-      }
+
       if(this.experiences.length == 5) {
         this.maxExperiences = true;
       }
@@ -305,10 +280,14 @@ export class TeacherProfileComponent implements OnInit {
         this.canChangeStatus = true;
       }
     });
-    this.checkCookies();
     setTimeout(() => {
       this.isLoading = false;
     }, 800);
+    if(!this.onlineStatus) {
+    setTimeout(() => {
+        this.modalState = 'fadeIn';
+      }, 1400);
+      }
     window.scrollTo(0, 0);
   }
 }

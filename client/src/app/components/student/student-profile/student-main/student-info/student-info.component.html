@@ -1,0 +1,97 @@
+<div class="row studentInfo">
+
+      <span *ngIf="!isParams">
+        <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
+        <i class="fa fa-check editLogo successEdit pointer" aria-hidden="true" (click)="submitStudentProfileInfo()" *ngIf="isEdit"></i>
+        <i class="fa fa-times editLogo cancelEdit pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
+      </span>
+
+        <div class="col-xs-5">
+          <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" *ngIf="!isEdit">
+          <div class="flex fileInputDiv" *ngIf="isEdit">
+            <label for="fileInput" class="custom-file-upload">
+              <h4>Upload a Photo</h4>
+            </label>
+            <h6 style="width: 100%">{{fileChangeName}}</h6>
+            <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
+          </div>
+        </div>
+        <div class="col-xs-7 leftText">
+          <div class="row">
+            <div class="col-md-12 fullNameDiv">
+              <h2>{{fullname}}</h2>
+            </div>
+            <div class="col-xs-12">
+              <p  *ngIf="!isEdit">Locations: <span>{{studentCounty}}</span></p>
+              <p *ngIf="isEdit" class="col-md-5 editLabel">Locations:</p>
+              <select (change)="getCounty($event)" value="{{county}}" *ngIf="isEdit" class="col-md-5">
+                <option value="{{county}}" selected>{{studentCounty}}</option>
+                <hr>
+                <option value="North County">North County</option>
+                <option value="South County">South County</option>
+                <option value="East County">East County</option>
+                <option value="Central County">Central County</option>
+              </select>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <p *ngIf="!isEdit">Handicap: <span>{{studentHandicap}}</span></p>
+                <p *ngIf="isEdit" class="col-md-5 editLabel">Handicap:</p>
+                <select (change)="getHandicap($event)" value="{{handicap}}" class="col-md-5" *ngIf="isEdit">
+                  <option value="{{handicap}}" selected>+{{studentHandicap}}</option>
+                  <hr>
+                  <option value="1">+1</option>
+                  <option value="2">+2</option>
+                  <option value="3">+2</option>
+                  <option value="4">+4</option>
+                  <option value="5">+5</option>
+                  <option value="6">+6</option>
+                  <option value="7">+7</option>
+                  <option value="8">+8</option>
+                  <option value="9">+9</option>
+                  <option value="10">+10</option>
+                  <option value="11">+11</option>
+                  <option value="12">+12</option>
+                  <option value="13">+13</option>
+                  <option value="14">+14</option>
+                  <option value="15">+15</option>
+                  <option value="16">+16</option>
+                  <option value="17">+17</option>
+                  <option value="18">+18</option>
+                  <option value="19">+19</option>
+                  <option value="20">+20</option>
+                  <option value="21">+21</option>
+                  <option value="22">+22</option>
+                  <option value="23">+23</option>
+                  <option value="24">+24</option>
+                  <option value="25">+25</option>
+                  <option value="26">+26</option>
+                  <option value="27">+27</option>
+                  <option value="28">+28</option>
+                  <option value="29">+29</option>
+                  <option value="20">+20</option>
+                  <option value="31">+31</option>
+                  <option value="32">+32</option>
+                  <option value="33">+33</option>
+                  <option value="34">+34</option>
+                  <option value="35">+35</option>
+                </select>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <p *ngIf="!isEdit">Golfer Type: <span>{{golferType}}</span></p>
+                <p *ngIf="isEdit" class="col-md-5 editLabel">Golfer Type:</p>
+                <select value="{{golferType}}" (change)="getGolferType($event)" lass="col-md-5" *ngIf="isEdit">
+                  <option value="Casual Beginner">Casual Beginner</option>
+                  <option value="Tournament Beginner">Tournament Beginner</option>
+                  <option value="Casual Advanced">Casual Advanced</option>
+                  <option value="Tournament Advanced">Tournament Advanced</option>
+                  <option value="Casual Expert">Casual Expert</option>
+                  <option value="Tournament Expert">Tournament Expert</option>
+                </select>
+            </div>
+          </div>
+      </div>
+</div>

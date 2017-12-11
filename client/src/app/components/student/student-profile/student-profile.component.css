@@ -4,4 +4,61 @@
 
 .becomeStudent {
   height: 100vh;
+  padding-top: 20%
+}
+.studentRow {
+  margin-top: 2em;
+}
+
+.teachersList {
+  margin-top: 2em;
+}
+
+button {
+  margin-top: 10%;
+}
+
+/*Bio Row*/
+
+.bioRow {
+  background-color: #5563F0;
+  width: 100vw;
+  padding: 2em;
+  padding-left: 9em;
+  padding-right: 8em;
+  margin-top: 2em;
+  min-height: 15em;
+  color: white;
+}
+
+.about {
+  font-size: 1.15em;
+  font-weight: 400;
+}
+
+.bioText {
+  margin-top: 1.25em;
+  font-size: 1.35em;
+  font-weight: 500;
+}
+
+.bioInput {
+  margin-top: 1em;
+  font-size: 1.35em;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border: .5px 0 .5px .5px solid white;
+  color: white;
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  left: 0;
+  resize: none;
+  text-align: left;
+}
+
+textarea::placeholder {
+  color: lightgrey;
 }

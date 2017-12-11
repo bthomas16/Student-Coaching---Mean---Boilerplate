@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit, AfterContentChecked {
 
   isLoading: boolean = true;
   state = 'normal';
+  loginState;
+  registerState;
 
   constructor(private cookieService: CookieService,private formBuilder: FormBuilder, public authService: AuthService, public apiService: ApiService, private router: Router) {
     this.createForm()
@@ -83,7 +85,6 @@ export class HomeComponent implements OnInit, AfterContentChecked {
     const emailSubscriber = {
       email: this.emailForm.get('email').value.trim(),
     }
-    console.log('now submitting email:', emailSubscriber)
     this.apiService.Email(emailSubscriber).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
@@ -121,29 +122,31 @@ export class HomeComponent implements OnInit, AfterContentChecked {
         return true
       }
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
-        this.state = "fadein";
+        this.animate();
         return false
   }
 
   animate() {
     console.log('sop')
-    this.state == "normal" ? this.state = 'fadein' : this.state = 'normal'
+    this.state == "normal" ? this.state = 'fadein' : this.state = 'normal';
     this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
   }
 
 
   ngAfterContentChecked() {
+    this.loginState = this.apiService.getLoginModalStatus();
+    this.registerState = this.apiService.getRegisterModalStatus();
+    console.log(this.loginState, this.registerState)
   }
 
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    // this.checkCookies();
     setTimeout(() => {
       this.isLoading = false;
     }, 600);
     setTimeout(() => {
       this.checkCookies()
-    }, 2500);
+    }, 3500);
   }
 }

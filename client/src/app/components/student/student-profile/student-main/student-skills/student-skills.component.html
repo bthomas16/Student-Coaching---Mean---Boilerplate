@@ -1,0 +1,43 @@
+<div class="row leftText">
+
+  <div class="col-md-12 col-xs-12 skillsWrapper">
+    <div class="row">
+      <div class="col-md-12 leftText" style="padding-left:1em;">
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 wantToLean" >
+            <h3>I want to learn...</h3>
+          </div>
+        </div>
+      </div>
+      <i class="fa fa-pencil-square-o editLogo proExpEditLogo pointer" aria-hidden="true" (click)="isEditSkills = !isEditSkills" *ngIf="!isEditSkills"></i>
+      <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer" aria-hidden="true" (click)="skillSubmit()" *ngIf="isEditSkills"></i>
+      <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer" aria-hidden="true" (click)="cancelSkills()" *ngIf="isEditSkills"></i>
+      <div class="col-xs-11 skillsToLearnDiv">
+        <ul  *ngFor="let skill of skillsToLearn">
+          <li class="leftText makeFull">
+            <i class="fa fa-plus ploos" aria-hidden="true"></i>
+            <span>{{ skill }}</span>
+          </li>
+        </ul>
+        <div class="row dynamicSkills" *ngIf="isEditSkills">
+          <input (keyup)="getNewSkill($event)" class="skillInput col-xs-8 " *ngIf="skillsToLearn.length !== 3" value="{{skillValue}}" placeholder="Add New Skill...">
+          <div class="col-xs-12 buttsDiv">
+            <!-- <h6>Max of 3 Skills</h6> -->
+              <div class="col-xs-4">
+                <button class="btn btn-success" (click)="addSkill()"  [disabled]="[skillValue] == ''" *ngIf="skillsToLearn.length !== 3">Add</button>
+                <button class="btn btn-default" (click)="addSkill()"  disabled *ngIf="skillsToLearn.length == 3">3 Max</button>
+              </div>
+
+              <div class="col-xs-4">
+                  <button class="btn btn-warning" (click)="deleteSkill()" [disabled]="skillsToLearn.length == 0">Delete</button>
+              </div>
+
+              <div class="col-xs-4">
+                <button class="btn btn-danger experienceButton" (click)="resetSkills()" [disabled]="skillsToLearn.length == 0">Clear</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

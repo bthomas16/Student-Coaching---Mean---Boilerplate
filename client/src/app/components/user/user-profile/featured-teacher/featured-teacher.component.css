@@ -40,8 +40,10 @@
 }
 
 .author {
-  font-weight: 300;
-  font-size: 1em;
+  font-weight: 400;
+  font-size: 1.25em;
+  color:#5563F0;
+  margin-left: .15em;
 }
 
 .contactButt {

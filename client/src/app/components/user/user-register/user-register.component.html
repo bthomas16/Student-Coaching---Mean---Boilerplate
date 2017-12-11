@@ -43,21 +43,21 @@
   </div>
 
   <div class="flex role">
-    <div class="flex" *ngIf="!studentClick && !teacherClick">
-      <h6 class="flex explainText">Please select your account role(s)</h6>
+    <div class="flex" *ngIf="!(isStudent || isTeacher) === true && !teacherClick">
+      <h6 class="flex explainText">Please select your account role</h6>
     </div>
-    <div class="flex" *ngIf="studentClick || teacherClick">
+    <div class="flex" *ngIf="(isStudent || isTeacher) === true || teacherClick">
       <h6 class="flex explainText gotThis">You're going crush this!</h6>
     </div>
-    <div class="btn btn-default butt" (click)='studentClickHandler($event)'>
+    <div class="btn btn-default butt" (click)='studentClickHandler()' [ngClass]="isStudent ? 'active' : 'visible'">
       Student
     </div>
-    <div class="btn btn-default butt" (click)='teacherClickHandler($event)'>
+    <div class="btn btn-default butt" (click)='teacherClickHandler()' [ngClass]="isTeacher ? 'active' : 'visible'">
       Teacher
     </div>
   </div>
-
-  <button [disabled]="!form.valid || processing || !emailValid || (!studentClick && !teacherClick)" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="onRegisterSubmit()">Submit</button>
+  <button [disabled]="!form.valid || processing || !emailValid || (!isStudent && !isTeacher)" class="btn btn-primary submit"  [attr.data-dismiss]="dataDismissAttribute" (click)="onRegisterSubmit()">Submit</button>
   <!-- <p class="account">Already have an account? <a routerLink="/login"><em class="em">Login Here</em></a></p> -->
+
 </form>
 </div>

@@ -26,9 +26,10 @@
       <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
     </div>
   </div>
-  <div class="col-md-6 col-xs-6 leftText">
+  <div class="col-xs-6 leftText">
+    <div class="row">
       <div class="col-md-12">
-        <h2>{{fullname}}</h2>
+        <h2>{{fullname | shorten: 10}}</h2>
       </div>
       <div class="col-xs-12" (click)="closeRating()">
         <div class="row ">
@@ -53,8 +54,7 @@
       </div>
 
 
-
-      <div class="col-xs-12 mainInfo">
+  <span class="col-xs-12 lowerInfo">
         <div class="row">
           <div class="col-xs-12">
             <p  *ngIf="!isEdit">Locations served: <span>{{county}}</span></p>
@@ -67,10 +67,8 @@
               <option value="East County">East County</option>
               <option value="Central County">Central County</option>
             </select>
-          </div>
         </div>
       </div>
-      <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12">
             <p *ngIf="!isEdit">Experience: <span>{{yrsExperience}}</span></p>
@@ -114,10 +112,8 @@
               <option value="34 years">34 years</option>
               <option value="35 years">35 years</option>
             </select>
-          </div>
         </div>
       </div>
-      <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12">
             <p *ngIf="!isEdit">Handicap: <span>{{handicap}}</span></p>
@@ -161,10 +157,8 @@
               <option value="34">+34</option>
               <option value="35">+35</option>
             </select>
-          </div>
         </div>
       </div>
-      <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12">
             <p *ngIf="!isEdit">Skills: <span> {{skill1}} </span> ~ <span> {{skill2}}</span></p>
@@ -188,10 +182,8 @@
               <option value="Sand Game">Sand Game</option>
               <option value="Ball Contact">Ball Contact</option>
             </select>
-          </div>
         </div>
       </div>
-      <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12">
             <p *ngIf="!isEdit">Price: <span>${{cost}}/hr</span></p>
@@ -204,7 +196,6 @@
               <option value="125">$125/hr</option>
               <option value="150">$150/hr</option>
             </select>
-          </div>
         </div>
       </div>
       <div class="row btnRow">
@@ -218,5 +209,7 @@
           <a  [routerLink]="['../../view-teacher-profile/', id]" class="btn btn-info preview" *ngIf="!isEdit">Preview Profile</a>
         </div>
       </div>
+      </span>
+    </div>
   </div>
 </div>

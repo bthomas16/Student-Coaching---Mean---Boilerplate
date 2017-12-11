@@ -46,7 +46,7 @@
             </div>
             <div class="col-xs-6 col-xs-offset-6">
               <a class="showMore" (click)="subtractSlice3()" *ngIf="[sliceNumber] > 3">Show Less</a>
-              <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= teachersListLength) || changedShow">Reset</a>
+              <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= ratingsListLength)">Reset</a>
               <a class="showMore" (click)="addSlice3()" *ngIf="[sliceNumber] < ratingsListLength" >Show More</a>
               <a class="showMore disabled" *ngIf="ratingsListLength <= 3">None to Load</a>
             </div>

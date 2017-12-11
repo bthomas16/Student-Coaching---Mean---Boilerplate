@@ -11,7 +11,7 @@
     <div class="flex text">
       <p class="flex modalTitle">savvy</p>
       <p class="explain">This website is the first sprout . We are starting with golf, but are going to expand the platform into anything and everything that you want to learn, or that you are passionate about teaching.</p>
-      <p class="persuade">Sign-up below to stay to stay updated each step of the way as we roll out the full website. </p>
+      <p class="persuade">Sign-up to follow along with the <strong>savvy</strong> launch.</p>
     </div>
     </div>
     <form [formGroup]="emailForm" class="flex">
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="form-group button">
-          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (click)="emailSubmit()">Submit</button>
+          <button [disabled]="!emailForm.valid || processing" class="btn btn-success submit" (submit)="emailSubmit()">Submit</button>
         </div>
       </div>
     </form>
@@ -38,10 +38,12 @@
 <div class="flex wrapper">
 <!-- <div class="flex wrapper" (click)="animate()"> -->
   <div class="flex">
+    <span [ngClass]="(loginState === 'loginFadein' || registerState === 'registerFadein') ? 'greyOut' : 'homey'"></span>
     <app-hero class="hero"></app-hero>
     <app-options class="options"></app-options>
     <app-future class="future"></app-future>
     <app-teachers-list class="teachers-list homeTeachersList"></app-teachers-list>
     <app-bottom-sign-up class="bottom-sign-up"></app-bottom-sign-up>
+
   </div>
 </div>

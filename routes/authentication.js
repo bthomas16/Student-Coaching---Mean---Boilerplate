@@ -119,7 +119,7 @@ router.post('/login', (req, res) => {
 router.use((req, res, next)=> {
   const token = req.headers['authorization']
   if (!token) {
-    res.json({ success: false, message: 'No Token Provided'});
+    res.json({ success: false, message: 'No User Info Available'});
   } else {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
@@ -364,7 +364,7 @@ router.get('/get-featured-teacher', (req, res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-    User.find({onlineStatus: 'ONLINE', ratings: {'$ne': null || 0 || undefined }  }, (err, teachers) => {
+    User.find({onlineStatus: true, ratings: {'$ne': null || undefined }  }, (err, teachers) => {
       if (err) {
         res.json({ success: false, message: err });
       } else {
@@ -404,6 +404,7 @@ router.put('/experiences', (req,res) => {
       }
     });
   });
+
 
   router.put('/info', (req,res) => {
     User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
@@ -473,6 +474,57 @@ router.put('/experiences', (req,res) => {
               }
             });
           });
+
+
+          // STUDENT ISH
+
+          router.put('/student-profile-info', (req,res) => {
+            console.log('hit matey!')
+            User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+              if (err) {
+                res.json({ success: false, message: 'Not a valid user id'});
+              } else {
+                  if(!user) {
+                    res.json({ success: false, message: 'No User found'});
+              } else {
+                  user.studentHandicap = req.body.studentHandicap;
+                  user.studentCounty = req.body.studentCounty;
+                  user.golferType = req.body.golferType;
+                  user.save((err) => {
+                    if(err) {
+                      res.json({ succes: false, message: err})
+                    } else {
+                      console.log('here be the user', user)
+                        res.json({ success: true, message: 'Profile Updated'})
+                      }
+                    });
+                  }
+                }
+              });
+            });
+
+
+            router.put('/skillsToLearn', (req,res) => {
+              User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
+                if (err) {
+                  res.json({ success: false, message: 'Not a valid user id'});
+                } else {
+                    if(!user) {
+                      res.json({ success: false, message: 'No User found'});
+                } else {
+                  console.log(req.body, 'made it')
+                    user.skillsToLearn = req.body
+                    user.save((err) => {
+                      if(err) {
+                        res.json({ succes: false, message: err})
+                      } else {
+                          res.json({ success: true, message: 'Experiences Saved'})
+                        }
+                      });
+                    }
+                  }
+                });
+              });
 
 
 

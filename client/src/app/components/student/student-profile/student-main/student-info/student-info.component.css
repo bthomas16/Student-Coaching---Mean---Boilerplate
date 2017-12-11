@@ -1,16 +1,22 @@
-.teachInfo {
+.studentInfo {
   background-color: #2B2A2A;
+  min-height: 300px;
+  margin-left: -2em;
 }
 
 .pic {
   margin-left: -1.05em;
-  min-height: 380px;
+  min-height: 300px;
   height: auto;
 }
 
 .leftText {
   margin-left: -2em;
   color: white;
+}
+
+.fullNameDiv {
+  margin-bottom: 2.25em;
 }
 
 .ratingDiv {
@@ -115,7 +121,6 @@ p > select {
 
 .fileInputDiv {
   background-size: contain;
-  height: 375px;
   background-color: light grey;
   color:white;
 }
@@ -132,6 +137,10 @@ select {
     min-width: 100%;
     width: auto;
     min-height: 250px;
+  }
+
+  .studentInfo {
+    margin-left: 0;
   }
 }
 

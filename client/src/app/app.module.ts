@@ -46,6 +46,7 @@ import { ProfessionalismComponent } from './components/user/view-teacher-profile
 import { KnowledgeComponent } from './components/user/view-teacher-profile/teacher-ratings/knowledge/knowledge.component';
 import { TeachingAbilityComponent } from './components/user/view-teacher-profile/teacher-ratings/teaching-ability/teaching-ability.component';
 import { ViewTeacherProfileComponent } from './components/user/view-teacher-profile/view-teacher-profile.component';
+import { ViewStudentProfileComponent } from './components/user/view-student-profile/view-student-profile.component';
 import { TeacherSkillsComponent } from './components/teacher/teacher-profile/teacher-profile-main/teacher-skills/teacher-skills.component';
 
 // import { Ng2UploaderModule } from 'ng2-uploader';
@@ -57,6 +58,9 @@ import { ContactComponent } from './components/company-info/contact/contact.comp
 import { AboutComponent } from './components/company-info/about/about.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { RatingSummaryComponent } from './components/teacher/teacher-profile/teacher-profile-main/rating-summary/rating-summary.component';
+import { StudentMainComponent } from './components/student/student-profile/student-main/student-main.component';
+import { StudentInfoComponent } from './components/student/student-profile/student-main/student-info/student-info.component';
+import { StudentSkillsComponent } from './components/student/student-profile/student-main/student-skills/student-skills.component';
 
 
 
@@ -89,6 +93,7 @@ import { RatingSummaryComponent } from './components/teacher/teacher-profile/tea
     KnowledgeComponent,
     TeachingAbilityComponent,
     ViewTeacherProfileComponent,
+    ViewStudentProfileComponent,
     TeacherSkillsComponent,
     FeaturedTeacherComponent,
     UserLoginRedirectComponent,
@@ -96,7 +101,10 @@ import { RatingSummaryComponent } from './components/teacher/teacher-profile/tea
     ContactComponent,
     AboutComponent,
     ShortenPipe,
-    RatingSummaryComponent
+    RatingSummaryComponent,
+    StudentMainComponent,
+    StudentInfoComponent,
+    StudentSkillsComponent
   ],
   imports: [
     BrowserModule,

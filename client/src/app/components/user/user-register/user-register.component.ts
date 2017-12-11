@@ -18,11 +18,10 @@ export class UserRegisterComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
-  studentClick = false;
-  teacherClick = false;
-  studentRole = '';
-  teacherRole = '';
+  isStudent: boolean = false;
+  isTeacher: boolean = false;
   dataDismissAttribute = '';
+  roleValue;
 
   constructor(private formBuilder: FormBuilder, public authService: AuthService, private router: Router, private apiService: ApiService) {
     this.createForm()
@@ -72,36 +71,26 @@ export class UserRegisterComponent implements OnInit {
   }
 
 
-  studentClickHandler(event) {
-    if (this.studentClick == true) {
-      this.studentClick = false;
-      event.target.classList.remove('active')
-    } else {
-      if (this.studentClick == false) {
-      this.studentClick = true;
-      event.target.classList.add('active')
+  studentClickHandler() {
+    this.isStudent = !this.isStudent;
+    this.isTeacher = !this.isStudent;
+    if(this.isStudent) {
+      this.roleValue = 'student';
+      return true;
     }
+    this.roleValue = 'teacher';
   }
-}
 
-teacherClickHandler(event) {
-  if (this.teacherClick == true) {
-    this.teacherClick = false;
-    event.target.classList.remove('active')
-  } else {
-    if (this.teacherClick == false) {
-    this.teacherClick = true;
-    event.target.classList.add('active')
+  teacherClickHandler() {
+    this.isTeacher = !this.isTeacher;
+    this.isStudent = !this.isTeacher;
+    if(this.isTeacher) {
+      this.roleValue = 'teacher';
+      return true;
+    }
+    this.roleValue = 'student';
   }
-}
-}
 
-  // registerSubmit() {
-  //   this.dataDismissAttribute="modal"
-  //   setTimeout(() => {
-  //     this.onRegisterSubmit();
-  //   }, 1);
-  // }
 
   onRegisterSubmit() {
     this.processing = true;
@@ -113,10 +102,9 @@ teacherClickHandler(event) {
     fullname: fullname,
     email: this.form.get('email').value.toLowerCase().trim(),
     password: this.form.get('password').value.trim(),
-    isStudent: this.studentClick,
-    isTeacher: this.teacherClick
+    isStudent: this.isStudent,
+    isTeacher: this.isTeacher
     }
-    console.log(fullname, 'fn')
     this.authService.Register(user).subscribe(data => {
     if (!data.success) {
       this.messageClass = 'alert alert-danger';
@@ -130,7 +118,7 @@ teacherClickHandler(event) {
       setTimeout(() => {
         let value = false;
         this.apiService.registerModal(value);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profile/' + this.roleValue ]);
       }, 1200);
     }
   });

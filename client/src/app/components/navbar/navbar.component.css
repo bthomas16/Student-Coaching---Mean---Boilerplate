@@ -147,6 +147,13 @@ i:hover {
   .fa-user {
     margin-right: .75em;
   }
+
+  .options {
+    padding-right: 1em;
+  }
+  .mainLogo {
+    padding-left: .75em;
+  }
 }
 
 @media(max-width: 400px ) {

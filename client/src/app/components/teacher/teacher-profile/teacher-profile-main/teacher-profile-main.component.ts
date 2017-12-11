@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-teacher-profile-main',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-profile-main.component.css']
 })
 export class TeacherProfileMainComponent implements OnInit {
+  @Input() fullname;
   showModal: boolean = false;
 
   constructor() { }

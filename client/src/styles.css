@@ -15,6 +15,25 @@ body {
   width: 90%;
 }
 
+.none {
+  display: none;
+}
+
+.greyOut {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(155,155,155,.5);
+}
+
+.help-block {
+  background-color: rgba(155,155,155,.5);
+}
+
 .disabled {
   color: grey;
   pointer-events: disabled;

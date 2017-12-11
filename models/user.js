@@ -102,7 +102,7 @@ var studentSchema = new Schema({
     bio: String,
     profPic: String,
     profVideo: String,
-    onlineStatus: { type: String, default: 'OFFLINE'},
+    onlineStatus: {type: Boolean, default: false},
     monM: {type: Boolean, required: false },
     monA: {type: Boolean, required: false },
     monE: {type: Boolean, required: false },
@@ -123,7 +123,12 @@ var studentSchema = new Schema({
     satE: {type: Boolean, required: false },
     sunM: {type: Boolean, required: false },
     sunA: {type: Boolean, required: false },
-    sunE: {type: Boolean, required: false }
+    sunE: {type: Boolean, required: false },
+    // STUDENT
+    studentHandicap: Number,
+    studentCounty: String,
+    golferType: String,
+    skillsToLearn: [String]
   });
 
   studentSchema.pre('save', function(next) {

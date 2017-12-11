@@ -12,21 +12,14 @@ export class StudentProfileComponent implements OnInit {
   message;
   messageClass;
   fullname;
-  isStudent;
+  isStudent: boolean = true;
   isTeacher;
   profPic;
   processing = false;
   show = true;
+  isLoading: boolean = true;
 
   constructor(public authService: AuthService, private router: Router) { }
-
-  checkStudent() {
-    return this.isStudent
-  }
-
-  hideMessage() {
-    this.show = false;
-  }
 
   becomeStudentRegister() {
     this.isStudent = true;
@@ -41,7 +34,7 @@ export class StudentProfileComponent implements OnInit {
         this.messageClass = 'alert alert-success'
         this.message = data.message
         setTimeout(() => {
-          this.hideMessage();
+          this.show = false;
         }, 1400)
       }
     })
@@ -50,11 +43,14 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile()
     .subscribe(profile => {
-      this.fullname = profile.user.fullname.toUpperCase();
+      this.fullname = profile.user.fullname;
       this.email = profile.user.email;
       this.isStudent = profile.user.isStudent;
       this.isTeacher = profile.user.isTeacher;
-    })
+    });
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
     window.scrollTo(0, 0);
   }
 }

@@ -271,7 +271,7 @@ right: 4em;
 
 .statusModal h3 {
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .statusList {
@@ -287,12 +287,8 @@ right: 4em;
   color: #5ADA6A;
   font-weight: 400;
   text-align: left;
-  font-size: .85em;
+  font-size: 1em;
   width: 100%;
-}
-
-.fa-plus {
-  font-size: .75em;
 }
 
 .ploos {

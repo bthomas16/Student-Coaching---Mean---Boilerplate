@@ -1,0 +1,89 @@
+.skillsWrapper {
+  background-color: #dadada;
+  min-height: 300px;
+  margin-left: 2em;
+}
+
+.editLogo  {
+  position: absolute;
+  top: 2%;
+  right: 2% !important;
+  color: black;
+  z-index: 1000;
+  font-size: 1.75em;
+}
+
+.cancelEdit {
+  right: 10% !important;
+}
+
+.successEdit {
+  color:#1BACFC !important;
+}
+
+
+.experiences {
+  margin-top: 2em;
+}
+
+.wantToLearn {
+margin-bottom: 1em;
+}
+
+.skillsToLearnDiv li {
+  list-style: none;
+  justify-content: flex-start;
+  margin: 2em;
+  font-size: 1.25em;
+  margin-left: -1.5em;
+  color: black;
+  margin-bottom: 0;
+}
+
+.skillsToLearn li i {
+  font-family: 'FontAwesome';
+  color: #5563F0;
+  margin-right: 1.5em;
+  margin-left: 2.2em;
+}
+
+.ploos {
+  color: #5563F0;
+}
+
+.proExperience {
+  background-color: #2B2A2A;
+  color: white;
+  min-height: 450px;
+}
+
+.buttsDiv {
+  margin-left: .5em;
+}
+
+.skillInput {
+  color: black;
+  height: 2.425em;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  margin-left: 2.75em;
+  margin-bottom: .5em;
+}
+
+.btn {
+  border: none;
+  width: 100%;
+}
+
+.experienceAddButton {
+  background-color: #5563F0;
+}
+
+
+
+@media(max-width: 500px) {
+  .skillsDiv {
+    margin-left: 0;
+  }
+}

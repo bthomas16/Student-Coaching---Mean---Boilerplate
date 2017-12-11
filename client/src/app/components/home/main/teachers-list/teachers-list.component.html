@@ -1,34 +1,6 @@
-<!--
-  <div class="flex searchDiv">
-    <div class="flex searchHalf">
-      <div class="flex selectDiv ">
-        <select [(ngModel)]="county" [value]="county" class="minimal">
-          <option selected>Select a County</option>
-          <hr>
-          <option value="North County">North County</option>
-          <option value="South County">South County</option>
-          <option value="East County">East County</option>
-        </select>
-      </div>
-    <div class="flex selectDiv">
-      <select [(ngModel)]="skill" [value]="skill" class="minimal">
-        <option selected>Select a Skill</option>
-        <hr>
-        <option value="Driving" selected="selected">Driving</option>
-        <option value="Approach Game">Approach Game</option>
-        <option value="Short Game / Chipping">Short Game / Chipping</option>
-        <option value="Putting">Putting</option>
-        <option value="Mental Focus">Mental Focus</option>
-        <option value="Sand Game">Sand Game</option>
-        <option value="Ball Contact">Ball Contact</option>
-      </select>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="row">
-    <div class="col-md-3 leftText">
+    <div class="col-xs-3 leftText selectFont">
       <select [(ngModel)]="county" [value]="county" class="minimal">
         <option selected>Select a County</option>
         <hr>
@@ -37,7 +9,7 @@
         <option value="East County">East County</option>
       </select>
     </div>
-    <div class="col-md-3 leftText">
+    <div class="col-xs-3 leftText selectFont rightSelect">
       <select [(ngModel)]="skill" [value]="skill" class="minimal">
         <option selected>Select a Skill</option>
         <hr>
@@ -52,11 +24,12 @@
     </div>
   </div>
 </div>
+
 <div class="container teacherList">
   <div class="row teacherRow">
-    <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-md-4 col-sm-6 teacherCard">
+    <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 teacherCard">
       <!-- <div class="row"> -->
-      <div class="realCard pointer" [routerLink]="['../view-teacher-profile/', teacher._id]">
+      <div class="realCard pointer" [routerLink]="['/view-teacher-profile/', teacher._id]">
         <div class="row">
           <div class="col-xs-5">
             <img [src]="['https://s3.amazonaws.com/savvyappphotos/' + teacher.profPic]" alt="" class="col-xs-12 img-responsive pull-left">

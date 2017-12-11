@@ -86,7 +86,7 @@ select.minimal:focus {
 }
 
 .teacherInfo {
-  padding-left: 2em;
+  /*padding-left: 2em;*/
   padding-top: .75em;
 }
 
@@ -123,6 +123,7 @@ select.minimal:focus {
 }
 
 
+
 .showMore a {
   color:#1BACFC;
   font-size: 1.15em;
@@ -147,239 +148,15 @@ select.minimal:focus {
   padding: 0;
 }
 
-/*SEARCH DIV*/
-
-/*.searchDiv {
-  width: 100vw;
-  justify-content: flex-start;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-.searchHalf {
-  width: 60%;
-  justify-content: flex-start;
-  padding-left: 5%;
-}
-
-.selectDiv {
-  width: auto;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.teacher {
-  width: 417px;
-  box-shadow: 2.5px 2.5px 3.5px lightgrey;
-  margin: 1em;
-  text-decoration: none;
-}
-
-.mediaDiv {
-  justify-content: space-between;
-  background-color: white;
-}
-
-.picDiv {
-  width: auto;
-  max-width: 30%;
-  justify-content: flex-start;
-  left: 0;
-}
-
-img.pic {
-  height: 175px;
-  width: auto;
-  max-width: 165px;
-}
-
-.infoDiv {
-  width: auto;
-  max-width: 58.5%;
-  padding-left: 2.5%;
-  justify-content: flex-start;
-}
-.infoDiv p {
-  line-height: .85;
-}
-
-.left {
-  margin-top: .25em;
-  text-align: left;
-  justify-content: flex-start;
-}
-
-.left p.flex {
-  text-align: left;
-  justify-content: flex-start;
-}
-
-.top {
-  align-self: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-  top:0;
-  margin-top:0;
-  padding: 0;
-}
-
-.fullname {
-  margin: 0;
-  margin-top: .5em;
-  color: black;
-  font-weight: 600;
-  font-size: 1.25em;
-}
-
-.stars {
-  margin: 0;
-  margin-bottom: 2em;
-  align-self: flex-start;
-}
-
-.showMore {
-  margin: 1.5em;
-}
-
-
-.showMore a {
-  color:#1BACFC;
-  font-size: 1.15em;
-  margin: 1.5em;
-  margin-bottom: 1em;
-}
-
-.showMore a:hover {
-  cursor: pointer;
-}
-
-.showMore a.noMoreLoad {
-  text-decoration: none;
-  color: grey;
-}
-
-.showMore a.noMoreLoad:hover {
-  cursor: default;
-}
-
-.blk {
-  color: black;
-  font-weight: 500;
-}
-
-.fa-star {
-  font-size: 1.5em;
-}
-
-@media(max-width: 425px) {
-
-  .teacher {
-    width: 350px;
-    box-shadow: 2.5px 2.5px 3.5px lightgrey;
-    margin: .75em;
-    text-decoration: none;
+@media(max-width: 650px) {
+  .selectFont {
+    font-size: .7em;
   }
 
-  .mediaDiv {
-    justify-content: space-between;
-    background-color: white;
-  }
-
-  .picDiv {
-    width: auto;
-    max-width: 30%;
-    justify-content: flex-start;
-    left: 0;
-  }
-
-  img.pic {
-    height: 165px;
-    width: auto;
-    max-width: 160px;
-  }
-
-  .infoDiv {
-    width: auto;
-    max-width: 55%;
-    padding-left: 3%;
-    justify-content: flex-start;
-  }
-
-  .searchHalf {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 0;
-    padding-left: .5em;
-    margin-top: .5em;
-    margin-bottom: .5em;
-  }
-
-  .selectDiv {
-    width: 42%;
-    margin: 2%;
-    padding: 0;
-    justify-content: flex-start;
-  }
-
-
-
-}
-
-@media(max-width: 375px) {
-  img.pic {
-    height: 190.5px;
-    width: auto;
-    max-width: 155px;
+  .rightSelect {
+    margin-left: 2.5em;
   }
 }
-
-@media(max-width: 325px) {
-  .teacher {
-    width: 295px;
-    box-shadow: 2.5px 2.5px 3.5px lightgrey;
-    margin: .75em;
-    text-decoration: none;
-  }
-
-  .mediaDiv {
-    justify-content: space-between;
-    background-color: white;
-  }
-
-  .picDiv {
-    width: auto;
-    max-width: 30%;
-    justify-content: flex-start;
-    left: 0;
-  }
-
-  img.pic {
-    height: 180.5px;
-    width: auto;
-    max-width: 142.5px;
-  }
-
-  .infoDiv {
-    width: auto;
-    max-width: 52.5%;
-    padding-left: 3%;
-    justify-content: flex-start;
-  }
-
-  .left .blk {
-    font-size: .9em;
-  }
-
-}*/
 
 
 /*STARS*/

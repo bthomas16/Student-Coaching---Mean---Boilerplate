@@ -19,7 +19,7 @@ visibility: hidden;
   top: 0;
   margin-top: 10%;
   margin-left: 22.25%;
-  z-index: 0;
+  z-index: 10000;
   color: white;
   border-radius: 5px;
   background-color: rgba(	85, 99, 240,.975);
@@ -100,6 +100,14 @@ ul.help-block li {
 
 button {
   text-align: center;
+}
+
+
+.help-block {
+  background-color: transparent;
+  color: #dadada;
+  font-size: .85em;
+  justify-content: flex-start;
 }
 
 @media(max-width:750px) {

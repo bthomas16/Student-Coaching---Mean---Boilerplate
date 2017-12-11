@@ -27,7 +27,7 @@
       <i class="fa fa-circle fa-1x pointer" [ngClass]="grabValue == 2 ? 'active' : 'inActive'" (click)="paginate(2)" aria-hidden="true"></i>
     </div>
     <div class="col-md-6 col-xs-4 teachContactDiv" *ngFor="let teacher of teachersList | slice:grabValue:indexValue; let i = index">
-      <button class="btn btn-info contactButt" [routerLink]="['../view-teacher-profile/', teacher._id]">Contact {{ teacher.fullname }}</button>
+      <button class="btn btn-info contactButt" [routerLink]="['../view-teacher-profile/', teacher._id]">Contact {{ teacher.fullname | shorten:16 }}</button>
     </div>
   </div>
 </div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
-// import { FormData } from '@angular/forms';
+import 'rxjs/add/operator/map';;
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
@@ -111,9 +110,14 @@ checkEmail(email) {
         }
 
         onExperienceSubmit(experiences) {
-          console.log(experiences, 'service side result')
           this.createAuthenticationHeaders();
           return this.http.put(this.server + '/authentication/experiences', experiences, this.options).map(res => res.json());
+        }
+
+        onSkillsToLearnSubmit(skillsToLearn) {
+          console.log(skillsToLearn, 'services STL')
+          this.createAuthenticationHeaders();
+          return this.http.put(this.server + '/authentication/skillsToLearn', skillsToLearn, this.options).map(res => res.json());
         }
 
         onInfoSubmit(info) {
@@ -178,7 +182,6 @@ checkEmail(email) {
           this.createAuthenticationHeadersFile();
           let file = new FormData();
           file.append("file", fileToUpload);
-          console.log(file, 'from da server')
           return this.http.post(this.server + "/authentication/upload-photo", file, this.optionsFile).map(res =>
             res.json());
         }
@@ -197,5 +200,15 @@ checkEmail(email) {
           return this.http.put(this.server + '/authentication/online-status', status, this.options).map(res =>
             res.json())
         }
+
+
+
+        // STUDENT ISH
+
+        studentProfileInfo(studentInfo) {
+          this.createAuthenticationHeaders();
+          return this.http.put(this.server + '/authentication/student-profile-Info', studentInfo, this.options).map(res => res.json());
+        }
+
 
     }

@@ -1,18 +1,56 @@
-<div class="row show-hide-message" *ngIf="show">
-  <div [ngClass]="messageClass">
-    {{message}}
-  </div>
-</div>
-
-<div class="flex becomeStudent" *ngIf="!checkStudent()">
-  <h2 class="flex">Become a Student and connect with Pros Today!</h2>
-  <div class="flex">
-    <button class="btn btn-success" (click)="becomeStudentRegister()">Click Here</button>
-  </div>
+<div class="loadingDiv" *ngIf="isLoading">
+  <div class="loader"></div>
 </div>
 
 
-<div class="flex becomeStudent" *ngIf="checkStudent()">
-  <h2>Welcome to your Student Profile, {{ fullname }}!</h2>
-  <hr>
+<div class="container">
+
+  <div class="row show-hide-message" *ngIf="show">
+    <div [ngClass]="messageClass">
+      {{message}}
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!isStudent && !isLoading">
+    <div class="col-xs-12 becomeStudent">
+      <h2>Become a Student and connect with Pros Today!</h2>
+        <button class="btn btn-success" (click)="becomeStudentRegister()">Click Here</button>
+    </div>
+  </div>
+
+  <div class="row studentRow" *ngIf="isStudent && !isLoading">
+    <div class="col-xs-12">
+      <app-student-main ></app-student-main>
+    </div>
+  </div>
+
+</div>
+
+  <!-- Student Bio -->
+
+<div class="container bioRow">
+  <div class="row leftText">
+    <div class="col-xs-12">
+      <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
+      <i class="fa fa-check editLogo successEdit successEditBio pointer" aria-hidden="true" (click)="bioValueSubmit()" *ngIf="isEdit"></i>
+      <i class="fa fa-times editLogo cancelEdit cancelEditBio pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
+      <p class="about">About {{ fullname }}</p>
+    </div>
+    <div class="col-xs-12">
+      <p *ngIf="!isEdit" class="bioText">{{bio}}</p>
+      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{ bio }}" (change)="getBioValue($event.target.value)"></textarea>
+    </div>
+  </div>
+</div>
+
+
+<!-- Teacher Search -->
+
+<div class="container">
+  <div class="row" *ngIf="isStudent && !isLoading">
+    <div class="col-xs-12 teachersList">
+      <app-teachers-list></app-teachers-list>
+    </div>
+  </div>
+
 </div>

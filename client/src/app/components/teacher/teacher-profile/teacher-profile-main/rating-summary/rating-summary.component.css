@@ -38,6 +38,6 @@ label {
 
 .rating > input:checked ~ i {
   color: #00FF99;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: green;
+  /*-webkit-text-stroke-width: 1px;*/
+  /*-webkit-text-stroke-color: green;*/
 }

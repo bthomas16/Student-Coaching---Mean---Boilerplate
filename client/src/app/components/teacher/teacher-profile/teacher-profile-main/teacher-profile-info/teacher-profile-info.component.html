@@ -7,31 +7,87 @@
   </div>
 </div>
 
+<span *ngIf="!isParams">
+  <i class="fa fa-cog advancedSettings pointer" aria-hidden="true" (click)="openEditAdvancedSettings()"  title="Advanced Settings" *ngIf="!isEditAdvancedSettings" [@slide]='regularEditSlideState'></i>
+  <i class="fa fa-check advancedSettings successAdvancedSettings pointer" aria-hidden="true" (click)="submitAdvancedSettings()" *ngIf="isEditAdvancedSettings" title="Save" [ngClass]="!passwordMatch ? 'disabled' : 'pointer'"></i>
+  <i class="fa fa-times advancedSettings cancelAdvancedSettings pointer" aria-hidden="true" (click)="closeEditAdvancedSettings()" *ngIf="isEditAdvancedSettings" title="Cancel"></i>
+</span>
+<span *ngIf="!isParams && !isEditAdvancedSettings">
+  <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="openEditProfileInfo()" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'" title="Edit"></i>
+  <i class="fa fa-check editLogo successEdit pointer" aria-hidden="true" (click)="infoSubmit()" *ngIf="fadeInfo == 'out'" title="Save"></i>
+  <i class="fa fa-times editLogo cancelEdit pointer" aria-hidden="true" (click)="closeEditProfileInfo()" *ngIf="fadeInfo == 'out'" title="Cancel"></i>
+</span>
 
 <div class="row teachInfo">
-  <span *ngIf="!isParams">
-    <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
-    <i class="fa fa-check editLogo successEdit pointer" aria-hidden="true" (click)="infoSubmit()" *ngIf="isEdit"></i>
-    <i class="fa fa-times editLogo cancelEdit pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
-  </span>
 
-  <div class="col-xs-6" (click)="closeRating()">
-    <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" *ngIf="!isEdit">
-    <div class="flex fileInputDiv" *ngIf="isEdit">
-      <label for="fileInput" class="custom-file-upload">
-        <h4>Upload a Photo</h4>
-      </label>
-      <h6 style="width: 100%">{{fileChangeName}}</h6>
+  <div class="row show-hide-message" *ngIf="show">
+    <div [ngClass]="messageClass">
+    {{message}}</div>
+  </div>
 
-      <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
+  
+  <div class="col-xs-6 profPicDiv" (click)="closeRating()">
+    <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" [@slide]="slidePic" *ngIf="fadeInfo=='in'">
+    <div class="row purpleBG" [@slide]='regularEditSlideState'>
+      <div class="flex fileInputDiv">
+        <label for="fileInput" class="custom-file-upload">
+          <h4>Upload a Photo</h4>
+        </label>
+        <h6 style="width: 100%">{{fileChangeName}}</h6>
+        <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
+      </div>
     </div>
+  <div class="row" [@slide]='slideState' *ngIf="isEditAdvancedSettings">
+    <div class="col-xs-12 purpleBG" ><h2>Update Your Advanced Settings.</h2>
+    </div>
+  </div>
   </div>
   <div class="col-xs-6 leftText">
     <div class="row">
-      <div class="col-md-12">
-        <h2>{{fullname | shorten: 10}}</h2>
+      <div class="col-xs-12">
+        <h2>{{fullname | shorten: 18}}</h2>
+        <span *ngIf="isEditAdvancedSettings">
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="fullname">Fullname:</label>
+            </div>
+            <div class="col-xs-7">
+              <input value="{{fullname}}" type="text" class="updateForm fullnameInput" [(ngModel)]='fullname' (change)="getNewFullname($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="email">Email:</label>
+            </div>
+            <div class="col-xs-7">
+              <input value="{{email}}" type="text" class="updateForm emailInput" (change)="getNewEmail($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="password">Password:</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" class="updateForm passwordInput" (change)="getNewPassword($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-12" *ngIf="!passwordMatch" >
+              <h5 style="color: red; font-size: .85em">Passwords do not match.</h5>
+            </div>
+            <div class="col-xs-5">
+              <label for="confirmPassword">Confirm Password:</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" class="updateForm passwordInput" (change)="getNewPasswordConfirm($event)">
+            </div>
+          </div>
+        </span>
       </div>
-      <div class="col-xs-12" (click)="closeRating()">
+
+
+
+      <div class="col-xs-12" (click)="closeRating()" *ngIf="!isEditAdvancedSettings">
         <div class="row ">
           <div class="col-xs-12">
             <div class="rating up noPointer" (click)="closeRating()">
@@ -54,12 +110,12 @@
       </div>
 
 
-  <span class="col-xs-12 lowerInfo">
+  <span class="col-xs-12 lowerInfo" *ngIf="!isEditAdvancedSettings" >
         <div class="row">
           <div class="col-xs-12">
-            <p  *ngIf="!isEdit">Locations served: <span>{{county}}</span></p>
-            <p *ngIf="isEdit" class="col-md-5 editLabel">Locations served:</p>
-            <select (change)="getCounty($event)" value="{{county}}" *ngIf="isEdit" class="col-md-5">
+            <p  [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Locations served: <span>{{county}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Locations served:</p>
+            <select (change)="getCounty($event)" value="{{county}}" *ngIf="regularEditSlideState == 'in'" class="col-md-5" [@bounce]="regularEditBounceState">
               <option value="{{county}}" selected>{{county}}</option>
               <hr>
               <option value="North County">North County</option>
@@ -71,9 +127,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p *ngIf="!isEdit">Experience: <span>{{yrsExperience}}</span></p>
-            <p *ngIf="isEdit" class="col-md-5 editLabel">Experience:</p>
-            <select (change)="getExperience($event)" value="{{yrsExperience}}" class="col-md-5" *ngIf="isEdit">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Experience: <span>{{yrsExperience}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Experience:</p>
+            <select (change)="getExperience($event)" value="{{yrsExperience}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="{{yrsExperience}}" selected>{{yrsExperience}} years</option>
               <hr>
               <option value="1 year">1 year</option>
@@ -116,9 +172,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p *ngIf="!isEdit">Handicap: <span>{{handicap}}</span></p>
-            <p *ngIf="isEdit" class="col-md-5 editLabel">Handicap:</p>
-            <select (change)="getHandicap($event)" value="{{handicap}}" class="col-md-5" *ngIf="isEdit">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Handicap: <span>{{handicap}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Handicap:</p>
+            <select (change)="getHandicap($event)" value="{{handicap}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="{{handicap}}" selected>+{{handicap}}</option>
               <hr>
               <option value="1">+1</option>
@@ -161,9 +217,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p *ngIf="!isEdit">Skills: <span> {{skill1}} </span> ~ <span> {{skill2}}</span></p>
-            <p *ngIf="isEdit" class="col-md-3 editLabel">Skill1:</p>
-            <select value="{{skill1}}" (change)="getSkill1($event)" class="col-md-3" *ngIf="isEdit">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Skills: <span> {{skill1}} </span> <span *ngIf="skill1">~</span> <span> {{skill2}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-3 editLabel" [@bounce]="regularEditBounceState">Skill1:</p>
+            <select value="{{skill1}}" (change)="getSkill1($event)" class="col-md-3" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="Driving" selected="selected">Driving</option>
               <option value="Approach Game">Approach Game</option>
               <option value="Short Game">Short Game</option>
@@ -172,8 +228,8 @@
               <option value="Sand Game">Sand Game</option>
               <option value="Ball Contact">Ball Contact</option>
             </select>
-            <p *ngIf="isEdit" class="col-md-3 editLabel skill2">Skill2:</p>
-            <select value="{{skill2}}" (change)="getSkill2($event)" class="col-md-3" *ngIf="isEdit">
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-3 editLabel skill2" [@bounce]="regularEditBounceState">Skill2:</p>
+            <select value="{{skill2}}" (change)="getSkill2($event)" class="col-md-3" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="Driving" selected="selected">Driving</option>
               <option value="Approach Game">Approach Game</option>
               <option value="Short Game">Short Game</option>
@@ -186,9 +242,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p *ngIf="!isEdit">Price: <span>${{cost}}/hr</span></p>
-            <p *ngIf="isEdit" class="col-md-5 editLabel">Price:</p>
-            <select value="{{cost}}" (change)="getCost($event)" lass="col-md-5" *ngIf="isEdit">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Price: <span>${{cost}}/hr</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Price:</p>
+            <select value="{{cost}}" (change)="getCost($event)" lass="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="25">$25/hr</option>
               <option value="50">$50/hr</option>
               <option value="75" selected="selected">$75/hr</option>
@@ -206,7 +262,7 @@
           <a class="btn btn-warning review" (click)="openRating()" >Review</a>
         </div>
         <div class="col-md-8" *ngIf="!isParams">
-          <a  [routerLink]="['../../view-teacher-profile/', id]" class="btn btn-info preview" *ngIf="!isEdit">Preview Profile</a>
+          <a  [routerLink]="['../../view-teacher-profile/', id]" class="btn btn-info preview" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Preview Profile</a>
         </div>
       </div>
       </span>

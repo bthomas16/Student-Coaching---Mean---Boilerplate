@@ -95,22 +95,6 @@ ul.help-block li {
   list-style-position: inside;
 }
 
-/*label {
-  color: lightgrey;
-  display: none;
-}
-
-.title {
-  padding-bottom: 2.5%;
-  border-bottom: 1px solid white;
-}
-
-.account {
-  color: lightgrey;
-  margin-top: 2%;
-  width: 100%;
-}*/
-
 .em{
   color: dodgerblue;
   text-decoration: underline;
@@ -130,10 +114,6 @@ ul.help-block li {
 
 .full {
   width: 100%;
-}
-
-.noPointer {
-  pointer-events: none;
 }
 
 .pointer {
@@ -156,7 +136,7 @@ ul.help-block li {
 .editLogo  {
   position: absolute;
   top: 2%;
-  right: 1%;
+  right: 2%;
   color: white;
   z-index: 1000;
   font-size: 1.75em;

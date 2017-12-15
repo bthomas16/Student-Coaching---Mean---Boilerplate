@@ -14,9 +14,7 @@
 <div class="flex menu" *ngIf="showMenu" (click)="changeMenuFalse() && hideModal()">
       <a class="flex menu-item navPointer" routerLink="company-info" (click)="showMenu = !showMenu">About Us</a>
       <a class="flex menu-item navPointer" routerLink="company-info" (click)="showMenu = !showMenu">Contact Us</a>
-  <!-- <span class="line"></span> -->
-      <a routerLink="profile/student" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Student Profile</a>
-      <a routerLink="profile/teacher" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Teacher Profile</a>
-    <!-- <span class="line" *ngIf="authService.loggedIn()"></span> -->
+      <a routerLink="profile/student" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Student Account</a>
+      <a routerLink="profile/teacher" class="flex menu-item navPointer" *ngIf="authService.loggedIn()" (click)="showMenu = !showMenu">Teacher Account</a>
       <a routerLink="/" (click)="onLogoutClick()" class="flex menu-item navPointer" *ngIf="authService.loggedIn()">Logout</a>
   </div>

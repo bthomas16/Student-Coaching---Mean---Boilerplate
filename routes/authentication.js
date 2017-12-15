@@ -421,11 +421,41 @@ router.put('/experiences', (req,res) => {
           user.skill3 = req.body.skill3,
           user.handicap = req.body.handicap,
           user.cost = req.body.cost
+          if(req.body.fullname){
+            user.fullname = req.body.fullname
+          }
+          if(req.body.email){
+            user.email = req.body.email
+          }
+          if(req.body.password){
+            user.password = req.body.password
+          }
+          if(req.body.county){
+            user.county = req.body.county
+          }
+          if(req.body.yrsExperience){
+            user.yrsExperience = req.body.yrsExperience
+          }
+          if(req.body.skill1){
+            user.skill1 = req.body.skill1
+          }
+          if(req.body.skill2){
+            user.skill2 = req.body.skill2
+          }
+          if(req.body.skill3){
+            user.skill3 = req.body.skill3
+          }
+          if(req.body.handicap){
+            user.handicap = req.body.handicap
+          }
+          if(req.body.cost){
+            user.cost = req.body.cost
+          }
           user.save((err) => {
             if(err) {
               res.json({ succes: false, message: err})
             } else {
-                res.json({ success: true, message: 'Experiences Saved'})
+                res.json({ success: true, message: 'User Info Saved'})
               }
             });
           }
@@ -479,7 +509,6 @@ router.put('/experiences', (req,res) => {
           // STUDENT ISH
 
           router.put('/student-profile-info', (req,res) => {
-            console.log('hit matey!')
             User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
               if (err) {
                 res.json({ success: false, message: 'Not a valid user id'});
@@ -494,7 +523,6 @@ router.put('/experiences', (req,res) => {
                     if(err) {
                       res.json({ succes: false, message: err})
                     } else {
-                      console.log('here be the user', user)
                         res.json({ success: true, message: 'Profile Updated'})
                       }
                     });
@@ -512,7 +540,6 @@ router.put('/experiences', (req,res) => {
                     if(!user) {
                       res.json({ success: false, message: 'No User found'});
                 } else {
-                  console.log(req.body, 'made it')
                     user.skillsToLearn = req.body
                     user.save((err) => {
                       if(err) {

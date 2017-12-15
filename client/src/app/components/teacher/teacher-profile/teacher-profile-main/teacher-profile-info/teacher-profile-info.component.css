@@ -1,10 +1,30 @@
 .teachInfo {
   background-color: #2B2A2A;
+  min-height: 375px;
+  overflow: hidden;
+}
+
+.purpleBG {
+  background-color: #5563F0;
+  width: 90%;
+  /*padding: 5%;*/
+  /*padding-left: 8%;*/
+  height:375px;
+  padding-top: 25%;
+  color: white;
+  font-weight: 500;
+}
+
+.purpleBG h2 {
+  text-align: left;
+  margin-left: .5em;
 }
 
 .pic {
   margin-left: -1.05em;
-  min-height: 380px;
+  left: 0;
+  position: relative;
+  min-height: 375px;
   height: auto;
 }
 
@@ -20,6 +40,52 @@
 
 .fa-star {
   font-size: 2em;
+}
+
+.advancedSettings {
+  position: absolute;
+  top: 2%;
+  left: 1.5%;
+  color: white;
+  z-index: 1000;
+  font-size: 1.75em;
+}
+
+.cancelEdit {
+  margin-right: 1.5%;
+}
+
+.cancelAdvancedSettings {
+  margin-left: 5%;
+  color: white;
+}
+
+.successAdvancedSettings {
+  color: #1BACFC;
+}
+
+.col-xs-5 label {
+  margin-top: 1em;
+}
+
+.updateForm {
+  margin: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  color: white;
+  width: 100%;
+}
+
+.updateForm:placeholder {
+  color: lightgrey;
+}
+
+.updateForm:focus {
+  outline: none;
 }
 
 .numberRatings {
@@ -68,15 +134,15 @@
 }
 
 .custom-file-upload {
-    background-color: #5563F0;
+    background-color: white;
     display: inline-block;
     padding: .75em;
-    margin-bottom: -12.5em;
-    color: white;
+    /*margin-bottom: 5em;*/
+    color: #5563F0;
     cursor: pointer;
 }
 .custom-file-upload h6 {
-  margin-bottom: -2em;
+  /*margin-bottom: -2em;*/
   margin-top: 0;
 }
 
@@ -116,7 +182,7 @@ p > select {
 .fileInputDiv {
   background-size: contain;
   height: 375px;
-  background-color: light grey;
+
   color:white;
 }
 
@@ -124,6 +190,14 @@ select {
   background: transparent;
   border: none;
   border-bottom: 1px solid white;
+}
+
+.editLabel {
+  line-height: 2;
+}
+
+select {
+  line-height: 2;
 }
 
 

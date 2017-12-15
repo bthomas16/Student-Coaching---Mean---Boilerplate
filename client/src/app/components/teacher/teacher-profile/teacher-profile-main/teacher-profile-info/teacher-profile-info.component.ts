@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterContentChecked, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked, EventEmitter, ViewChild, trigger, state, transition, style, animate } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
@@ -8,20 +8,45 @@ import { ApiService } from '../../../../../services/api.service';
 @Component({
   selector: 'app-teacher-profile-info',
   templateUrl: './teacher-profile-info.component.html',
-  styleUrls: ['./teacher-profile-info.component.css']
+  styleUrls: ['./teacher-profile-info.component.css'],
+  animations: [
+    trigger('slide', [
+      state('in', style({ transform: 'translateX(0%)',transition: 'all .5s ease-in-out', opacity: 1 })),
+      state('out', style({ transform: 'translateX(-10%)',transition: 'all .5s ease-in-out', opacity: 0, visibility: 'hidden', position: 'absolute' })),
+    ]),
+    trigger('fade', [
+      state('out', style({transition: 'all .5s ease-in-out', opacity: 0 })),
+      state('in', style({transition: 'all .5s ease-in-out', opacity: 1 })),
+    ]),
+    trigger('bounce', [
+      state('in', style({ transform: 'translateY(30%)', transition: 'all .5s ease-in-out', opacity: 1 })),
+      state('out', style({ transform: 'translateY(-30%)',transition: 'all .5s ease-in-out', opacity: 0, display: 'none' })),
+      transition('* => *', animate(500))
+    ])
+  ]
 })
+
 export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked  {
 
   @Input() fullname;
   kRating;
   pRating;
   taRating;
+  slideState = 'out';
+  regularEditSlideState = 'out';
+  bounceState = 'out';
+  regularEditBounceState = 'out';
+  fadeInfo = 'in';
+  slidePic = 'in';
 
+  show: boolean = false;
   infoForm;
   message;
   messageClass;
   id;
   email;
+  password;
+  passwordConfirm;
   isStudent;
   isTeacher;
   county = '';
@@ -35,6 +60,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   viewTeacherID;
   ratingsList;
   text;
+  isEditAdvancedSettings: boolean = false;
 
   canRate: boolean = false;
   isFileReady: boolean = false;
@@ -63,15 +89,45 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   selectedFile;
   photoForm;
   profPicName;
+  passwordMatch: boolean = true;
 
 
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
   @ViewChild("fileInput") fileInput;
 
-
-
   constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {}
+
+  timer(time: number, property: any, val: any) {
+    setTimeout(() => {
+    return property = val;
+    }, time)
+  }
+
+  timer1(time, func)   {
+    setTimeout(() => {
+      func();
+    }, time)
+  }
+
+  getNewFullname(event) {
+    this.fullname = event.target.value;
+  }
+
+  getNewEmail(event) {
+    this.email = event.target.value;
+  }
+
+  getNewPassword(event) {
+    this.password = event.target.value;
+  }
+
+  getNewPasswordConfirm(event) {
+    this.passwordConfirm = event.target.value;
+    if(this.passwordConfirm != this.password) {
+      this.passwordMatch = false;
+    }
+  }
 
   getFile(event) {
    const fileToName = event.target.files[0];
@@ -106,7 +162,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     this.cost= event.target.value;
   }
 
-
   closeRating(){
     this.canRate = false;
     this.apiService.closeRating(this.canRate)
@@ -117,8 +172,21 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     this.apiService.openRating(this.canRate)
   }
 
-  ngAfterContentChecked(){
-    this.canRate =  this.apiService.getRatingStatus();
+  openEditProfileInfo() {
+    this.isEdit = !this.isEdit;
+    this.fadeInfo = 'out';
+    this.slidePic = 'out';
+    this.regularEditSlideState = 'in';
+    this.regularEditBounceState = 'in';
+  }
+
+  closeEditProfileInfo() {
+    this.regularEditSlideState = 'out';
+    this.regularEditBounceState = 'out';
+    setTimeout(() => {
+      this.fadeInfo = 'in';
+      this.slidePic = 'in';
+    }, 501);
   }
 
   infoSubmit() {
@@ -139,22 +207,81 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         handicap: this.handicap,
         cost: this.cost
       }
-
       this.authService.onInfoSubmit(info).subscribe(data => {
+        this.show = true;
         if (!data.success) {
           this.messageClass = 'alert alert-danger';
           this.message = data.message;
-          this.isEdit = true;
+          setTimeout(() => {
+            this.show = false;
+          },750);
         } else {
           this.messageClass = 'alert alert-success';
           this.message = data.message;
-          this.isEdit = false;
+          setTimeout(() => {
+            this.show = false;
+          },750);
+          this.closeEditProfileInfo()
         }
       });
       setTimeout(() => {
         this.getNewProfPic();
-      }, 1400);
+      }, 1400)
     }
+
+  openEditAdvancedSettings() {
+    this.regularEditSlideState = 'out';
+    this.regularEditBounceState = 'out';
+    setTimeout(() => {
+      this.isEditAdvancedSettings = true;
+      this.slideState = 'in';
+      this.bounceState = 'in';
+    },501);
+  }
+
+  closeEditAdvancedSettings() {
+    this.slideState = 'out';
+    this.bounceState = 'out';
+    setTimeout(() => {
+      this.regularEditSlideState = 'in';
+      this.regularEditBounceState = 'in';
+      this.isEditAdvancedSettings = false;
+    },501);
+  }
+
+  submitAdvancedSettings() {
+    if(this.password != this.passwordConfirm){
+      return false;
+    }
+    let info = {
+      fullname: this.fullname,
+      email: this.email,
+      password: this.password
+    }
+    this.authService.onInfoSubmit(info).subscribe(data => {
+      this.show = true;
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        setTimeout(() => {
+          this.show = false;
+        },750);
+      } else {
+        this.slideState = 'out';
+        this.bounceState = 'out';
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.show = false;
+        },750);
+        this.closeEditAdvancedSettings();
+      }
+    });
+  }
+
+  ngAfterContentChecked(){
+    this.canRate =  this.apiService.getRatingStatus();
+  }
 
     getNewProfPic() {
       this.authService.getProfile()
@@ -163,7 +290,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         this.profPic = this.awsBucket + this.profPicName;
     });
   }
-
 
   ngOnInit() {
     this.route.params.subscribe(params => {

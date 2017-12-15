@@ -11,7 +11,7 @@
 }
 
 .about {
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-weight: 400;
 }
 
@@ -125,6 +125,10 @@ textarea {
 
 input[type="file"] {
     display: none;
+}
+
+.fa-times {
+  font-size: 1.25em;
 }
 
 .custom-file-upload {

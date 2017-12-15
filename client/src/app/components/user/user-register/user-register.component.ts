@@ -40,7 +40,6 @@ export class UserRegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(5)
       ])],
-      // role: [[]],
       isStudent: [''],
       isTeacher: ['']
     });

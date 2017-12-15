@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
     trigger('modalStatusFade', [
       state('none', style({visibility: 'hidden', opacity: 0})),
       state('fadeOut', style({transition: 'all .5s ease-in-out',
-      opacity: 0
+      opacity: 0, display: 'none'
       })),
       state('fadeIn', style({display: 'block', transition: 'all .5s ease-in-out',
       opacity: 1

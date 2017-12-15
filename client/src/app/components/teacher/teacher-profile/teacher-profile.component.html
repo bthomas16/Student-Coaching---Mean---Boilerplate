@@ -128,7 +128,7 @@
 <div class="flex statusModal" [@modalStatusFade]="modalState">
   <div class="flex">
     <div class="flex xClose">
-      <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeStatusModal()"></i>
+      <i class="fa fa-times" aria-hidden="true" (click)="closeStatusModal()"></i>
     </div>
     <div class="teacherStatusModal">
       <div class="row show-hide-message">
@@ -136,7 +136,7 @@
         {{message}}</div>
       </div>
       <div class="flex leftText">
-        <h2 style="font-size:2em;">Welcome to your Teacher Profile, {{ fullname }}!</h2>
+        <h3 style="font-size:2em;">Welcome to your Teacher Profile, {{ fullname }}!</h3>
       </div>
       <div class="flex statusListDiv leftText">
         <h4 *ngIf="!canChangeStatus" style='font-weight:300; margin-top: 1em;'>To activate your profile, please update the following:</h4>
@@ -148,7 +148,7 @@
           </li>
           <li class="status" *ngIf="!skill1 || !skill2">
             <i class="fa fa-plus" aria-hidden="true"></i>
-            &nbsp; Please upate your skills section.
+            &nbsp; Please upate your Profile Information.
           </li>
           <li class="status" *ngIf="!bio">
             <i class="fa fa-plus" aria-hidden="true"></i>

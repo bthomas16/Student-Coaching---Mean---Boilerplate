@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit, AfterContentChecked {
   cookieValue = 'UNKNOWN';
-  cookies: boolean = false;
+  cookies: boolean = true;
   emailForm;
   message;
   messageClass;
@@ -122,8 +122,14 @@ export class HomeComponent implements OnInit, AfterContentChecked {
         return true
       }
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
+        this.cookies = false;
         this.animate();
         return false
+  }
+
+  closeStatusModal() {
+    this.cookies = true;
+    this.animate();
   }
 
   animate() {
@@ -136,7 +142,6 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked() {
     this.loginState = this.apiService.getLoginModalStatus();
     this.registerState = this.apiService.getRegisterModalStatus();
-    console.log(this.loginState, this.registerState)
   }
 
 

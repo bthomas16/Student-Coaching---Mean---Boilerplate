@@ -127,9 +127,6 @@ input[type="file"] {
     display: none;
 }
 
-.fa-times {
-  font-size: 1.25em;
-}
 
 .custom-file-upload {
     background-color: #1BACFC;
@@ -201,9 +198,9 @@ span {
   margin: 1em;
 }
 
-.experienceAddButton {
+/*.experienceAddButton {
   background-color: #5563F0;
-}
+}*/
 
 .bioInput {
   margin-top: 1em;
@@ -229,11 +226,13 @@ textarea::placeholder {
 
 /*.successEditBio {
   color: white;
-}
+}*/
+
+
 
 .cancelEditBio {
-  color: red;
-}*/
+  right: 2.25em;
+}
 
 .proExpEditLogo {
   top: 1em;
@@ -241,14 +240,13 @@ textarea::placeholder {
 }
 
 .successproExpEdit {
-color: green;
 top: 1em;
 right: 2em;
 }
+
 .cancelproExpEdit {
-color: red;
 top: 1em;
-right: 4em;
+right: 3.5em;
 }
 
 .bioInput:focus {
@@ -324,6 +322,24 @@ visibility: hidden;
   width: auto;
   max-width: 40%;
   margin: .75em;
+}
+
+
+button:hover {
+  font-weight: 500;
+}
+
+.add {
+  background-color: #1BACFC;
+  color: white;
+}
+
+.delete {
+  background-color: red;
+}
+
+.reset {
+  background-color: white;
 }
 
 @media(max-width: 1100px){

@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   canShowRegisterModal;
   canShowLoginModal;
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   state = 'normal';
   loginState;
   registerState;
@@ -142,11 +142,11 @@ export class HomeComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 600);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 900);
     setTimeout(() => {
       this.checkCookies()
-    }, 3500);
+    }, 3400);
   }
 }

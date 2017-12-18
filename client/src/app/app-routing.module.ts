@@ -20,15 +20,15 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent, canActivate: [NotAuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [NotAuthGuard], data: {state: 'home'}},
   { path: 'register', component: UserRegisterComponent, canActivate: [NotAuthGuard] },
   { path: 'login', component: UserLoginRedirectComponent, canActivate: [NotAuthGuard] },
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-  { path: 'profile/student', component: StudentProfileComponent, canActivate: [AuthGuard]},
-  { path: 'profile/teacher', component: TeacherProfileComponent, canActivate: [AuthGuard]},
-  { path: 'view-teacher-profile/:id', component: ViewTeacherProfileComponent, canActivate: [AuthGuard]},
-  { path: 'view-student-profile/:id', component: ViewStudentProfileComponent, canActivate: [AuthGuard]},
-  {path: 'company-info', component: CompanyInfoComponent},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], data: {state: 'profile'}},
+  { path: 'profile/student', component: StudentProfileComponent, canActivate: [AuthGuard], data: {state: 'studentProfile'}},
+  { path: 'profile/teacher', component: TeacherProfileComponent, canActivate: [AuthGuard], data: {state: 'teacherProfile'}},
+  { path: 'view-teacher-profile/:id', component: ViewTeacherProfileComponent, canActivate: [AuthGuard], data: {state: 'viewTeacher'}},
+  { path: 'view-student-profile/:id', component: ViewStudentProfileComponent, canActivate: [AuthGuard], data: {state: 'viewStudent'}},
+  {path: 'company-info', component: CompanyInfoComponent, data: {state: 'companyInfo'}},
   { path: '**', component: HomeComponent}
 
 ]
@@ -36,10 +36,13 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {
+    useHash: true
+  })
+],
   providers: [],
   bootstrap: [],
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {}

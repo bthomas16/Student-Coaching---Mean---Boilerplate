@@ -142,8 +142,13 @@
     cursor: pointer;
 }
 .custom-file-upload h6 {
-  /*margin-bottom: -2em;*/
-  margin-top: 0;
+  margin: 0;
+  line-height: 0;
+  align-self: flex-start;
+}
+
+.flex h6 {
+  margin-top: -23.5em;
 }
 
 
@@ -188,16 +193,30 @@ p > select {
 
 select {
   background: transparent;
+  border-radius: 0px;
   border: none;
-  border-bottom: 1px solid white;
+  font-weight: 300;
 }
 
 .editLabel {
-  line-height: 2;
+  line-height: 1.5;
 }
 
 select {
   line-height: 2;
+}
+
+.turquoise {
+  color: #1BACFC;
+}
+
+.red {
+  color: red;
+}
+
+.onlineStatusString {
+  margin-left: .75em;
+  font-size: 1.3em;
 }
 
 

@@ -38,7 +38,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
   showRate: boolean = false;
   findTeacher: boolean = true;
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   awsBucket: string = 'https://s3.amazonaws.com/savvyappphotos/';
 
@@ -109,6 +109,9 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                this.teacherFullname = viewTeacher.teacher.fullname;
                this.experiences = viewTeacher.teacher.experiences
                if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
+                //  setTimeout(() => {
+                //    this.isLoading = false;
+                //  }, 600);
                  return null
                }
                this.teacherKRatingsArray = viewTeacher.teacher.ratings.kRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.kRatingsArray.length;
@@ -116,10 +119,6 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                this.teacherTARatingsArray = viewTeacher.teacher.ratings.taRatingsArray.reduce((a, b) => a + b)/viewTeacher.teacher.ratings.taRa
              }
          });
-         setTimeout(() => {
-           this.isLoading = false;
-         }, 1000);
-         return true;
        }
     this.authService.getProfile().subscribe(profile => {
       this.userID = profile.user.id
@@ -128,9 +127,9 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
       this.userIsStudent = profile.user.isStudent;
       this.userIsTeacher = profile.user.isTeacher;
       this.experiences = profile.user.experiences;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 600);
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      // }, 600);
     });
   });
     window.scrollTo(0, 0);

@@ -18,6 +18,7 @@ export class StudentProfileComponent implements OnInit {
   processing = false;
   show = true;
   isLoading: boolean = true;
+  isEdit: boolean = false;
 
   constructor(public authService: AuthService, private router: Router) { }
 
@@ -48,9 +49,9 @@ export class StudentProfileComponent implements OnInit {
       this.isStudent = profile.user.isStudent;
       this.isTeacher = profile.user.isTeacher;
     });
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 800);
     window.scrollTo(0, 0);
   }
 }

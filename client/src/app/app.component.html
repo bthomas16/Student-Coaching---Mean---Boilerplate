@@ -5,7 +5,9 @@
     <div class="flex half">
       <flash-messages class="flash-message"></flash-messages>
     </div>
-    <router-outlet></router-outlet>
+    <div class="flex" [@routerTransition]="getState(o)">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
   </div>
 
   <app-footer class="footer" (click)="changeMenu()"></app-footer>

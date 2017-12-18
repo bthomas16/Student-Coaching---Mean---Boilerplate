@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit {
   profPic;
 
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
 
   constructor(public authService: AuthService) {
@@ -37,9 +37,9 @@ ngOnInit() {
     this.isTeacher = profile.user.isTeacher;
     this.profPic = profile.user.profPicName;
     this.profPic = '/authentication/avatar-retrieve/' + this.id
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 1000);
   });
   window.scrollTo(0, 0)
 }

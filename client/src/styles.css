@@ -85,7 +85,7 @@ ul.help-block {
     margin: 0;
     margin-top: 3%;
     padding: 0;
-    background-color: rgba(215,215,215,.8)
+    background-color: rgba(215,215,215,.25);
 }
 
 ul.help-block li {
@@ -114,6 +114,10 @@ ul.help-block li {
 
 .full {
   width: 100%;
+}
+
+.noPointer {
+  pointer-events: none;
 }
 
 .pointer {
@@ -150,6 +154,34 @@ ul.help-block li {
   right: 5%;
   color: #F7F4F4;
 }
+
+/*COLORS*/
+
+.white {
+  color: white;
+}
+
+.turquoise {
+  color: #1BACFC;
+}
+
+.turquoiseBG {
+  background-color: #1BACFC;
+}
+
+.red {
+  color: red;
+}
+
+.purple {
+  color: #5563F0;
+}
+
+.whiteBG {
+  background-color: white;
+}
+
+/*END COLORS*/
 
 .glyphicon-refresh-animate {
     -animation: spin .7s infinite linear;

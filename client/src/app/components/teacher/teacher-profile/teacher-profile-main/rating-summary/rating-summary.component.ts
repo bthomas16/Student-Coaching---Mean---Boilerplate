@@ -14,6 +14,7 @@ export class RatingSummaryComponent implements OnInit {
   taRating;
   isLoading: boolean = true;
   numberOfRatings: Number;
+  isParams: boolean = false;
 
   constructor(public authService: AuthService, public apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -21,6 +22,7 @@ export class RatingSummaryComponent implements OnInit {
     this.route.params.subscribe(params => {
     let viewTeacherID = params['id'];
       if(viewTeacherID) {
+        this.isParams = true;
          this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
            if(viewTeacher.teacher.ratings !==0) {
           this.kRating = viewTeacher.teacher.avgKRatingArray.reduce((a, b) => a + b)/viewTeacher.teacher.avgKRatingArray.length;

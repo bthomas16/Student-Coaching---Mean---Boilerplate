@@ -1,9 +1,9 @@
-<div class="loadingDiv" *ngIf="isLoading">
+<!-- <div class="loadingDiv" *ngIf="isLoading">
   <div class="loader"></div>
-</div>
+</div> -->
 
 
-<div class="flex becomeTeacher" *ngIf="!isTeacher && !isLoading">
+<div class="flex becomeTeacher" *ngIf="!isTeacher">
   <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
   <div class="flex">
     <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
@@ -12,16 +12,16 @@
 </div>
 
 <!-- <span > -->
-  <div [ngClass]="modalState == 'fadeIn' ? 'greyOut ': 'none'" *ngIf="isTeacher && !isLoading">
+  <div [@modalStatusFade]="modalState" class="greyOut">
   </div>
 <!-- </span> -->
 
-  <app-teacher-profile-main *ngIf="!isLoading && isTeacher" [fullname]="fullname"></app-teacher-profile-main>
+  <app-teacher-profile-main *ngIf="isTeacher" [fullname]="fullname"></app-teacher-profile-main>
 
   <!-- bio row -->
 
 
-<div class="container bioRow"  *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+<div class="container bioRow"  *ngIf="isTeacher" (click)="closeStatusModal()">
   <div class="row show-hide-message" *ngIf="show">
     <div [ngClass]="messageClass">
     {{message}}</div>
@@ -43,7 +43,7 @@
 
 <!-- video row -->
 
-<div class="container vidContainer" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+<div class="container vidContainer" *ngIf="isTeacher" (click)="closeStatusModal()">
   <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
     <div [ngClass]="messageClass" style=" font-size:1.25em; font-weight: 500;">
       {{vidSubmitMessage}}</div>
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<div class="container reviewsContainer" *ngIf="isTeacher && !isLoading" (click)="closeStatusModal()">
+<div class="container reviewsContainer" *ngIf="isTeacher" (click)="closeStatusModal()">
   <div class="row">
     <div class="col-md-6 reviews">
       <div class="row">
@@ -96,8 +96,8 @@
           <h6 *ngIf="experiences == undefined || null">Update Experiences </h6>
         </div>
         <i class="fa fa-pencil-square-o editLogo proExpEditLogo pointer" aria-hidden="true" (click)="isEditExp = !isEditExp" *ngIf="!isEditExp"></i>
-        <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp"></i>
-        <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer" aria-hidden="true" (click)="cancelExp()" *ngIf="isEditExp"></i>
+        <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer turquoise" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp"></i>
+        <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer white" aria-hidden="true" (click)="cancelExp()" *ngIf="isEditExp"></i>
         <div class="col-xs-11 experiences">
           <ul  *ngFor="let experience of experiences">
             <li class="leftText makeFull">
@@ -109,10 +109,10 @@
             <!-- <h4 *ngIf="experiences.length == 5" style="color:red;" class="col-md-6 col-md-offset-3">You already have 5 expereiences!</h4> -->
             <input (keyup)="getNewExperience($event)" class="experienceInput col-xs-8 " *ngIf="experiences.length !== 5" value="{{experienceValue}}" placeholder="Add New Experience...">
             <div class="col-xs-11 buttsDiv">
-              <button class="btn btn-success col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="experiences.length !== 5">Add</button>
-              <button class="btn btn-success col-xs-3" (click)="addExperience()"  disabled *ngIf="experiences.length == 5">5 Max</button>
-              <button class="btn btn-warning col-xs-3" (click)="deleteExperience()" [disabled]="experiences.length == 0">Delete</button>
-              <button class="btn btn-danger experienceButton col-xs-3" (click)="resetExperience()" [disabled]="experiences.length == 3">Reset</button>
+              <button class="btn add col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="experiences.length !== 5">Add</button>
+              <button class="btn btn-default add col-xs-3" (click)="addExperience()"  disabled *ngIf="experiences.length == 5">5 Max</button>
+              <button class="btn btn-default delete white col-xs-3" (click)="deleteExperience()" [disabled]="experiences.length == 0">Delete</button>
+              <button class="btn btn-default reset experienceButton col-xs-3" (click)="resetExperience()" [disabled]="experiences.length == 3">Reset</button>
             </div>
           </div>
         </div>
@@ -121,11 +121,11 @@
   </div>
 </div>
 
-<app-rating-summary *ngIf="!isLoading && isTeacher"></app-rating-summary>
+<app-rating-summary *ngIf="isTeacher"></app-rating-summary>
 
 
-<span *ngIf="(!isLoading && !isOnline) && isTeacher">
-<div class="flex statusModal" [@modalStatusFade]="modalState">
+<span [@modalStatusFade]="modalState">
+<div class="flex statusModal" >
   <div class="flex">
     <div class="flex xClose">
       <i class="fa fa-times" aria-hidden="true" (click)="closeStatusModal()"></i>
@@ -140,7 +140,7 @@
       </div>
       <div class="flex statusListDiv leftText">
         <h4 *ngIf="!canChangeStatus" style='font-weight:300; margin-top: 1em;'>To activate your profile, please update the following:</h4>
-        <h4 *ngIf="canChangeStatus">You are currently <span [ngClass]="onlineStatus ? 'online' : 'offline'">{{ onlineStatus }}</span></h4>
+        <h4 *ngIf="canChangeStatus">You are currently <span [ngClass]="onlineStatus ? 'online' : 'offline'">{{ isOnlineString }}</span></h4>
         <ul class="flex statusList leftText">
           <li class="status" *ngIf="profPicName === 'blankProf.png'">
             <i class="fa fa-plus" aria-hidden="true"></i>

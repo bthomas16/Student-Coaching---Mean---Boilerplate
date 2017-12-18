@@ -5,6 +5,7 @@
 .options {
   min-height: 40vh;
   padding: 3.5em;
+  padding-top: 1em;
 }
 
 .fadeOut {
@@ -101,6 +102,7 @@ ul.help-block li {
 button {
   text-align: center;
 }
+
 
 
 .help-block {

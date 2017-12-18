@@ -84,6 +84,8 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   avgRating: number;
   numberOfRatings: number;
   yetRated: boolean = false;
+  onlineStatus;
+  onlineStatusString = 'Offline';
 
   fileChangeName;
   selectedFile;
@@ -97,18 +99,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   @ViewChild("fileInput") fileInput;
 
   constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {}
-
-  timer(time: number, property: any, val: any) {
-    setTimeout(() => {
-    return property = val;
-    }, time)
-  }
-
-  timer1(time, func)   {
-    setTimeout(() => {
-      func();
-    }, time)
-  }
 
   getNewFullname(event) {
     this.fullname = event.target.value;
@@ -131,6 +121,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
 
   getFile(event) {
    const fileToName = event.target.files[0];
+   this.isFileReady = true;
    this.fileChangeName = fileToName.name;
   }
 
@@ -291,6 +282,39 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     });
   }
 
+  goOffline() {
+    this.onlineStatus = false;
+    this.onlineStatusString = "Offline";
+    let status = {
+      status: false
+    }
+    this.authService.onlineStatus(status).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }
+      this.messageClass = 'alert alert-danger';
+      this.message = data.message;
+    });
+  }
+
+  goOnline() {
+    this.onlineStatus = true;
+    this.onlineStatusString = "Online";
+    let status = {
+      status: true
+    }
+    this.authService.onlineStatus(status).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }
+      this.messageClass = 'alert alert-success';
+      this.message = data.message;
+    });
+  }
+
+
   ngOnInit() {
     this.route.params.subscribe(params => {
     this.viewTeacherID = params['id'];
@@ -309,6 +333,10 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
            this.skill3 = viewTeacher.teacher.skill3;
            this.handicap = viewTeacher.teacher.handicap;
            this.cost =viewTeacher.teacher.cost;
+           this.onlineStatus = viewTeacher.teacher.onlineStatus;
+           if(this.onlineStatus == true) {
+             this.onlineStatusString = 'Online'
+           }
            this.profPicName = viewTeacher.teacher.profPic;
            if(this.profPicName == undefined || null) {
              this.profPicName = 'blankProf.png'
@@ -340,6 +368,10 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         this.skill3 = profile.user.skill3;
         this.handicap = profile.user.handicap;
         this.cost = profile.user.cost;
+        this.onlineStatus = profile.user.onlineStatus;
+        if(this.onlineStatus == true) {
+          this.onlineStatusString = 'Online'
+        }
         this.profPicName = profile.user.profPic;
         if(this.profPicName === undefined) {
           this.profPicName = 'blankProf.png'

@@ -485,6 +485,7 @@ router.put('/experiences', (req,res) => {
         });
 
         router.put('/online-status', (req,res) => {
+          console.log('hit with ostatus', req.body.status, req.body);
           User.findOne({ _id: req.decoded.userId }).exec((err, user) => {
             if (err) {
               res.json({ success: false, message: 'Not a valid user id'});
@@ -497,7 +498,11 @@ router.put('/experiences', (req,res) => {
                   if(err) {
                     res.json({ succes: false, message: err})
                   } else {
-                      res.json({ success: true, message: 'You are now ' + req.body.status})
+                    let value = 'Offline'
+                    if(req.body.status == true) {
+                      value = 'Online'
+                    }
+                      res.json({ success: true, message: 'You are now ' + value})
                     }
                   });
                 }

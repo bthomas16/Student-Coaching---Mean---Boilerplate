@@ -27,7 +27,7 @@
 
 <div class="container teacherList">
   <div class="row teacherRow">
-    <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 teacherCard">
+    <div *ngFor="let teacher of teachersList | filter:county:'county':skill:'skill1':skill:'skill2':skill:'skill3' |  slice:0:[sliceNumber]; let i=index"  class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 teacherCard option">
       <!-- <div class="row"> -->
       <div class="realCard pointer" [routerLink]="['/view-teacher-profile/', teacher._id]">
         <div class="row">

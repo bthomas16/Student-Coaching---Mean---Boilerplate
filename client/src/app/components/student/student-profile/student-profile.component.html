@@ -1,6 +1,6 @@
-<div class="loadingDiv" *ngIf="isLoading">
+<!-- <div class="loadingDiv" *ngIf="isLoading">
   <div class="loader"></div>
-</div>
+</div> -->
 
 
 <div class="container">
@@ -11,14 +11,14 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="!isStudent && !isLoading">
+  <div class="row" *ngIf="!isStudent">
     <div class="col-xs-12 becomeStudent">
       <h2>Become a Student and connect with Pros Today!</h2>
         <button class="btn btn-success" (click)="becomeStudentRegister()">Click Here</button>
     </div>
   </div>
 
-  <div class="row studentRow" *ngIf="isStudent && !isLoading">
+  <div class="row studentRow" *ngIf="isStudent">
     <div class="col-xs-12">
       <app-student-main ></app-student-main>
     </div>
@@ -47,7 +47,7 @@
 <!-- Teacher Search -->
 
 <div class="container">
-  <div class="row" *ngIf="isStudent && !isLoading">
+  <div class="row" *ngIf="isStudent">
     <div class="col-xs-12 teachersList">
       <app-teachers-list></app-teachers-list>
     </div>

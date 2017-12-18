@@ -43,10 +43,10 @@
   </div>
 
   <div class="flex role">
-    <div class="flex" *ngIf="!(isStudent || isTeacher) === true && !teacherClick">
+    <div class="flex" *ngIf="!(isStudent || isTeacher)">
       <h6 class="flex explainText">Please select your account role</h6>
     </div>
-    <div class="flex" *ngIf="(isStudent || isTeacher) === true || teacherClick">
+    <div class="flex" *ngIf="(isStudent || isTeacher) === true">
       <h6 class="flex explainText gotThis">You're going crush this!</h6>
     </div>
     <div class="btn btn-default butt" (click)='studentClickHandler()' [ngClass]="isStudent ? 'active' : 'visible'">

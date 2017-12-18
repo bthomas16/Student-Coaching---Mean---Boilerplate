@@ -18,9 +18,9 @@ export class UserLoginRedirectComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 600);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 600);
   }
 
 }

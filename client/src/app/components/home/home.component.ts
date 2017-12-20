@@ -11,17 +11,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('modalFade', [
-      state('normal', style({display: 'none', transition: 'all .5s ease-in-out',
-      opacity: 0
+      state('normal', style({transform: 'translateY(-10%)', opacity: 0, transition: 'all .5s ease-in-out',
       })),
-      state('fadein', style({display: 'block', transition: 'all .5s ease-in-out',
+      state('fadein', style({transform: 'translateY(15%)', transition: 'all .5s ease-in-out',
       opacity: 1
       })),
-      transition('normal <=> fadein', animate(500))
-      ])
-    ]
-  }
-)
+    ]),
+    trigger('greyFade', [
+      state('normal', style({opacity: 0, transition: 'all .5s ease-in-out',
+      })),
+      state('fadein', style({transition: 'all .5s ease-in-out',
+      opacity: 1,
+      })),
+      transition('* <=> *', animate(500))
+    ])
+  ]
+})
 
 export class HomeComponent implements OnInit, AfterContentChecked {
   cookieValue = 'UNKNOWN';
@@ -37,6 +42,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
 
   isLoading: boolean = false;
   state = 'normal';
+  greyState = 'normal';
   loginState;
   registerState;
 
@@ -75,7 +81,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   }
 
   emailSubmit() {
-    this.animate()
+    this.state = 'normal';
     this.onEmailSubmit();
   }
 
@@ -123,35 +129,30 @@ export class HomeComponent implements OnInit, AfterContentChecked {
       }
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
         this.cookies = false;
-        this.animate();
+        setTimeout(() => {
+          this.state = 'fadein';
+        },3400)
         return false
   }
 
   closeStatusModal() {
-    this.cookies = true;
-    this.animate();
+    this.state = 'normal';
   }
 
-  animate() {
-    console.log('sop')
-    this.state == "normal" ? this.state = 'fadein' : this.state = 'normal';
-    this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
-  }
 
 
   ngAfterContentChecked() {
     this.loginState = this.apiService.getLoginModalStatus();
     this.registerState = this.apiService.getRegisterModalStatus();
+    if(this.loginState == 'loginFadein' || this.registerState == 'registerFadein') {
+      this.greyState =
+      'fadein'
+    }
   }
 
 
   ngOnInit(): void {
+    this.checkCookies()
     window.scrollTo(0, 0);
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 900);
-    setTimeout(() => {
-      this.checkCookies()
-    }, 3400);
   }
 }

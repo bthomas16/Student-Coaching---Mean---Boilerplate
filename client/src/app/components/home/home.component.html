@@ -3,7 +3,7 @@
 </div> -->
 
 <!-- <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}"> -->
-<div class="flex modall" [@modalFade]="state">
+<div class="flex modall" [@modalFade]="state" *ngIf="state == 'fadein'">
   <div class="flex">
     <div class="flex xClose">
       <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeStatusModal()"></i>
@@ -38,7 +38,7 @@
 <div class="flex wrapper">
 <!-- <div class="flex wrapper" (click)="animate()"> -->
   <div class="flex">
-    <span [ngClass]="(loginState === 'loginFadein' || registerState === 'registerFadein') || !cookies ? 'greyOut' : 'homey'"></span>
+    <span [@greyFade]="greyState" [ngClass]="loginState === 'loginFadein' || registerState === 'registerFadein' || state === 'fadein' ? 'greyOut' : 'homey'"></span>
     <app-hero class="hero"></app-hero>
     <app-options class="options"></app-options>
     <app-future class="future"></app-future>

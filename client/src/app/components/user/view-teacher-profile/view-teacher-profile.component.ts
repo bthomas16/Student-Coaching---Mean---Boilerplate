@@ -107,6 +107,7 @@ export class ViewTeacherProfileComponent implements OnInit, AfterContentChecked 
                }
                this.ratingsListLength = viewTeacher.teacher.ratings.length;
                this.teacherFullname = viewTeacher.teacher.fullname;
+               console.log('heyyyy', this.teacherFullname)
                this.experiences = viewTeacher.teacher.experiences
                if(viewTeacher.teacher.ratings.kRatingsArray == null || undefined) {
                 //  setTimeout(() => {

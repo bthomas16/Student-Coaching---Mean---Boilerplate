@@ -291,10 +291,13 @@ router.put('/teacher-rating', (req, res) => {
                 author: req.body.author
               })
               const tempAvg = ((req.body.kRatings + req.body.pRatings + req.body.taRatings)/3);
+
+              userBeingRated.avgRatingArray.push(tempAvg);
+
               userBeingRated.avgKRatingArray.push(req.body.kRatings);
               userBeingRated.avgPRatingArray.push(req.body.pRatings);
               userBeingRated.avgTARatingArray.push(req.body.taRatings);
-              userBeingRated.avgRatingArray.push(tempAvg);
+
               const newAvg = userBeingRated.avgRatingArray.reduce((a, b) => a + b)/userBeingRated.avgRatingArray.length;
               userBeingRated.avgRatingNumber = newAvg;
               userBeingRated.avgRatingLength = userBeingRated.avgRatingArray.length;

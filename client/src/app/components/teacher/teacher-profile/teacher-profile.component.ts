@@ -26,52 +26,42 @@ export class TeacherProfileComponent implements OnInit {
   @ViewChild("fileInput") fileInput;
 
   modalState = 'none';
-
-
-  email;
   message;
   vidSubmitMessage
   messageClass;
-  userID;
-  fullname;
-  isStudent: boolean = false;;
-  isTeacher: boolean = true;
-  skill1;
-  skill2;
-  profPic;
   processing: boolean = false;
   show: boolean = false;
   edit: boolean = false;
-  currentUrl;
-  teacherID;
-  isEdit: boolean = false;
-  isEditExp: boolean = false;
-  videoFileName;
-  profVideo;
   isBioEdit: boolean = false;
   maxExperiences: boolean = false;
   experienceValue;
-  experiences;
   canSubmitVideo: boolean = false;
   showVidSubmitMessage: boolean = false;
   canChangeStatus: boolean = false;
-  onlineStatus: boolean = false;
   isOnlineString: String = 'Offline';
-
   profPicName;
+  viewTeacherID;
   bioValue;
-  bio;
-
-  // isLoading: boolean = true;
-
+  currentUrl;
+  videoFileName;
+  isEdit: boolean = false;
+  isEditExp: boolean = false;
+  isParams: boolean = false;
   originalArray;
-
-
+  onlineStatus;
+  isTeacher: boolean = true;
+  isStudent: boolean = false;
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
 
-  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private cookieService: CookieService) {
+  userObj;
+
+
+
+
+  constructor(public authService: AuthService, private router: Router, private route: ActivatedRoute, private cookieService: CookieService) {
   }
+
 
   getBioValue(value) {
       this.bioValue = value;
@@ -149,21 +139,13 @@ export class TeacherProfileComponent implements OnInit {
     })
   }
 
-  isUserTheTeacher() {
-    if(this.teacherID == this.userID) {
-      return false
-    } else {
-      return true;
-    }
-  }
-
   getNewExperience(event){
     this.experienceValue = event.target.value;
   }
 
   addExperience() {
-    this.experiences.push(this.experienceValue);
-    if(this.experiences.length >= 5) {
+    this.userObj.experiences.push(this.experienceValue);
+    if(this.userObj.experiences.length >= 5) {
       this.maxExperiences = true;
     }
     // this.experienceSubmit();
@@ -172,7 +154,7 @@ export class TeacherProfileComponent implements OnInit {
 
   experienceSubmit() {
     this.isEditExp = !this.isEditExp;
-    this.authService.onExperienceSubmit(this.experiences).subscribe(data => {
+    this.authService.onExperienceSubmit(this.userObj.experiences).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
@@ -184,20 +166,17 @@ export class TeacherProfileComponent implements OnInit {
   }
   deleteExperience() {
     const trying = this.originalArray;
-    this.experiences.pop()
+    this.userObj.experiences.pop()
   }
 
   resetExperience() {
-    this.experiences = [];
+    this.userObj.experiences = [];
     this.maxExperiences = false;
   }
 
   cancelExp() {
     this.isEditExp = !this.isEditExp;
-    this.authService.getProfile()
-    .subscribe(profile => {
-      this.experiences = profile.user.experiences
-    });
+    this.getUserInfo();
   }
 
   goOffline() {
@@ -251,54 +230,46 @@ export class TeacherProfileComponent implements OnInit {
   //
   closeStatusModal() {
     this.modalState = 'fadeOut';
+    console.log('hi', this.modalState)
   }
 
   getBio() {
-    this.authService.getProfile()
-    .subscribe(profile => {
-      this.bio = profile.user.bio;
+    this.getUserInfo();
+  }
+
+
+
+  getUserInfo(){
+    this.route.params.subscribe(params => {
+    this.viewTeacherID = params['id'];
+      });
+      if(this.viewTeacherID) {
+      this.isParams = true;
+         this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
+           this.userObj = viewTeacher.teacher;
+          });
+          return this.userObj;
+        }
+    this.authService.getProfile().subscribe(profile => {
+
+      this.userObj = profile.user;
+      if(this.userObj.skill1 || this.userObj.bio || this.userObj.experiences) {
+        this.canChangeStatus = true;
+      }
+      console.log('yup', this.userObj)
+      if(!this.isParams && this.userObj.isTeacher && !this.userObj.onlineStatus) {
+      setTimeout(() => {
+        this.modalState = 'fadeIn'
+      },1500);
+    }
     });
+    return this.userObj;
   }
 
   ngOnInit() {
-    this.authService.getProfile()
-    .subscribe(profile => {
-      this.userID = profile.user.id;
-      this.fullname = profile.user.fullname;
-      this.email = profile.user.email;
-      this.profPicName = profile.user.profPic;
-      if(this.profPicName == undefined) {
-        this.profPicName = 'blankProf.png'
-      }
-      this.profPic = this.awsBucket + this.profPicName;
-      this.isTeacher = profile.user.isTeacher;
-      this.isStudent = profile.user.isStudent;
-      this.skill1 = profile.user.skill1;
-      this.skill2 = profile.user.skill2;
-      this.experiences = profile.user.experiences;
-      this.originalArray = this.experiences;
-      this.onlineStatus = profile.user.onlineStatus;
-      console.log('hit me', '1')
-      if(this.onlineStatus) {
-        console.log('hit me', '2')
-        this.isOnlineString = 'Online';
-      }
-
-      if(this.experiences.length == 5) {
-        this.maxExperiences = true;
-      }
-      this.profVideo = profile.user.profVideo;
-      this.bio = profile.user.bio;
-      if((this.profPicName !== 'blankProf.png') && (this.skill1 && this.skill2 !== '') && (this.bio !== '') && this.experiences.length !== 0 || null) {
-        this.canChangeStatus = true;
-      }
-      if(!this.onlineStatus) {
-        console.log('hit me', '3')
-        setTimeout(() => {
-          this.modalState = 'fadeIn';
-        }, 1200);
-      }
-    });
+    this.getUserInfo();
     window.scrollTo(0, 0);
   }
+
+
 }

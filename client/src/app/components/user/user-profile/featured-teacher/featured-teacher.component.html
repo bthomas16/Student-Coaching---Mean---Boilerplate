@@ -15,7 +15,7 @@
       <p class="handicap leftText">Hanicap Index of: {{ teacher.handicap }}</p>
       <p class="location leftText">County Served: {{ teacher.county }}</p>
       <p class="cost leftText">${{ teacher.cost }}/HR</p>
-      <P class="quote leftText" *ngIf="teacher.ratings[0]">"{{ teacher.ratings[randomRatingIndex].text | shorten:160 }}"</P>
+      <P class="quote leftText" *ngIf="teacher.ratings[0]">"{{ teacher.ratings[randomRatingIndex].text | shorten:200 }}"</P>
       <p class="author leftText" *ngIf="teacher.ratings[0]">{{ teacher.ratings[randomRatingIndex].author }}</p>
       <h4 class="noRate leftText" *ngIf="!teacher.ratings[0]">{{teacher.fullname}} has not been rated</h4>
     </div>

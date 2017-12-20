@@ -3,7 +3,7 @@
 </div> -->
 
 
-<div class="flex becomeTeacher" *ngIf="!isTeacher">
+<div class="flex becomeTeacher" *ngIf="!userObj?.isTeacher">
   <h2 class="flex">Become a Teacher and connect with Students Today!</h2>
   <div class="flex">
     <button class="btn btn-success" (click)="becomeTeacherRegister()">Click Here</button>
@@ -16,12 +16,12 @@
   </div>
 <!-- </span> -->
 
-  <app-teacher-profile-main *ngIf="isTeacher" [fullname]="fullname"></app-teacher-profile-main>
+  <app-teacher-profile-main *ngIf="userObj?.isTeacher"></app-teacher-profile-main>
 
   <!-- bio row -->
 
 
-<div class="container bioRow"  *ngIf="isTeacher" (click)="closeStatusModal()">
+<div class="container bioRow"  *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
   <div class="row show-hide-message" *ngIf="show">
     <div [ngClass]="messageClass">
     {{message}}</div>
@@ -31,11 +31,11 @@
       <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
       <i class="fa fa-check editLogo successEdit successEditBio pointer" aria-hidden="true" (click)="bioValueSubmit()" *ngIf="isEdit"></i>
       <i class="fa fa-times editLogo cancelEdit cancelEditBio pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
-      <p class="about">About {{ fullname }}</p>
+      <p class="about">About {{ userObj?.fullname }}</p>
     </div>
     <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-      <p *ngIf="!isEdit" class="bioText">{{bio}}</p>
-      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{ bio }}" (change)="getBioValue($event.target.value)"></textarea>
+      <p *ngIf="!isEdit" class="bioText">{{userObj?.bio}}</p>
+      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{userObj?.bio }}" (change)="getBioValue($event.target.value)"></textarea>
     </div>
   </div>
 </div>
@@ -43,10 +43,10 @@
 
 <!-- video row -->
 
-<div class="container vidContainer" *ngIf="isTeacher" (click)="closeStatusModal()">
+<div class="container vidContainer" *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
   <div class="row show-hide-message" *ngIf="showVidSubmitMessage" style="width: 40%; font-size:1.25em; font-weight: 500;" >
     <div [ngClass]="messageClass" style=" font-size:1.25em; font-weight: 500;">
-      {{vidSubmitMessage}}</div>
+      {{userObj?.vidSubmitMessage}}</div>
     </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1 vidBlock">
@@ -58,7 +58,7 @@
           </label>
           <input #fileInput id="fileInput" type="file" (change)=getVidFile($event)/>
           <div class="flex vidSubmitDiv" *ngIf="canSubmitVideo">
-            <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{ videoFileName }}</em></p>
+            <p class="flex" style="color: white;" *ngIf="videoFileName"><strong>File:</strong> &nbsp; <em>{{videoFileName }}</em></p>
             <button class="btn btn-success" (click)="videoSubmit()" [disabled]="!videoFileName">Submit</button>
           </div>
           <p class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1 uploadText">
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<div class="container reviewsContainer" *ngIf="isTeacher" (click)="closeStatusModal()">
+<div class="container reviewsContainer" *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
   <div class="row">
     <div class="col-md-6 reviews">
       <div class="row">
@@ -80,9 +80,13 @@
         <div class="col-md-10 col-md-offset-1 teacherReviewDiv">
           <app-teacher-reviews></app-teacher-reviews>
         </div>
-        <a class="showMore" (click)="subtractSlice3()" *ngIf="[sliceNumber] > 3">Show Less</a>
-        <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= teachersListLength) || changedShow">Reset</a>
-        <a class="showMore" (click)="addSlice3()" *ngIf="[sliceNumber] < ratingsListLength" >Show More</a>
+        <div class="row">
+          <div class="col-xs-4 col-xs-offset-8">
+            <a class="showMore" (click)="subtractSlice3()" [ngClass]="[sliceNumber] < 3 ? 'disabled' : 'showMorePointer'">Show Less</a>
+            <!-- <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= teachersListLength) || changedShow">Reset</a> -->
+            <a class="showMore blue" (click)="addSlice3()" *ngIf="[sliceNumber] < ratingsListLength" >Show More</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-6 proExperience">
@@ -93,13 +97,13 @@
               <h3>Professional Experience:</h3>
             </div>
           </div>
-          <h6 *ngIf="experiences == undefined || null">Update Experiences </h6>
+          <h6 *ngIf="userObj?.experiences == undefined || null">Update Experiences </h6>
         </div>
         <i class="fa fa-pencil-square-o editLogo proExpEditLogo pointer" aria-hidden="true" (click)="isEditExp = !isEditExp" *ngIf="!isEditExp"></i>
         <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer turquoise" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp"></i>
         <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer white" aria-hidden="true" (click)="cancelExp()" *ngIf="isEditExp"></i>
         <div class="col-xs-11 experiences">
-          <ul  *ngFor="let experience of experiences">
+          <ul  *ngFor="let experience of userObj?.experiences">
             <li class="leftText makeFull">
               <i class="fa fa-plus ploos" aria-hidden="true"></i>
               <span>{{ experience }}</span>
@@ -107,12 +111,12 @@
           </ul>
           <div class="row dynamicExperiences" *ngIf="isEditExp">
             <!-- <h4 *ngIf="experiences.length == 5" style="color:red;" class="col-md-6 col-md-offset-3">You already have 5 expereiences!</h4> -->
-            <input (keyup)="getNewExperience($event)" class="experienceInput col-xs-8 " *ngIf="experiences.length !== 5" value="{{experienceValue}}" placeholder="Add New Experience...">
+            <input (keyup)="getNewExperience($event)" class="experienceInput col-xs-8 " *ngIf="userObj?.experiences.length !== 5" value="{{experienceValue}}" placeholder="Add New Experience...">
             <div class="col-xs-11 buttsDiv">
-              <button class="btn add col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="experiences.length !== 5">Add</button>
-              <button class="btn btn-default add col-xs-3" (click)="addExperience()"  disabled *ngIf="experiences.length == 5">5 Max</button>
-              <button class="btn btn-default delete white col-xs-3" (click)="deleteExperience()" [disabled]="experiences.length == 0">Delete</button>
-              <button class="btn btn-default reset experienceButton col-xs-3" (click)="resetExperience()" [disabled]="experiences.length == 3">Reset</button>
+              <button class="btn add col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="userObj?.experiences.length !== 5">Add</button>
+              <button class="btn btn-default add col-xs-3" (click)="addExperience()"  disabled *ngIf="userObj?.experiences.length == 5">5 Max</button>
+              <button class="btn btn-default delete white col-xs-3" (click)="deleteExperience()" [disabled]="userObj?.experiences.length == 0">Delete</button>
+              <button class="btn btn-default reset experienceButton col-xs-3" (click)="resetExperience()" [disabled]="userObj?.experiences.length == 3">Reset</button>
             </div>
           </div>
         </div>
@@ -121,7 +125,7 @@
   </div>
 </div>
 
-<app-rating-summary *ngIf="isTeacher"></app-rating-summary>
+<app-rating-summary *ngIf="userObj?.isTeacher"></app-rating-summary>
 
 
 <span [@modalStatusFade]="modalState">
@@ -136,7 +140,7 @@
         {{message}}</div>
       </div>
       <div class="flex leftText">
-        <h3 style="font-size:2em;">Welcome to your Teacher Profile, {{ fullname }}!</h3>
+        <h3 style="font-size:2em;">Welcome to your Teacher Profile, {{ userObj?.fullname }}!</h3>
       </div>
       <div class="flex statusListDiv leftText">
         <h4 *ngIf="!canChangeStatus" style='font-weight:300; margin-top: 1em;'>To activate your profile, please update the following:</h4>
@@ -146,15 +150,15 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
             &nbsp; Please add a picture to your profile page.
           </li>
-          <li class="status" *ngIf="!skill1 || !skill2">
+          <li class="status" *ngIf="!userObj?.skill1 || !userObj?.skill2">
             <i class="fa fa-plus" aria-hidden="true"></i>
             &nbsp; Please upate your Profile Information.
           </li>
-          <li class="status" *ngIf="!bio">
+          <li class="status" *ngIf="!userObj?.bio">
             <i class="fa fa-plus" aria-hidden="true"></i>
             &nbsp; Please update your bio section.
           </li>
-          <li class="status" *ngIf="!experiences">
+          <li class="status" *ngIf="!userObj?.experiences">
             <i class="fa fa-plus" aria-hidden="true"></i>
             &nbsp; Please add 2 or more experiences to your profile.
           </li>

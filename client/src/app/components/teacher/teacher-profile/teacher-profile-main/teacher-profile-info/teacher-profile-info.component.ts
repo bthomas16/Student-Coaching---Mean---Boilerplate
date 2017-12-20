@@ -15,107 +15,74 @@ import { ApiService } from '../../../../../services/api.service';
       state('out', style({ transform: 'translateX(-10%)',transition: 'all .5s ease-in-out', opacity: 0, visibility: 'hidden', position: 'absolute' })),
     ]),
     trigger('fade', [
-      state('out', style({transition: 'all .5s ease-in-out', opacity: 0 })),
+      state('out', style({transition: 'all .5s ease-in-out', opacity: 0, visibility: 'none' })),
       state('in', style({transition: 'all .5s ease-in-out', opacity: 1 })),
     ]),
     trigger('bounce', [
       state('in', style({ transform: 'translateY(30%)', transition: 'all .5s ease-in-out', opacity: 1 })),
-      state('out', style({ transform: 'translateY(-30%)',transition: 'all .5s ease-in-out', opacity: 0, display: 'none' })),
+      state('out', style({ transform: 'translateY(-30%)',transition: 'all .5s ease-in-out', opacity: 0, visibility: 'hidden' })),
+      state('none', style({ display: 'none', visibility: 'hidden' })),
       transition('* => *', animate(500))
-    ])
+    ]),
   ]
 })
 
 export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked  {
 
-  @Input() fullname;
-  kRating;
-  pRating;
-  taRating;
+
   slideState = 'out';
   regularEditSlideState = 'out';
-  bounceState = 'out';
+  bounceState = 'none';
   regularEditBounceState = 'out';
   fadeInfo = 'in';
   slidePic = 'in';
-
+  profPic;
   show: boolean = false;
   infoForm;
   message;
   messageClass;
-  id;
-  email;
-  password;
-  passwordConfirm;
-  isStudent;
-  isTeacher;
-  county = '';
-  yrsExperience  = '';
-  skill1 = '';
-  skill2 = '';
-  skill3 = '';
-  handicap = '';
-  cost = '';
-  profPic;
-  viewTeacherID;
-  ratingsList;
-  text;
+  fileChangeName;
   isEditAdvancedSettings: boolean = false;
-
   canRate: boolean = false;
   isFileReady: boolean = false;
-
-  tempkRatingsArray: Array<number> = [];
-  temppRatingsArray: Array<number> = [];
-  temptaRatingsArray: Array<number> = [];
-  avgTotalRating: number;
   isParams: boolean = false;
   isEdit: boolean = false;
-  isChecked1: boolean = false;
-  isChecked2: boolean = false;
-  isChecked3: boolean = false;
-  isChecked4: boolean = false;
-  isChecked5: boolean = false;
-  mustUpload: boolean = false;
-
-  avgKnowledgeRating: number;
-  avgProfessionalismRating: number;
-  avgTeachingAbilityRating: number;
-  avgRating: number;
-  numberOfRatings: number;
-  yetRated: boolean = false;
-  onlineStatus;
-  onlineStatusString = 'Offline';
-
-  fileChangeName;
-  selectedFile;
-  photoForm;
-  profPicName;
-  passwordMatch: boolean = true;
-
-
+  passwordMatch: boolean = false;
+  canChangeStatus
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
+
+  fullname;
+  email;
+  password;
+  county;
+  skill1;
+  skill2;
+  skill3;
+  yrsExperience;
+  handicap;
+  cost;
+  onlineStatus;
+  profPicName;
+
+  newFullname;
+  newEmail;
+  newPassword;
+  newPasswordConfirm;
+
+  userObj;
 
   @ViewChild("fileInput") fileInput;
 
-  constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
-  getNewFullname(event) {
-    this.fullname = event.target.value;
+  constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
+
   }
 
-  getNewEmail(event) {
-    this.email = event.target.value;
-  }
-
-  getNewPassword(event) {
-    this.password = event.target.value;
-  }
 
   getNewPasswordConfirm(event) {
-    this.passwordConfirm = event.target.value;
-    if(this.passwordConfirm != this.password) {
-      this.passwordMatch = false;
+    this.newPasswordConfirm = event.target.value;
+    if(this.newPasswordConfirm === this.newPassword) {
+      this.passwordMatch = true;
     }
   }
 
@@ -125,37 +92,70 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
    this.fileChangeName = fileToName.name;
   }
 
-  getCounty(event) {
-    this.county = event.target.value;
+  getNewFullname(event) {
+    if(event.target.value) {
+      this.fullname = event.target.value;
+    }
   }
+
+  getNewEmail(event) {
+    if(event.target.value) {
+      this.email = event.target.value;
+    }
+  }
+
+  getNewPassword(event) {
+    if(event.target.value) {
+      this.newPassword = event.target.value;
+    }
+  }
+
+  getCounty(event) {
+    if(event.target.value) {
+      this.county = event.target.value;
+  }
+    }
 
   getExperience(event) {
-    this.yrsExperience = event.target.value;
+    if(event.target.value) {
+    this.yrsExperience = event.target.value
   }
+}
 
   getSkill1(event) {
-    this.skill1 = event.target.value;
+    if(event.target.value) {
+    this.skill1 =  event.target.value;
   }
+}
 
   getSkill2(event) {
+    if(event.target.value) {
     this.skill2 = event.target.value;
   }
+}
 
-  getSkill3(event) {
-    this.skill3 = event.target.value;
-  }
+//   getSkill3(event) {
+//     if(event.target.value) {
+//     this.skill3 = event.target.value
+//   }
+// }
 
   getHandicap(event) {
+    if(event.target.value) {
     this.handicap = event.target.value;
   }
+}
 
   getCost(event) {
-    this.cost= event.target.value;
+    if(event.target.value) {
+    this.cost = event.target.value;
   }
+}
 
   closeRating(){
     this.canRate = false;
     this.apiService.closeRating(this.canRate)
+
   }
 
   openRating(){
@@ -194,10 +194,11 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
         yrsExperience: this.yrsExperience,
         skill1: this.skill1,
         skill2: this.skill2,
-        skill3: this.skill3,
+        // skill3: this.skill3,
         handicap: this.handicap,
         cost: this.cost
       }
+      console.log(info, 'dinfo')
       this.authService.onInfoSubmit(info).subscribe(data => {
         this.show = true;
         if (!data.success) {
@@ -212,11 +213,12 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
           setTimeout(() => {
             this.show = false;
           },750);
+          this.getUserInfo();
           this.closeEditProfileInfo()
         }
       });
       setTimeout(() => {
-        this.getNewProfPic();
+        this.getUserInfo();
       }, 1400)
     }
 
@@ -241,14 +243,15 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   }
 
   submitAdvancedSettings() {
-    if(this.password != this.passwordConfirm){
-      return false;
+    if(this.newPassword === this.newPasswordConfirm || this.newFullname == ''){
+      this.passwordMatch = true;
     }
     let info = {
-      fullname: this.fullname,
-      email: this.email,
-      password: this.password
+      fullname: this.newFullname,
+      email: this.newEmail,
+      password: this.newPassword
     }
+    console.log('winfo', info)
     this.authService.onInfoSubmit(info).subscribe(data => {
       this.show = true;
       if (!data.success) {
@@ -274,17 +277,18 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     this.canRate =  this.apiService.getRatingStatus();
   }
 
-    getNewProfPic() {
-      this.authService.getProfile()
-      .subscribe(profile => {
-        this.profPicName = profile.user.profPic;
-        this.profPic = this.awsBucket + this.profPicName;
-    });
-  }
+  //   getNewProfPic() {
+  //     this.authService.getProfile()
+  //     .subscribe(profile => {
+  //       this.profPic = this.awsBucket + profile.user.profPic;
+  //       console.log(this.profPic, 'poopyers')
+  //       if(!this.profPic) {
+  //         this.profPic = this.awsBucket + 'blankProf.png'
+  //       }
+  //   });
+  // }
 
   goOffline() {
-    this.onlineStatus = false;
-    this.onlineStatusString = "Offline";
     let status = {
       status: false
     }
@@ -295,12 +299,11 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       }
       this.messageClass = 'alert alert-danger';
       this.message = data.message;
+      this.getUserInfo();
     });
   }
 
   goOnline() {
-    this.onlineStatus = true;
-    this.onlineStatusString = "Online";
     let status = {
       status: true
     }
@@ -311,110 +314,46 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
       }
       this.messageClass = 'alert alert-success';
       this.message = data.message;
+      this.getUserInfo();
     });
   }
 
-
-  ngOnInit() {
+  getUserInfo(){
+    console.log('hit1')
+    console.log('hit')
     this.route.params.subscribe(params => {
-    this.viewTeacherID = params['id'];
-      if(this.viewTeacherID) {
+    let viewTeacherID = params['id'];
+      if(viewTeacherID) {
       this.isParams = true;
-         this.authService.getTeacherView(this.viewTeacherID).subscribe(viewTeacher => {
-           this.id = viewTeacher.teacher._id;
-          //  this.fullname = viewTeacher.teacher.fullname;
-           this.email =viewTeacher.teacher.email;
-           this.isStudent =viewTeacher.teacher.isStudent;
-           this.isTeacher =viewTeacher.teacher.isTeacher;
-           this.county =viewTeacher.teacher.county;
-           this.yrsExperience =viewTeacher.teacher.yrsExperience;
-           this.skill1 = viewTeacher.teacher.skill1;
-           this.skill2 = viewTeacher.teacher.skill2;
-           this.skill3 = viewTeacher.teacher.skill3;
-           this.handicap = viewTeacher.teacher.handicap;
-           this.cost =viewTeacher.teacher.cost;
-           this.onlineStatus = viewTeacher.teacher.onlineStatus;
-           if(this.onlineStatus == true) {
-             this.onlineStatusString = 'Online'
-           }
+         this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
+           console.log('teacher', viewTeacher.teacher)
            this.profPicName = viewTeacher.teacher.profPic;
-           if(this.profPicName == undefined || null) {
+           if(!this.profPicName) {
              this.profPicName = 'blankProf.png'
            }
            this.profPic = this.awsBucket + this.profPicName;
-          //  if ratings array is not 0, do this operation
-           if(viewTeacher.teacher.ratings.length ) {
-             this.yetRated = true;
-             this.avgRating = viewTeacher.teacher.avgRatingNumber;
-             this.numberOfRatings = viewTeacher.teacher.avgRatingArray.length;
-              }
-              return true;
-            });
-         }
-       });
-      if(!this.viewTeacherID) {
-      this.isParams = false;
-      this.authService.getProfile()
-      .subscribe(profile => {
-        this.id = profile.user._id;
-        // this.fullname = profile.user.fullname;
-        this.email =profile.user.email;
-        this.isStudent =profile.user.isStudent;
-        this.isTeacher =profile.user.isTeacher;
-        this.county =profile.user.county;
-        this.yrsExperience =profile.user.yrsExperience;
-        this.skill1 = profile.user.skill1;
-        this.skill2 = profile.user.skill2;
-        this.skill3 = profile.user.skill3;
-        this.handicap = profile.user.handicap;
-        this.cost = profile.user.cost;
-        this.onlineStatus = profile.user.onlineStatus;
-        if(this.onlineStatus == true) {
-          this.onlineStatusString = 'Online'
+           this.userObj = viewTeacher.teacher;
+          });
+          return true;
         }
-        this.profPicName = profile.user.profPic;
-        if(this.profPicName === undefined) {
-          this.profPicName = 'blankProf.png'
-        }
-        this.profPic = this.awsBucket + this.profPicName;
-        if(profile.user.ratings.length) {
-          this.yetRated = true;
-         //  Loop through ratings array
-        for(let rating of profile.user.ratings) {
-          this.tempkRatingsArray.push(rating.kRatings)
-          this.temppRatingsArray.push(rating.pRatings)
-          this.temptaRatingsArray.push(rating.taRatings)
-       }
-       // get averages of all individual arrays
-        let avgkRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-        let avgpRating = (this.temppRatingsArray.reduce((a, b) => a + b))/this.temppRatingsArray.length;
-        let avgtaRating = (this.tempkRatingsArray.reduce((a, b) => a + b))/this.tempkRatingsArray.length;
-       //  get number of ratings
-        this.numberOfRatings = this.tempkRatingsArray.length;
-        //  get total array average
-        this.avgTotalRating = (avgkRating + avgpRating + avgtaRating)/3;
-       //  set star states based on total average array value
-        if(this.avgTotalRating >= 4.5) {
-               this.isChecked5 = true;
-             } else {
-                if(this.avgTotalRating >= 3.5) {
-                  this.isChecked4 = true;
-                } else {
-                  if(this.avgTotalRating >= 2.5) {
-                    this.isChecked3 = true;
-                  } else {
-                    if(this.avgTotalRating >= 1.5) {
-                      this.isChecked2 = true;
-                    } else {
-                      if(this.avgTotalRating >= 0.5) {
-                        this.isChecked1 = true;
-                      }
-                    }
-                  }
-                }
-              }
-           }
-         });
-    }
+    this.authService.getProfile().subscribe(profile => {
+      console.log('normal', profile.user)
+      this.profPicName = profile.user.profPic;
+      if(!this.profPicName) {
+        this.profPicName = 'blankProf.png'
+      }
+      this.profPic = this.awsBucket + this.profPicName;
+      if((this.profPicName !== 'blankProf.png') && (profile.user.skill1 && profile.user.skill2 != '') && (profile.user.bio != '') && profile.user.experiences.length !== 0 || null) {
+        this.canChangeStatus = true;
+      }
+      this.userObj = profile.user;
+      return true;
+    });
+  });
+  }
+
+  ngOnInit() {
+    this.getUserInfo();
+    window.scrollTo(0,0);
   }
 }

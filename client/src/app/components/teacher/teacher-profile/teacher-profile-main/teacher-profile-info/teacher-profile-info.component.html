@@ -19,14 +19,7 @@
 </span>
 
 <div class="row teachInfo">
-<!--
-  <div class="row show-hide-message" *ngIf="show">
-    <div [ngClass]="messageClass">
-    {{message}}</div>
-  </div> -->
-
-
-  <div class="col-xs-6 profPicDiv" (click)="closeRating()">
+  <div class="col-xs-5 profPicDiv" (click)="closeRating()">
     <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" [@slide]="slidePic" *ngIf="fadeInfo=='in'">
     <div class="row purpleBG" [@slide]='regularEditSlideState'>
       <div class="flex fileInputDiv">
@@ -40,21 +33,21 @@
       </div>
     </div>
   <div class="row" [@slide]='slideState' *ngIf="isEditAdvancedSettings">
-    <div class="col-xs-12 purpleBG" ><h2>Update Your Advanced Settings</h2>
+    <div class="col-xs-12 purpleBG"><h2>Update Your Advanced Settings</h2>
     </div>
   </div>
   </div>
   <div class="col-xs-6 leftText">
     <div class="row">
-      <div class="col-xs-12">
-        <h2>{{fullname}}</h2>
+      <div class="col-xs-12 fullname">
+        <h2>{{userObj?.fullname}}</h2>
         <span *ngIf="isEditAdvancedSettings">
           <div class="row" [@bounce]='bounceState'>
             <div class="col-xs-5">
               <label for="fullname">Fullname:</label>
             </div>
             <div class="col-xs-7">
-              <input value="{{fullname}}" type="text" class="updateForm fullnameInput" [(ngModel)]='fullname' (change)="getNewFullname($event)">
+              <input value="{{userObj?.fullname}}" type="text" class="updateForm fullnameInput" [(ngModel)]='userObj.fullname' (change)="getNewFullname($event)">
             </div>
           </div>
           <div class="row" [@bounce]='bounceState'>
@@ -62,7 +55,7 @@
               <label for="email">Email:</label>
             </div>
             <div class="col-xs-7">
-              <input value="{{email}}" type="text" class="updateForm emailInput" (change)="getNewEmail($event)">
+              <input value="{{userObj?.email}}" type="text" class="updateForm emailInput" (change)="getNewEmail($event)">
             </div>
           </div>
           <div class="row" [@bounce]='bounceState'>
@@ -78,7 +71,7 @@
               <label for="confirmPassword">Confirm Password:</label>
             </div>
             <div class="col-xs-7">
-              <input type="text" class="updateForm passwordInput" (change)="getNewPasswordConfirm($event)">
+              <input type="text" class="updateForm passwordInput" (input)="getNewPasswordConfirm($event)">
             </div>
           </div>
           <div class="row">
@@ -87,9 +80,10 @@
                 <div class="col-xs-12">
                   <div class="row">
                     <div class="col-xs-6">
-                      <h6>Current Status: <strong class="onlineStatusString" [ngClass]="!onlineStatus ? 'red' : 'turquoise'"> {{onlineStatusString}}</strong></h6>
+                      <h6>Current Status: <strong class="onlineStatusString" class='turquoise' *ngIf="userObj?.onlineStatus"> Online</strong>
+                      <strong class="onlineStatusString" class="red" *ngIf="!userObj?.onlineStatus"> Offline</strong></h6>
                     </div>
-                    <div class="col-xs-6" *ngIf="!passwordMatch || (password || passwordConfirm) == ''" >
+                    <div class="col-xs-6" *ngIf="newPassword != newPasswordConfirm" >
                       <h5 style="color: red; font-size: .85em">*Passwords do not match.</h5>
                     </div>
                   </div>
@@ -109,23 +103,23 @@
 
 
       <div class="col-xs-12" (click)="closeRating()" *ngIf="!isEditAdvancedSettings">
-        <div class="row ">
+        <div class="row ratingRow">
           <div class="col-xs-12">
             <div class="rating up noPointer" (click)="closeRating()">
-              <input type="radio" [checked]="avgRating >= 5"/>
-              <i class="fa fa-star star" for="star5" title="Awesome - 5 stars" (click)="five()"></i>
-              <input type="radio" [checked]="avgRating >= 4"/>
-              <i class="fa fa-star star" for="star4" title="Pretty good - 4 stars" (click)="four()"></i>
-              <input type="radio" [checked]="avgRating >= 3"/>
-              <i class="fa fa-star star" for="star3" title="Meh - 3 stars" (click)="three()"></i>
-              <input type="radio" [checked]="avgRating >= 2"/>
-              <i class="fa fa-star star" for="star2" title="Kinda bad - 2 stars" (click)="two()"></i>
-              <input type="radio" [checked]="avgRating >= 1"/>
-              <i class="fa fa-star star" for="star1" title="Sucks big time - 1 star" (click)="one()"></i>
+              <input type="radio" [checked]="avgRatingNumber >= 5"/>
+              <i class="fa fa-star star" for="star5" title="5 stars"></i>
+              <input type="radio" [checked]="avgRatingNumber >= 4"/>
+              <i class="fa fa-star star" for="star4" title="4 stars"></i>
+              <input type="radio" [checked]="avgRatingNumber >= 3"/>
+              <i class="fa fa-star star" for="star3" title="3 stars"></i>
+              <input type="radio" [checked]="avgRatingNumber >= 2"/>
+              <i class="fa fa-star star" for="star2" title="2 stars"></i>
+              <input type="radio" [checked]="avgRatingNumber >= 1"/>
+              <i class="fa fa-star star" for="star1" title="1 star" ></i>
             </div>
           </div>
           <div class="col-md-10 col-md-offset-1" class="numberRatings">
-            {{numberOfRatings || 0}} Students
+            <!-- {{avgRatingArray.length || 0}} Students -->
           </div>
         </div>
       </div>
@@ -134,10 +128,10 @@
   <span class="col-xs-12 lowerInfo" *ngIf="!isEditAdvancedSettings" >
         <div class="row">
           <div class="col-xs-12">
-            <p  [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Locations served: <span>{{county}}</span></p>
+            <p  [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Locations served: <span>{{userObj?.county}}</span></p>
             <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Locations served:</p>
-            <select (change)="getCounty($event)" value="{{county}}" *ngIf="regularEditSlideState == 'in'" class="col-md-5" [@bounce]="regularEditBounceState">
-              <option value="{{county}}" selected>{{county}}</option>
+            <select (change)="getCounty($event)" value="{{userObj?.county}}" *ngIf="regularEditSlideState == 'in'" class="col-md-5" [@bounce]="regularEditBounceState">
+              <option value="{{userObj?.county}}" selected>{{userObj?.county}}</option>
               <hr>
               <option value="North County">North County</option>
               <option value="South County">South County</option>
@@ -148,10 +142,10 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Experience: <span>{{yrsExperience}}</span></p>
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Experience: <span>{{userObj?.yrsExperience}}</span></p>
             <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Experience:</p>
-            <select (change)="getExperience($event)" value="{{yrsExperience}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
-              <option value="{{yrsExperience}}" selected>{{yrsExperience}} years</option>
+            <select (change)="getExperience($event)" value="{{userObj?.yrsExperience}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+              <option value="{{userObj?.yrsExperience}}" selected>{{userObj?.yrsExperience}} years</option>
               <hr>
               <option value="1 year">1 year</option>
               <option value="2 years">2 years</option>
@@ -193,10 +187,10 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Handicap: <span>{{handicap}}</span></p>
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Handicap: <span>{{userObj?.handicap}}</span></p>
             <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Handicap:</p>
-            <select (change)="getHandicap($event)" value="{{handicap}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
-              <option value="{{handicap}}" selected>+{{handicap}}</option>
+            <select (change)="getHandicap($event)" value="{{userObj?.handicap}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+              <option value="{{userObj?.handicap}}" selected>+{{userObj?.handicap}}</option>
               <hr>
               <option value="1">+1</option>
               <option value="2">+2</option>
@@ -238,9 +232,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Skills: <span> {{skill1}} </span> <span *ngIf="skill1">~</span> <span> {{skill2}}</span></p>
-            <p *ngIf="regularEditSlideState == 'in'" class="col-md-3 editLabel" [@bounce]="regularEditBounceState">Skill1:</p>
-            <select value="{{skill1}}" (change)="getSkill1($event)" class="col-md-4" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Skills: <span> {{userObj?.skill1}} </span> <span *ngIf="userObj?.skill2">&amp;</span> <span> {{ userObj?.skill2}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-3 editLabel" [@bounce]="regularEditBounceState">Skills:</p>
+            <select value="{{userObj?.skill1}}" (change)="getSkill1($event)" class="col-md-4" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="Driving" selected="selected">Driving</option>
               <option value="Approach Game">Approach Game</option>
               <option value="Short Game">Short Game</option>
@@ -250,7 +244,7 @@
               <option value="Ball Contact">Ball Contact</option>
             </select>
             <!-- <p *ngIf="regularEditSlideState == 'in'" class="col-md-3 editLabel skill2" [@bounce]="regularEditBounceState">Skill2:</p> -->
-            <select value="{{skill2}}" (change)="getSkill2($event)" class="col-md-4" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+            <select value="{{userObj?.skill2}}" (change)="getSkill2($event)" class="col-md-4" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="Driving" selected="selected">Driving</option>
               <option value="Approach Game">Approach Game</option>
               <option value="Short Game">Short Game</option>
@@ -263,9 +257,9 @@
       </div>
         <div class="row">
           <div class="col-xs-12">
-            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Price: <span>${{cost}}/hr</span></p>
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Price: <span>${{userObj?.cost}}/hr</span></p>
             <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Price:</p>
-            <select value="{{cost}}" (change)="getCost($event)" lass="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+            <select value="{{userObj?.cost}}" (change)="getCost($event)" lass="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
               <option value="25">$25/hr</option>
               <option value="50">$50/hr</option>
               <option value="75" selected="selected">$75/hr</option>
@@ -283,7 +277,7 @@
           <a class="btn btn-warning review" (click)="openRating()" >Review</a>
         </div>
         <div class="col-md-8" *ngIf="!isParams">
-          <a  [routerLink]="['../../view-teacher-profile/', id]" class="btn btn-info preview" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Preview Profile</a>
+          <a  [routerLink]="['../../view-teacher-profile/'] + userObj?._id" class="btn btn-info preview" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Preview Profile</a>
         </div>
       </div>
       </span>

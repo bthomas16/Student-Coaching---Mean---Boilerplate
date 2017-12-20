@@ -37,6 +37,11 @@ body {
 .disabled {
   color: grey;
   pointer-events: disabled;
+  text-decoration: none;
+}
+
+.disabled:hover {
+  text-decoration: none;
 }
 
 .loadingDiv {
@@ -124,6 +129,11 @@ ul.help-block li {
   cursor: default;
 }
 
+.showMorePointer {
+  cursor: default;
+  color: #1BACFC; 
+}
+
 .navPointer {
   cursor: default;
 }
@@ -135,6 +145,15 @@ ul.help-block li {
 .pointer:hover {
   cursor: pointer;
   text-decoration: none;
+}
+
+.disabled {
+  color: grey;
+  text-decoration: none;
+}
+
+.disabled:hover {
+  cursor: not-allowed;
 }
 
 .editLogo  {

@@ -23,9 +23,10 @@
 .pic {
   margin-left: -1.05em;
   left: 0;
+  width: 100%;
   position: relative;
-  min-height: 375px;
-  height: auto;
+  height: 375px;
+  /*height: auto;*/
 }
 
 .leftText {
@@ -40,6 +41,13 @@
 
 .fa-star {
   font-size: 2em;
+}
+
+.fullname {
+  margin-left: 1.25em;
+}
+.ratingRow {
+  margin-left: .15em;
 }
 
 .advancedSettings {
@@ -91,26 +99,27 @@
 .numberRatings {
   font-size: .75em;
   font-weight: 300;
-  margin-left: 1.75em;
+  margin-left: 2.75em;
   line-height: 3;
 }
 
 .lowerInfo {
   padding-top: 1.5em;
-  padding-left: 1.5em;
+  padding-left: 2.5em;
 }
 
-.col-md-12 p {
-  font-size: 1.15em;
+.col-xs-12 p {
+  font-size: 1.1em;
 }
 
-.col-md-12 p span {
+.col-xs-12 p span {
   font-weight: 100;
   line-height: 1.4;
 }
 
 .btnRow {
   padding: 0;
+  padding-top: .75em;
 }
 
 .review {
@@ -194,7 +203,7 @@ p > select {
 select {
   background: transparent;
   border-radius: 0px;
-  border: none;
+  border: 1px solid white;
   font-weight: 300;
 }
 

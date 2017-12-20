@@ -87,8 +87,11 @@ var studentSchema = new Schema({
     avgKRatingArray: [Number],
     avgPRatingArray: [Number],
     avgTARatingArray: [Number],
+    // array of total avg ratings
     avgRatingArray: [Number],
+    // Reduce function already done to find avgRatingArray average
     avgRatingNumber: Number,
+    // length of avg rating array
     avgRatingLength: Number,
     experiences: [String],
     location: String,

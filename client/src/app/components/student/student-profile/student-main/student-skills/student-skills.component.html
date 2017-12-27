@@ -20,12 +20,12 @@
           </li>
         </ul>
         <div class="row dynamicSkills" *ngIf="isEditSkills">
-          <input (keyup)="getNewSkill($event)" class="skillInput col-xs-8 " *ngIf="skillsToLearn.length !== 3" value="{{skillValue}}" placeholder="Add New Skill...">
+          <input (keyup)="getNewSkill($event)" class="skillInput col-xs-8 " *ngIf="skillsToLearn.length !== 5" value="{{skillValue}}" placeholder="Add New Skill...">
           <div class="col-xs-12 buttsDiv">
             <!-- <h6>Max of 3 Skills</h6> -->
               <div class="col-xs-4">
-                <button class="btn btn-success" (click)="addSkill()"  [disabled]="[skillValue] == ''" *ngIf="skillsToLearn.length !== 3">Add</button>
-                <button class="btn btn-default" (click)="addSkill()"  disabled *ngIf="skillsToLearn.length == 3">3 Max</button>
+                <button class="btn btn-success" (click)="addSkill()"  [disabled]="[skillValue] == ''" *ngIf="skillsToLearn.length !== 5">Add</button>
+                <button class="btn btn-default" (click)="addSkill()"  disabled *ngIf="skillsToLearn.length == 5">5 Max</button>
               </div>
 
               <div class="col-xs-4">

@@ -64,15 +64,16 @@
 
 
 .experiences {
-  margin-top: 2em;
+  margin-top: 1em;
+  overflow: scroll;
 }
 
 .experiences li {
   list-style: none;
   justify-content: flex-start;
-  margin: 2em;
+  margin: 1.5em;
   margin-left: -1.5em;
-  font-size: 1.35em;
+  font-size: 1.45em;
 }
 
 .experiences li i {
@@ -80,6 +81,10 @@
   color: #5563F0;
   margin-right: 1.5em;
   margin-left: 2.2em;
+}
+
+.experiences span {
+  font-size: 1.25em;
 }
 
 .proExperience {
@@ -114,9 +119,4 @@
   margin-right: 0;
   color: grey;
   pointer-events: none;
-}
-
-a.pointer {
-  margin-left: 5em;
-  line-height: 3;
 }

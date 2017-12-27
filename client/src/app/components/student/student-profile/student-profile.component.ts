@@ -12,6 +12,7 @@ export class StudentProfileComponent implements OnInit {
   message;
   messageClass;
   fullname;
+  studentBio = "Update you bio...";
   isStudent: boolean = true;
   isTeacher;
   profPic;
@@ -41,6 +42,30 @@ export class StudentProfileComponent implements OnInit {
     })
   }
 
+  getBioValue(value) {
+      this.studentBio = value;
+  }
+
+  bioValueSubmit() {
+    const studentBio = {
+      studentBio: this.studentBio
+    }
+    this.authService.onBioFormSubmit(studentBio).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.show = true;
+        this.isEdit = false;
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.show = false
+        }, 1200);
+      }
+    });
+  }
+
   ngOnInit() {
     this.authService.getProfile()
     .subscribe(profile => {
@@ -48,6 +73,7 @@ export class StudentProfileComponent implements OnInit {
       this.email = profile.user.email;
       this.isStudent = profile.user.isStudent;
       this.isTeacher = profile.user.isTeacher;
+      this.studentBio = profile.user.studentBio
     });
     // setTimeout(() => {
     //   this.isLoading = false;

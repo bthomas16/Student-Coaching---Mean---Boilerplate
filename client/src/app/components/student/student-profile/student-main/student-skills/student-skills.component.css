@@ -1,6 +1,6 @@
 .skillsWrapper {
   background-color: #dadada;
-  min-height: 300px;
+  min-height: 375px;
   margin-left: 2em;
 }
 
@@ -30,11 +30,16 @@
 margin-bottom: 1em;
 }
 
+.skillsToLearnDiv {
+  /*margin-top: 2em;*/
+}
+
 .skillsToLearnDiv li {
   list-style: none;
   justify-content: flex-start;
   margin: 2em;
-  font-size: 1.25em;
+  margin-top: 1em;
+  font-size: 1.5em;
   margin-left: -1.5em;
   color: black;
   margin-bottom: 0;
@@ -49,6 +54,7 @@ margin-bottom: 1em;
 
 .ploos {
   color: #5563F0;
+  margin-right: .75em;
 }
 
 .proExperience {
@@ -57,9 +63,6 @@ margin-bottom: 1em;
   min-height: 450px;
 }
 
-.buttsDiv {
-  margin-left: .5em;
-}
 
 .skillInput {
   color: black;
@@ -67,8 +70,13 @@ margin-bottom: 1em;
   background: transparent;
   border: none;
   border-bottom: 1px solid white;
-  margin-left: 2.75em;
-  margin-bottom: .5em;
+  margin-left: 2.25em;
+  margin-top: .25em;
+}
+
+.buttsDiv {
+  margin-left: .15em;
+  margin-top: .5em;
 }
 
 .btn {

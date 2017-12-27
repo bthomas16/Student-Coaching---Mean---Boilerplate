@@ -3,16 +3,17 @@ import { AuthService } from '../../../../../services/auth.service'
 import { ActivatedRoute } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ShufflePipe } from 'ngx-pipes/src/app/pipes/array/shuffle';
+import { ShortenPipe } from '../../../../../pipes/shorten.pipe';
 
 @Component({
   selector: 'app-teacher-reviews',
   templateUrl: './teacher-reviews.component.html',
   styleUrls: ['./teacher-reviews.component.css'],
-  providers: [ShufflePipe]
+  providers: [ShufflePipe, ShortenPipe]
 })
 export class TeacherReviewsComponent implements OnInit {
     @Input()sliceNumber;
-    @Input()canShowMore;
+    @Input()canShowMore = true;
 
     message;
     messageClass;
@@ -32,7 +33,7 @@ export class TeacherReviewsComponent implements OnInit {
     shortenNumber: number = 80;
 
 
-    constructor(public authService: AuthService, private route: ActivatedRoute, private shufflePipe: ShufflePipe) { }
+    constructor(public authService: AuthService, private route: ActivatedRoute, private shufflePipe: ShufflePipe, private shortenPipe: ShortenPipe) { }
 
     addSlice3(){
       console.log('hi', this.originalTeachersListLength, this.sliceNumber)
@@ -56,6 +57,9 @@ export class TeacherReviewsComponent implements OnInit {
         this.sliceNumber = 3;
       }
 
+  expandRating(id){
+    this.teachersList.ratings[id].shortenPipe.transform(this.teachersList.ratings[id].text, this.teachersList.ratings[id].text.length );
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -64,7 +68,7 @@ export class TeacherReviewsComponent implements OnInit {
          this.authService.getTeacherView(viewTeacherID).subscribe(viewTeacher => {
             this.originalTeachersListLength = viewTeacher.teacher.ratings.length;
             this.teachersList = this.shufflePipe.transform(viewTeacher.teacher.ratings);
-            this.teachersList.slice(0, 3);
+            this.teachersList.slice(0, this.sliceNumber);
             this.teachersListLength = this.teachersList.length;
             });
           }
@@ -72,8 +76,8 @@ export class TeacherReviewsComponent implements OnInit {
       this.authService.getProfile()
       .subscribe(profile => {
         this.originalTeachersListLength = profile.user.ratings.length;
-        this.teachersList = this.shufflePipe.transform(profile.user.ratings)
-        this.teachersList.slice(0, this.sliceNumber)
+        this.teachersList = this.shufflePipe.transform(profile.user.ratings);
+        this.teachersList.slice(0, this.sliceNumber);
         this.teachersListLength = this.teachersList.length;
       });
     }

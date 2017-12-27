@@ -79,6 +79,7 @@ font-size: 1.25em;
 
 .experiences {
   margin-top: 2em;
+  overflow: scroll;
 }
 
 .experiences li {

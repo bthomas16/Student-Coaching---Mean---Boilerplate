@@ -131,7 +131,9 @@ var studentSchema = new Schema({
     studentHandicap: Number,
     studentCounty: String,
     golferType: String,
-    skillsToLearn: [String]
+    studentGoals: String,
+    skillsToLearn: [String],
+    studentBio: String
   });
 
   studentSchema.pre('save', function(next) {

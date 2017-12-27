@@ -1,4 +1,166 @@
-<div class="row studentInfo">
+<div class="container ratingDiv" *ngIf="canRate">
+
+  <div class="row">
+    <div class="col-md-12">
+      <app-teacher-ratings></app-teacher-ratings>
+    </div>
+  </div>
+</div>
+
+<span *ngIf="!isParams">
+  <i class="fa fa-cog advancedSettings pointer" aria-hidden="true" (click)="openEditAdvancedSettings()"  title="Advanced Settings" *ngIf="!isEditAdvancedSettings" [@slide]='regularEditSlideState'></i>
+  <i class="fa fa-check advancedSettings successAdvancedSettings pointer" aria-hidden="true" (click)="submitAdvancedSettings()" *ngIf="isEditAdvancedSettings" title="Save" [ngClass]="!passwordMatch ? 'disabled' : 'pointer'"></i>
+  <i class="fa fa-times advancedSettings cancelAdvancedSettings pointer" aria-hidden="true" (click)="closeEditAdvancedSettings()" *ngIf="isEditAdvancedSettings" title="Cancel"></i>
+</span>
+<span *ngIf="!isParams && !isEditAdvancedSettings">
+  <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="openEditProfileInfo()" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'" title="Edit"></i>
+  <i class="fa fa-check editLogo successEdit pointer" aria-hidden="true" (click)="infoSubmit()" *ngIf="fadeInfo == 'out'" title="Save"></i>
+  <i class="fa fa-times editLogo cancelEdit pointer" aria-hidden="true" (click)="closeEditProfileInfo()" *ngIf="fadeInfo == 'out'" title="Cancel"></i>
+</span>
+
+<div class="row teachInfo">
+  <div class="col-xs-5 profPicDiv">
+    <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" [@slide]="slidePic" *ngIf="fadeInfo=='in'">
+    <div class="row purpleBG" [@slide]='regularEditSlideState'>
+      <div class="flex fileInputDiv">
+        <label for="fileInput" class="custom-file-upload">
+          <h4>Upload a Photo</h4>
+        </label>
+        <div class="flex">
+          <h6>{{fileChangeName}}</h6>
+        </div>
+        <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
+      </div>
+    </div>
+  <div class="row" [@slide]='slideState' *ngIf="isEditAdvancedSettings">
+    <div class="col-xs-12 purpleBG"><h2>Update Your Advanced Settings</h2>
+    </div>
+  </div>
+  </div>
+  <div class="col-xs-6 leftText">
+    <div class="row">
+      <div class="col-xs-12 fullname">
+        <h2>{{userObj?.fullname}}</h2>
+        <span *ngIf="isEditAdvancedSettings">
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="fullname">Fullname:</label>
+            </div>
+            <div class="col-xs-7">
+              <input value="{{userObj?.fullname}}" type="text" class="updateForm fullnameInput" [(ngModel)]='userObj.fullname' (change)="getNewFullname($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="email">Email:</label>
+            </div>
+            <div class="col-xs-7">
+              <input value="{{userObj?.email}}" type="text" class="updateForm emailInput" (change)="getNewEmail($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="password">Password:</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" class="updateForm passwordInput" (change)="getNewPassword($event)">
+            </div>
+          </div>
+          <div class="row" [@bounce]='bounceState'>
+            <div class="col-xs-5">
+              <label for="confirmPassword">Confirm Password:</label>
+            </div>
+            <div class="col-xs-7">
+              <input type="text" class="updateForm passwordInput" (input)="getNewPasswordConfirm($event)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-12" *ngIf="newPassword != newPasswordConfirm" >
+                  <h5 style="color: red; font-size: .85em">*Passwords do not match.</h5>
+                </div>
+                <div class="col-xs-6">
+                  <button class="btn btn-danger" (click)="goOffline()">Go Offline</button>
+                </div>
+                <div class="col-xs-6">
+                  <button class="btn btn-info" (click)="goOnline()">Go Online</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+
+
+  <span class="col-xs-12 lowerInfo" *ngIf="!isEditAdvancedSettings" >
+        <div class="row">
+          <div class="col-xs-12">
+            <p  [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Location: <span>{{userObj?.studentCounty}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Locations served:</p>
+            <select (change)="getCounty($event)" value="{{userObj?.studentCounty}}" *ngIf="regularEditSlideState == 'in'" class="col-md-5" [@bounce]="regularEditBounceState">
+              <option value="{{userObj?.studentCounty}}" selected>{{userObj?.studentCounty}}</option>
+              <hr>
+              <option value="North County">North County</option>
+              <option value="South County">South County</option>
+              <option value="East County">East County</option>
+              <option value="Central County">Central County</option>
+            </select>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p [@fade]="fadeInfo" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Handicap: <span>{{userObj?.studentHandicap}}</span></p>
+            <p *ngIf="regularEditSlideState == 'in'" class="col-md-5 editLabel" [@bounce]="regularEditBounceState">Handicap:</p>
+            <select (change)="getHandicap($event)" value="{{userObj?.studentHandicap}}" class="col-md-5" *ngIf="regularEditSlideState == 'in'" [@bounce]="regularEditBounceState">
+              <option value="{{userObj?.studentHandicap}}" selected>+{{userObj?.studentHandicap}}</option>
+              <hr>
+              <option value="1">+1</option>
+              <option value="2">+2</option>
+              <option value="3">+2</option>
+              <option value="4">+4</option>
+              <option value="5">+5</option>
+              <option value="6">+6</option>
+              <option value="7">+7</option>
+              <option value="8">+8</option>
+              <option value="9">+9</option>
+              <option value="10">+10</option>
+              <option value="11">+11</option>
+              <option value="12">+12</option>
+              <option value="13">+13</option>
+              <option value="14">+14</option>
+              <option value="15">+15</option>
+              <option value="16">+16</option>
+              <option value="17">+17</option>
+              <option value="18">+18</option>
+              <option value="19">+19</option>
+              <option value="20">+20</option>
+              <option value="21">+21</option>
+              <option value="22">+22</option>
+              <option value="23">+23</option>
+              <option value="24">+24</option>
+              <option value="25">+25</option>
+              <option value="26">+26</option>
+              <option value="27">+27</option>
+              <option value="28">+28</option>
+              <option value="29">+29</option>
+              <option value="20">+20</option>
+              <option value="31">+31</option>
+              <option value="32">+32</option>
+              <option value="33">+33</option>
+              <option value="34">+34</option>
+              <option value="35">+35</option>
+            </select>
+        </div>
+      </div>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="row studentInfo">
 
       <span *ngIf="!isParams">
         <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
@@ -94,4 +256,4 @@
             </div>
           </div>
       </div>
-</div>
+</div> -->

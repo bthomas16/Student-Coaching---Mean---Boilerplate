@@ -1,4 +1,270 @@
-.studentInfo {
+.teachInfo {
+  background-color: #2B2A2A;
+  height: 375px;
+  overflow: hidden;
+}
+
+.purpleBG {
+  background-color: #5563F0;
+  width: 90%;
+  /*padding: 5%;*/
+  /*padding-left: 8%;*/
+  height:375px;
+  padding-top: 25%;
+  color: white;
+  font-weight: 500;
+}
+
+.purpleBG h2 {
+  text-align: left;
+  margin-left: .5em;
+}
+
+.pic {
+  margin-left: -1.05em;
+  left: 0;
+  width: 100%;
+  position: relative;
+  height: 375px;
+  /*height: auto;*/
+}
+
+.leftText {
+  margin-left: -2em;
+  color: white;
+}
+
+.ratingDiv {
+  z-index: 1000;
+  position: fixed;
+}
+
+.fa-star {
+  font-size: 2em;
+}
+
+.fullname {
+  margin-left: 1.25em;
+}
+.ratingRow {
+  margin-left: .15em;
+}
+
+.advancedSettings {
+  position: absolute;
+  top: 2%;
+  left: 1.5%;
+  color: white;
+  z-index: 1000;
+  font-size: 1.75em;
+}
+
+.cancelEdit {
+  margin-right: 1.5%;
+}
+
+.cancelAdvancedSettings {
+  margin-left: 5%;
+  color: white;
+}
+
+.successAdvancedSettings {
+  color: #1BACFC;
+}
+
+.col-xs-5 label {
+  margin-top: 1em;
+}
+
+.updateForm {
+  margin: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  color: white;
+  width: 100%;
+}
+
+.updateForm:placeholder {
+  color: lightgrey;
+}
+
+.updateForm:focus {
+  outline: none;
+}
+
+.numberRatings {
+  font-size: .75em;
+  font-weight: 300;
+  margin-left: 2.75em;
+  line-height: 3;
+}
+
+.lowerInfo {
+  padding-top: 1.5em;
+  padding-left: 2.5em;
+}
+
+.col-xs-12 p {
+  font-size: 1.1em;
+}
+
+.col-xs-12 p span {
+  font-weight: 100;
+  line-height: 1.4;
+}
+
+.btnRow {
+  padding: 0;
+  padding-top: .75em;
+}
+
+.review {
+  background-color: #5563F0;
+}
+
+.col-md-6 {
+  padding: 0;
+}
+
+.btn {
+  margin-top: 1em;
+  height: 2.5em;
+  min-width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.preview {
+  width: 100%;
+}
+
+.custom-file-upload {
+    background-color: white;
+    display: inline-block;
+    padding: .75em;
+    /*margin-bottom: 5em;*/
+    color: #5563F0;
+    cursor: pointer;
+}
+.custom-file-upload h6 {
+  margin: 0;
+  line-height: 0;
+  align-self: flex-start;
+}
+
+.flex h6 {
+  margin-top: -23.5em;
+}
+
+
+#fileInput {
+  display: none;
+}
+
+.fileChangeName {
+  font-style: italic;
+  margin: 0;
+  height: 3em;
+}
+
+ p {
+  width: auto;
+  /*font-size: 1.25em;*/
+  font-weight: 500;
+}
+
+p > span {
+  font-weight: 100;
+}
+
+p > select {
+  font-weight: 100;
+}
+
+.editLabel{
+  margin-left: -1.05em;
+}
+
+.skill2 {
+  margin-left: .1em;
+}
+
+.fileInputDiv {
+  background-size: contain;
+  height: 375px;
+
+  color:white;
+}
+
+select {
+  background: transparent;
+  border-radius: 0px;
+  border: 1px solid white;
+  font-weight: 300;
+}
+
+.editLabel {
+  line-height: 1.5;
+}
+
+select {
+  line-height: 2;
+}
+
+.turquoise {
+  color: #1BACFC;
+}
+
+.red {
+  color: red;
+}
+
+.onlineStatusString {
+  margin-left: .75em;
+  font-size: 1.3em;
+}
+
+
+@media(max-width:500px) {
+  .pic {
+    min-width: 100%;
+    width: auto;
+    min-height: 250px;
+  }
+}
+
+
+.rating {
+  border: none;
+  float: left;
+
+}
+
+.rating > input  { display: none; }
+.rating > i:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  cursor: pointer;
+}
+
+.rating > i {
+  color: #ddd;
+  float: right;
+  margin: .1em;
+}
+
+.rating > input:checked ~ i {
+  color: #00FF99;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: green;
+}
+
+
+/*.studentInfo {
   background-color: #2B2A2A;
   min-height: 300px;
   margin-left: -2em;
@@ -99,7 +365,6 @@
 
  p {
   width: auto;
-  /*font-size: 1.25em;*/
   font-weight: 500;
 }
 
@@ -168,4 +433,4 @@ select {
   color: #00FF99;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: green;
-}
+}*/

@@ -3,7 +3,7 @@
   <div class="col-md-12 reviewCard">
     <div class="row">
       <div class="col-md-5 leftText">
-        <h4>{{rating.author.charAt(0).toUpperCase() + rating.author.slice(1) | shorten:12 }}</h4>
+        <h4>{{rating.author | shorten:12 }}</h4>
       </div>
       <div class="col-md-7 leftText">
         <div class="rating starDiv leftText noPointer">
@@ -22,12 +22,12 @@
     </div>
     <div class="row lowRow">
       <div class="col-md-12 leftText reviewText">
-        <p>{{rating.text | shorten:80}}</p>
+        <p>{{rating.text | shorten: shortenNumber}}</p>
       </div>
       <div class="col-md-12">
         <div class="row">
-          <a class="col-md-6 readMore pointer" *ngIf="!canReadMore" [ngClass]="{disabled: !rating.text.charAt(80)}">Read More</a>
-          <a class="col-md-6 readMore pointer" *ngIf="canReadMore">Read Less</a>
+          <a class="col-md-6 readMore pointer" *ngIf="rating.text.length > 80 || canShowMore" (click)="(shortenNumber = rating.text.length) && (canShowMore = false)" [ngClass]="rating.text.length > shortenNumber ? 'ok' : 'disabled'">Read More</a>
+          <a class="col-md-6 readMore pointer"  *ngIf="(!canShowMore) && (rating.text.length >= shortenNumber)" (click)="(shortenNumber = 80)">Read Less</a>
         </div>
       </div>
     </div>

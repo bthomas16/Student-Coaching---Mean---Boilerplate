@@ -37,8 +37,8 @@
       <p class="about">About {{ fullname }}</p>
     </div>
     <div class="col-xs-12">
-      <p *ngIf="!isEdit" class="bioText">{{bio}}</p>
-      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{ bio }}" (change)="getBioValue($event.target.value)"></textarea>
+      <p *ngIf="!isEdit" class="bioText">{{studentBio}}</p>
+      <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{ studentBio }}" (change)="getBioValue($event.target.value)"></textarea>
     </div>
   </div>
 </div>

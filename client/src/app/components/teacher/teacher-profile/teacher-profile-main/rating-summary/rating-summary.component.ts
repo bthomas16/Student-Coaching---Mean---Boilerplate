@@ -29,6 +29,9 @@ export class RatingSummaryComponent implements OnInit {
           this.pRating = viewTeacher.teacher.avgPRatingArray.reduce((a, b) => a + b)/viewTeacher.teacher.avgPRatingArray.length;
           this.taRating = viewTeacher.teacher.avgTARatingArray.reduce((a, b) => a + b)/viewTeacher.teacher.avgTARatingArray.length;
           this.numberOfRatings = viewTeacher.teacher.avgRatingLength;
+          this.kRating.toFixed(1);
+          this.pRating.toFixed(1);
+          this.taRating.toFixed(1);
           }
          });
          setTimeout(() => {
@@ -42,6 +45,9 @@ export class RatingSummaryComponent implements OnInit {
       this.pRating = profile.user.avgPRatingArray.reduce((a, b) => a + b)/profile.user.avgPRatingArray.length;
       this.taRating = profile.user.avgTARatingArray.reduce((a, b) => a + b)/profile.user.avgTARatingArray.length;
       this.numberOfRatings = profile.user.avgRatingLength;
+      this.kRating.toFixed(1);
+      this.pRating.toFixed(1);
+      this.taRating.toFixed(1);
       setTimeout(() => {
         this.isLoading = false;
         }, 600);

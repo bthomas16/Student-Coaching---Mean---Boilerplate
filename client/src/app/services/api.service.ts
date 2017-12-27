@@ -55,12 +55,12 @@ export class ApiService {
 
     changeMenuFalse(showMenu) {
         this.showMenu = false;
-        return false
+        return this.showMenu;
       }
 
     changeMenuTrue(showMenu) {
         this.showMenu = true;
-        return true;
+        return this.showMenu;
       }
 
     getMenuStatus() {

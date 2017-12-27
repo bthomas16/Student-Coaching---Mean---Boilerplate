@@ -34,18 +34,14 @@ export class FilterPipe implements PipeTransform {
     }
      const resultArray = [];
      for( const item of value ) {
-      console.log(county, 'county', skill, 'skill')
       if((county === 'Select a County') && (skill === 'Select a Skill')) {
-        console.log('here');
         return value;
       }
         if((item[propNameCounty] === county || county === 'Select a County') && (item[propNameSkill1] === skill || item[propNameSkill2] === skill || item[propNameSkill3] === skill || skill === 'Select a Skill')) {
-          console.log(skill, 'skeel')
           resultArray.push(item)
         }
     }
     if(resultArray.length === 0) {
-      console.log('nada here')
     }
     return resultArray
   }

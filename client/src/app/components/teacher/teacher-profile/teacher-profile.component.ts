@@ -87,6 +87,7 @@ export class TeacherProfileComponent implements OnInit {
       }
     });
   }
+  
   getVidFile(event) {
     this.videoFileName = event.target.files[0];
     this.videoFileName = this.videoFileName.name;

@@ -4,6 +4,7 @@ const express = require('express');
 // const multer = require('multer');
 const path = require('path');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 const config = require('../config/db');
 
 
@@ -49,10 +50,37 @@ router.post('/register', (req, res) => {
             }
           }
         } else {
+          let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'brentthomas16@gmail.com',
+              pass: 'Sicopreneur36'
+            }
+          })
+
+          var message = {
+            from:'Think Savvy Team <brentthomas16@gmail.com>',
+            to: 'brentthomas.c@gmail.com',
+            subject: 'Welcome to SAVVY!',
+            html: '<h2>Welcome '+ user.fullname + '!</h2> '+'<p> Thank you for subscribing to the SAVVY. We are thrilled to have you on board! As this is just the start of great things to come at SAVVY, we hope you never forget your account login information too: <br></p>  <h4>Password: '+ req.body.password +'</h4><h5>Sincerely,</h5> <h2><strong><p>The Savvy Team</p></strong></h2>',
+            // html: 'Embedded image: <img src="cid:brentthomas16@gmail.com"/>',
+            // attachments: [{
+            //     filename: 'teacher.jpg',
+            //     path: '../',
+            //     cid: 'brentthomas16@gmail.com' //same cid value as in the html img src
+            // }]
+          }
+          transporter.sendMail(message, function(error, body) {
+            if(error) {
+              console.log(error);
+            } else {
+              console.log('Message Sent '+ body.response);
+            }
+          })
           const token = jwt.sign({
             userId: user._id
           }, config.secret, { expiresIn: '24h'});
-          res.json({ success: true, message: 'User Registered!', token: token, user: { fullname: user.fullname, email: user.email, isStudent: user.isStudent, isTeacher: user.isTeacher, profPic: user.profPic}});
+          res.json({ success: true, message: 'User Registered!', token: token, user: user});
             }
           });
         }
@@ -417,13 +445,6 @@ router.put('/experiences', (req,res) => {
           if(!user) {
             res.json({ success: false, message: 'No User found'});
       } else {
-          user.county = req.body.county,
-          user.yrsExperience = req.body.yrsExperience,
-          user.skill1 = req.body.skill1,
-          user.skill2 = req.body.skill2,
-          user.skill3 = req.body.skill3,
-          user.handicap = req.body.handicap,
-          user.cost = req.body.cost
           if(req.body.fullname){
             user.fullname = req.body.fullname
           }
@@ -454,7 +475,20 @@ router.put('/experiences', (req,res) => {
           if(req.body.cost){
             user.cost = req.body.cost
           }
+          if(req.body.studentCounty){
+            user.studentCounty = req.body.studentCounty;
+          }
+          if(req.body.studentHandicap){
+            user.studentHandicap = req.body.studentHandicap;
+          }
+          if(req.body.golferType){
+            user.golferType = req.body.golferType;
+          }
+          if(req.body.studentGoals){
+            user.studentGoals = req.body.studentGoals;
+          }
           user.save((err) => {
+            console.log(user, 'hitted itted')
             if(err) {
               res.json({ succes: false, message: err})
             } else {
@@ -474,7 +508,12 @@ router.put('/experiences', (req,res) => {
               if(!user) {
                 res.json({ success: false, message: 'No User found'});
           } else {
-              user.bio = req.body.bio,
+              if(req.body.bio){
+                user.bio = req.body.bio;
+              }
+              if(req.body.studentBio){
+                user.studentBio = req.body.studentBio;
+              }
               user.save((err) => {
                 if(err) {
                   res.json({ succes: false, message: err})
@@ -549,6 +588,7 @@ router.put('/experiences', (req,res) => {
                       res.json({ success: false, message: 'No User found'});
                 } else {
                     user.skillsToLearn = req.body
+                    console.log(user.skillsToLearn,'poopers')
                     user.save((err) => {
                       if(err) {
                         res.json({ succes: false, message: err})

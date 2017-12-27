@@ -33,7 +33,7 @@ export class StudentSkillsComponent implements OnInit {
 
       addSkill() {
         this.skillsToLearn.push(this.skillValue);
-        if(this.skillsToLearn.length >= 5) {
+        if(this.skillsToLearn.length >= 4) {
           this.maxSkills = true;
         }
         // this.experienceSubmit();

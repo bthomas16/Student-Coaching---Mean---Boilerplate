@@ -270,13 +270,21 @@
         </div>
       </div>
       <div class="row btnRow">
-        <div class="col-md-5" (click)="closeRating()" *ngIf="isParams">
-          <a class="btn btn-info" (click)="isEdit">Contact</a>
+        <div class="col-xs-6" (click)="closeRating()" *ngIf="isParams">
+          <div class="row">
+            <div class="col-xs-12">
+              <a class="btn btn-info" (click)="isEdit">Contact</a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-5" *ngIf="isParams">
-          <a class="btn btn-warning review" (click)="openRating()" >Review</a>
+        <div class="col-xs-6" *ngIf="isParams">
+          <div class="row">
+            <div class="col-xs-12">
+              <a class="btn btn-warning review" (click)="openRating()" >Review</a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-8" *ngIf="!isParams">
+        <div class="col-xs-8" *ngIf="!isParams">
           <a  [routerLink]="['../../view-teacher-profile/'] + userObj?._id" class="btn btn-info preview" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Preview Profile</a>
         </div>
       </div>

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('modalFade', [
-      state('normal', style({transform: 'translateY(-10%)', opacity: 0, transition: 'all .5s ease-in-out',
+      state('normal', style({transform: 'translateY(-10%)', opacity: 0, transition: 'all .5s ease-in-out', visibility: 'hidden'
       })),
       state('fadein', style({transform: 'translateY(15%)', transition: 'all .5s ease-in-out',
       opacity: 1
@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
       state('fadein', style({transition: 'all .5s ease-in-out',
       opacity: 1,
       })),
-      transition('* <=> *', animate(500))
+      transition('* <=> *', animate(600))
     ])
   ]
 })
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   }
 
   emailSubmit() {
-    this.state = 'normal';
+    this.greyState = 'normal';
     this.onEmailSubmit();
   }
 
@@ -124,18 +124,19 @@ export class HomeComponent implements OnInit, AfterContentChecked {
   checkCookies() {
       this.cookieValue = this.cookieService.get('Skillz');
       if(this.cookieValue == "Here, have some cookies!") {
-        this.state = "normal";
         return true
       }
         this.cookieService.set( 'Skillz', 'Here, have some cookies!' );
         this.cookies = false;
         setTimeout(() => {
+          this.greyState = 'fadein';
           this.state = 'fadein';
-        },3400)
+        },3000)
         return false
   }
 
   closeStatusModal() {
+    this.greyState = 'normal';
     this.state = 'normal';
   }
 
@@ -145,8 +146,8 @@ export class HomeComponent implements OnInit, AfterContentChecked {
     this.loginState = this.apiService.getLoginModalStatus();
     this.registerState = this.apiService.getRegisterModalStatus();
     if(this.loginState == 'loginFadein' || this.registerState == 'registerFadein') {
-      this.greyState =
-      'fadein'
+      this.greyState = 'fadein';
+      // this.state = 'fadein';
     }
   }
 

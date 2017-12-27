@@ -3,7 +3,7 @@
 </div> -->
 
 <!-- <div class="flex modall" [ngClass]="{fadeOut: checkCookies() || cookies}"> -->
-<div class="flex modall" [@modalFade]="state" *ngIf="state == 'fadein'">
+<div class="flex modall" [@modalFade]="state">
   <div class="flex">
     <div class="flex xClose">
       <i class="fa fa-times fa-2x" aria-hidden="true" (click)="closeStatusModal()"></i>

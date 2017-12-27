@@ -61,7 +61,7 @@ import { RatingSummaryComponent } from './components/teacher/teacher-profile/tea
 import { StudentMainComponent } from './components/student/student-profile/student-main/student-main.component';
 import { StudentInfoComponent } from './components/student/student-profile/student-main/student-info/student-info.component';
 import { StudentSkillsComponent } from './components/student/student-profile/student-main/student-skills/student-skills.component';
-
+// import {GoogleAnalyticsEventsService} from "./services/google-analytics-events/google-analytics-events.service";
 
 
 

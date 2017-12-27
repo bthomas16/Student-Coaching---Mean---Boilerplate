@@ -1,4 +1,6 @@
 import { Component} from '@angular/core';
+import {Router, NavigationEnd} from "@angular/router";
+// import {GoogleAnalyticsEventsService} from "./services/google-analytics-events/google-analytics-events.service";
 import { ApiService } from './services/api.service';
 import {trigger, animate, style, group, animateChild, query, stagger, transition} from '@angular/animations';
 
@@ -31,13 +33,17 @@ import {trigger, animate, style, group, animateChild, query, stagger, transition
 export class AppComponent {
   title = 'app';
 
-  constructor(private apiService: ApiService){
+  constructor(private apiService: ApiService, public router: Router){
 
   }
 
   getState(outlet) {
     return outlet.activatedRouteData.state;
   }
+
+// submit() {
+//   this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
+// }
 
 
   changeMenu() {

@@ -4,10 +4,10 @@
     <a class="navPointer mainLogo" routerLink="profile" *ngIf="authService.loggedIn()">savvy</a>
   </div>
   <div class="flex options" *ngIf="!authService.loggedIn()">
-    <a class="navPointer initialOption" (click)="loginModal()">Sign In</a>
+    <a class="navPointer initialOption" (click)="loginModal()" routerLink="home">Sign In</a>
   </div>
   <a class="browse navPointer" routerLink="profile" (click)="changeMenuFalse()" *ngIf="authService.loggedIn()">Browse Coaches</a>
-  <a class="navPointer browse" (click)="registerModal()" *ngIf="!authService.loggedIn()">Sign Up</a>
+  <a class="navPointer browse" (click)="registerModal()" *ngIf="!authService.loggedIn()" routerLink="home">Sign Up</a>
   <a (click)="changeMenuTrue()"><i class="fa fa-user fa-2x navPointer" aria-hidden="true" *ngIf="authService.loggedIn()"></i></a>
 </div>
 

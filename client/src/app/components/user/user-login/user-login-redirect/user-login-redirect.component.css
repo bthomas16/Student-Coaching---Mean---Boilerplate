@@ -93,6 +93,10 @@ app-user-login {
   width: 45%;
 }
 
+em {
+  color: #1BACFC;
+}
+
 
 /*MODAL*/
 

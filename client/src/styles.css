@@ -131,7 +131,7 @@ ul.help-block li {
 
 .showMorePointer {
   cursor: default;
-  color: #1BACFC; 
+  color: #1BACFC;
 }
 
 .navPointer {
@@ -255,6 +255,11 @@ flash-message {
 .leftText {
   text-align: left;
   justify-content: flex-start;
+}
+
+.rightText {
+  text-align: right;
+  justify-content: flex-end;
 }
 
 .border {

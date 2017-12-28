@@ -11,7 +11,7 @@
   </div>
   <div class="flex buttons">
       <button type="button" class="btn btn-default register" (click)="animateRegister()">Sign Up for FREE</button>
-      <p class="flex switchAccount">Already have an account? <span (click)="animateLogin()" class="pointer loginSwitch">Sign In</span>
+      <p class="flex switchAccount">Already have an account? <span (click)="animateLogin()" class="pointer loginSwitch lightblue">Sign In</span>
       </p>
   </div>
 
@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <app-user-register></app-user-register>
                     <div class=" flex">
-                      <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer">Login Here</em></p>
+                      <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
                     </div>
                   </div>
               </div>
@@ -59,7 +59,7 @@
           <div class="flex">
             <app-user-login></app-user-login>
             <div class=" flex">
-              <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer">Register</em></p>
+              <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer lightblue">Register Here</em></p>
             </div>
           </div>
         </div>

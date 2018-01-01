@@ -79,3 +79,9 @@
   /*-webkit-text-stroke-width: 1px;*/
   /*-webkit-text-stroke-color: green;*/
 }
+
+@media(max-width: 650px) {
+  .rating {
+    margin: 0;
+  }
+}

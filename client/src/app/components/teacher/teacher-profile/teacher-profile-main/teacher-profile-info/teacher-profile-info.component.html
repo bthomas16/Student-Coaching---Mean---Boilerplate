@@ -1,5 +1,4 @@
 <div class="container ratingDiv" *ngIf="canRate">
-
   <div class="row">
     <div class="col-md-12">
       <app-teacher-ratings></app-teacher-ratings>
@@ -19,8 +18,12 @@
 </span>
 
 <div class="row teachInfo">
-  <div class="col-xs-5 profPicDiv" (click)="closeRating()">
-    <img [src]="[profPic]" alt="" class="img-responsive pull-left pic" [@slide]="slidePic" *ngIf="fadeInfo=='in'">
+  <div class="col-md-5 col-xs-12" (click)="closeRating()">
+    <div class="row">
+      <div class="col-xs-12 profPicDiv">
+        <img [src]="[profPic]" alt="" class="img-responsive pic" [@slide]="slidePic" *ngIf="fadeInfo=='in'">
+      </div>
+    </div>
     <div class="row purpleBG" [@slide]='regularEditSlideState'>
       <div class="flex fileInputDiv">
         <label for="fileInput" class="custom-file-upload">
@@ -32,12 +35,13 @@
         <input #fileInput id="fileInput" type="file" size="20" (change)="getFile($event)"/>
       </div>
     </div>
-  <div class="row" [@slide]='slideState' *ngIf="isEditAdvancedSettings">
-    <div class="col-xs-12 purpleBG"><h2>Update Your Advanced Settings</h2>
+    <div class="row" [@slide]='slideState' *ngIf="isEditAdvancedSettings">
+      <div class="col-xs-12 purpleBG">
+        <h2>Update Your Advanced Settings</h2>
+      </div>
     </div>
   </div>
-  </div>
-  <div class="col-xs-6 leftText">
+  <div class="col-md-6 col-xs-12 leftText">
     <div class="row">
       <div class="col-xs-12 fullname">
         <h2>{{userObj?.fullname}}</h2>
@@ -119,7 +123,7 @@
             </div>
           </div>
           <div class="col-md-10 col-md-offset-1" class="numberRatings">
-            <!-- {{avgRatingArray.length || 0}} Students -->
+            {{userObj?.avgRatingLength || 0}} Students
           </div>
         </div>
       </div>
@@ -270,19 +274,22 @@
         </div>
       </div>
       <div class="row btnRow">
-        <div class="col-xs-6" (click)="closeRating()" *ngIf="isParams">
+        <div class="col-xs-6" (click)="changeContactShow()" *ngIf="isParams && !showContactInfo">
           <div class="row">
             <div class="col-xs-12">
               <a class="btn btn-info" (click)="isEdit">Contact</a>
             </div>
           </div>
         </div>
-        <div class="col-xs-6" *ngIf="isParams">
+        <div class="col-xs-6" *ngIf="isParams && !showContactInfo">
           <div class="row">
             <div class="col-xs-12">
               <a class="btn btn-warning review" (click)="openRating()" >Review</a>
             </div>
           </div>
+        </div>
+        <div class="col-xs-12" *ngIf="showContactInfo">
+          <h4><a href="mailto:{{userObj?.email}}" >Email: {{ userObj?.email }}</a></h4>
         </div>
         <div class="col-xs-8" *ngIf="!isParams">
           <a  [routerLink]="['../../view-teacher-profile/'] + userObj?._id" class="btn btn-info preview" *ngIf="fadeInfo == 'in' || fadeInfo == 'none'">Preview Profile</a>

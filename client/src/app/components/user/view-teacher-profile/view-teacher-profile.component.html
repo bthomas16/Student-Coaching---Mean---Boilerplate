@@ -2,7 +2,7 @@
   <div class="loader"></div>
 </div> -->
 
-<div class="greyOut" *ngIf='canRate'></div>
+
 
 <div class="row show-hide-message" *ngIf="show">
   <div [ngClass]="messageClass">
@@ -14,11 +14,11 @@
 
       <div class="container bioRow">
         <div class="row leftText bioRow">
-          <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="about">About {{ teacherFullname }}</p>
+          <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0 about">
+            About {{ teacherFullname }}
           </div>
-          <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="bioText">{{bio}}</p>
+          <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0 bioText">
+            {{bio}}
           </div>
         </div>
       </div>

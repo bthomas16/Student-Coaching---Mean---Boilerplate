@@ -7,12 +7,14 @@
   font-weight: 500;
 }
 
-.img-responsive {
-  display: block;
-  min-width:308px;
-  height:418px;
-  width: auto;
-  /*height: auto;*/
+.picDiv {
+  padding-right: 25%;
+}
+
+.pic {
+  max-height:418px;
+  height: auto;
+  min-width: 100%;
 }
 
 .handicap {
@@ -57,13 +59,12 @@
   /*padding: 1em;*/
   font-size: 1.25em;
   margin-top:1.25em;
-  margin-left: -11.75em;
+  margin-left: -10.5em;
   margin-bottom: 3em;
   padding: .5em;
   padding-left: 5em;
   padding-right: 5em;
-  min-width: 45%;
-  width: 65%;
+  width: 100%;
   background-color: #1BACFC;
   color: white;
 }
@@ -118,4 +119,27 @@ h3 {
 
 .inActive {
   color: #dadada;
+}
+
+@media(max-width: 650px) {
+  .teacherInfoCol {
+    padding-top: 1em;
+  }
+  .noRate {
+    margin-top: 1em;
+  }
+  .circlePagination {
+    display: none;
+  }
+
+  .contactButt {
+    margin: 0;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding: .5em;
+  }
+
+  .picDiv {
+  padding: 1em;
+}
 }

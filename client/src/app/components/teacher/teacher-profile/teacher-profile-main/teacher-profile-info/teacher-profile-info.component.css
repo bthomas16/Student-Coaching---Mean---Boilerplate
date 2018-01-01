@@ -1,15 +1,37 @@
+.ratingDiv {
+  z-index: 10000000000000;
+  position: absolute;
+  margin-left: -2.05em;
+  padding-left: 0;
+}
+
 .teachInfo {
   background-color: #2B2A2A;
-  min-height: 375px;
-  overflow: hidden;
+  min-height: 415px;
+  height: auto;
+}
+
+@media(max-width: 650px) {
+  .teachInfo {
+    padding: 0;
+  }
+
+  .btnRow {
+    width: 100%;
+  }
+
+  .ratingDiv {
+    z-index: 10000000000000;
+    position: absolute;
+    margin-left: 0;
+    padding-left: 0;
+  }
 }
 
 .purpleBG {
   background-color: #5563F0;
-  width: 90%;
-  /*padding: 5%;*/
-  /*padding-left: 8%;*/
-  height:375px;
+  width: 100%;
+  height:415px;
   padding-top: 25%;
   color: white;
   font-weight: 500;
@@ -20,23 +42,9 @@
   margin-left: .5em;
 }
 
-.pic {
-  margin-left: -1.05em;
-  left: 0;
-  width: 100%;
-  position: relative;
-  height: 375px;
-  /*height: auto;*/
-}
 
 .leftText {
-  margin-left: -2em;
   color: white;
-}
-
-.ratingDiv {
-  z-index: 1000;
-  position: fixed;
 }
 
 .fa-star {
@@ -46,8 +54,11 @@
 .fullname {
   margin-left: 1.25em;
 }
+
 .ratingRow {
   margin-left: .15em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .advancedSettings {
@@ -60,7 +71,7 @@
 }
 
 .cancelEdit {
-  margin-right: 1.5%;
+  margin-right: 1em;
 }
 
 .cancelAdvancedSettings {
@@ -99,8 +110,8 @@
 .numberRatings {
   font-size: .75em;
   font-weight: 300;
-  margin-left: 2.75em;
-  line-height: 3;
+  margin-left: 2em;
+  color:#5ADA6A;
 }
 
 .lowerInfo {
@@ -120,6 +131,7 @@
 .btnRow {
   padding: 0;
   padding-top: .75em;
+  margin-bottom: 1em;
 }
 
 .review {
@@ -139,6 +151,17 @@
 }
 
 .preview {
+  width: 100%;
+}
+
+.profPicDiv {
+  padding: 0;
+}
+
+.pic {
+  /*margin-bottom: 100%;*/
+  left: 0;
+  min-height: 415px;
   width: 100%;
 }
 
@@ -195,7 +218,7 @@ p > select {
 
 .fileInputDiv {
   background-size: contain;
-  height: 375px;
+  height: 100%;
 
   color:white;
 }
@@ -226,15 +249,6 @@ select {
 .onlineStatusString {
   margin-left: .75em;
   font-size: 1.3em;
-}
-
-
-@media(max-width:500px) {
-  .pic {
-    min-width: 100%;
-    width: auto;
-    min-height: 250px;
-  }
 }
 
 

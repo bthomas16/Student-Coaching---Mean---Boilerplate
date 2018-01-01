@@ -48,7 +48,8 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   isParams: boolean = false;
   isEdit: boolean = false;
   passwordMatch: boolean = false;
-  canChangeStatus
+  canChangeStatus;
+  showContactInfo: boolean = false;
   awsBucket = 'https://s3.amazonaws.com/savvyappphotos/';
 
   fullname;
@@ -75,9 +76,7 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
 
 
   constructor(public authService: AuthService, public apiService: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
-
   }
-
 
   getNewPasswordConfirm(event) {
     this.newPasswordConfirm = event.target.value;
@@ -242,6 +241,12 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
     },501);
   }
 
+changeContactShow() {
+  this.showContactInfo = !this.showContactInfo;
+  this.closeRating();
+}
+
+
   submitAdvancedSettings() {
     if(this.newPassword === this.newPasswordConfirm || this.newFullname == ''){
       this.passwordMatch = true;
@@ -319,8 +324,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
   }
 
   getUserInfo(){
-    console.log('hit1')
-    console.log('hit')
     this.route.params.subscribe(params => {
     let viewTeacherID = params['id'];
       if(viewTeacherID) {
@@ -337,7 +340,6 @@ export class TeacherProfileInfoComponent implements OnInit, AfterContentChecked 
           return true;
         }
     this.authService.getProfile().subscribe(profile => {
-      console.log('normal', profile.user)
       this.profPicName = profile.user.profPic;
       if(!this.profPicName) {
         this.profPicName = 'blankProf.png'

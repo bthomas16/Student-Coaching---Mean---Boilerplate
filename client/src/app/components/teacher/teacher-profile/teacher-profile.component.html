@@ -12,8 +12,8 @@
 </div>
 
 <!-- <span > -->
-  <div [@modalStatusFade]="modalState" class="greyOut">
-  </div>
+  <!-- <div [@modalStatusFade]="modalState" class="greyOut">
+  </div> -->
 <!-- </span> -->
 
   <app-teacher-profile-main *ngIf="userObj?.isTeacher"></app-teacher-profile-main>
@@ -21,12 +21,7 @@
   <!-- bio row -->
 
 
-<div class="container bioRow"  *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
-  <div class="row show-hide-message" *ngIf="show">
-    <div [ngClass]="messageClass">
-    {{message}}</div>
-  </div>
-  <div class="row leftText bioRow">
+  <div class="row leftText bioRow" *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
     <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
       <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
       <i class="fa fa-check editLogo successEdit successEditBio pointer" aria-hidden="true" (click)="bioValueSubmit()" *ngIf="isEdit"></i>
@@ -38,7 +33,6 @@
       <textarea *ngIf="isEdit" type="text" class="flex bioInput" placeholder="Update you bio..." value="{{userObj?.bio }}" (change)="getBioValue($event.target.value)"></textarea>
     </div>
   </div>
-</div>
 
 
 <!-- video row -->
@@ -81,17 +75,17 @@
           <app-teacher-reviews></app-teacher-reviews>
         </div>
         <div class="row">
-          <div class="col-xs-4 col-xs-offset-8">
+          <div class="col-xs-6 col-xs-offset-6">
             <a class="showMore" (click)="subtractSlice3()" [ngClass]="[sliceNumber] < 3 ? 'disabled' : 'showMorePointer'">Show Less</a>
-            <!-- <a class="showMore" (click)="resetSlice()"  *ngIf="([sliceNumber] >= teachersListLength) || changedShow">Reset</a> -->
             <a class="showMore blue" (click)="addSlice3()" *ngIf="[sliceNumber] < ratingsListLength" >Show More</a>
           </div>
         </div>
       </div>
     </div>
+
     <div class="col-md-6 proExperience">
       <div class="row">
-        <div class="col-md-12 leftText" style="padding-left:1em;">
+        <div class="col-md-12 leftText">
           <div class="row">
             <div class="col-xs-10 col-xs-offset-1" >
               <h3>Professional Experience:</h3>
@@ -100,7 +94,7 @@
           <h6 *ngIf="userObj?.experiences == undefined || null">Update Experiences </h6>
         </div>
         <i class="fa fa-pencil-square-o editLogo proExpEditLogo pointer" aria-hidden="true" (click)="isEditExp = !isEditExp" *ngIf="!isEditExp"></i>
-        <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer turquoise" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp"></i>
+        <i class="fa fa-check editLogo successEdit successproExpEdit successEditBio pointer turquoise" aria-hidden="true" (click)="experienceSubmit()" *ngIf="isEditExp" [ngClass]="{disabled: userObj?.experiences == null}"></i>
         <i class="fa fa-times editLogo cancelEdit cancelproExpEdit cancelEditBio pointer white" aria-hidden="true" (click)="cancelExp()" *ngIf="isEditExp"></i>
         <div class="col-xs-11 experiences">
           <ul  *ngFor="let experience of userObj?.experiences">
@@ -110,7 +104,6 @@
             </li>
           </ul>
           <div class="row dynamicExperiences" *ngIf="isEditExp">
-            <!-- <h4 *ngIf="experiences.length == 5" style="color:red;" class="col-md-6 col-md-offset-3">You already have 5 expereiences!</h4> -->
             <input (keyup)="getNewExperience($event)" class="experienceInput col-xs-8 " *ngIf="userObj?.experiences.length !== 5" value="{{experienceValue}}" placeholder="Add New Experience...">
             <div class="col-xs-11 buttsDiv">
               <button class="btn add col-xs-3" (click)="addExperience()"  [disabled]="[experienceValue] == ''" *ngIf="userObj?.experiences.length !== 5">Add</button>

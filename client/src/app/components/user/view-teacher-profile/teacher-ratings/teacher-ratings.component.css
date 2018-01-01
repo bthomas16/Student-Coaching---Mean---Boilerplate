@@ -3,7 +3,7 @@
   background-color: #5563F0;
   padding: 5em;
   padding-top: 2em;
-  margin-left: 3.5em;
+  /*margin-left: 3.5em;*/
 }
 
 .ratingName {
@@ -23,6 +23,12 @@
   /*margin: 0;*/
   padding: 0;
   left: 0;
+}
+
+@media(max-width: 650px) {
+  .infoLeft {
+    margin-left: 0;
+  }
 }
 
 .ratingNumber {

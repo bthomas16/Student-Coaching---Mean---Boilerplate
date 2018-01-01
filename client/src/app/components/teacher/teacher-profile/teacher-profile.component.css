@@ -1,24 +1,57 @@
 /*Bio Div*/
 
-.bioRow {
+.bioRow {;
   background-color: #5563F0;
-  width: 100%;
-  padding: 4em;
-  padding-top: 2.5em;
+  padding-top: 3em;
   padding-bottom: 3em;
   min-height: 20em;
   color: white;
+  text-align: center;
+  width: 100vw;
+  text-align: left;
+  padding-left: 3em;
 }
 
 .about {
   font-size: 1.25em;
   font-weight: 400;
+  text-align: left;
 }
 
 .bioText {
   margin-top: 1.25em;
   font-size: 1.35em;
   font-weight: 500;
+  text-align: left;
+}
+
+.bioInput {
+  margin-top: 1em;
+  font-size: 1.35em;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border: .5px 0 .5px .5px solid white;
+  color: white;
+  width: 85%;
+  flex-wrap: wrap;
+  resize: none;
+  margin-left: .75em;
+}
+
+
+
+@media (max-width: 650px) {
+  .bioRow {
+    padding: 0;
+  }
+  .about {
+    margin-top: 2em;
+  }
+  .editLogo {
+    margin-top: .5em;
+    right: 0;
+  }
 }
 
 
@@ -28,11 +61,12 @@
 .vidContainer {
   margin-top: 2em;
   color: white;
+  padding: 0;
 }
 
 .vidBlock {
   background-color: #5563F0;
-  padding: 4em;
+  padding: 1em;
 
 }
 .uploadButt {
@@ -201,27 +235,6 @@ span {
   margin: 1em;
 }
 
-/*.experienceAddButton {
-  background-color: #5563F0;
-}*/
-
-.bioInput {
-  margin-top: 1em;
-  font-size: 1.35em;
-  font-weight: 500;
-  background: transparent;
-  border: none;
-  border: .5px 0 .5px .5px solid white;
-  color: white;
-  width: 85%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  left: 0;
-  resize: none;
-  text-align: left;
-}
-
 textarea::placeholder {
   color: lightgrey;
 }
@@ -257,7 +270,16 @@ right: 3.5em;
 }
 
 
-
+.greyOut {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(155,155,155,.5);
+}
 
 
 .statusModal {
@@ -368,14 +390,18 @@ button:hover {
 }
 
 @media(max-width: 650px) {
-  .half {
-    width: 100%;
-  }
 
 
   textarea {
     width: 30em;
     height: 4.5em;
+  }
+
+  .experiences li {
+    list-style: none;
+    justify-content: flex-start;
+    margin: 2em;
+    margin-left: -3em;
   }
 
 

@@ -1,8 +1,7 @@
 .main-wrapper {
-  height: 375px;
-  padding: 2em;
-  padding-bottom:3em;
+  min-height: 400px;
   background-color: #F2F2F2;
+  padding-bottom: 2.5em;
 }
 
 .wrapper h2 {
@@ -111,12 +110,19 @@ background-color: auto;
     font-size: .9em;
   }
 }
-
+/*
 @media (max-width: 650px) {
 
   .main-wrapper {
     height: 28em;
     padding-left: .5em;
+  }
+}*/
+
+@media(max-width: 650px) {
+  .main-wrapper {
+    background-color: none;
+    padding-bottom: 1em;
   }
 }
 

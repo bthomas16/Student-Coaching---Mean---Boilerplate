@@ -80,14 +80,14 @@ export class TeacherProfileComponent implements OnInit {
         this.isEdit = false;
         this.messageClass = 'alert alert-success';
         this.message = data.message;
-        this.getBio();
+        this.getUserInfo();
         setTimeout(() => {
           this.show = false
         }, 1200);
       }
     });
   }
-  
+
   getVidFile(event) {
     this.videoFileName = event.target.files[0];
     this.videoFileName = this.videoFileName.name;
@@ -162,9 +162,11 @@ export class TeacherProfileComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
+        this.getUserInfo();
       }
     })
   }
+  
   deleteExperience() {
     const trying = this.originalArray;
     this.userObj.experiences.pop()
@@ -231,7 +233,6 @@ export class TeacherProfileComponent implements OnInit {
   //
   closeStatusModal() {
     this.modalState = 'fadeOut';
-    console.log('hi', this.modalState)
   }
 
   getBio() {
@@ -254,7 +255,7 @@ export class TeacherProfileComponent implements OnInit {
     this.authService.getProfile().subscribe(profile => {
 
       this.userObj = profile.user;
-      if(this.userObj.skill1 || this.userObj.bio || this.userObj.experiences) {
+      if((this.userObj.skill1 && this.userObj.bio && this.userObj.experiences && this.userObj.profPic) != null || undefined || '') {
         this.canChangeStatus = true;
       }
       console.log('yup', this.userObj)

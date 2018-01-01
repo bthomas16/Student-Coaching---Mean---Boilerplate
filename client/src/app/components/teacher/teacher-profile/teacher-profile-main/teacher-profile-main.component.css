@@ -1,4 +1,20 @@
 .row {
   padding-top: 2em;
   margin-bottom: 2em;
+  padding: 1em;
+}
+
+.schedule {
+  background-color: white;
+}
+
+@media(max-width: 650px) {
+  .info {
+    width: 100%;
+  }
+  .schedule {
+    margin-top: 1em;
+    padding-bottom:1em;
+    background-color: #F2F2F2;
+  }
 }

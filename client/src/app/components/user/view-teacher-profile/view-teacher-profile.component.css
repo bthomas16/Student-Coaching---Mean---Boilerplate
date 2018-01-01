@@ -1,7 +1,8 @@
 .bioRow {
   background-color: #5563F0;
-  width: 100%;
+  width: 100vw;
   padding: 4em;
+  padding-left: 2em;
   padding-top: 2.5em;
   padding-bottom: 3em;
   margin-bottom: 2em;
@@ -18,6 +19,7 @@
   font-size: 1.35em;
   font-weight: 500;
 }
+
 
 
 .videoDiv {
@@ -119,4 +121,21 @@
   margin-right: 0;
   color: grey;
   pointer-events: none;
+}
+
+@media(max-width: 650px) {
+  .bioRow {
+    padding-top: 1em;
+    padding-left: 1em;
+  }
+  .bioText {
+    width: 100%;
+    padding-left: 0;
+    margin-left: .75em;
+  }
+
+
+  .experiences li {
+    margin-left: -3em;
+  }
 }

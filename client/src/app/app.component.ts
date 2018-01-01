@@ -31,8 +31,6 @@ import {trigger, animate, style, group, animateChild, query, stagger, transition
   })
 
 export class AppComponent {
-  title = 'app';
-
   constructor(private apiService: ApiService, public router: Router){
 
   }

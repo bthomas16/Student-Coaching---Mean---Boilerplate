@@ -1,3 +1,5 @@
+<div class="greyOut" *ngIf='canRate'></div>
+
 <div class="flex bar" (click)="closeRating()">
   <div class="flex logo">
     <a class="navPointer mainLogo" routerLink="home" *ngIf="!authService.loggedIn()">savvy</a>

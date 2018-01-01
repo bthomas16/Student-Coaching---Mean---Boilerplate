@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.showMenu = this.apiService.getMenuStatus();
+    this.canRate = this.apiService.getRatingStatus();
   }
 
   changeMenuTrue() {

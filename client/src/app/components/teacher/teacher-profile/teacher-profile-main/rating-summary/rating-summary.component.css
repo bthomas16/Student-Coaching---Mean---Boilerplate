@@ -22,6 +22,11 @@ label {
   margin-bottom: 1em;
   margin-top: 1em;
 }
+@media(max-width: 650px) {
+  .rating {
+    margin-left: -1.5em;
+  }
+}
 
 .rating > input  { display: none; }
 .rating > i:before {

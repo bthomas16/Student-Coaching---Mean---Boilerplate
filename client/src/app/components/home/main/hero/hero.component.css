@@ -6,21 +6,8 @@
   width: 100vw;
 }
 
-.messageStuff {
-  width: 100%;
-}
-
-.messageStuff .row {
-  width: 45%;
-}
-
 .fa-times {
   color: white;
-}
-
-.half {
-  width: 48%;
-  text-align: center;
 }
 
 .mainText{
@@ -65,54 +52,45 @@
 
 .modalWrapper {
   position: fixed;
-  width: 65%;
   background-color: #5563F0;
   padding: 1.5em;
   z-index: 1000;
-}
-
-.registerWrapper {
-  margin-top: 2em;
-  padding: 1.5em;
-  padding-top: .5em;
-}
-
-.loginWrapper {
-  width: 40%;
-  padding: 1.5em;
-  padding-top: .5em;
-  z-index: 900;
-}
-
-.modalWrapper h4 {
+  margin: 1.5em;
   color: white;
 }
 
-.xClose {
+.loginModal {
+  width: 60%;
+  margin-left: 0;
+}
+
+@media(max-width: 650px){
+  .modalWrapper {
+    margin: .25em;
+    margin-top: 4em;
+  }
+
+  .loginModal {
+    width: 95%;
+  }
+}
+
+.fa {
   position: absolute;
-  right: 6em;
-  top: .95em;
+  right: 1.5em;
+  top: .25em;
   justify-content: flex-end;
   color: white;
-}
-
-.modalContent {
-  margin-top: 1em;
-  color: white;
-  width: 100%;
-  padding: 0;
 }
 
 .title {
   font-size: 2.75em;
   font-weight: 500;
-  text-align: left;
   margin-bottom: 1em;
 }
 
 .subText {
   font-size: 1.25em;
-  text-align: left;
 }
 
 .flex app-user-login {
@@ -196,27 +174,14 @@
     display: inline-block;
   }
 
-  .modalWrapper {
-    width: 80%;
-    margin-top: 20%;
-  }
-
-  .modalText {
-    width: 95%;
-    margin-bottom: 1.5em;
-  }
-
-  .form {
-    width: 95%;
-  }
-
   .title {
     font-size: 1.75em;
     margin-bottom: .5em;
   }
 
   .subText {
-    font-size: 1.25em;
+    font-size: 1em;
+    margin-top: 2em;
   }
 
   .xClose {
@@ -236,9 +201,9 @@
     width: 100%;
   }
 
-  .modalWrapper {
+  /*.modalWrapper {
     width: 85%;
-  }
+  }*/
 
 }
 
@@ -279,9 +244,9 @@
     margin-top: 2em;
   }
 
-  .modalWrapper {
+  /*.modalWrapper {
     width: 95%;
-  }
+  }*/
 
   .xClose {
     top: 1.75em;
@@ -315,10 +280,10 @@
     right: 2em;
   }
 
-  .modalWrapper {
+  /*.modalWrapper {
     margin-top: 22%;
     padding-top: .5em;
-  }
+  }*/
 
   .modalText {
     margin: 0;

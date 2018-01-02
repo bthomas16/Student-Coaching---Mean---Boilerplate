@@ -15,54 +15,46 @@
       </p>
   </div>
 
-      <!-- NEW MODAL 1 -->
-
-      <div class="flex modalWrapper registerWrapper" [@modalRegisterFade]="registerState">
-        <div class="flex">
-          <h4 class="caps"><strong>Savvy Register</strong></h4>
-          <div class="flex xClose">
-            <i class="pointer fa fa-times fa-2x " aria-hidden="true" (click)="animateRegister()"></i>
-          </div>
-          <div class="modalContent">
-            <div class="flex">
-              <div class="flex half modalText">
-                  <p class="flex title">Start improving your golf skills now</p>
-                  <p class="flex subText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
-              </div>
-              <div class="flex half form">
-                  <div class="form-group">
-                    <app-user-register></app-user-register>
-                    <div class=" flex">
-                      <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="container modalWrapper" [@modalRegisterFade]="registerState">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4 class="caps"><strong>Savvy Register</strong></h4>
+      <i class="pointer fa fa-times fa-2x " aria-hidden="true" (click)="animateRegister()"></i>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-xs-5">
+        <p class="leftText title">Start improving your golf skills now</p>
+        <p class="leftText subText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
       </div>
-
-
-  <!-- [ Modal #2 ] -->
-
-
-  <!-- NEW MODAL 2 -->
-
-
-  <div class="flex modalWrapper loginWrapper" [@modalLoginFade]="loginState">
-    <div class="flex">
-      <h4 class="caps"><strong>Savvy Login</strong></h4>
-      <div class="flex xClose">
-        <i class="pointer fa fa-times fa-2x" aria-hidden="true" (click)="animateLogin()"></i>
-      </div>
-        <div class="modalContent">
-          <div class="flex">
-            <app-user-login></app-user-login>
-            <div class=" flex">
-              <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer lightblue">Register Here</em></p>
-            </div>
+      <div class="col-xs-7">
+        <app-user-register></app-user-register>
+        <div class="row">
+          <div class="col-xs-12">
+            <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+<div class="container modalWrapper loginModal" [@modalLoginFade]="loginState">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4 class="caps"><strong>Savvy Login</strong></h4>
+      <i class="pointer fa fa-times fa-2x " aria-hidden="true" (click)="animateLogin()"></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-user-login></app-user-login>
+      <div class="row">
+        <div class="col-xs-12">
+          <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

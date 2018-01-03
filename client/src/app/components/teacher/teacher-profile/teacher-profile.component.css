@@ -255,10 +255,6 @@ textarea::placeholder {
   right: 2.25em;
 }
 
-.proExpEditLogo {
-  right: .5em;
-}
-
 .bioEditLogo {
   right: -1.75em;
 }
@@ -410,6 +406,10 @@ button:hover {
     justify-content: flex-start;
     margin: 2em;
     margin-left: -3em;
+  }
+
+  .proExpEditLogo {
+    right: .5em;
   }
 
 

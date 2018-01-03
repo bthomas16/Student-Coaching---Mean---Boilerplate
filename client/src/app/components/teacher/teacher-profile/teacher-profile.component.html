@@ -23,7 +23,7 @@
 
   <div class="row leftText bioRow" *ngIf="userObj?.isTeacher" (click)="closeStatusModal()">
     <div class="col-xs-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
-      <i class="fa fa-pencil-square-o editLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
+      <i class="fa fa-pencil-square-o editLogo bioEditLogo pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="!isEdit"></i>
       <i class="fa fa-check editLogo successEdit successEditBio pointer" aria-hidden="true" (click)="bioValueSubmit()" *ngIf="isEdit"></i>
       <i class="fa fa-times editLogo cancelEdit cancelEditBio pointer" aria-hidden="true" (click)="isEdit = !isEdit" *ngIf="isEdit"></i>
       <p class="about">About {{ userObj?.fullname }}</p>
@@ -87,7 +87,7 @@
       <div class="row">
         <div class="col-md-12 leftText">
           <div class="row">
-            <div class="col-xs-10 col-xs-offset-1" >
+            <div class="col-md-10 col-md-offset-1 col-xs-8" >
               <h3>Professional Experience:</h3>
             </div>
           </div>

@@ -1,3 +1,7 @@
+.editLogo {
+  font-size: 1.75em;
+}
+
 /*Bio Div*/
 
 .bioRow {;
@@ -7,15 +11,15 @@
   min-height: 20em;
   color: white;
   text-align: center;
-  width: 100vw;
+  width: 105vw;
   text-align: left;
-  padding-left: 3em;
 }
 
 .about {
   font-size: 1.25em;
   font-weight: 400;
   text-align: left;
+  margin-left: 1.5em;
 }
 
 .bioText {
@@ -23,6 +27,7 @@
   font-size: 1.35em;
   font-weight: 500;
   text-align: left;
+  margin-left: 1.5em;
 }
 
 .bioInput {
@@ -251,8 +256,11 @@ textarea::placeholder {
 }
 
 .proExpEditLogo {
-  top: 1em;
-  right: 2em;
+  right: .5em;
+}
+
+.bioEditLogo {
+  right: -1.75em;
 }
 
 .successproExpEdit {

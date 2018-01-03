@@ -4,98 +4,25 @@
   background-size: cover;
   background-position:bottom;
   width: 100vw;
-}
-
-.fa-times {
   color: white;
 }
-
-.mainText{
-  color: white;
-  width: 100%;
-  margin-bottom: 0;
-}
-
-.mainTitle {
-  font-size: 3.75em;
-  font-weight: 800;
-  margin-left: .5em;
-}
-
-.mainInfo {
-  width: 22.5em;
-  font-size: 1.75em;
-  margin-top: 1.25em;
-  font-weight: 100;
-}
-
-.buttons {
-  margin-top: -4em;
-}
-
-.register {
-  background-color: rgba(27, 172, 252,.9);
-  width: 28%;
-  color: white;
-  font-weight: bold;
-  border: none;
-  padding: .75em;
-  font-size: 1.1em;
-  font-weight: 400;
-}
-
-
-
-
-/*REGISTER MODAL*/
-
 
 .modalWrapper {
   position: fixed;
+  left: 5%;
+  right: 5%;
   background-color: #5563F0;
-  padding: 1.5em;
-  z-index: 1000;
-  margin: 1.5em;
+  padding: 3em;
+  z-index: 100000000;
   color: white;
+  top: 10%;
 }
 
 .loginModal {
   width: 60%;
-  margin-left: 0;
+  padding: 1.5em;
 }
 
-@media(max-width: 650px){
-  .modalWrapper {
-    margin: .25em;
-    margin-top: 4em;
-  }
-
-  .loginModal {
-    width: 95%;
-  }
-}
-
-.fa {
-  position: absolute;
-  right: 1.5em;
-  top: .25em;
-  justify-content: flex-end;
-  color: white;
-}
-
-.title {
-  font-size: 2.75em;
-  font-weight: 500;
-  margin-bottom: 1em;
-}
-
-.subText {
-  font-size: 1.25em;
-}
-
-.flex app-user-login {
-  width: 100%;
-}
 
 .switchAccount {
   margin-top: .5em;
@@ -113,9 +40,70 @@
   color:#1BACFC;
 }
 
-.caps {
-  margin-bottom: 1.5em;
+.mainTitle {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 4.5em;
 }
+
+.mainText {
+  font-size: 2em;
+  font-weight: 100;
+  margin-bottom: 1em;
+}
+
+h3 {
+  margin-bottom: 1em;
+}
+
+.title {
+  font-size: 3.25em;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+
+.subText {
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+button {
+  margin: 2em;
+  margin-bottom: 0;
+}
+
+.topRow {
+  position: absolute;
+  right: 3em;
+  top: .5em;
+  margin-bottom: 1em;
+}
+
+.fa-times {
+  position: absolute;
+}
+
+.closeLogin {
+  position: absolute;
+  right: .5em;
+  top: -.5em;
+}
+
+.register {
+  background-color: rgba(27, 172, 252,.9);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: .75em;
+  font-size: 1.1em;
+  min-width: 25%;
+}
+
+
+/*REGISTER MODAL*/
+
+
+
 
 
 @media(max-width: 780px) {
@@ -129,49 +117,20 @@
       width: 100%;
   }
 
-  .mainTitle {
-    font-size: 3.5em;
-  }
-
-  .buttons {
-    padding-bottom: 0;
-    width: 75%;
-  }
-
-  .loginWrapper {
-    width: 75%;
-  }
-}
-
-@media(max-width: 575px) {
-  .mainText {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  .mainTitle {
-    font-size: 3.25em;
-    width: 100%;
-  }
-
-  .mainInfo {
-    width: 90%;
-    font-size: 1.5em;
-    margin-top: 1em;
-  }
-
   .register {
-    width: 15em;
+    width: 45%;
   }
 
-  .buttons {
-    margin-top: -8em;
+  .mainTitle {
+    font-size: 2.25em;
+    /*margin: .5em;*/
+    margin-top: 2em;
+    margin-bottom: 1.5em;
   }
 
-  .account a {
-    width: auto;
-    display: inline-block;
+  .mainText {
+    font-size: 1.25em;
+    margin-bottom: 1.5em;
   }
 
   .title {
@@ -181,142 +140,25 @@
 
   .subText {
     font-size: 1em;
-    margin-top: 2em;
+    margin-bottom: 1.5em;
   }
 
-  .xClose {
-    right: 3em;
+  .register {
+    width: 67.5%;
   }
-
-  .loginWrapper {
-    width: 80%;
-  }
-}
-
-@media(max-width:500px) {
-  .registerText {
-    width: 97.5%;
-  }
-  .form {
-    width: 100%;
-  }
-
-  /*.modalWrapper {
-    width: 85%;
-  }*/
 
 }
 
-
-@media(max-width:475px) {
-
-  .mainTitle {
-    font-size: 2.5em;
-    width: 100%;
+@media(max-width: 650px){
+  .modalWrapper {
+    margin: .25em;
+    top: 3.5em;
+    padding:1.5em;
   }
 
-  .mainInfo {
-    width: 90%;
-    font-size: 1.25em;
-    margin-top: 2em;
+
+  .loginModal {
+    top: 5em;
+    width: 87.5%;
   }
-
-  .xClose {
-    top: 1.75em;
-  }
-
-  .loginWrapper {
-    width: 90%;
-  }
-}
-
-@media(max-width:375px) {
-
-  .mainTitle {
-    font-size: 2em;
-    margin-left: .75em;
-    width: 100%;
-  }
-
-  .mainInfo {
-    width: 90%;
-    font-size: 1.25em;
-    margin-top: 2em;
-  }
-
-  /*.modalWrapper {
-    width: 95%;
-  }*/
-
-  .xClose {
-    top: 1.75em;
-  }
-}
-
-@media(max-width:325px) {
-
-  .mainTitle {
-    font-size: 2em;
-    margin-left: .85em;
-    width: 100%;
-  }
-
-  .mainInfo {
-    width: 90%;
-    font-size: 1.15em;
-    margin-top: .75em;
-  }
-
-  .buttons {
-    margin-top: -4em;
-  }
-
-  .bigTitle {
-    font-size: 1.75em;
-  }
-
-  .xClose {
-    top: .75em;
-    right: 2em;
-  }
-
-  /*.modalWrapper {
-    margin-top: 22%;
-    padding-top: .5em;
-  }*/
-
-  .modalText {
-    margin: 0;
-  }
-
-  .title {
-    font-size: 1.35em;
-  }
-
-  .subText {
-    font-size: 1em;
-  }
-}
-
-
-
-
-@media(max-height:475px) {
-
-  .account {
-    font-size: .95em;
-  }
-
-  .buttons {
-    padding: .5em;
-    padding-bottom: 0;
-  }
-}
-
-
-
-
-:host /deep/ h3 {
-  color: blue;
-  font-size: 10em;
 }

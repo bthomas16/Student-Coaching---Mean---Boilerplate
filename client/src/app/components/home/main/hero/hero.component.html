@@ -1,48 +1,55 @@
-<div class="flex wrapper">
+<!-- <div class="flex wrapper">
 
   <div class="flex mainText">
-    <div class="row show-hide-message">
-      <div [ngClass]="messageClass">
-      {{message}}</div>
-    </div>
 
     <p class="flex mainTitle">Reinventing Learning</p>
-    <p class="flex mainInfo">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+
   </div>
   <div class="flex buttons">
-      <button type="button" class="btn btn-default register" (click)="animateRegister()">Sign Up for FREE</button>
-      <p class="flex switchAccount">Already have an account? <span (click)="animateLogin()" class="pointer loginSwitch lightblue">Sign In</span>
-      </p>
-  </div>
 
-<div class="container modalWrapper" [@modalRegisterFade]="registerState">
+  </div> -->
+<div class="container wrapper">
+  <div class="row">
+    <h1 class="col-xs-12 mainTitle">Reinventing Learning</h1>
+    <p class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 mainText">Introducing savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+  </div>
   <div class="row">
     <div class="col-xs-12">
-      <h4 class="caps"><strong>Savvy Register</strong></h4>
+      <button type="button" class="btn btn-default register" (click)="animateRegister()">Sign Up for FREE</button>
+      <p class="switchAccount">Already have an account? <span (click)="animateLogin()" class="pointer loginSwitch lightblue">Sign In</span>
+      </p>
+    </div>
+  </div>
+
+
+<div class="container modalWrapper" [@modalRegisterFade]="registerState">
+  <div class="row topRow">
+    <div class="col-xs-12">
+      <!-- <h3><strong>Savvy Register</strong></h3> -->
       <i class="pointer fa fa-times fa-2x " aria-hidden="true" (click)="animateRegister()"></i>
     </div>
   </div>
-    <div class="row">
-      <div class="col-xs-5">
-        <p class="leftText title">Start improving your golf skills now</p>
-        <p class="leftText subText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
-      </div>
-      <div class="col-xs-7">
-        <app-user-register></app-user-register>
-        <div class="row">
-          <div class="col-xs-12">
-            <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
-          </div>
+  <div class="row">
+    <div class="col-md-5 col-xs-12">
+      <p class="leftText title">Start improving your golf skills now!</p>
+      <p class="leftText subText">Introducing Savvy, a connector of professionals looking to teach, and students looking to learn.</p>
+    </div>
+    <div class="col-md-7 col-xs-12">
+      <app-user-register></app-user-register>
+      <div class="row">
+        <div class="col-xs-12">
+          <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 <div class="container modalWrapper loginModal" [@modalLoginFade]="loginState">
   <div class="row">
     <div class="col-xs-12">
-      <h4 class="caps"><strong>Savvy Login</strong></h4>
-      <i class="pointer fa fa-times fa-2x " aria-hidden="true" (click)="animateLogin()"></i>
+      <h3><strong>Savvy Login</strong></h3>
+      <i class="pointer fa fa-times fa-2x closeLogin" aria-hidden="true" (click)="animateLogin()"></i>
     </div>
   </div>
   <div class="row">
@@ -50,7 +57,7 @@
       <app-user-login></app-user-login>
       <div class="row">
         <div class="col-xs-12">
-          <p (click)="switchForm()" class="switchAccount">Already have an account? <em class="pointer lightblue">Login Here</em></p>
+          <p (click)="switchForm()" class="switchAccount">Don't have an account? <em class="pointer lightblue">Register Here</em></p>
         </div>
       </div>
     </div>

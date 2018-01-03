@@ -120,6 +120,8 @@
 
 <app-rating-summary *ngIf="userObj?.isTeacher"></app-rating-summary>
 
+<div class="greyOut" *ngIf="modalState == 'fadeIn'"></div>
+
 
 <span [@modalStatusFade]="modalState">
 <div class="flex statusModal" >

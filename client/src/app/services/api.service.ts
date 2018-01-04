@@ -12,9 +12,9 @@ export class ApiService {
   registerState = 'normal';
   loginState = 'normal';
   // development server
-  // server = "http://localhost:8080";
+  server = "http://localhost:8080";
   // production server
-  server = "";
+  // server = "";
 
   constructor(
     public authService: AuthService,
